@@ -21,7 +21,7 @@ colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ocyt1"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ds0r"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5j3my"]
 height = 256
 seamless = true
 color_ramp = SubResource("Gradient_r4pp2")
@@ -31,12 +31,12 @@ noise = SubResource("FastNoiseLite_ocyt1")
 rayleigh_color = Color(0.551943, 0.3535, 0.204849, 1)
 night_sky = ExtResource("2_et66n")
 
-[sub_resource type="Sky" id="Sky_70pn8"]
+[sub_resource type="Sky" id="Sky_mdnvc"]
 sky_material = SubResource("PhysicalSkyMaterial_2tsao")
 
 [sub_resource type="Environment" id="Environment_djm8m"]
 background_mode = 2
-sky = SubResource("Sky_70pn8")
+sky = SubResource("Sky_mdnvc")
 tonemap_mode = 3
 ssr_enabled = true
 ssil_radius = 10.0
@@ -45,7 +45,7 @@ glow_enabled = true
 glow_bloom = 0.01
 glow_blend_mode = 0
 glow_hdr_luminance_cap = 6.0
-glow_map = SubResource("NoiseTexture2D_8ds0r")
+glow_map = SubResource("NoiseTexture2D_5j3my")
 fog_light_color = Color(0.544776, 0.710731, 0.837316, 1)
 fog_sun_scatter = 0.15
 fog_density = 0.005
@@ -290,6 +290,7 @@ mesh = SubResource("ArrayMesh_e6aeu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 2)
 size = Vector3(60, 30, 84)
 box_projection = true
+cull_mask = 1047551
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.692748, 0.334142, -0.6391, -1.49012e-08, 0.886187, 0.463327, 0.72118, -0.320969, 0.613904, -11.2344, 4.92004, 11.5513)
