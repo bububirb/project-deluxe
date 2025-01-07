@@ -156,6 +156,7 @@ curve = SubResource("Curve_ye74i")
 [sub_resource type="BoxMesh" id="BoxMesh_3twti"]
 
 [node name="Shooter" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ax73f")
@@ -173,6 +174,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 shape = SubResource("ConvexPolygonShape3D_s65f6")
 
 [node name="Bounds" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 top_level = true
 
 [node name="Front" type="Node3D" parent="Bounds"]

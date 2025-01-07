@@ -32,17 +32,10 @@ var rotation_speed: float = 0.1
 @onready var right: Node3D = $Bounds/Right
 
 func _physics_process(delta: float) -> void:
-	update_bounds_transform()
-	for node in bounds.get_children():
-		node.global_position.y = BuoyancySolver.height(node.global_position)
+	_update_bounds_transform()
+	_snap_bounds_to_wave()
 	
-	var relative_height: float = global_position.y - BuoyancySolver.height(global_position)
-	
-	rotation.x = lerp_angle(rotation.x, front.global_position.y - back.global_position.y, clamp(remap(relative_height, -0.2, 0.2, 0.2, 0.0), 0.01, 0.2))
-	rotation.z = lerp_angle(rotation.z, right.global_position.y - left.global_position.y, clamp(remap(relative_height, -0.2, 0.2, 0.2, 0.0), 0.01, 0.2))
-	
-	velocity.y += BuoyancySolver.get_buoyancy_force(global_position, delta)
-	velocity.y *= BuoyancySolver.DAMPING
+	_align_to_wave(delta)
 	
 	var input_dir := float(Input.get_action_strength("ui_down")) - float(Input.get_action_strength("ui_up"))
 	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
@@ -66,8 +59,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		decelerate(delta)
 	
-	global_position.y = max(global_position.y, BuoyancySolver.height(global_position) - MAX_SUBMERSION)
-	
+	_clamp_submersion()
 	var turn := float(Input.get_action_strength("ui_left")) - float(Input.get_action_strength("ui_right"))
 	if turn:
 		turn_speed = clampf(turn_speed + torque * turn * delta, -max_turn_speed, max_turn_speed)
@@ -79,26 +71,28 @@ func _physics_process(delta: float) -> void:
 		velocity += transform.basis * Vector3(0.0, 0.0, -nitro_force)
 		nitro_particles.emitting = true
 	
-	
-	#var slope := BuoyancySolver.get_slope(global_position,  0.2)
-	#var normal := Vector3(-slope.x, 1, -slope.y).normalized()
-	#var current_up := transform.basis.y
-	#var target_up := normal
-	#var rotation_axis := current_up.cross(target_up).normalized()
-	#var rotation_angle := acos(current_up.dot(target_up))
-	#var interpolated_rotation := transform.basis.get_rotation_quaternion().slerp(Quaternion(rotation_axis, rotation_angle), rotation_speed)
-	#rotation.x = interpolated_rotation.get_euler().x
-	#rotation.z = interpolated_rotation.get_euler().z
-	
-	#global_rotation = BuoyancySolver.get_slope(global_position, 0.1)
-	
 	move_and_slide()
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * LINEAR_LOSS)
 	velocity.z = move_toward(velocity.z, 0, acceleration * delta * LINEAR_LOSS)
 
-
-func update_bounds_transform():
+func _update_bounds_transform():
 	bounds.global_position = global_position
 	bounds.global_rotation.y = rotation.y
+
+func _snap_bounds_to_wave():
+	for node in bounds.get_children():
+		node.global_position.y = BuoyancySolver.height(node.global_position)
+
+func _align_to_wave(delta: float) -> void:
+	var relative_height: float = global_position.y - BuoyancySolver.height(global_position)
+	
+	rotation.x = lerp_angle(rotation.x, front.global_position.y - back.global_position.y, clamp(remap(relative_height, -0.2, 0.2, 0.2, 0.0), 0.01, 0.2))
+	rotation.z = lerp_angle(rotation.z, right.global_position.y - left.global_position.y, clamp(remap(relative_height, -0.2, 0.2, 0.2, 0.0), 0.01, 0.2))
+	
+	velocity.y += BuoyancySolver.get_buoyancy_force(global_position, delta)
+	velocity.y *= BuoyancySolver.DAMPING
+
+func _clamp_submersion() -> void:
+	global_position.y = max(global_position.y, BuoyancySolver.height(global_position) - MAX_SUBMERSION)

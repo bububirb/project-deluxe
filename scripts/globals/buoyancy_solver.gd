@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 const WAVE_SPEED: float = 0.1
@@ -53,11 +54,6 @@ func waveheight(position: Vector2):
 func height(position: Vector3) -> float:
 	var position_xz: Vector2 = Vector2(position.x, position.z)
 	var h: float = 0.0
-	
-	# TODO: Remove legacy waves after commit
-	#h += wave(position, 1.0, wave_time) / 7.0
-	#h += wave(position, 1.0 / 3.0, wave_time * 3.0) / 3.0
-	#h += wave(position, 1.0 / 7.0, wave_time * 7.0)
 	
 	if wave_texture:
 		h += waveheight(position_xz)
