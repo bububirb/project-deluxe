@@ -85,7 +85,7 @@ wave_scale={
 }
 wave_amplitude={
 "type": "float",
-"value": 0.5
+"value": 1.0
 }
 ocean_pos={
 "type": "vec3",
