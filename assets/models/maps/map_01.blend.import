@@ -33,13 +33,34 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Plane_001": {
+"PATH:Cylinder": {
 "generate/physics": true
 },
-"PATH:Plane_003": {
+"PATH:Plane_014": {
 "generate/physics": true
 },
-"PATH:Plane_004": {
+"PATH:Plane_015": {
+"generate/physics": true
+},
+"PATH:Plane_017": {
+"generate/physics": true
+},
+"PATH:Plane_018": {
+"generate/physics": true
+},
+"PATH:Plane_019": {
+"generate/physics": true
+},
+"PATH:Plane_021": {
+"generate/physics": true
+},
+"PATH:Plane_022": {
+"generate/physics": true
+},
+"PATH:Plane_024": {
+"generate/physics": true
+},
+"PATH:Plane_025": {
 "generate/physics": true
 }
 }
