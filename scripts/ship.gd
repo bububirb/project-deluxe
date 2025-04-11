@@ -22,12 +22,13 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var turn_speed: float = 0.0
 var rotation_speed: float = 0.1
+var is_zooming_out = false
 
 var projectile: PackedScene = preload("res://scenes/projectiles/deluxe_cannon_projectile.tscn")
 
 @onready var turret: Node3D = $Turret
 @onready var weapon_position: Node3D = $Turret/ShooterTurretBase/WeaponPosition
-
+@onready var camera_pivot: Node3D = $CameraPivot
 @onready var nitro_particles = $NitroParticles
 
 @onready var bounds: Node3D = $Bounds
@@ -77,6 +78,20 @@ func _physics_process(delta: float) -> void:
 		nitro_particles.emitting = true
 	
 	move_and_slide()
+	var zoom := float(0.5)
+	if Input.is_action_pressed("aim_button"):
+		is_zooming_out = false
+		camera_pivot.scale = lerp(camera_pivot.scale,Vector3(zoom,zoom,zoom),0.2)
+
+	if Input.is_action_just_released("aim_button"):
+		is_zooming_out = true
+	
+	if is_zooming_out:
+		camera_pivot.scale = lerp(camera_pivot.scale,Vector3(1,1,1),0.2)
+		if camera_pivot.scale.distance_to(Vector3(1,1,1)) < 0.01:
+			camera_pivot.scale = Vector3(1,1,1)
+			is_zooming_out = false
+	
 
 	if Input.is_action_just_released("shoot"):
 		var projectile_instance: RigidBody3D = projectile.instantiate()
