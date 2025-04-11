@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c10o27x6ordpu"]
+[gd_scene load_steps=22 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="5_7wqmn"]
 [ext_resource type="PackedScene" uid="uid://cnnr45r27veyv" path="res://scenes/drafts/shooter_player.tscn" id="6_7kjp4"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="7_8urwi"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="7_xdejq"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -132,13 +131,11 @@ light_color = Color(0.98986, 0.842996, 0.727097, 1)
 light_angular_distance = 2.0
 shadow_enabled = true
 
-[node name="WaterPlane" type="MeshInstance3D" parent="." index="6" instance=ExtResource("2_aa7f3")]
-layers = 2
+[node name="WaterPlane" parent="." index="6" instance=ExtResource("2_aa7f3")]
 gi_mode = 0
 mesh = SubResource("PlaneMesh_wu6wx")
 
-[node name="Player" type="Node3D" parent="." index="7" instance=ExtResource("6_7kjp4")]
-script = ExtResource("7_xdejq")
+[node name="Player" parent="." index="7" instance=ExtResource("6_7kjp4")]
 
 [node name="VoxelGI" type="VoxelGI" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0.5)

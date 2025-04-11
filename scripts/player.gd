@@ -9,7 +9,7 @@ var orbit_sensitivity = 0.001
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
 
 func _unhandled_input(event: InputEvent) -> void:
