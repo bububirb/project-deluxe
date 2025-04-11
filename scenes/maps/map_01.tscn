@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c10o27x6ordpu"]
+[gd_scene load_steps=23 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
@@ -7,13 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="5_7wqmn"]
 [ext_resource type="PackedScene" uid="uid://cnnr45r27veyv" path="res://scenes/drafts/shooter_player.tscn" id="6_7kjp4"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="7_8urwi"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="7_xdejq"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g3dtm"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ds0r"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hpwb6"]
 height = 256
 seamless = true
 color_ramp = SubResource("Gradient_f7cux")
@@ -23,12 +24,12 @@ noise = SubResource("FastNoiseLite_g3dtm")
 rayleigh_color = Color(0.551943, 0.3535, 0.204849, 1)
 night_sky = ExtResource("5_7wqmn")
 
-[sub_resource type="Sky" id="Sky_70pn8"]
+[sub_resource type="Sky" id="Sky_ulpni"]
 sky_material = SubResource("PhysicalSkyMaterial_j4tr4")
 
 [sub_resource type="Environment" id="Environment_6g2yo"]
 background_mode = 2
-sky = SubResource("Sky_70pn8")
+sky = SubResource("Sky_ulpni")
 tonemap_mode = 3
 ssr_enabled = true
 ssil_radius = 10.0
@@ -40,7 +41,7 @@ glow_normalized = true
 glow_bloom = 0.2
 glow_blend_mode = 1
 glow_hdr_luminance_cap = 2.0
-glow_map = SubResource("NoiseTexture2D_8ds0r")
+glow_map = SubResource("NoiseTexture2D_hpwb6")
 fog_light_color = Color(0.544776, 0.710731, 0.837316, 1)
 fog_sun_scatter = 0.15
 fog_density = 0.005
@@ -52,7 +53,7 @@ volumetric_fog_anisotropy = 0.35
 volumetric_fog_length = 32.0
 volumetric_fog_ambient_inject = 2.0
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_avos1"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_43koi"]
 noise_type = 3
 frequency = 0.016
 
@@ -61,9 +62,9 @@ seamless = true
 seamless_blend_skirt = 0.4
 as_normal_map = true
 bump_strength = 1.6
-noise = SubResource("FastNoiseLite_avos1")
+noise = SubResource("FastNoiseLite_43koi")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_77aww"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b3hjl"]
 noise_type = 0
 seed = 22
 frequency = 0.003
@@ -75,9 +76,9 @@ fractal_weighted_strength = 0.53
 seamless = true
 seamless_blend_skirt = 0.532
 as_normal_map = true
-noise = SubResource("FastNoiseLite_77aww")
+noise = SubResource("FastNoiseLite_b3hjl")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_yilox"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_syrxe"]
 noise_type = 4
 fractal_gain = 0.34
 fractal_weighted_strength = 0.6
@@ -86,9 +87,9 @@ fractal_weighted_strength = 0.6
 seamless = true
 as_normal_map = true
 bump_strength = 5.0
-noise = SubResource("FastNoiseLite_yilox")
+noise = SubResource("FastNoiseLite_syrxe")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pg6b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4fgr"]
 render_priority = 0
 shader = ExtResource("3_q36th")
 shader_parameter/albedo = Color(0.199965, 0.21184, 0.245225, 1)
@@ -104,7 +105,7 @@ shader_parameter/color_deep = Color(0.11, 0.29, 0.33, 1)
 shader_parameter/color_shallow = Color(0, 0.47, 0.76, 1)
 shader_parameter/beers_law = 2.0
 shader_parameter/depth_offset = 1.5
-shader_parameter/edge_scale = -0.01
+shader_parameter/edge_scale = 0.1
 shader_parameter/near = 1.0
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(0.603922, 0.764706, 0.980392, 1)
@@ -115,7 +116,7 @@ shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_p8tlc")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wu6wx"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_4pg6b")
+material = SubResource("ShaderMaterial_v4fgr")
 size = Vector2(100.5, 100.5)
 subdivide_width = 511
 subdivide_depth = 511
@@ -131,11 +132,13 @@ light_color = Color(0.98986, 0.842996, 0.727097, 1)
 light_angular_distance = 2.0
 shadow_enabled = true
 
-[node name="WaterPlane" parent="." index="6" instance=ExtResource("2_aa7f3")]
+[node name="WaterPlane" type="MeshInstance3D" parent="." index="6" instance=ExtResource("2_aa7f3")]
+layers = 2
 gi_mode = 0
 mesh = SubResource("PlaneMesh_wu6wx")
 
-[node name="Player" parent="." index="7" instance=ExtResource("6_7kjp4")]
+[node name="Player" type="Node3D" parent="." index="7" instance=ExtResource("6_7kjp4")]
+script = ExtResource("7_xdejq")
 
 [node name="VoxelGI" type="VoxelGI" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0.5)

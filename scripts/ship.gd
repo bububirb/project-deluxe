@@ -6,7 +6,7 @@ const JUMP_VELOCITY: float = 4.5
 const LINEAR_LOSS: float = 0.75
 const ROTATIONAL_LOSS: float = 0.5
 const MAX_SPEED_DRAG: float = 4.0
-const MAX_SUBMERSION: float = 0.3
+const MAX_SUBMERSION: float = 0.2
 
 @export var acceleration: float = 1.0
 @export var max_speed: float = 2.0
@@ -23,6 +23,11 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var turn_speed: float = 0.0
 var rotation_speed: float = 0.1
 
+var projectile: PackedScene = preload("res://scenes/projectiles/deluxe_cannon_projectile.tscn")
+
+@onready var turret: Node3D = $Turret
+@onready var weapon_position: Node3D = $Turret/ShooterTurretBase/WeaponPosition
+
 @onready var nitro_particles = $NitroParticles
 
 @onready var bounds: Node3D = $Bounds
@@ -37,7 +42,7 @@ func _physics_process(delta: float) -> void:
 	
 	_align_to_wave(delta)
 	
-	var input_dir := float(Input.get_action_strength("ui_down")) - float(Input.get_action_strength("ui_up"))
+	var input_dir := float(Input.get_action_strength("ui_up")) - float(Input.get_action_strength("ui_down"))
 	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
 	if direction:
 		var new_velocity := velocity
@@ -68,10 +73,17 @@ func _physics_process(delta: float) -> void:
 	rotation.y += turn_speed * delta
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		velocity += transform.basis * Vector3(0.0, 0.0, -nitro_force)
+		velocity += transform.basis * Vector3(0.0, 0.0, nitro_force)
 		nitro_particles.emitting = true
 	
 	move_and_slide()
+
+	if Input.is_action_just_released("shoot"):
+		var projectile_instance: RigidBody3D = projectile.instantiate()
+		projectile_instance.top_level = true
+		projectile_instance.position = weapon_position.global_position
+		projectile_instance.linear_velocity = weapon_position.global_transform.basis * Vector3(0.0, 0.0, 30.0)
+		weapon_position.add_child(projectile_instance)
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * LINEAR_LOSS)

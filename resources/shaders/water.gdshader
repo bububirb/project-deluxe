@@ -108,7 +108,7 @@ void fragment() {
 	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
-	float foam = clamp((waveheight(vec2(0.0), 2) + 0.5) * 0.5 + 0.5, 0.0, 1.0);
+	float foam = smoothstep(0.0, 1.0, waveheight(vec2(0.0), 2) * 0.3);
 
 	// Retrieving depth color and applying the deep and shallow colors
 	vec3 screen_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, depth_blend_power * 2.5).rgb;
@@ -137,9 +137,9 @@ void fragment() {
 	// Add Edge Color to Surface Color Albedo
 	vec3 depth_color_adj = mix(edge_color, color, step(edge_scale, z_dif));
 
-	ALBEDO = clamp(surface_color,vec3(0.0),vec3(1.0)) * vec3(foam);
+	ALBEDO = clamp(surface_color,vec3(0.0),vec3(1.0)) + vec3(foam) * edge_color;
 	METALLIC = metallic;
-	ROUGHNESS = roughness;
+	ROUGHNESS = roughness + foam;
 	NORMAL_MAP = mix(wave_normal_blend, normal_blend, 0.5);
 	SPECULAR = wave_normal_blend.r;
 }

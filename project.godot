@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Deluxe"
-run/main_scene="res://scenes/drafts/testing_waters.tscn"
+run/main_scene="res://scenes/maps/map_01.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -57,6 +57,11 @@ joystick={
 "deadzone": 0.5,
 "events": [null]
 }
+shoot={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(411, 6),"global_position":Vector2(420, 52),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [input_devices]
 
@@ -64,13 +69,14 @@ pointing/emulate_touch_from_mouse=true
 
 [layer_names]
 
-3d_physics/layer_1="Ocean"
-3d_physics/layer_2="Environment"
+3d_physics/layer_1="Environment"
+3d_physics/layer_2="Player"
 3d_physics/layer_3="Ships"
+3d_physics/layer_4="Player Projectiles"
+3d_physics/layer_5="Ship Projectiles"
 
 [rendering]
 
-renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 
 [shader_globals]

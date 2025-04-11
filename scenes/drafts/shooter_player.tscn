@@ -9,9 +9,13 @@ script = ExtResource("1_p85j6")
 
 [node name="Ship" parent="." instance=ExtResource("2_5exrk")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+acceleration = 3.0
+max_speed = 5.0
+torque = 5.0
+max_turn_speed = 1.0
+nitro_force = 10.0
 
 [node name="CameraPivot" type="Node3D" parent="Ship" node_paths=PackedStringArray("target")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 top_level = true
 script = ExtResource("3_ux15x")
 target = NodePath("..")

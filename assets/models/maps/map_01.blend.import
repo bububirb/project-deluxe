@@ -34,34 +34,49 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Cylinder": {
-"generate/physics": true
+"generate/physics": true,
+"physics/physics_material_override": null,
+"physics/shape_type": 0
 },
 "PATH:Plane_014": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_015": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_017": {
-"generate/physics": true
+"decomposition/max_convex_hulls": 4,
+"decomposition/max_num_vertices_per_convex_hull": 64,
+"decomposition/min_volume_per_convex_hull": 0.0,
+"decomposition/revolution_axes_clipping_bias": 0.05,
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_018": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_019": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_021": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_022": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_024": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 },
 "PATH:Plane_025": {
-"generate/physics": true
+"generate/physics": true,
+"physics/shape_type": 0
 }
 }
 }
