@@ -210,12 +210,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ax73f")
-acceleration = null
-max_speed = null
-motion_anisotropy = null
-torque = null
-max_turn_speed = null
-nitro_force = null
 deck = SubResource("Resource_tmlcw")
 
 [node name="Shooter" parent="." instance=ExtResource("2_qefq2")]
