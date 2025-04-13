@@ -216,11 +216,12 @@ description = "Snipes the cannon out of you"
 item_class = "cannon"
 stats = SubResource("Resource_u4sm5")
 
-[node name="Shooter" type="CharacterBody3D"]
+[node name="Shooter" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ax73f")
+projectile_pool = NodePath("ProjectilePool")
 
 [node name="Shooter" parent="." instance=ExtResource("2_qefq2")]
 
@@ -276,6 +277,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 script = ExtResource("3_oy072")
 items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), SubResource("Resource_w5tv7")])
 target = NodePath("../Turret/ShooterTurretBase/WeaponPosition")
+
+[node name="ProjectilePool" type="Node" parent="."]
 
 [editable path="Shooter"]
 [editable path="Turret"]
