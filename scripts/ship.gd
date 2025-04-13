@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Ship extends CharacterBody3D
 
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5
@@ -32,12 +32,12 @@ var projectile: PackedScene = preload("res://scenes/projectiles/deluxe_cannon_pr
 var active_item: Node:
 	set(new_item):
 		active_item = new_item
-		for item in weapon_position.get_children():
+		for item in item_instancer.get_children():
 			item.hide()
 		active_item.show()
 
 @onready var turret: Node3D = $Turret
-@onready var weapon_position: Node3D = $Turret/ShooterTurretBase/WeaponPosition
+@onready var item_instancer: Node3D = $Turret/ShooterTurretBase/ItemInstancer
 @onready var nitro_particles = $NitroParticles
 
 @onready var bounds: Node3D = $Bounds
@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_just_released("shoot"):
-		active_item.shoot(weapon_position, projectile_pool) # TODO: Generalize item execution
+		active_item.execute(self)
 	
 	if Input.is_action_just_pressed("select_item_1"):
 		select_item(0)
@@ -124,4 +124,4 @@ func _clamp_submersion() -> void:
 	global_position.y = max(global_position.y, BuoyancySolver.height(global_position) - MAX_SUBMERSION)
 
 func select_item(index: int) -> void:
-	active_item = weapon_position.get_child(index)
+	active_item = item_instancer.get_child(index)

@@ -270,13 +270,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285, -0.171)
 [node name="ShooterTurretBase" parent="Turret" index="0"]
 mesh = SubResource("ArrayMesh_86hnh")
 
-[node name="WeaponPosition" parent="Turret/ShooterTurretBase" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-
-[node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="Deck" type="Node" parent="."]
 script = ExtResource("3_oy072")
 items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), SubResource("Resource_w5tv7")])
-target = NodePath("../Turret/ShooterTurretBase/WeaponPosition")
 
 [node name="ProjectilePool" type="Node" parent="."]
 
