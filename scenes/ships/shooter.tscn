@@ -207,6 +207,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ax73f")
+max_speed = 5.0
 projectile_pool = NodePath("ProjectilePool")
 
 [node name="Shooter" parent="." instance=ExtResource("2_qefq2")]

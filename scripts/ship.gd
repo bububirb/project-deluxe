@@ -24,9 +24,9 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var turn_speed: float = 0.0
 var rotation_speed: float = 0.1
-var is_zooming_out = false
 
-# TODO: Integrate projectiles into items
+var speed_modifiers: Array[Array] = []
+
 var projectile: PackedScene = preload("res://scenes/projectiles/deluxe_cannon_projectile.tscn")
 
 var active_item: Node:
@@ -59,9 +59,18 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
 	if direction:
 		var new_velocity := velocity
-		new_velocity.x += direction.x * acceleration * delta
-		new_velocity.z += direction.z * acceleration * delta
-		#velocity = velocity.limit_length(max_speed)
+		
+		# TODO: Add a dedicated speed modifier class
+		var force = acceleration
+		for modifier in speed_modifiers:
+			force *= modifier[0]
+			modifier[1] -= delta
+			if modifier[1] <= 0.0:
+				speed_modifiers.erase(modifier)
+		
+		new_velocity.x += direction.x * force * delta
+		new_velocity.z += direction.z * force * delta
+		
 		if velocity.length() > max_speed:
 			if new_velocity.length() < velocity.length():
 				velocity = new_velocity
@@ -98,6 +107,8 @@ func _physics_process(delta: float) -> void:
 		select_item(0)
 	elif Input.is_action_just_pressed("select_item_2"):
 		select_item(1)
+	elif Input.is_action_just_pressed("select_item_3"):
+		select_item(2)
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * LINEAR_LOSS)
