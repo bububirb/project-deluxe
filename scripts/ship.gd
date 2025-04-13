@@ -17,8 +17,6 @@ const MAX_SUBMERSION: float = 0.2
 
 @export var nitro_force: float = 5.0
 
-@export var deck: Deck
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -29,7 +27,7 @@ var is_zooming_out = false
 # TODO: Integrate projectiles into items
 var projectile: PackedScene = preload("res://scenes/projectiles/deluxe_cannon_projectile.tscn")
 
-var active_item: Item:
+var active_item: Node:
 	set(new_item):
 		active_item = new_item
 		for item in weapon_position.get_children():
@@ -48,13 +46,7 @@ var active_item: Item:
 @onready var right: Node3D = $Bounds/Right
 
 func _ready() -> void:
-	for item in deck.items:
-		if item is CannonAttributes:
-			item.node = item.scene.instantiate()
-			item.node.hide()
-			item.node.attributes = item
-			weapon_position.add_child(item.node)
-	active_item = deck.items[0].node
+	select_item(0)
 
 func _physics_process(delta: float) -> void:
 	_update_bounds_transform()
@@ -110,18 +102,14 @@ func _physics_process(delta: float) -> void:
 		if camera_pivot.scale.distance_to(Vector3(1,1,1)) < 0.01:
 			camera_pivot.scale = Vector3(1,1,1)
 			is_zooming_out = false
-
+	
 	if Input.is_action_just_released("shoot"):
-		var projectile_instance: RigidBody3D = projectile.instantiate()
-		projectile_instance.top_level = true
-		projectile_instance.position = weapon_position.global_position
-		projectile_instance.linear_velocity = weapon_position.global_transform.basis * Vector3(0.0, 0.0, 30.0)
-		weapon_position.add_child(projectile_instance)
+		active_item.shoot(weapon_position, self) # TODO: Finalize projectile pool
 	
 	if Input.is_action_just_pressed("select_item_1"):
-		active_item = deck.items[0].node
+		select_item(0)
 	elif Input.is_action_just_pressed("select_item_2"):
-		active_item = deck.items[1].node
+		select_item(1)
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * LINEAR_LOSS)
@@ -146,3 +134,6 @@ func _align_to_wave(delta: float) -> void:
 
 func _clamp_submersion() -> void:
 	global_position.y = max(global_position.y, BuoyancySolver.height(global_position) - MAX_SUBMERSION)
+
+func select_item(index: int) -> void:
+	active_item = weapon_position.get_child(index)

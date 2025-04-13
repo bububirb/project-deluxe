@@ -1,4 +1,4 @@
 class_name ItemsTable extends Resource
 
 
-@export var items: Array[ItemV2] = []
+@export var items: Array[Item] = []
