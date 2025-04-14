@@ -1,4 +1,4 @@
-class_name Nitro extends Node3D
+class_name SpeedBoost extends Node3D
 
 var stats: SpeedStats # To be assigned by the deck
 
