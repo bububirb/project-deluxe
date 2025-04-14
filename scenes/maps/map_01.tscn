@@ -118,9 +118,9 @@ shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_p8tlc")
 [sub_resource type="PlaneMesh" id="PlaneMesh_wu6wx"]
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_v4fgr")
-size = Vector2(100.5, 100.5)
-subdivide_width = 511
-subdivide_depth = 511
+size = Vector2(40, 40)
+subdivide_width = 127
+subdivide_depth = 127
 
 [node name="Map01" instance=ExtResource("1_spnnx")]
 
