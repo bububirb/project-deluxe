@@ -71,13 +71,11 @@ func _physics_process(delta: float) -> void:
 		new_velocity.x += direction.x * force * delta
 		new_velocity.z += direction.z * force * delta
 		
-		if velocity.length() > max_speed:
-			if new_velocity.length() < velocity.length():
-				velocity = new_velocity
-			else:
-				decelerate(delta * MAX_SPEED_DRAG)
-		else:
+		if velocity.length() < max_speed or new_velocity.length() < velocity.length() or speed_modifiers:
 			velocity = new_velocity
+		else:
+			decelerate(delta * MAX_SPEED_DRAG)
+		
 		var local_velocity := transform.basis.inverse() * velocity
 		local_velocity.x = move_toward(local_velocity.x, 0.0, motion_anisotropy * delta)
 		velocity = transform.basis * local_velocity
@@ -109,6 +107,10 @@ func _physics_process(delta: float) -> void:
 		select_item(1)
 	elif Input.is_action_just_pressed("select_item_3"):
 		select_item(2)
+	elif Input.is_action_just_pressed("select_item_4"):
+		select_item(3)
+	elif Input.is_action_just_pressed("select_item_5"):
+		select_item(4)
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * LINEAR_LOSS)

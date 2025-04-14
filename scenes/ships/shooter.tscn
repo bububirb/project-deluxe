@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://2opy76fxy3vp"]
+[gd_scene load_steps=37 format=4 uid="uid://2opy76fxy3vp"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_ax73f"]
 [ext_resource type="PackedScene" uid="uid://c2vhaou1f82c8" path="res://assets/models/ships/shooter_1.blend" id="2_qefq2"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="9_yfxm0"]
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="10_gsbj1"]
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="11_ymx0x"]
+[ext_resource type="Resource" uid="uid://dqxg1s4rp1abq" path="res://resources/items/overboost.tres" id="12_4hjlh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrpkj"]
 resource_name = "Shooter"
@@ -262,7 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("3_oy072")
-items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x")])
+items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x"), ExtResource("12_4hjlh"), ExtResource("9_yfxm0")])
 target = NodePath("../Turret/ShooterTurretBase/ItemInstancer")
 
 [node name="ProjectilePool" type="Node" parent="."]
