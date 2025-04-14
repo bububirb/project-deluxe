@@ -143,9 +143,9 @@ mesh = SubResource("PlaneMesh_uspb2")
 [node name="Player" parent="." index="7" instance=ExtResource("6_7kjp4")]
 
 [node name="VoxelGI" type="VoxelGI" parent="." index="14"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 2)
 subdiv = 2
-size = Vector3(100, 20, 100)
+size = Vector3(52, 18, 54)
 data = ExtResource("7_8urwi")
 
 [node name="first_rock" parent="." index="15" instance=ExtResource("8_b30e3")]
