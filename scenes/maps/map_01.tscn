@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c10o27x6ordpu"]
+[gd_scene load_steps=23 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
@@ -122,13 +122,6 @@ size = Vector2(40, 40)
 subdivide_width = 63
 subdivide_depth = 63
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_meo6g"]
-resource_local_to_scene = true
-material = SubResource("ShaderMaterial_v4fgr")
-size = Vector2(100, 100)
-subdivide_width = 15
-subdivide_depth = 15
-
 [node name="Map01" instance=ExtResource("1_spnnx")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
@@ -145,18 +138,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 gi_mode = 0
 mesh = SubResource("PlaneMesh_uspb2")
 
-[node name="WaterPlane2" parent="." index="7" instance=ExtResource("2_aa7f3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-gi_mode = 0
-mesh = SubResource("PlaneMesh_meo6g")
+[node name="Player" parent="." index="7" instance=ExtResource("6_7kjp4")]
 
-[node name="Player" parent="." index="8" instance=ExtResource("6_7kjp4")]
-
-[node name="VoxelGI" type="VoxelGI" parent="." index="16"]
+[node name="VoxelGI" type="VoxelGI" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 subdiv = 2
 size = Vector3(100, 20, 100)
 data = ExtResource("7_8urwi")
 
-[node name="first_rock" parent="." index="17" instance=ExtResource("8_b30e3")]
+[node name="first_rock" parent="." index="16" instance=ExtResource("8_b30e3")]
 transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, 0, -2.45251)
