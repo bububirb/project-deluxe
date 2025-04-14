@@ -31,6 +31,7 @@ sky_material = SubResource("PhysicalSkyMaterial_j4tr4")
 [sub_resource type="Environment" id="Environment_6g2yo"]
 background_mode = 2
 sky = SubResource("Sky_ulpni")
+ambient_light_energy = 0.5
 tonemap_mode = 3
 ssr_enabled = true
 ssil_enabled = true
@@ -51,7 +52,7 @@ fog_sky_affect = 0.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.024
 volumetric_fog_albedo = Color(0.713328, 0.584454, 0.49564, 1)
-volumetric_fog_anisotropy = 0.35
+volumetric_fog_anisotropy = 0.9
 volumetric_fog_length = 32.0
 volumetric_fog_ambient_inject = 2.0
 
