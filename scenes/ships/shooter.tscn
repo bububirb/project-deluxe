@@ -215,7 +215,6 @@ projectile_pool = NodePath("ProjectilePool")
 [node name="Shooter" parent="Shooter" index="0"]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_tipo5")
-skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_s65f6")
@@ -257,7 +256,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285, -0.171)
 
 [node name="ShooterTurretBase" parent="Turret" index="0"]
 mesh = SubResource("ArrayMesh_86hnh")
-skeleton = NodePath("")
 
 [node name="ItemInstancer" parent="Turret/ShooterTurretBase" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
