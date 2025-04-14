@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c10o27x6ordpu"]
+[gd_scene load_steps=24 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cnnr45r27veyv" path="res://scenes/drafts/shooter_player.tscn" id="6_7kjp4"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="7_8urwi"]
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="8_b30e3"]
+[ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="9_riecl"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -140,11 +141,14 @@ mesh = SubResource("PlaneMesh_uspb2")
 
 [node name="Player" parent="." index="7" instance=ExtResource("6_7kjp4")]
 
-[node name="VoxelGI" type="VoxelGI" parent="." index="15"]
+[node name="VoxelGI" type="VoxelGI" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 subdiv = 2
 size = Vector3(100, 20, 100)
 data = ExtResource("7_8urwi")
 
-[node name="first_rock" parent="." index="16" instance=ExtResource("8_b30e3")]
+[node name="first_rock" parent="." index="15" instance=ExtResource("8_b30e3")]
 transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, 0, -2.45251)
+
+[node name="rock_1" parent="." index="16" instance=ExtResource("9_riecl")]
+transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.34503, 0, -4.43668)
