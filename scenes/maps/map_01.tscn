@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c10o27x6ordpu"]
+[gd_scene load_steps=25 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
@@ -9,6 +9,7 @@
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="7_8urwi"]
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="8_b30e3"]
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="9_riecl"]
+[ext_resource type="PackedScene" uid="uid://budywedhvkcoa" path="res://scenes/ui/hud.tscn" id="10_672aj"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -126,30 +127,32 @@ subdivide_depth = 63
 
 [node name="Map01" instance=ExtResource("1_spnnx")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+[node name="HUD" parent="." index="0" instance=ExtResource("10_672aj")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
 environment = SubResource("Environment_6g2yo")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
 transform = Transform3D(0.395578, -4.01462e-08, 0.918433, -0.918433, -1.72913e-08, 0.395578, -1.5158e-16, -1, -4.37116e-08, 0, 0, 0)
 light_color = Color(0.98986, 0.842996, 0.727097, 1)
 light_angular_distance = 2.0
 shadow_enabled = true
 
-[node name="WaterPlane" parent="." index="6" instance=ExtResource("2_aa7f3")]
+[node name="WaterPlane" parent="." index="7" instance=ExtResource("2_aa7f3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 gi_mode = 0
 mesh = SubResource("PlaneMesh_uspb2")
 
-[node name="Player" parent="." index="7" instance=ExtResource("6_7kjp4")]
+[node name="Player" parent="." index="8" instance=ExtResource("6_7kjp4")]
 
-[node name="VoxelGI" type="VoxelGI" parent="." index="14"]
+[node name="VoxelGI" type="VoxelGI" parent="." index="15"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 2)
 subdiv = 2
 size = Vector3(52, 18, 54)
 data = ExtResource("7_8urwi")
 
-[node name="first_rock" parent="." index="15" instance=ExtResource("8_b30e3")]
+[node name="first_rock" parent="." index="16" instance=ExtResource("8_b30e3")]
 transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, 0, -2.45251)
 
-[node name="rock_1" parent="." index="16" instance=ExtResource("9_riecl")]
+[node name="rock_1" parent="." index="17" instance=ExtResource("9_riecl")]
 transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.34503, 0, -4.43668)
