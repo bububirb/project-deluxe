@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4k6d1jit0l7e"]
+[gd_scene load_steps=4 format=3 uid="uid://b4k6d1jit0l7e"]
 
 [ext_resource type="PackedScene" uid="uid://blx6gtem7nnke" path="res://assets/models/items/sniper_cannon_1.blend" id="1_378d5"]
-[ext_resource type="Script" path="res://scripts/items/sniper_cannon.gd" id="2_hg8am"]
+[ext_resource type="Script" path="res://scripts/items/cannon.gd" id="2_jmovu"]
+[ext_resource type="PackedScene" uid="uid://gf0xn2ejxknt" path="res://scenes/projectiles/sniper_cannon_projectile.tscn" id="3_7ks5j"]
 
 [node name="SniperCannon" instance=ExtResource("1_378d5")]
-script = ExtResource("2_hg8am")
+script = ExtResource("2_jmovu")
+projectile = ExtResource("3_7ks5j")

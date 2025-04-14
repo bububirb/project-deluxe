@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://1kbtbdphrp1e"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_ylm5l"]
+[ext_resource type="Script" path="res://scripts/resources/stats/weapon_stats.gd" id="2_kgnph"]
+
+[sub_resource type="Resource" id="Resource_u4sm5"]
+script = ExtResource("2_kgnph")
+damage = 750.0
+cooldown = 7.5
+height = 10.0
+range = 60.0
+radius = 0.4
+
+[resource]
+script = ExtResource("1_ylm5l")
+item_name = "sniper_cannon"
+description = "Snipes the cannon out of you"
+item_class = "cannon"
+stats = SubResource("Resource_u4sm5")

@@ -1,14 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://1etca0vcd8vf"]
+[gd_scene load_steps=4 format=3 uid="uid://1etca0vcd8vf"]
 
 [ext_resource type="PackedScene" uid="uid://b8ub6iflyjbni" path="res://assets/models/items/deluxe_cannon_1.blend" id="1_v62ay"]
-[ext_resource type="Script" path="res://scripts/items/deluxe_cannon.gd" id="2_04qjl"]
-[ext_resource type="Script" path="res://scripts/resources/item_attributes/cannon_attributes.gd" id="3_8gq3m"]
-
-[sub_resource type="Resource" id="Resource_ln70d"]
-script = ExtResource("3_8gq3m")
-attack = 0.0
-cooldown = 0.0
+[ext_resource type="Script" path="res://scripts/items/cannon.gd" id="2_5k40q"]
+[ext_resource type="PackedScene" uid="uid://pj100ly4ipil" path="res://scenes/projectiles/deluxe_cannon_projectile.tscn" id="3_14mp2"]
 
 [node name="DeluxeCannon" instance=ExtResource("1_v62ay")]
-script = ExtResource("2_04qjl")
-attributes = SubResource("Resource_ln70d")
+script = ExtResource("2_5k40q")
+projectile = ExtResource("3_14mp2")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsyrcqyviq4f7"]
+
+[ext_resource type="Script" path="res://scripts/items/nitro.gd" id="1_uui7x"]
+
+[node name="Nitro" type="Node3D"]
+script = ExtResource("1_uui7x")

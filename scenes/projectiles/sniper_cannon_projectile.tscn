@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://gf0xn2ejxknt"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_e0mkr"]
+[ext_resource type="PackedScene" uid="uid://daojy1n834ib1" path="res://assets/models/projectiles/sniper_cannon_projectile_1.blend" id="2_he1g2"]
+[ext_resource type="Material" uid="uid://c78xiw2kyc3mj" path="res://resources/materials/blackbody_particle.tres" id="3_yyv5v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f0ux4"]
+margin = 0.05
+radius = 0.1
+
+[sub_resource type="Gradient" id="Gradient_hk6a6"]
+offsets = PackedFloat32Array(0, 0.243243, 0.581081, 0.858108, 1)
+colors = PackedColorArray(7.337, 3.142, 0, 1, 4.566, 0.159, 0, 1, 0.262932, 0.262932, 0.262932, 1, 0.22947, 0.22947, 0.22947, 0.709677, 0.147672, 0.147672, 0.147672, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n3nua"]
+gradient = SubResource("Gradient_hk6a6")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_pwcsb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.42998, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1vhnx"]
+curve = SubResource("Curve_pwcsb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_080yd"]
+particle_flag_align_y = true
+inherit_velocity_ratio = 0.8
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+damping_min = 1.0
+damping_max = 2.0
+scale_min = 0.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_1vhnx")
+color_ramp = SubResource("GradientTexture1D_n3nua")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.1
+turbulence_noise_scale = 10.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mmegi"]
+material = ExtResource("3_yyv5v")
+radius = 0.004
+height = 0.025
+radial_segments = 6
+rings = 2
+
+[node name="SniperCannonProjectile" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 5
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_e0mkr")
+
+[node name="Mesh" parent="." instance=ExtResource("2_he1g2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f0ux4")
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_080yd")
+draw_pass_1 = SubResource("CapsuleMesh_mmegi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

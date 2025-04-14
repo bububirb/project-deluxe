@@ -2,7 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
+
 uid="uid://0bxb3q6jp8jf"
+
 path.s3tc="res://.godot/imported/DefaultMaterial_Normal.png-c178f871f73bb3328ca448b2a98eea6e.s3tc.ctex"
 path.etc2="res://.godot/imported/DefaultMaterial_Normal.png-c178f871f73bb3328ca448b2a98eea6e.etc2.ctex"
 metadata={

@@ -1,19 +1,16 @@
 [gd_scene load_steps=36 format=4 uid="uid://2opy76fxy3vp"]
 
 [ext_resource type="Script" path="res://scripts/ship.gd" id="1_ax73f"]
-[ext_resource type="Script" path="res://scripts/resources/item_attributes.gd" id="2_7vm0t"]
 [ext_resource type="PackedScene" uid="uid://c2vhaou1f82c8" path="res://assets/models/ships/shooter_1.blend" id="2_qefq2"]
 [ext_resource type="Texture2D" uid="uid://byeqs72c51yuq" path="res://assets/textures/ships/shooter/Shooter_BaseColor.png" id="3_oovno"]
 [ext_resource type="Script" path="res://scripts/resources/deck.gd" id="3_oy072"]
-[ext_resource type="Resource" uid="uid://c88ddqi2t8h5k" path="res://resources/item_attributes/cannon_attributes/deluxe_cannon_attributes.tres" id="3_q2ikj"]
-[ext_resource type="Resource" uid="uid://cnaxkty43am2" path="res://resources/item_attributes/cannon_attributes/sniper_cannon_attributes.tres" id="4_biai2"]
 [ext_resource type="Texture2D" uid="uid://dho3lj65dqj8i" path="res://assets/textures/ships/shooter/Shooter_Roughness.png" id="4_hg43l"]
 [ext_resource type="Texture2D" uid="uid://c0jwjvfdex4j4" path="res://assets/textures/ships/shooter/Shooter_Normal.png" id="5_xuv50"]
 [ext_resource type="PackedScene" uid="uid://d3ajgltxp4nxl" path="res://assets/models/ships/shooter_turret_1.blend" id="6_hmiki"]
-
-[sub_resource type="Resource" id="Resource_tmlcw"]
-script = ExtResource("3_oy072")
-items = Array[ExtResource("2_7vm0t")]([ExtResource("3_q2ikj"), ExtResource("4_biai2")])
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="8_rnir5"]
+[ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="9_yfxm0"]
+[ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="10_gsbj1"]
+[ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="11_ymx0x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrpkj"]
 resource_name = "Shooter"
@@ -205,18 +202,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_q4yo7")
 
-[node name="Shooter" type="CharacterBody3D"]
+[node name="Shooter" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ax73f")
-acceleration = null
-max_speed = null
-motion_anisotropy = null
-torque = null
-max_turn_speed = null
-nitro_force = null
-deck = SubResource("Resource_tmlcw")
+max_speed = 5.0
+projectile_pool = NodePath("ProjectilePool")
 
 [node name="Shooter" parent="." instance=ExtResource("2_qefq2")]
 
@@ -265,8 +257,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285, -0.171)
 [node name="ShooterTurretBase" parent="Turret" index="0"]
 mesh = SubResource("ArrayMesh_86hnh")
 
-[node name="WeaponPosition" parent="Turret/ShooterTurretBase" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+[node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_oy072")
+items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x")])
+target = NodePath("../Turret/ShooterTurretBase/ItemInstancer")
+
+[node name="ProjectilePool" type="Node" parent="."]
 
 [editable path="Shooter"]
 [editable path="Turret"]

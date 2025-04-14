@@ -3,15 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-
-uid="uid://cfmu8gf7q4pkj"
-
-path="res://.godot/imported/first_rock.blend-9c243c497204cfcf9daca91e31db81e1.scn"
+uid="uid://daojy1n834ib1"
+path="res://.godot/imported/sniper_cannon_projectile_1.blend-37fd33ce4f4268161914b99dce1cf509.scn"
 
 [deps]
 
-source_file="res://assets/models/environment/rocks/first_rock/first_rock.blend"
-dest_files=["res://.godot/imported/first_rock.blend-9c243c497204cfcf9daca91e31db81e1.scn"]
+source_file="res://assets/models/projectiles/sniper_cannon_projectile_1.blend"
+dest_files=["res://.godot/imported/sniper_cannon_projectile_1.blend-37fd33ce4f4268161914b99dce1cf509.scn"]
 
 [params]
 
@@ -33,9 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-
 _subresources={}
-
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://uvpl5udcl3lh"]
+
+[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_1ps7e"]
+[ext_resource type="Script" path="res://scripts/resources/stats/speed_stats.gd" id="2_7ieiq"]
+
+[sub_resource type="Resource" id="Resource_vlq0a"]
+script = ExtResource("2_7ieiq")
+speed_boost = 5.0
+duration = 2.0
+cooldown = 5.0
+
+[resource]
+script = ExtResource("1_1ps7e")
+item_name = "nitro"
+description = "Vroom vroom"
+item_class = "speed"
+stats = SubResource("Resource_vlq0a")
