@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="5_7wqmn"]
 [ext_resource type="PackedScene" uid="uid://cnnr45r27veyv" path="res://scenes/drafts/shooter_player.tscn" id="6_7kjp4"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="7_8urwi"]
-[ext_resource type="PackedScene" uid="uid://cu6f28qecp010" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="8_b30e3"]
+[ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="8_b30e3"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)

@@ -3,9 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-
 uid="uid://cfmu8gf7q4pkj"
-
 path="res://.godot/imported/first_rock.blend-9c243c497204cfcf9daca91e31db81e1.scn"
 
 [deps]
@@ -33,9 +31,14 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-
-_subresources={}
-
+_subresources={
+"nodes": {
+"PATH:ROCK_LP": {
+"generate/physics": true,
+"physics/shape_type": 0
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
