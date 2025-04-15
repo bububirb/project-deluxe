@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c10o27x6ordpu"]
+[gd_scene load_steps=27 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="8_b30e3"]
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="9_riecl"]
 [ext_resource type="PackedScene" uid="uid://budywedhvkcoa" path="res://scenes/ui/hud.tscn" id="10_672aj"]
+[ext_resource type="PackedScene" uid="uid://bm7ya346n5u2y" path="res://scenes/environment/foliage/fern.tscn" id="12_ifhrh"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -38,7 +39,7 @@ tonemap_mode = 3
 ssr_enabled = true
 ssil_enabled = true
 ssil_radius = 10.0
-sdfgi_min_cell_size = 0.195313
+sdfgi_min_cell_size = 0.195312
 sdfgi_cascade0_distance = 12.5
 sdfgi_max_distance = 200.0
 glow_enabled = true
@@ -158,3 +159,6 @@ transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, 0,
 
 [node name="rock_1" parent="." index="17" instance=ExtResource("9_riecl")]
 transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.34503, 0, -4.43668)
+
+[node name="Fern" parent="." index="18" instance=ExtResource("12_ifhrh")]
+transform = Transform3D(1.39931, 0.80874, 0.0601182, -0.809634, 1.40004, 0.0110017, -0.0465401, -0.0396139, 1.61617, -3.05025, 2.62359, -4.52777)

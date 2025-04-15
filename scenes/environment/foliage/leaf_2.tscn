@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxfk8knkw3rmj"]
+
+[ext_resource type="PackedScene" uid="uid://dppd1u027uvlb" path="res://assets/models/environment/foliage/leaf_2/leaf_2.blend" id="1_8h7xk"]
+[ext_resource type="Texture2D" uid="uid://c2q3wb6ghatm2" path="res://assets/textures/environment/foliage/leaf_2/DefaultMaterial_BaseColorAlpha.png" id="2_q0d3f"]
+[ext_resource type="Texture2D" uid="uid://c2dlgw5cxrff3" path="res://assets/textures/environment/foliage/leaf_2/DefaultMaterial_Roughness.png" id="3_76q62"]
+[ext_resource type="Texture2D" uid="uid://dgnh0efcxtwh1" path="res://assets/textures/environment/foliage/leaf_2/DefaultMaterial_Normal.png" id="4_hcis6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5q63x"]
+resource_name = "Material"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("2_q0d3f")
+metallic = 1.0
+metallic_texture = ExtResource("3_76q62")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_76q62")
+roughness_texture_channel = 1
+emission_enabled = true
+emission_energy_multiplier = 0.05
+emission_texture = ExtResource("2_q0d3f")
+normal_enabled = true
+normal_texture = ExtResource("4_hcis6")
+rim_enabled = true
+rim_texture = ExtResource("2_q0d3f")
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+subsurf_scatter_texture = ExtResource("2_q0d3f")
+
+[node name="leaf_2" instance=ExtResource("1_8h7xk")]
+
+[node name="leaf_2_low_003" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5q63x")
