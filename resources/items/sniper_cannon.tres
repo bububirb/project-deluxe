@@ -16,4 +16,5 @@ script = ExtResource("1_ylm5l")
 item_name = "sniper_cannon"
 description = "Snipes the cannon out of you"
 item_class = "cannon"
+mode = 0
 stats = SubResource("Resource_u4sm5")

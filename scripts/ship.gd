@@ -143,6 +143,8 @@ func _clamp_submersion() -> void:
 
 func select_item(index: int) -> void:
 	var selected_item: Node = item_instancer.get_child(index)
+	if not selected_item: return
+	
 	if selected_item.mode == Globals.ItemMode.USABLE:
 		selected_item.execute(self)
 	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:

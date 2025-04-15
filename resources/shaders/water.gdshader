@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_draw_always;
+render_mode depth_prepass_alpha;
 
 global uniform vec3 ocean_pos; // Global shader value for the player position
 global uniform float wave_time;

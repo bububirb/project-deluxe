@@ -36,12 +36,12 @@ background_mode = 2
 sky = SubResource("Sky_ulpni")
 ambient_light_energy = 0.5
 tonemap_mode = 3
-ssr_enabled = true
 ssil_enabled = true
 ssil_radius = 10.0
-sdfgi_min_cell_size = 0.195312
-sdfgi_cascade0_distance = 12.5
-sdfgi_max_distance = 200.0
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.5
+sdfgi_cascade0_distance = 32.0
+sdfgi_max_distance = 128.0
 glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.2
@@ -136,9 +136,8 @@ script = ExtResource("2_qc5si")
 environment = SubResource("Environment_6g2yo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
-transform = Transform3D(0.395578, -4.01462e-08, 0.918433, -0.918433, -1.72913e-08, 0.395578, -1.5158e-16, -1, -4.37116e-08, 0, 0, 0)
+transform = Transform3D(0.395578, -4.01462e-08, 0.918432, -0.918432, -1.72913e-08, 0.395578, -1.5158e-16, -1, -4.37116e-08, 0, 0, 0)
 light_color = Color(0.98986, 0.842996, 0.727097, 1)
-light_angular_distance = 2.0
 shadow_enabled = true
 
 [node name="WaterPlane" parent="." index="7" instance=ExtResource("2_aa7f3")]
@@ -160,5 +159,5 @@ transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, 0,
 [node name="rock_1" parent="." index="17" instance=ExtResource("9_riecl")]
 transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.34503, 0, -4.43668)
 
-[node name="Fern" parent="." index="18" instance=ExtResource("12_ifhrh")]
-transform = Transform3D(1.39931, 0.80874, 0.0601182, -0.809634, 1.40004, 0.0110017, -0.0465401, -0.0396139, 1.61617, -3.05025, 2.62359, -4.52777)
+[node name="Fern" parent="rock_1" index="1" instance=ExtResource("12_ifhrh")]
+transform = Transform3D(0.648669, 0.374903, 0.0278686, -0.375317, 0.649008, 0.00509999, -0.0215743, -0.0183636, 0.749198, 0.600213, 1.2162, -0.0422261)

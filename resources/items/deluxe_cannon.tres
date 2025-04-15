@@ -16,4 +16,5 @@ script = ExtResource("1_ru43i")
 item_name = "deluxe_cannon"
 description = "Cannons the deluxe out of you"
 item_class = "cannon"
+mode = 0
 stats = SubResource("Resource_fhwsd")

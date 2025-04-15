@@ -23,5 +23,6 @@ transform = Transform3D(-1, -7.6194e-09, -8.77555e-08, -1.52388e-08, 0.996195, 0
 fov = 90.0
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="Ship/CameraPivot/Camera"]
+visible = false
 update_mode = 1
 size = Vector3(25, 12, 25)
