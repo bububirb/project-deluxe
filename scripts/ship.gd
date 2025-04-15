@@ -103,7 +103,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_just_released("shoot"):
-		active_item.execute(self)
+		if active_item.mode == Globals.ItemMode.ACTIONABLE:
+			active_item.execute(self)
 	
 	if Input.is_action_just_pressed("select_item_1"):
 		select_item(0)
@@ -142,6 +143,8 @@ func _clamp_submersion() -> void:
 
 func select_item(index: int) -> void:
 	var selected_item: Node = item_instancer.get_child(index)
-	if selected_item:
+	if selected_item.mode == Globals.ItemMode.USABLE:
+		selected_item.execute(self)
+	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:
 		active_item = selected_item
 		item_selected.emit(active_item)

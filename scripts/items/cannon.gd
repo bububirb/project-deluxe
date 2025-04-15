@@ -2,7 +2,9 @@ class_name Cannon extends Node3D
 
 @export var projectile: PackedScene
 
-var stats: WeaponStats # To be assigned by the deck
+# To be assigned by the deck
+var mode: Globals.ItemMode
+var stats: WeaponStats
 
 func execute(ship: Ship) -> void:
 	var projectile_instance: RigidBody3D = projectile.instantiate()

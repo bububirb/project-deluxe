@@ -8,6 +8,7 @@ const ITEM_SCENES_PATH: String = "res://scenes/items/"
 func _ready() -> void:
 	for item: Item in items:
 		var item_instance = _load_item_instance(item.item_name)
+		item_instance.mode = item.mode
 		item_instance.stats = item.stats
 		target.add_child(item_instance)
 

@@ -14,4 +14,5 @@ script = ExtResource("1_1ps7e")
 item_name = "nitro"
 description = "Vroom vroom"
 item_class = "speed"
+mode = 1
 stats = SubResource("Resource_vlq0a")
