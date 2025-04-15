@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c10o27x6ordpu"]
+[gd_scene load_steps=26 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
+[ext_resource type="Script" path="res://scripts/map.gd" id="2_qc5si"]
 [ext_resource type="Shader" path="res://resources/shaders/water.gdshader" id="3_q36th"]
 [ext_resource type="Texture2D" uid="uid://c28xyd1kxxrig" path="res://resources/noise_texture/wave.tres" id="4_4b0l1"]
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="5_7wqmn"]
@@ -126,6 +127,7 @@ subdivide_width = 63
 subdivide_depth = 63
 
 [node name="Map01" instance=ExtResource("1_spnnx")]
+script = ExtResource("2_qc5si")
 
 [node name="HUD" parent="." index="0" instance=ExtResource("10_672aj")]
 

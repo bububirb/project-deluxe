@@ -263,7 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("3_oy072")
-items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x"), ExtResource("12_4hjlh"), ExtResource("9_yfxm0")])
+items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x"), ExtResource("12_4hjlh")])
 target = NodePath("../Turret/ShooterTurretBase/ItemInstancer")
 
 [node name="ProjectilePool" type="Node" parent="."]

@@ -1,5 +1,7 @@
 class_name Ship extends CharacterBody3D
 
+signal item_selected
+
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5
 
@@ -47,6 +49,7 @@ var active_item: Node:
 @onready var right: Node3D = $Bounds/Right
 
 func _ready() -> void:
+	await get_tree().process_frame
 	select_item(0)
 
 func _physics_process(delta: float) -> void:
@@ -138,4 +141,7 @@ func _clamp_submersion() -> void:
 	global_position.y = max(global_position.y, BuoyancySolver.height(global_position) - MAX_SUBMERSION)
 
 func select_item(index: int) -> void:
-	active_item = item_instancer.get_child(index)
+	var selected_item: Node = item_instancer.get_child(index)
+	if selected_item:
+		active_item = selected_item
+		item_selected.emit(active_item)
