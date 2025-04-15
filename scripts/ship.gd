@@ -1,6 +1,8 @@
 class_name Ship extends CharacterBody3D
 
 signal item_selected
+@warning_ignore("unused_signal")
+signal item_executed
 
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5

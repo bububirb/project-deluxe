@@ -7,7 +7,8 @@ var max_fov: float = 90.0
 
 @onready var ship: Node3D = $Ship
 @onready var camera_pivot: Node3D = $Ship/CameraPivot
-@onready var camera: Camera3D = $Ship/CameraPivot/Camera
+@onready var camera_pivot_x: Node3D = $Ship/CameraPivot/CameraPivotX
+@onready var camera: Camera3D = $Ship/CameraPivot/CameraPivotX/Camera
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
+	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot_x.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)
 	
 	if Input.is_action_pressed("aim"):
 		is_zooming_out = false
@@ -32,5 +34,8 @@ func _process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		camera_pivot.rotate_y(-event.relative.x * orbit_sensitivity * TAU)
+		camera_pivot_x.rotate_x(event.relative.y * orbit_sensitivity * TAU)
 	elif event is InputEventScreenDrag:
 		camera_pivot.rotate_y(-event.relative.x * orbit_sensitivity * TAU)
+		camera_pivot_x.rotate_x(event.relative.y * orbit_sensitivity * TAU)
+	camera_pivot_x.rotation.x = clampf(camera_pivot_x.rotation.x, - TAU / 24, TAU / 8)

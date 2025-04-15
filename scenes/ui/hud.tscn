@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://budywedhvkcoa"]
+[gd_scene load_steps=13 format=3 uid="uid://budywedhvkcoa"]
 
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="1_8mxba"]
 [ext_resource type="Script" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c53j43gvjq7tj" path="res://assets/icons/items/sniper_cannon.png" id="4_77vch"]
 [ext_resource type="Texture2D" uid="uid://bjj24w0cbsnim" path="res://assets/icons/items/nitro.png" id="5_u0l0g"]
 [ext_resource type="Texture2D" uid="uid://xyde4kdv4ija" path="res://assets/icons/items/overboost.png" id="6_wlrxm"]
+[ext_resource type="PackedScene" uid="uid://bogt3vuuc6i80" path="res://scenes/ui/cooldown.tscn" id="8_taa18"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bixkq"]
 content_margin_left = 4.0
@@ -118,6 +119,9 @@ layout_mode = 2
 texture = ExtResource("3_3mp6s")
 expand_mode = 1
 
+[node name="Cooldown" parent="PanelContainer/ItemSprites/Item1" instance=ExtResource("8_taa18")]
+layout_mode = 2
+
 [node name="Item2" type="PanelContainer" parent="PanelContainer/ItemSprites"]
 clip_contents = true
 layout_mode = 2
@@ -128,6 +132,9 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_77vch")
 expand_mode = 1
+
+[node name="Cooldown" parent="PanelContainer/ItemSprites/Item2" instance=ExtResource("8_taa18")]
+layout_mode = 2
 
 [node name="Item3" type="PanelContainer" parent="PanelContainer/ItemSprites"]
 clip_contents = true
@@ -140,6 +147,9 @@ layout_mode = 2
 texture = ExtResource("5_u0l0g")
 expand_mode = 1
 
+[node name="Cooldown" parent="PanelContainer/ItemSprites/Item3" instance=ExtResource("8_taa18")]
+layout_mode = 2
+
 [node name="Item4" type="PanelContainer" parent="PanelContainer/ItemSprites"]
 clip_contents = true
 layout_mode = 2
@@ -150,3 +160,6 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("6_wlrxm")
 expand_mode = 1
+
+[node name="Cooldown" parent="PanelContainer/ItemSprites/Item4" instance=ExtResource("8_taa18")]
+layout_mode = 2
