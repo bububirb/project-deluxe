@@ -47,21 +47,13 @@ _subresources={
 "generate/physics": true,
 "physics/shape_type": 0
 },
-"PATH:Plane_017": {
-"decomposition/max_convex_hulls": 4,
-"decomposition/max_num_vertices_per_convex_hull": 64,
-"decomposition/min_volume_per_convex_hull": 0.0,
-"decomposition/revolution_axes_clipping_bias": 0.05,
-"generate/physics": true,
-"physics/shape_type": 0
-},
 "PATH:Plane_018": {
 "generate/physics": true,
 "physics/shape_type": 0
 },
 "PATH:Plane_019": {
 "generate/physics": true,
-"physics/shape_type": 0
+"physics/shape_type": 2
 },
 "PATH:Plane_021": {
 "generate/physics": true,
