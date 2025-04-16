@@ -41,15 +41,15 @@ _subresources={
 },
 "PATH:Plane_014": {
 "generate/physics": true,
-"physics/shape_type": 0
+"physics/shape_type": 2
 },
 "PATH:Plane_015": {
 "generate/physics": true,
-"physics/shape_type": 0
+"physics/shape_type": 2
 },
 "PATH:Plane_018": {
 "generate/physics": true,
-"physics/shape_type": 0
+"physics/shape_type": 2
 },
 "PATH:Plane_019": {
 "generate/physics": true,
@@ -65,7 +65,7 @@ _subresources={
 },
 "PATH:Plane_024": {
 "generate/physics": true,
-"physics/shape_type": 0
+"physics/shape_type": 2
 },
 "PATH:Plane_025": {
 "generate/physics": true,
