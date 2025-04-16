@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://gf0xn2ejxknt"]
 
-[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_e0mkr"]
+[ext_resource type="Script" uid="uid://cjwsvciyixvtm" path="res://scripts/projectile.gd" id="1_e0mkr"]
 [ext_resource type="PackedScene" uid="uid://daojy1n834ib1" path="res://assets/models/projectiles/sniper_cannon_projectile_1.blend" id="2_he1g2"]
 [ext_resource type="Material" uid="uid://c78xiw2kyc3mj" path="res://resources/materials/blackbody_particle.tres" id="3_yyv5v"]
 

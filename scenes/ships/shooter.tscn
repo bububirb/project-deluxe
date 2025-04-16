@@ -1,13 +1,13 @@
 [gd_scene load_steps=37 format=4 uid="uid://2opy76fxy3vp"]
 
-[ext_resource type="Script" path="res://scripts/ship.gd" id="1_ax73f"]
+[ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_ax73f"]
 [ext_resource type="PackedScene" uid="uid://c2vhaou1f82c8" path="res://assets/models/ships/shooter_1.blend" id="2_qefq2"]
 [ext_resource type="Texture2D" uid="uid://byeqs72c51yuq" path="res://assets/textures/ships/shooter/Shooter_BaseColor.png" id="3_oovno"]
-[ext_resource type="Script" path="res://scripts/resources/deck.gd" id="3_oy072"]
+[ext_resource type="Script" uid="uid://c4d7jljnvg3wl" path="res://scripts/resources/deck.gd" id="3_oy072"]
 [ext_resource type="Texture2D" uid="uid://dho3lj65dqj8i" path="res://assets/textures/ships/shooter/Shooter_Roughness.png" id="4_hg43l"]
 [ext_resource type="Texture2D" uid="uid://c0jwjvfdex4j4" path="res://assets/textures/ships/shooter/Shooter_Normal.png" id="5_xuv50"]
 [ext_resource type="PackedScene" uid="uid://d3ajgltxp4nxl" path="res://assets/models/ships/shooter_turret_1.blend" id="6_hmiki"]
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="8_rnir5"]
+[ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="8_rnir5"]
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="9_yfxm0"]
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="10_gsbj1"]
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="11_ymx0x"]
@@ -78,8 +78,7 @@ gradient = SubResource("Gradient_a5s3k")
 use_hdr = true
 
 [sub_resource type="Curve" id="Curve_brxm4"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, -0.0219779), 0.0, 0.0, 0, 0, Vector2(0.204545, -0.681319), 0.0, 0.0, 0, 0, Vector2(0.363636, 1.03297), 0.0, 0.0, 0, 0, Vector2(0.619318, -1.03297), 0.0, 0.0, 0, 0, Vector2(0.806818, 1.51648), 0.0, 0.0, 0, 0, Vector2(1, -2), 0.0, 0.0, 0, 0]
 point_count = 6
 
@@ -89,7 +88,7 @@ curve_y = SubResource("Curve_brxm4")
 curve_z = SubResource("Curve_brxm4")
 
 [sub_resource type="Curve" id="Curve_ox0bb"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 2), 0.0, -0.348132, 0, 0, Vector2(1, 0), -1.80513, 0.0, 0, 0]
 point_count = 2
 
@@ -97,8 +96,7 @@ point_count = 2
 curve = SubResource("Curve_ox0bb")
 
 [sub_resource type="Curve" id="Curve_g2sc5"]
-min_value = -2.0
-max_value = 2.0
+_limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 3.15558, 0, 1, Vector2(0.215909, 0.681319), 0.0, 0.0, 0, 0, Vector2(0.511364, -0.769231), 0.0, 0.0, 0, 0, Vector2(0.795455, 1.64835), 0.0, 0.0, 0, 0, Vector2(1, -2), -17.8364, 0.0, 1, 0]
 point_count = 5
 
@@ -204,7 +202,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_q4yo7")
 
 [node name="Shooter" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ax73f")
@@ -242,6 +239,7 @@ emitting = false
 amount = 1024
 lifetime = 0.5
 one_shot = true
+explosiveness = 0.5
 trail_enabled = true
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_k4b56")

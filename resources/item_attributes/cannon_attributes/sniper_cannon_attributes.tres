@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CannonAttributes" load_steps=3 format=3 uid="uid://cnaxkty43am2"]
 
 [ext_resource type="PackedScene" uid="uid://b4k6d1jit0l7e" path="res://scenes/items/sniper_cannon.tscn" id="1_wvojw"]
-[ext_resource type="Script" path="res://scripts/resources/item_attributes/cannon_attributes.gd" id="2_ki4jo"]
+[ext_resource type="Script" uid="uid://x7lfjh7ckwby" path="res://scripts/resources/item_attributes/cannon_attributes.gd" id="2_ki4jo"]
 
 [resource]
 script = ExtResource("2_ki4jo")

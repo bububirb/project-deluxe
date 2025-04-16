@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmypvlg56rby2" path="res://assets/models/maps/segmented_arena.blend" id="1_r232y"]
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="2_mr3er"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="3_77f5g"]
-[ext_resource type="Shader" path="res://resources/shaders/water.gdshader" id="4_yt0va"]
+[ext_resource type="Shader" uid="uid://tuqeffq0m8yj" path="res://resources/shaders/water.gdshader" id="4_yt0va"]
 [ext_resource type="Texture2D" uid="uid://c28xyd1kxxrig" path="res://resources/noise_texture/wave.tres" id="5_2n0au"]
 [ext_resource type="PackedScene" uid="uid://cnnr45r27veyv" path="res://scenes/drafts/shooter_player.tscn" id="6_3dna5"]
 
@@ -94,6 +94,10 @@ shader_parameter/albedo = Color(0.199965, 0.21184, 0.245225, 1)
 shader_parameter/albedo2 = Color(0.191162, 0.27809, 0.37251, 1)
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.05
+shader_parameter/wave = ExtResource("5_2n0au")
+shader_parameter/wave_bump = SubResource("NoiseTexture2D_73tnt")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_fwajh")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_iplb2")
 shader_parameter/wave_direction = Vector2(0.5, -0.2)
 shader_parameter/wave_direction2 = Vector2(-0.5, 0.5)
 shader_parameter/time_scale = 0.0
@@ -107,10 +111,6 @@ shader_parameter/edge_scale = -0.01
 shader_parameter/near = 1.0
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(0.603922, 0.764706, 0.980392, 1)
-shader_parameter/wave = ExtResource("5_2n0au")
-shader_parameter/wave_bump = SubResource("NoiseTexture2D_73tnt")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_fwajh")
-shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_iplb2")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6lxan"]
 resource_local_to_scene = true

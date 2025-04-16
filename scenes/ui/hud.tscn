@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://budywedhvkcoa"]
 
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="1_8mxba"]
-[ext_resource type="Script" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="2_n808k"]
+[ext_resource type="Script" uid="uid://cor0xtkfi5p1q" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
+[ext_resource type="Script" uid="uid://b1ruyu48x5o0" path="res://scripts/hud.gd" id="2_n808k"]
 [ext_resource type="Texture2D" uid="uid://b3r3opnb1p8fa" path="res://assets/icons/items/deluxe_cannon.png" id="3_3mp6s"]
 [ext_resource type="Texture2D" uid="uid://c53j43gvjq7tj" path="res://assets/icons/items/sniper_cannon.png" id="4_77vch"]
 [ext_resource type="Texture2D" uid="uid://bjj24w0cbsnim" path="res://assets/icons/items/nitro.png" id="5_u0l0g"]

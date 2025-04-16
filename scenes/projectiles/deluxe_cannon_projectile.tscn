@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://pj100ly4ipil"]
 
 [ext_resource type="PackedScene" uid="uid://byh6bg82ldnit" path="res://assets/models/projectiles/deluxe_cannon_projectile_1.blend" id="1_6ei38"]
-[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_kkfkm"]
+[ext_resource type="Script" uid="uid://cjwsvciyixvtm" path="res://scripts/projectile.gd" id="1_kkfkm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfnco"]
 metallic = 1.0
@@ -30,7 +30,7 @@ point_count = 2
 curve = SubResource("Curve_pwcsb")
 
 [sub_resource type="Curve" id="Curve_lsufm"]
-max_value = 2.0
+_limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 2), 0.0, -0.253056, 0, 0, Vector2(1, 0), -4.9352, 0.0, 0, 0]
 point_count = 2
 
