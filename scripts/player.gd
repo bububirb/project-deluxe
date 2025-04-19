@@ -1,7 +1,10 @@
 extends Node3D
 
-var orbit_sensitivity = 0.001
-var is_zooming_out = false
+const DEFAULT_SENSITIVITY: float = 0.001
+const AIMING_SENSITIVITY: float = 0.0001
+
+var orbit_sensitivity: float = DEFAULT_SENSITIVITY
+var is_zooming_out: bool = false
 var min_fov: float = 30.0
 var max_fov: float = 90.0
 
@@ -12,23 +15,37 @@ var max_fov: float = 90.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	ship.item_selected.connect(_on_ship_item_selected)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(_delta: float) -> void:
 	ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
 	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot_x.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)
 	
+	if Input.is_action_just_pressed("aim"):
+		orbit_sensitivity = AIMING_SENSITIVITY
+	
 	if Input.is_action_pressed("aim"):
 		is_zooming_out = false
-		camera.fov = lerp(camera.fov, min_fov, 0.2)
+		if ship.active_item is Cannon:
+			camera.fov = lerp(camera.fov, min_fov, 0.2)
+		if ship.active_item is Mortar:
+			var tween = create_tween().tween_property(camera, "position:z", -5.0, 0.4)
+			await tween.finished
 
 	if Input.is_action_just_released("aim"):
+		orbit_sensitivity = DEFAULT_SENSITIVITY
 		is_zooming_out = true
 	
 	if is_zooming_out:
-		camera.fov = lerp(camera.fov, max_fov, 0.2)
-		if camera.fov >= max_fov:
-			camera.fov = max_fov
+		if ship.active_item is Cannon:
+			camera.fov = lerp(camera.fov, max_fov, 0.2)
+			if camera.fov >= max_fov:
+				camera.fov = max_fov
+				is_zooming_out = false
+		if ship.active_item is Mortar:
+			var tween = create_tween().tween_property(camera, "position:z", -2.5, 0.4)
+			await tween.finished
 			is_zooming_out = false
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -39,3 +56,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_pivot.rotate_y(-event.relative.x * orbit_sensitivity * TAU)
 		camera_pivot_x.rotate_x(event.relative.y * orbit_sensitivity * TAU)
 	camera_pivot_x.rotation.x = clampf(camera_pivot_x.rotation.x, - TAU / 24, TAU / 8)
+
+func _on_ship_item_selected(item: Node):
+	if item is Mortar:
+		var tween = create_tween().tween_property(camera, "position:z", -2.5, 0.15)
+	if item is Cannon:
+		var tween = create_tween().tween_property(camera, "position:z", -1.5, 0.15)

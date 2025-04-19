@@ -14,5 +14,4 @@ script = ExtResource("1_ynshp")
 item_name = "overboost"
 description = "Overboost be speedmaxxing"
 item_class = "speed"
-mode = 1
 stats = SubResource("Resource_6ytjq")

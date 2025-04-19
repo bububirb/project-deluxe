@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://budywedhvkcoa"]
+[gd_scene load_steps=14 format=3 uid="uid://budywedhvkcoa"]
 
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="1_8mxba"]
 [ext_resource type="Script" uid="uid://cor0xtkfi5p1q" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bjj24w0cbsnim" path="res://assets/icons/items/nitro.png" id="5_u0l0g"]
 [ext_resource type="Texture2D" uid="uid://xyde4kdv4ija" path="res://assets/icons/items/overboost.png" id="6_wlrxm"]
 [ext_resource type="PackedScene" uid="uid://bogt3vuuc6i80" path="res://scenes/ui/cooldown.tscn" id="8_taa18"]
+[ext_resource type="Texture2D" uid="uid://do17n7gul50r7" path="res://assets/icons/items/deluxe_mortar.png" id="9_4jqwt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bixkq"]
 content_margin_left = 4.0
@@ -162,4 +163,18 @@ texture = ExtResource("6_wlrxm")
 expand_mode = 1
 
 [node name="Cooldown" parent="PanelContainer/ItemSprites/Item4" instance=ExtResource("8_taa18")]
+layout_mode = 2
+
+[node name="Item5" type="PanelContainer" parent="PanelContainer/ItemSprites"]
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e51o3")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/ItemSprites/Item5"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("9_4jqwt")
+expand_mode = 1
+
+[node name="Cooldown" parent="PanelContainer/ItemSprites/Item5" instance=ExtResource("8_taa18")]
 layout_mode = 2

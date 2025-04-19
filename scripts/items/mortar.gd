@@ -1,4 +1,4 @@
-class_name Cannon extends Node3D
+class_name Mortar extends Node3D
 
 @export var projectile: PackedScene
 
@@ -9,7 +9,7 @@ var mode: Globals.ItemMode = Globals.ItemMode.ACTIONABLE
 var cooldown: float = 0.0
 
 func execute(ship: Ship) -> void:
-	#if cooldown > 0.0: return
+	if cooldown > 0.0: return
 	
 	var projectile_instance: CharacterBody3D = projectile.instantiate()
 	projectile_instance.top_level = true
@@ -18,7 +18,7 @@ func execute(ship: Ship) -> void:
 	projectile_instance.global_rotation.y = ship.item_instancer.global_rotation.y
 	projectile_instance.distance = ship.aiming_distance
 	projectile_instance.offset = ship.aiming_height_offset
-	projectile_instance.height = stats.height * ship.aiming_distance / stats.max_range
+	projectile_instance.height = stats.height
 	projectile_instance.speed = stats.projectile_speed
 	cooldown = stats.cooldown
 	ship.item_executed.emit(self)

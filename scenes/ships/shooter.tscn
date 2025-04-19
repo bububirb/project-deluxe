@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://2opy76fxy3vp"]
+[gd_scene load_steps=39 format=4 uid="uid://2opy76fxy3vp"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_ax73f"]
 [ext_resource type="PackedScene" uid="uid://c2vhaou1f82c8" path="res://assets/models/ships/shooter_1.blend" id="2_qefq2"]
@@ -7,11 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://dho3lj65dqj8i" path="res://assets/textures/ships/shooter/Shooter_Roughness.png" id="4_hg43l"]
 [ext_resource type="Texture2D" uid="uid://c0jwjvfdex4j4" path="res://assets/textures/ships/shooter/Shooter_Normal.png" id="5_xuv50"]
 [ext_resource type="PackedScene" uid="uid://d3ajgltxp4nxl" path="res://assets/models/ships/shooter_turret_1.blend" id="6_hmiki"]
+[ext_resource type="Texture2D" uid="uid://s8ij70eplfx7" path="res://assets/textures/decals/aiming_indicator.png" id="7_flfa1"]
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="8_rnir5"]
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="9_yfxm0"]
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="10_gsbj1"]
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="11_ymx0x"]
 [ext_resource type="Resource" uid="uid://dqxg1s4rp1abq" path="res://resources/items/overboost.tres" id="12_4hjlh"]
+[ext_resource type="Resource" uid="uid://dl1kd0olljc5g" path="res://resources/items/deluxe_mortar.tres" id="13_kxyjr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qrpkj"]
 resource_name = "Shooter"
@@ -259,9 +261,17 @@ mesh = SubResource("ArrayMesh_86hnh")
 [node name="ItemInstancer" parent="Turret/ShooterTurretBase" index="0"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.1, 0)
 
+[node name="AimingIndicator" type="Decal" parent="."]
+top_level = true
+visible = false
+layers = 16
+texture_albedo = ExtResource("7_flfa1")
+modulate = Color(0, 0.8, 0, 0.4)
+cull_mask = 1047554
+
 [node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("3_oy072")
-items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x"), ExtResource("12_4hjlh")])
+items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x"), ExtResource("12_4hjlh"), ExtResource("13_kxyjr")])
 target = NodePath("../Turret/ShooterTurretBase/ItemInstancer")
 
 [node name="ProjectilePool" type="Node" parent="."]

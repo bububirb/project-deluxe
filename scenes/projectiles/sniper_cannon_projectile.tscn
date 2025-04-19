@@ -6,7 +6,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f0ux4"]
 margin = 0.05
-radius = 0.1
+radius = 0.025
 
 [sub_resource type="Gradient" id="Gradient_hk6a6"]
 offsets = PackedFloat32Array(0, 0.243243, 0.581081, 0.858108, 1)
@@ -51,11 +51,10 @@ height = 0.025
 radial_segments = 6
 rings = 2
 
-[node name="SniperCannonProjectile" type="RigidBody3D"]
+[node name="SniperCannonProjectile" type="CharacterBody3D"]
 collision_layer = 8
 collision_mask = 5
-contact_monitor = true
-max_contacts_reported = 1
+motion_mode = 1
 script = ExtResource("1_e0mkr")
 
 [node name="Mesh" parent="." instance=ExtResource("2_he1g2")]
@@ -64,11 +63,10 @@ script = ExtResource("1_e0mkr")
 shape = SubResource("SphereShape3D_f0ux4")
 
 [node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+process_mode = 3
 emitting = false
 amount = 50
 one_shot = true
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_080yd")
 draw_pass_1 = SubResource("CapsuleMesh_mmegi")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

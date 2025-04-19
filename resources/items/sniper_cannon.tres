@@ -7,8 +7,9 @@
 script = ExtResource("2_kgnph")
 damage = 750.0
 cooldown = 3.75
-height = 10.0
-range = 60.0
+height = 0.5
+max_range = 45.0
+projectile_speed = 7.5
 radius = 0.4
 
 [resource]
@@ -16,5 +17,4 @@ script = ExtResource("1_ylm5l")
 item_name = "sniper_cannon"
 description = "Snipes the cannon out of you"
 item_class = "cannon"
-mode = 0
 stats = SubResource("Resource_u4sm5")
