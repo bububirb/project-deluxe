@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsevgkhndtd03"]
+
+[ext_resource type="Script" uid="uid://b4qjigmgyfkiw" path="res://scripts/game.gd" id="1_aeyg3"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_aeyg3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
