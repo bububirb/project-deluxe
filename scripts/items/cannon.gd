@@ -9,7 +9,7 @@ var mode: Globals.ItemMode = Globals.ItemMode.ACTIONABLE
 var cooldown: float = 0.0
 
 func execute(ship: Ship) -> void:
-	#if cooldown > 0.0: return
+	if cooldown > 0.0: return
 	
 	var projectile_instance: CharacterBody3D = projectile.instantiate()
 	projectile_instance.top_level = true
