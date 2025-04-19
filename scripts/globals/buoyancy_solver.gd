@@ -1,7 +1,7 @@
 @tool
 extends Node
 
-const WAVE_SPEED: float = 0.0
+const WAVE_SPEED: float = 0.1
 const WAVE_SCALE: float = 50.0
 const WAVE_AMPLITUDE: float = 1.0
 
