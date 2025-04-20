@@ -4,6 +4,7 @@ class_name Cannon extends Node3D
 
 # To be assigned by the deck
 var stats: WeaponStats
+var projectile_pool: Node
 
 var mode: Globals.ItemMode = Globals.ItemMode.ACTIONABLE
 var cooldown: float = 0.0
@@ -11,17 +12,28 @@ var cooldown: float = 0.0
 func execute(ship: Ship) -> void:
 	if cooldown > 0.0: return
 	
-	var projectile_instance: CharacterBody3D = projectile.instantiate()
-	projectile_instance.top_level = true
-	ship.projectile_pool.add_child(projectile_instance)
-	projectile_instance.global_position = ship.item_instancer.global_position
-	projectile_instance.global_rotation.y = ship.item_instancer.global_rotation.y
-	projectile_instance.distance = ship.aiming_distance
-	projectile_instance.offset = ship.aiming_height_offset
-	projectile_instance.height = stats.height * ship.aiming_distance / stats.max_range
-	projectile_instance.speed = stats.projectile_speed
+	var projectile_stats: ProjectileStats = ProjectileStats.new()
+	
+	projectile_stats.position = ship.item_instancer.global_position
+	projectile_stats.rotation.y = ship.item_instancer.global_rotation.y
+	
+	projectile_stats.distance = ship.aiming_distance
+	projectile_stats.offset = ship.aiming_height_offset
+	projectile_stats.height = stats.height * ship.aiming_distance / stats.max_range
+	projectile_stats.speed = stats.projectile_speed
+	
+	_spawn_projectile.rpc(Marshalls.variant_to_base64(projectile_stats, true))
+	
 	cooldown = stats.cooldown
 	ship.item_executed.emit(self)
+
+@rpc("call_local", "reliable")
+func _spawn_projectile(projectile_stats) -> void:
+	projectile_stats = Marshalls.base64_to_variant(projectile_stats, true)
+	var projectile_instance: Projectile = projectile.instantiate()
+	projectile_instance.top_level = true
+	projectile_instance.stats = projectile_stats
+	projectile_pool.add_child(projectile_instance)
 
 func _process(delta: float) -> void:
 	cooldown -= delta

@@ -66,6 +66,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_pivot.rotate_y(-event.relative.x * orbit_sensitivity * TAU)
 		camera_pivot_x.rotate_x(event.relative.y * orbit_sensitivity * TAU)
 	camera_pivot_x.rotation.x = clampf(camera_pivot_x.rotation.x, - TAU / 24, TAU / 8)
+	camera_pivot_x.rotation.y = 0.0
+	camera_pivot_x.rotation.z = 0.0
 
 func _on_ship_item_selected(item: Node):
 	if item is Mortar:
