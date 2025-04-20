@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0b1rht2r8mrb"]
+
+[ext_resource type="Script" uid="uid://be8bstb8wgxyf" path="res://scripts/ui/players_container.gd" id="1_cbpqe"]
+[ext_resource type="PackedScene" uid="uid://c8hutpfshqp1p" path="res://scenes/ui/loading_label.tscn" id="2_pv0cj"]
+
+[node name="PlayersContainer" type="VBoxContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_cbpqe")
+
+[node name="PlayersLabel" type="Label" parent="."]
+layout_mode = 2
+text = "Players:"
+
+[node name="PlayersListContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LoadingLabel" parent="." instance=ExtResource("2_pv0cj")]
+layout_mode = 2
