@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 func _convert_time(time: float) -> String:
 	var rounded_time: int = int(time)
 	var seconds = rounded_time % 60
+	@warning_ignore("integer_division")
 	var minutes = (rounded_time / 60) % 60
 	
 	#returns a string with the format "M:SS"

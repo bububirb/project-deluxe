@@ -1,6 +1,6 @@
 extends Control
 
-const GAME_SCENE = "res://scenes/maps/map_01.tscn"
+const GAME_SCENE = "res://scenes/maps/game.tscn"
 
 @onready var host_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HostButton
 @onready var start_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/StartButton
@@ -26,7 +26,7 @@ func _on_join_button_pressed() -> void:
 func _on_start_button_pressed() -> void:
 	MultiplayerLobby.load_game.rpc(GAME_SCENE)
 
-func _on_multiplayer_lobby_player_connected(peer_id, player_info) -> void:
+func _on_multiplayer_lobby_player_connected(peer_id, _player_info) -> void:
 	var label: Label = Label.new()
 	label.text = str(peer_id)
 	players_container.add_child(label)

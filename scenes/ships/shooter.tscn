@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://2opy76fxy3vp"]
+[gd_scene load_steps=40 format=4 uid="uid://2opy76fxy3vp"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_ax73f"]
 [ext_resource type="PackedScene" uid="uid://c2vhaou1f82c8" path="res://assets/models/ships/shooter_1.blend" id="2_qefq2"]
@@ -203,6 +203,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_q4yo7")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_flfa1"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Shooter" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
 collision_layer = 2
 collision_mask = 17
@@ -275,6 +283,9 @@ items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_g
 target = NodePath("../Turret/ShooterTurretBase/ItemInstancer")
 
 [node name="ProjectilePool" type="Node" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_flfa1")
 
 [editable path="Shooter"]
 [editable path="Turret"]

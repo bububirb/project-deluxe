@@ -60,6 +60,8 @@ func _ready() -> void:
 	select_item(0)
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	_update_bounds_transform()
 	_snap_bounds_to_wave()
 	
@@ -139,6 +141,8 @@ func _physics_process(delta: float) -> void:
 		select_item(4)
 
 func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if event is InputEventMouseMotion:
 		if Input.is_action_pressed("shoot"):
 			aiming_offset += event.relative * AIMING_SENSITIVITY
