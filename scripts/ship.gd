@@ -1,12 +1,18 @@
 class_name Ship extends CharacterBody3D
 
+signal item_selected
+@warning_ignore("unused_signal")
+signal item_executed
+
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5
 
 const LINEAR_LOSS: float = 0.75
 const ROTATIONAL_LOSS: float = 0.5
 const MAX_SPEED_DRAG: float = 4.0
-const MAX_SUBMERSION: float = 0.2
+const MAX_SUBMERSION: float = 0.15
+
+const AIMING_SENSITIVITY: float = 0.001
 
 @export var acceleration: float = 1.0
 @export var max_speed: float = 2.0
@@ -25,9 +31,11 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var turn_speed: float = 0.0
 var rotation_speed: float = 0.1
 
-var speed_modifiers: Array[Array] = []
+var aiming_distance: float = 30.0
+var aiming_height_offset: float = 0.0
+var aiming_offset: Vector2 = Vector2.ZERO
 
-var projectile: PackedScene = preload("res://scenes/projectiles/deluxe_cannon_projectile.tscn")
+var speed_modifiers: Array[Array] = []
 
 var active_item: Node:
 	set(new_item):
@@ -39,6 +47,7 @@ var active_item: Node:
 @onready var turret: Node3D = $Turret
 @onready var item_instancer: Node3D = $Turret/ShooterTurretBase/ItemInstancer
 @onready var nitro_particles = $NitroParticles
+@onready var aiming_indicator: Decal = $AimingIndicator
 
 @onready var bounds: Node3D = $Bounds
 @onready var front: Node3D = $Bounds/Front
@@ -47,9 +56,12 @@ var active_item: Node:
 @onready var right: Node3D = $Bounds/Right
 
 func _ready() -> void:
+	await get_tree().process_frame
 	select_item(0)
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	_update_bounds_transform()
 	_snap_bounds_to_wave()
 	
@@ -71,16 +83,15 @@ func _physics_process(delta: float) -> void:
 		new_velocity.x += direction.x * force * delta
 		new_velocity.z += direction.z * force * delta
 		
-		if velocity.length() > max_speed:
-			if new_velocity.length() < velocity.length():
-				velocity = new_velocity
-			else:
-				decelerate(delta * MAX_SPEED_DRAG)
-		else:
+		if velocity.length() < max_speed or new_velocity.length_squared() < velocity.length_squared() or speed_modifiers:
 			velocity = new_velocity
+		else:
+			decelerate(delta * MAX_SPEED_DRAG)
+		
 		var local_velocity := transform.basis.inverse() * velocity
 		local_velocity.x = move_toward(local_velocity.x, 0.0, motion_anisotropy * delta)
 		velocity = transform.basis * local_velocity
+	
 	elif velocity.length() > max_speed:
 		decelerate(delta * MAX_SPEED_DRAG)
 	else:
@@ -100,8 +111,23 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	if Input.is_action_just_pressed("shoot"):
+		aiming_indicator.show()
+	
+	if Input.is_action_pressed("shoot"):
+		aiming_distance = active_item.stats.max_range * (0.5 - aiming_offset.y) / 2.0
+		var aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance).rotated(Vector3.UP, turret.global_rotation.y)
+		aiming_height_offset = BuoyancySolver.height(aiming_position)
+		aiming_position.y += aiming_height_offset
+		var size = active_item.stats.radius * 2.0
+		aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
+		aiming_indicator.global_position = aiming_position
+	
 	if Input.is_action_just_released("shoot"):
-		active_item.execute(self)
+		if active_item.mode == Globals.ItemMode.ACTIONABLE:
+			aiming_offset = Vector2.ZERO
+			aiming_indicator.hide()
+			active_item.execute(self)
 	
 	if Input.is_action_just_pressed("select_item_1"):
 		select_item(0)
@@ -109,6 +135,18 @@ func _physics_process(delta: float) -> void:
 		select_item(1)
 	elif Input.is_action_just_pressed("select_item_3"):
 		select_item(2)
+	elif Input.is_action_just_pressed("select_item_4"):
+		select_item(3)
+	elif Input.is_action_just_pressed("select_item_5"):
+		select_item(4)
+
+func _input(event: InputEvent) -> void:
+	if not is_multiplayer_authority(): return
+	
+	if event is InputEventMouseMotion:
+		if Input.is_action_pressed("shoot"):
+			aiming_offset += event.relative * AIMING_SENSITIVITY
+			aiming_offset.clamp(Vector2(-1.0, -1.0), Vector2(1.0, 1.0))
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * LINEAR_LOSS)
@@ -135,4 +173,11 @@ func _clamp_submersion() -> void:
 	global_position.y = max(global_position.y, BuoyancySolver.height(global_position) - MAX_SUBMERSION)
 
 func select_item(index: int) -> void:
-	active_item = item_instancer.get_child(index)
+	if index >= item_instancer.get_child_count(): return
+	
+	var selected_item: Node = item_instancer.get_child(index)
+	if selected_item.mode == Globals.ItemMode.USABLE:
+		selected_item.execute(self)
+	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:
+		active_item = selected_item
+		item_selected.emit(active_item)

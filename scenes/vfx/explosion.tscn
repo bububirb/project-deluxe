@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck8nbe2jypmjl"]
+
+[ext_resource type="Shader" uid="uid://ccyx1pmh218yd" path="res://resources/shaders/explosion.tres" id="1_6d3yd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rckmw"]
+render_priority = 0
+shader = ExtResource("1_6d3yd")
+shader_parameter/FloatParameter = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_2au8o"]
+material = SubResource("ShaderMaterial_rckmw")
+
+[node name="Explosion" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_2au8o")

@@ -1,0 +1,206 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2rhplsaqim43"]
+
+[ext_resource type="Script" uid="uid://rnudojt1suce" path="res://scripts/ui/lobby.gd" id="1_6oakf"]
+[ext_resource type="Theme" uid="uid://clminxby8hqrf" path="res://resources/themes/default.tres" id="1_efll3"]
+[ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="3_5t5el"]
+[ext_resource type="Texture2D" uid="uid://cpsu6spg3m6q1" path="res://assets/icons/ui/left_arrow.svg" id="4_bthuv"]
+[ext_resource type="PackedScene" uid="uid://b0b1rht2r8mrb" path="res://scenes/ui/players_container.tscn" id="4_rqagm"]
+[ext_resource type="Texture2D" uid="uid://ddwqixi88etfq" path="res://assets/icons/ui/online.svg" id="5_bthuv"]
+[ext_resource type="Texture2D" uid="uid://bfp7imvdqhr10" path="res://assets/images/background/steampunk-city.png" id="7_bnidf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnidf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.5)
+border_blend = true
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 5
+
+[sub_resource type="FontVariation" id="FontVariation_2rbxb"]
+base_font = ExtResource("3_5t5el")
+variation_opentype = {
+1869640570: 14,
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_rqagm"]
+font = SubResource("FontVariation_2rbxb")
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_efll3")
+script = ExtResource("1_6oakf")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+modulate = Color(0.601223, 0.601223, 0.601223, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bnidf")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bnidf")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="LobbyContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="LobbyLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lobby"
+label_settings = SubResource("LabelSettings_rqagm")
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name: "
+
+[node name="NameInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+placeholder_text = "Name"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer"]
+layout_mode = 2
+
+[node name="IPLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join Address:"
+
+[node name="AddressInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+placeholder_text = "127.0.0.1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer"]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="HostingContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/TitleBar"]
+layout_mode = 2
+icon = ExtResource("4_bthuv")
+
+[node name="HostingLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hosting"
+label_settings = SubResource("LabelSettings_rqagm")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/TitleBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("5_bthuv")
+stretch_mode = 3
+
+[node name="PlayersContainer" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer" instance=ExtResource("4_rqagm")]
+layout_mode = 2
+
+[node name="IPContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer"]
+layout_mode = 2
+
+[node name="AddressLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/IPContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Address: "
+
+[node name="IPLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/IPContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="StartButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="JoiningContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TitleBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="JoiningLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Joining"
+label_settings = SubResource("LabelSettings_rqagm")
+horizontal_alignment = 1
+
+[node name="PlayersContainer" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer" instance=ExtResource("4_rqagm")]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer"]
+layout_mode = 2
+text = "Exit"

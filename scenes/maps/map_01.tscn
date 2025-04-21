@@ -1,14 +1,18 @@
-[gd_scene load_steps=24 format=3 uid="uid://c10o27x6ordpu"]
+
+[gd_scene load_steps=26 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_aa7f3"]
-[ext_resource type="Shader" path="res://resources/shaders/water.gdshader" id="3_q36th"]
+[ext_resource type="Script" uid="uid://i170vdlpd24j" path="res://scripts/map.gd" id="2_qc5si"]
+[ext_resource type="Shader" uid="uid://tuqeffq0m8yj" path="res://resources/shaders/water.gdshader" id="3_q36th"]
 [ext_resource type="Texture2D" uid="uid://c28xyd1kxxrig" path="res://resources/noise_texture/wave.tres" id="4_4b0l1"]
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="5_7wqmn"]
-[ext_resource type="PackedScene" uid="uid://cnnr45r27veyv" path="res://scenes/drafts/shooter_player.tscn" id="6_7kjp4"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="7_8urwi"]
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="8_b30e3"]
-[ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="9_uaduv"]
+
+[ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="9_riecl"]
+[ext_resource type="PackedScene" uid="uid://budywedhvkcoa" path="res://scenes/ui/hud.tscn" id="10_672aj"]
+[ext_resource type="PackedScene" uid="uid://bm7ya346n5u2y" path="res://scenes/environment/foliage/fern.tscn" id="12_ifhrh"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -31,13 +35,14 @@ sky_material = SubResource("PhysicalSkyMaterial_j4tr4")
 [sub_resource type="Environment" id="Environment_6g2yo"]
 background_mode = 2
 sky = SubResource("Sky_ulpni")
+ambient_light_energy = 0.5
 tonemap_mode = 3
-ssr_enabled = true
 ssil_enabled = true
 ssil_radius = 10.0
-sdfgi_min_cell_size = 0.195313
-sdfgi_cascade0_distance = 12.5
-sdfgi_max_distance = 200.0
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 0.5
+sdfgi_cascade0_distance = 32.0
+sdfgi_max_distance = 128.0
 glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.2
@@ -51,7 +56,7 @@ fog_sky_affect = 0.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.024
 volumetric_fog_albedo = Color(0.713328, 0.584454, 0.49564, 1)
-volumetric_fog_anisotropy = 0.35
+volumetric_fog_anisotropy = 0.9
 volumetric_fog_length = 32.0
 volumetric_fog_ambient_inject = 2.0
 
@@ -98,6 +103,10 @@ shader_parameter/albedo = Color(0.199965, 0.21184, 0.245225, 1)
 shader_parameter/albedo2 = Color(0.191162, 0.27809, 0.37251, 1)
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.05
+shader_parameter/wave = ExtResource("4_4b0l1")
+shader_parameter/wave_bump = SubResource("NoiseTexture2D_8irs0")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_dj2cu")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_p8tlc")
 shader_parameter/wave_direction = Vector2(0.5, -0.2)
 shader_parameter/wave_direction2 = Vector2(-0.5, 0.5)
 shader_parameter/time_scale = 0.0
@@ -111,10 +120,6 @@ shader_parameter/edge_scale = 0.1
 shader_parameter/near = 1.0
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(0.603922, 0.764706, 0.980392, 1)
-shader_parameter/wave = ExtResource("4_4b0l1")
-shader_parameter/wave_bump = SubResource("NoiseTexture2D_8irs0")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_dj2cu")
-shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_p8tlc")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_uspb2"]
 resource_local_to_scene = true
@@ -124,31 +129,38 @@ subdivide_width = 63
 subdivide_depth = 63
 
 [node name="Map01" instance=ExtResource("1_spnnx")]
+script = ExtResource("2_qc5si")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+[node name="HUD" parent="." index="0" instance=ExtResource("10_672aj")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="1"]
 environment = SubResource("Environment_6g2yo")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
-transform = Transform3D(0.395578, -4.01462e-08, 0.918433, -0.918433, -1.72913e-08, 0.395578, -1.5158e-16, -1, -4.37116e-08, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
+transform = Transform3D(0.395578, -4.01462e-08, 0.918432, -0.918432, -1.72913e-08, 0.395578, -1.5158e-16, -1, -4.37116e-08, 0, 0, 0)
 light_color = Color(0.98986, 0.842996, 0.727097, 1)
-light_angular_distance = 2.0
 shadow_enabled = true
 
-[node name="WaterPlane" parent="." index="6" instance=ExtResource("2_aa7f3")]
+[node name="WaterPlane" parent="." index="7" instance=ExtResource("2_aa7f3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 gi_mode = 0
 mesh = SubResource("PlaneMesh_uspb2")
 
-[node name="Player" parent="." index="7" instance=ExtResource("6_7kjp4")]
-
-[node name="VoxelGI" type="VoxelGI" parent="." index="15"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+[node name="VoxelGI" type="VoxelGI" parent="." index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 2)
 subdiv = 2
-size = Vector3(100, 20, 100)
+size = Vector3(52, 18, 54)
 data = ExtResource("7_8urwi")
 
-[node name="first_rock" parent="." index="16" instance=ExtResource("8_b30e3")]
+[node name="first_rock" parent="." index="15" instance=ExtResource("8_b30e3")]
 transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, 0, -2.45251)
 
-[node name="rock_1" parent="." index="17" instance=ExtResource("9_uaduv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69304, 0, -7.54109)
+[node name="rock_1" parent="." index="16" instance=ExtResource("9_riecl")]
+transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.34503, 0, -4.43668)
+
+[node name="Fern" parent="rock_1" index="1" instance=ExtResource("12_ifhrh")]
+transform = Transform3D(0.648669, 0.374903, 0.0278686, -0.375317, 0.649008, 0.00509999, -0.0215743, -0.0183636, 0.749198, 0.600213, 1.2162, -0.0422261)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="17"]
+_spawnable_scenes = PackedStringArray("uid://cnnr45r27veyv")
+spawn_path = NodePath("..")

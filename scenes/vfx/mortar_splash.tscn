@@ -1,0 +1,181 @@
+[gd_scene load_steps=8 format=3 uid="uid://w2x61xxk5io7"]
+
+[ext_resource type="PackedScene" uid="uid://k18inqkuwav1" path="res://assets/models/vfx/mortar_splash.blend" id="1_e7mw8"]
+[ext_resource type="Shader" uid="uid://sn8urntf2l5o" path="res://resources/shaders/mortar_splash.tres" id="2_156xv"]
+[ext_resource type="Texture2D" uid="uid://buarxh70kdj2r" path="res://assets/textures/decals/mortar_splash/mortar_splash_frame_0011.png" id="3_jr04e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkjvw"]
+render_priority = 0
+shader = ExtResource("2_156xv")
+shader_parameter/Mask = 1.0
+
+[sub_resource type="Animation" id="Animation_156xv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mortar_splash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0.25, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mortar_splash/Circle:surface_material_override/0:shader_parameter/Mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mortar_splash/Circle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Decal:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 4, 0.1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Decal:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e7mw8"]
+resource_name = "mortar_splash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mortar_splash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1),
+"transitions": PackedFloat32Array(2.82843, 0.210224, 1),
+"update": 0,
+"values": [Vector3(1, 0.25, 1), Vector3(0.8, 1, 0.8), Vector3(0.6, 0.5, 0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mortar_splash/Circle:surface_material_override/0:shader_parameter/Mask")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mortar_splash/Circle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.266667, 0.366667, 0.8),
+"transitions": PackedFloat32Array(1.46409, 2.63902, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1.5, 1), Vector3(1, 1, 1)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Decal:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.143587, 1),
+"update": 0,
+"values": [Vector3(0.1, 4, 0.1), Vector3(8, 4, 8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Decal:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.166667, 0.5),
+"transitions": PackedFloat32Array(0.31864, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jr04e"]
+_data = {
+&"RESET": SubResource("Animation_156xv"),
+&"mortar_splash": SubResource("Animation_e7mw8")
+}
+
+[node name="MortarSplash" type="Node3D"]
+
+[node name="mortar_splash" parent="." instance=ExtResource("1_e7mw8")]
+transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Circle" parent="mortar_splash" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_mkjvw")
+
+[node name="Circle_001" parent="mortar_splash" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_mkjvw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jr04e")
+}
+autoplay = "mortar_splash"
+
+[node name="Decal" type="Decal" parent="."]
+layers = 2
+size = Vector3(0.1, 4, 0.1)
+texture_albedo = ExtResource("3_jr04e")
+cull_mask = 1047554
+
+[editable path="mortar_splash"]

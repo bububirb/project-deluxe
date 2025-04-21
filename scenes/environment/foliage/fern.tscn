@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm7ya346n5u2y"]
+
+[ext_resource type="PackedScene" uid="uid://bxfk8knkw3rmj" path="res://scenes/environment/foliage/leaf_2.tscn" id="1_ija21"]
+
+[node name="Fern" type="Node3D"]
+
+[node name="leaf_5" parent="." instance=ExtResource("1_ija21")]
+transform = Transform3D(0.378369, -0.166077, 0, 0.166077, 0.378369, 0, 0, 0, 0.413212, 0, 0, 0)
+
+[node name="leaf_2" parent="." instance=ExtResource("1_ija21")]
+transform = Transform3D(-0.00133045, 0.000866051, -0.34323, 0.18725, 0.287657, 0, 0.287654, -0.187248, -0.00158749, 0, 0, 0)
+
+[node name="leaf_3" parent="." instance=ExtResource("1_ija21")]
+transform = Transform3D(-0.255494, 0.255105, 0.261131, 0.30542, 0.323963, -0.0176606, -0.199967, 0.168862, -0.360616, 0, 0, 0)

@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="Project Deluxe"
-run/main_scene="res://scenes/maps/map_01.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+run/main_scene="uid://b2rhplsaqim43"
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 BuoyancySolver="*res://scripts/globals/buoyancy_solver.gd"
+Globals="*res://scripts/globals/globals.gd"
+MultiplayerLobby="*res://scripts/globals/multiplayer_lobby.gd"
 
 [input]
 
@@ -104,6 +106,11 @@ pointing/emulate_touch_from_mouse=true
 3d_physics/layer_3="Ships"
 3d_physics/layer_4="Player Projectiles"
 3d_physics/layer_5="Ship Projectiles"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
 
 [rendering]
 

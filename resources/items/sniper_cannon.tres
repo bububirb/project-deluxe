@@ -1,14 +1,15 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://1kbtbdphrp1e"]
 
-[ext_resource type="Script" path="res://scripts/resources/item.gd" id="1_ylm5l"]
-[ext_resource type="Script" path="res://scripts/resources/stats/weapon_stats.gd" id="2_kgnph"]
+[ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_ylm5l"]
+[ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="2_kgnph"]
 
 [sub_resource type="Resource" id="Resource_u4sm5"]
 script = ExtResource("2_kgnph")
 damage = 750.0
-cooldown = 7.5
-height = 10.0
-range = 60.0
+cooldown = 3.75
+height = 0.5
+max_range = 45.0
+projectile_speed = 7.5
 radius = 0.4
 
 [resource]

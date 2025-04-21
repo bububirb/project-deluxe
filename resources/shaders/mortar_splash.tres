@@ -1,0 +1,76 @@
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://sn8urntf2l5o"]
+
+[ext_resource type="Texture2D" uid="uid://ccbr2ato45cxm" path="res://assets/textures/vfx/mortar_splash_mask_stylized.png" id="1_64yhr"]
+[ext_resource type="Texture2D" uid="uid://dp183ynead0j5" path="res://assets/textures/vfx/mortar_splash_normal.png" id="2_6ixo3"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6ixo3"]
+expanded_output_ports = [0]
+texture = ExtResource("1_64yhr")
+
+[sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_64yhr"]
+function = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_6ixo3"]
+parameter_name = "Mask"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_64yhr"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_nmird"]
+texture = ExtResource("2_6ixo3")
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_disabled, depth_prepass_alpha;
+
+uniform sampler2D tex_frg_2;
+uniform float Mask;
+uniform sampler2D tex_frg_6;
+
+
+
+void fragment() {
+// Input:5
+	vec2 n_out5p0 = UV;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, n_out5p0);
+	float n_out2p1 = n_out2p0.r;
+
+
+// FloatParameter:4
+	float n_out4p0 = Mask;
+
+
+// Compare:3
+	bool n_out3p0 = n_out2p1 > n_out4p0;
+
+
+// Texture2D:6
+	vec4 n_out6p0 = texture(tex_frg_6, UV);
+
+
+// Output:0
+	ALPHA = (n_out3p0 ? 1.0 : 0.0);
+	NORMAL = vec3(n_out6p0.xyz);
+
+
+}
+"
+modes/cull = 2
+modes/diffuse = 3
+modes/specular = 2
+flags/depth_prepass_alpha = true
+nodes/fragment/0/position = Vector2(400, 140)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_6ixo3")
+nodes/fragment/2/position = Vector2(-100, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeCompare_64yhr")
+nodes/fragment/3/position = Vector2(180, 140)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_6ixo3")
+nodes/fragment/4/position = Vector2(-120, 520)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_64yhr")
+nodes/fragment/5/position = Vector2(-420, 140)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_nmird")
+nodes/fragment/6/position = Vector2(-100, 740)
+nodes/fragment/connections = PackedInt32Array(2, 1, 3, 0, 3, 0, 0, 1, 4, 0, 3, 1, 5, 0, 2, 0, 6, 0, 0, 8)

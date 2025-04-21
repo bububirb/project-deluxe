@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvqa0odrch4e"]
+
+[ext_resource type="PackedScene" uid="uid://b2t7a0es66mtj" path="res://assets/models/items/deluxe_mortar_1.blend" id="1_87wmt"]
+[ext_resource type="Script" uid="uid://bjck4j1n5l8ta" path="res://scripts/items/mortar.gd" id="2_ifwpx"]
+[ext_resource type="PackedScene" uid="uid://bf1468muu0d1e" path="res://scenes/projectiles/deluxe_mortar_projectile.tscn" id="3_u41tk"]
+
+[node name="DeluxeMortar" instance=ExtResource("1_87wmt")]
+script = ExtResource("2_ifwpx")
+projectile = ExtResource("3_u41tk")
