@@ -182,6 +182,16 @@ projectile_pool = NodePath("ProjectilePool")
 
 [node name="punky_mk2" parent="." instance=ExtResource("2_12mey")]
 
+[node name="Body" parent="punky_mk2" index="0"]
+gi_mode = 2
+
+[node name="Fan" parent="punky_mk2" index="1"]
+transform = Transform3D(1, -6.23054e-10, -1.04187e-08, -1.04187e-08, -0.119176, -0.992873, -6.23054e-10, 0.992873, -0.119176, 0, 0.396318, -0.86295)
+gi_mode = 2
+
+[node name="AnimationPlayer" parent="punky_mk2" index="2"]
+autoplay = "FanAction"
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_12mey")
 
