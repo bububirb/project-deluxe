@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=26 format=3 uid="uid://c10o27x6ordpu"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_spnnx"]
@@ -8,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="5_7wqmn"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="7_8urwi"]
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="8_b30e3"]
+
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="9_riecl"]
 [ext_resource type="PackedScene" uid="uid://budywedhvkcoa" path="res://scenes/ui/hud.tscn" id="10_672aj"]
 [ext_resource type="PackedScene" uid="uid://bm7ya346n5u2y" path="res://scenes/environment/foliage/fern.tscn" id="12_ifhrh"]
