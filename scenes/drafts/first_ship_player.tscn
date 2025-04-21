@@ -1,21 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnnr45r27veyv"]
+[gd_scene load_steps=4 format=3 uid="uid://pn7163hw3h35"]
 
-[ext_resource type="Script" uid="uid://co5366jb4vtt4" path="res://scripts/player.gd" id="1_p85j6"]
-[ext_resource type="PackedScene" uid="uid://2opy76fxy3vp" path="res://scenes/ships/shooter.tscn" id="2_5exrk"]
-[ext_resource type="Script" uid="uid://b3jrhrmk6hphs" path="res://scripts/camera_pivot.gd" id="3_ux15x"]
+[ext_resource type="Script" uid="uid://co5366jb4vtt4" path="res://scripts/player.gd" id="1_8esan"]
+[ext_resource type="PackedScene" uid="uid://ckkrhxqwmgd32" path="res://scenes/ships/first_ship.tscn" id="2_8esan"]
+[ext_resource type="Script" uid="uid://b3jrhrmk6hphs" path="res://scripts/camera_pivot.gd" id="3_gsaw8"]
 
 [node name="Player" type="Node3D"]
-script = ExtResource("1_p85j6")
+script = ExtResource("1_8esan")
 
-[node name="Ship" parent="." instance=ExtResource("2_5exrk")]
+[node name="Ship" parent="." instance=ExtResource("2_8esan")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
-torque = 5.0
-max_turn_speed = 1.0
-nitro_force = 10.0
 
 [node name="CameraPivot" type="Node3D" parent="Ship" node_paths=PackedStringArray("target")]
 top_level = true
-script = ExtResource("3_ux15x")
+script = ExtResource("3_gsaw8")
 target = NodePath("..")
 
 [node name="CameraPivotX" type="Node3D" parent="Ship/CameraPivot"]
