@@ -16,14 +16,29 @@ func _enter_tree() -> void:
 	global_position = stats.position
 	global_rotation = stats.rotation
 
-func _on_collision():
+func _on_collision(collision: KinematicCollision3D):
 	call_deferred("set_process_mode", ProcessMode.PROCESS_MODE_DISABLED)
 	mesh.hide()
-	explosion_particles.emitting = true
+	explosion_particles.emitting = true	
 	if explosion_scene:
 		var explosion_node = explosion_scene.instantiate()
 		explosion_node.process_mode = Node.PROCESS_MODE_ALWAYS
 		add_child(explosion_node)
+	if collision:
+		if multiplayer.is_server():
+			var collider = collision.get_collider()
+			if collider is Ship:
+				var impact_id = collider.get_parent().name
+				_hit_test.rpc(int(impact_id))
+
+@rpc("authority","call_local","reliable")
+func _hit_test(impact_id: int):
+	if multiplayer.get_unique_id() == impact_id:
+		print(str(multiplayer.get_unique_id()),": I got hit!")
+	else:
+		print(str(multiplayer.get_unique_id()),":",str(impact_id),"got hit!")
+
+
 
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height
@@ -35,4 +50,4 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(Vector3(0.0, 0.0, delta * stats.distance * stats.speed) * global_basis.inverse() + Vector3(0.0, height_offset, 0.0))
 	var is_underwater = global_position.y < BuoyancySolver.height(global_position)
 	if collision or is_underwater:
-		_on_collision()
+		_on_collision(collision)
