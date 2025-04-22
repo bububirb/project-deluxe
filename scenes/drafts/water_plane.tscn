@@ -1,72 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbt5pfn1trdyj"]
+[gd_scene load_steps=3 format=3 uid="uid://dbt5pfn1trdyj"]
 
-[ext_resource type="Shader" uid="uid://tuqeffq0m8yj" path="res://resources/shaders/water.gdshader" id="1_w1tkc"]
-[ext_resource type="Texture2D" uid="uid://c28xyd1kxxrig" path="res://resources/noise_texture/wave.tres" id="2_uj2ho"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_avos1"]
-noise_type = 3
-frequency = 0.016
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dj2cu"]
-seamless = true
-seamless_blend_skirt = 0.4
-as_normal_map = true
-bump_strength = 1.6
-noise = SubResource("FastNoiseLite_avos1")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_77aww"]
-noise_type = 0
-seed = 22
-frequency = 0.003
-fractal_lacunarity = 1.6
-fractal_gain = 0.47
-fractal_weighted_strength = 0.53
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p8tlc"]
-seamless = true
-seamless_blend_skirt = 0.532
-as_normal_map = true
-noise = SubResource("FastNoiseLite_77aww")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_yilox"]
-noise_type = 4
-fractal_gain = 0.34
-fractal_weighted_strength = 0.6
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8irs0"]
-seamless = true
-as_normal_map = true
-bump_strength = 5.0
-noise = SubResource("FastNoiseLite_yilox")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pg6b"]
-render_priority = 0
-shader = ExtResource("1_w1tkc")
-shader_parameter/albedo = Color(0.199965, 0.21184, 0.245225, 1)
-shader_parameter/albedo2 = Color(0.191162, 0.27809, 0.37251, 1)
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.02
-shader_parameter/wave = ExtResource("2_uj2ho")
-shader_parameter/wave_bump = SubResource("NoiseTexture2D_8irs0")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_dj2cu")
-shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_p8tlc")
-shader_parameter/wave_direction = Vector2(0.5, -0.2)
-shader_parameter/wave_direction2 = Vector2(-0.5, 0.5)
-shader_parameter/time_scale = 0.0
-shader_parameter/noise_scale = 50.0
-shader_parameter/height_scale = 2.0
-shader_parameter/color_deep = Color(0.11, 0.29, 0.33, 1)
-shader_parameter/color_shallow = Color(0, 0.47, 0.76, 1)
-shader_parameter/beers_law = 2.0
-shader_parameter/depth_offset = 1.5
-shader_parameter/edge_scale = -0.01
-shader_parameter/near = 1.0
-shader_parameter/far = 100.0
-shader_parameter/edge_color = Color(0.603922, 0.764706, 0.980392, 1)
+[ext_resource type="Material" uid="uid://byhikx0nfm4j3" path="res://resources/materials/water_v2.tres" id="1_gw8i8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_s6jvf"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_4pg6b")
+material = ExtResource("1_gw8i8")
 size = Vector2(100.5, 100.5)
 subdivide_width = 511
 subdivide_depth = 511

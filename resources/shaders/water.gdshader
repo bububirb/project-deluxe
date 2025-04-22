@@ -71,33 +71,11 @@ float waveheight(vec2 offset, int mode) {
 }
 
 void vertex() {
-	//world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	world_pos = VERTEX;
 
-	//vertex_distance = distance(world_pos,ocean_pos);
-	//vertex_distance = clamp(vertex_distance, 0.0, 85.0);
-	//vertex_distance_clamped = vertex_distance / 85.0;
-
-	//float prev_height_x = waveheight(vec2(-0.3,0.0),2);
-	//float next_height_x = waveheight(vec2(0.3,0.0),2);
-	//float prev_height_y = waveheight(vec2(0.0,-0.3),2);
-	//float next_height_y = waveheight(vec2(0.0,0.3),2);
 	float height_mix = waveheight(vec2(0.0,0.0), 2);
 
-	VERTEX.y += height_mix * wave_amplitude;// * (1.0 - vertex_distance_clamped);
-
-	//float fraction_x = fract(round(UV.x * 1000.0) / 10.0);
-	//float fraction_y = fract(round(UV.y * 1000.0) / 10.0);
-	//if (fraction_x != 0.0) {
-		//if (fract(UV.y) == 0.0) {
-			//VERTEX.y = ((prev_height_x + next_height_x) * wave_amplitude * (1.0 - vertex_distance_clamped)) / 2.0;
-		//}
-	//}
-	//if (fraction_y != 0.0) {
-		//if (fract(UV.x) == 0.0) {
-			//VERTEX.y = ((prev_height_y + next_height_y) * wave_amplitude * (1.0 - vertex_distance_clamped)) / 2.0;
-		//}
-	//}
+	VERTEX.y += height_mix * wave_amplitude;
 }
 
 void fragment() {

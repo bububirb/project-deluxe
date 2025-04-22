@@ -24,6 +24,9 @@ func _ready() -> void:
 	name_input.text_changed.connect(_on_name_input_text_changed)
 	
 	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
+	
+	if OS.has_feature("headless"):
+		join_button.pressed.emit()
 
 func _on_host_button_pressed() -> void:
 	MultiplayerLobby.create_game()

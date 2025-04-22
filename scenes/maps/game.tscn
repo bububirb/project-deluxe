@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsevgkhndtd03"]
+[gd_scene load_steps=19 format=3 uid="uid://dsevgkhndtd03"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_axujj"]
 [ext_resource type="Script" uid="uid://i170vdlpd24j" path="res://scripts/map.gd" id="2_0d0ps"]
@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://budywedhvkcoa" path="res://scenes/ui/hud.tscn" id="3_68kng"]
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="4_3fe60"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="5_sglps"]
-[ext_resource type="Shader" uid="uid://tuqeffq0m8yj" path="res://resources/shaders/water.gdshader" id="6_a10ky"]
-[ext_resource type="Texture2D" uid="uid://c28xyd1kxxrig" path="res://resources/noise_texture/wave.tres" id="7_0i0it"]
+[ext_resource type="Material" uid="uid://byhikx0nfm4j3" path="res://resources/materials/water_v2.tres" id="7_axujj"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="8_rmskt"]
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="9_6kt43"]
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="10_ad25f"]
@@ -59,70 +58,9 @@ volumetric_fog_anisotropy = 0.9
 volumetric_fog_length = 32.0
 volumetric_fog_ambient_inject = 2.0
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_43koi"]
-noise_type = 3
-frequency = 0.016
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dj2cu"]
-seamless = true
-seamless_blend_skirt = 0.4
-as_normal_map = true
-bump_strength = 1.6
-noise = SubResource("FastNoiseLite_43koi")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_b3hjl"]
-noise_type = 0
-seed = 22
-frequency = 0.003
-fractal_lacunarity = 1.6
-fractal_gain = 0.47
-fractal_weighted_strength = 0.53
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p8tlc"]
-seamless = true
-seamless_blend_skirt = 0.532
-as_normal_map = true
-noise = SubResource("FastNoiseLite_b3hjl")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_syrxe"]
-noise_type = 4
-fractal_gain = 0.34
-fractal_weighted_strength = 0.6
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8irs0"]
-seamless = true
-as_normal_map = true
-bump_strength = 5.0
-noise = SubResource("FastNoiseLite_syrxe")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4fgr"]
-render_priority = 0
-shader = ExtResource("6_a10ky")
-shader_parameter/albedo = Color(0.199965, 0.21184, 0.245225, 1)
-shader_parameter/albedo2 = Color(0.191162, 0.27809, 0.37251, 1)
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.05
-shader_parameter/wave = ExtResource("7_0i0it")
-shader_parameter/wave_bump = SubResource("NoiseTexture2D_8irs0")
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_dj2cu")
-shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_p8tlc")
-shader_parameter/wave_direction = Vector2(0.5, -0.2)
-shader_parameter/wave_direction2 = Vector2(-0.5, 0.5)
-shader_parameter/time_scale = 0.0
-shader_parameter/noise_scale = 50.0
-shader_parameter/height_scale = 2.0
-shader_parameter/color_deep = Color(0.11, 0.29, 0.33, 1)
-shader_parameter/color_shallow = Color(0, 0.47, 0.76, 1)
-shader_parameter/beers_law = 2.0
-shader_parameter/depth_offset = 1.5
-shader_parameter/edge_scale = 0.1
-shader_parameter/near = 1.0
-shader_parameter/far = 100.0
-shader_parameter/edge_color = Color(0.603922, 0.764706, 0.980392, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_uspb2"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_0d0ps"]
 resource_local_to_scene = true
-material = SubResource("ShaderMaterial_v4fgr")
+material = ExtResource("7_axujj")
 size = Vector2(40, 40)
 subdivide_width = 63
 subdivide_depth = 63
@@ -141,10 +79,10 @@ transform = Transform3D(0.395578, -4.01462e-08, 0.918432, -0.918432, -1.72913e-0
 light_color = Color(0.98986, 0.842996, 0.727097, 1)
 shadow_enabled = true
 
-[node name="WaterPlane" parent="." index="7" instance=ExtResource("5_sglps")]
+[node name="WaterPlane" parent="." index="3" instance=ExtResource("5_sglps")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 gi_mode = 0
-mesh = SubResource("PlaneMesh_uspb2")
+mesh = SubResource("PlaneMesh_0d0ps")
 
 [node name="VoxelGI" type="VoxelGI" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 2)
@@ -153,10 +91,10 @@ size = Vector3(52, 18, 54)
 data = ExtResource("8_rmskt")
 
 [node name="first_rock" parent="." index="15" instance=ExtResource("9_6kt43")]
-transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, 0, -2.45251)
+transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, -0.552643, -2.45251)
 
 [node name="rock_1" parent="." index="16" instance=ExtResource("10_ad25f")]
-transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.34503, 0, -4.43668)
+transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.345, -1.061, -4.437)
 
 [node name="Fern" parent="rock_1" index="1" instance=ExtResource("11_8ubl8")]
 transform = Transform3D(0.648669, 0.374903, 0.0278686, -0.375317, 0.649008, 0.00509999, -0.0215743, -0.0183636, 0.749198, 0.600213, 1.2162, -0.0422261)
@@ -164,3 +102,65 @@ transform = Transform3D(0.648669, 0.374903, 0.0278686, -0.375317, 0.649008, 0.00
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." index="17"]
 _spawnable_scenes = PackedStringArray("uid://pn7163hw3h35")
 spawn_path = NodePath("..")
+
+[node name="SpawnPositions" type="Node3D" parent="." index="18"]
+
+[node name="1" type="Node3D" parent="SpawnPositions" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.463)
+
+[node name="2" type="Node3D" parent="SpawnPositions" index="1"]
+transform = Transform3D(0.959176, 0, -0.28281, 0, 1, 0, 0.28281, 0, 0.959176, 2.98635, 0, -11.463)
+
+[node name="3" type="Node3D" parent="SpawnPositions" index="2"]
+transform = Transform3D(0.89034, 0, -0.455296, 0, 1, 0, 0.455296, 0, 0.89034, 6.88382, 0, -10.5245)
+
+[node name="4" type="Node3D" parent="SpawnPositions" index="3"]
+transform = Transform3D(0.760882, 0, -0.64889, 0, 1, 0, 0.64889, 0, 0.760882, 9.60228, 0, -8.38367)
+
+[node name="5" type="Node3D" parent="SpawnPositions" index="4"]
+transform = Transform3D(0.445354, 0, 0.895354, 0, 1, 0, -0.895354, 0, 0.445354, -4.92503, 0, -10.0343)
+
+[node name="6" type="Node3D" parent="SpawnPositions" index="5"]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -8.75016, 0, 10.5363)
+
+[node name="7" type="Node3D" parent="SpawnPositions" index="6"]
+transform = Transform3D(0.0249207, 0, 0.999689, 0, 1, 0, -0.999689, 0, 0.0249207, -9.52309, 0, 7.65166)
+
+[node name="8" type="Node3D" parent="SpawnPositions" index="7"]
+transform = Transform3D(0.209346, 0, 0.977842, 0, 1, 0, -0.977842, 0, 0.209346, -9.62529, 0, 3.64409)
+
+[node name="9" type="Node3D" parent="SpawnPositions" index="8"]
+transform = Transform3D(0.429849, 0, 0.902901, 0, 1, 0, -0.902901, 0, 0.429849, -8.261, 0, 0.46417)
+
+[node name="10" type="Node3D" parent="SpawnPositions" index="9"]
+transform = Transform3D(-0.980112, 0, 0.198444, 0, 1, 0, -0.198444, 0, -0.980112, -6.09544, 0, 14.9237)
+
+[node name="11" type="Node3D" parent="SpawnPositions" index="10"]
+transform = Transform3D(0.978264, 0, 0.207365, 0, 1, 0, -0.207365, 0, 0.978264, -1.05851, 0, -12.2782)
+
+[node name="12" type="Node3D" parent="SpawnPositions" index="11"]
+transform = Transform3D(0.996972, 0, -0.0777631, 0, 1, 0, 0.0777631, 0, 0.996972, 1.86292, 0, -12.8975)
+
+[node name="13" type="Node3D" parent="SpawnPositions" index="12"]
+transform = Transform3D(0.9654, 0, -0.260774, 0, 1, 0, 0.260774, 0, 0.9654, 5.87029, 0, -12.7876)
+
+[node name="14" type="Node3D" parent="SpawnPositions" index="13"]
+transform = Transform3D(0.8789, 0, -0.477005, 0, 1, 0, 0.477005, 0, 0.8789, 8.9736, 0, -11.257)
+
+[node name="15" type="Node3D" parent="SpawnPositions" index="14"]
+transform = Transform3D(0.250008, 0, 0.968244, 0, 1, 0, -0.968244, 0, 0.250008, -5.58022, 0, -9.85926)
+
+[node name="16" type="Node3D" parent="SpawnPositions" index="15"]
+transform = Transform3D(-0.453493, 0, 0.89126, 0, 1, 0, -0.89126, 0, -0.453493, -5.05659, 0, 11.0574)
+
+[node name="17" type="Node3D" parent="SpawnPositions" index="16"]
+transform = Transform3D(-0.182922, 0, 0.983127, 0, 1, 0, -0.983127, 0, -0.182922, -6.41088, 0, 8.39575)
+
+[node name="18" type="Node3D" parent="SpawnPositions" index="17"]
+transform = Transform3D(0.00202461, 0, 0.999998, 0, 1, 0, -0.999998, 0, 0.00202461, -7.3419, 0, 4.49648)
+
+[node name="19" type="Node3D" parent="SpawnPositions" index="18"]
+transform = Transform3D(0.233276, 0, 0.972411, 0, 1, 0, -0.972411, 0, 0.233276, -6.66667, 0, 1.10277)
+
+[node name="20" type="Node3D" parent="SpawnPositions" index="19"]
+transform = Transform3D(-0.999959, 0, -0.00911038, 0, 1, 0, 0.00911038, 0, -0.999959, -1.54977, 0, 14.7989)

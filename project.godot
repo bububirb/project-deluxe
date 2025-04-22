@@ -21,6 +21,10 @@ BuoyancySolver="*res://scripts/globals/buoyancy_solver.gd"
 Globals="*res://scripts/globals/globals.gd"
 MultiplayerLobby="*res://scripts/globals/multiplayer_lobby.gd"
 
+[editor]
+
+run/main_run_args="--headless"
+
 [input]
 
 ui_left={
