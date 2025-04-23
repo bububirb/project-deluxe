@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://wk2e88o58rv3"]
+
+[ext_resource type="Script" uid="uid://dggg4f1klgqjm" path="res://scripts/ui/hud/item_container.gd" id="1_6hcm7"]
+[ext_resource type="Texture2D" uid="uid://b3r3opnb1p8fa" path="res://assets/icons/items/deluxe_cannon.png" id="1_b73rr"]
+[ext_resource type="Script" uid="uid://cfp8t5p5fmd6n" path="res://scripts/ui/hud/cooldown.gd" id="3_xtit6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kicr4"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mj13f"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ItemContainer" type="PanelContainer" node_paths=PackedStringArray("sprite", "cooldown_bar", "selection_panel")]
+clip_children = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kicr4")
+script = ExtResource("1_6hcm7")
+sprite = NodePath("Sprite")
+cooldown_bar = NodePath("MarginContainer/CooldownBar")
+selection_panel = NodePath("SelectionPanel")
+
+[node name="Sprite" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_b73rr")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="SelectionPanel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mj13f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="CooldownBar" type="ProgressBar" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_type_variation = &"CooldownBar"
+max_value = 10.0
+value = 8.35
+show_percentage = false
+script = ExtResource("3_xtit6")

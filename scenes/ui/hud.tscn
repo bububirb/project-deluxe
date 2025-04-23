@@ -1,43 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://budywedhvkcoa"]
+[gd_scene load_steps=5 format=3 uid="uid://budywedhvkcoa"]
 
-[ext_resource type="Theme" uid="uid://clminxby8hqrf" path="res://resources/themes/default.tres" id="1_4jqwt"]
 [ext_resource type="Script" uid="uid://cor0xtkfi5p1q" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
 [ext_resource type="Script" uid="uid://b1ruyu48x5o0" path="res://scripts/hud.gd" id="2_n808k"]
-[ext_resource type="Texture2D" uid="uid://b3r3opnb1p8fa" path="res://assets/icons/items/deluxe_cannon.png" id="3_3mp6s"]
 [ext_resource type="Texture2D" uid="uid://cy0u28ims5oqa" path="res://assets/textures/vfx/vitals_overlay_mask.png" id="3_kicr4"]
-[ext_resource type="Texture2D" uid="uid://c53j43gvjq7tj" path="res://assets/icons/items/sniper_cannon.png" id="4_77vch"]
-[ext_resource type="Texture2D" uid="uid://bjj24w0cbsnim" path="res://assets/icons/items/nitro.png" id="5_u0l0g"]
-[ext_resource type="Texture2D" uid="uid://xyde4kdv4ija" path="res://assets/icons/items/overboost.png" id="6_wlrxm"]
-[ext_resource type="PackedScene" uid="uid://bogt3vuuc6i80" path="res://scenes/ui/cooldown.tscn" id="8_taa18"]
-[ext_resource type="Texture2D" uid="uid://do17n7gul50r7" path="res://assets/icons/items/deluxe_mortar.png" id="9_4jqwt"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4jqwt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gekgx"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e51o3"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
-
-[node name="HUD" type="Control" node_paths=PackedStringArray("item_sprites", "vitals_overlay")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("item_display", "vitals_overlay")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,9 +14,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("1_4jqwt")
 script = ExtResource("2_n808k")
-item_sprites = NodePath("PanelContainer/ItemSprites")
+item_display = NodePath("PanelContainer/ItemDisplay")
 vitals_overlay = NodePath("VitalsOverlay")
 
 [node name="VitalsOverlay" type="TextureRect" parent="."]
@@ -91,83 +59,13 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = -152.5
+offset_top = -4.0
 offset_right = -16.0
-offset_bottom = 152.5
+offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ItemSprites" type="VBoxContainer" parent="PanelContainer"]
+[node name="ItemDisplay" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 1
-
-[node name="Item1" type="PanelContainer" parent="PanelContainer/ItemSprites"]
-clip_contents = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gekgx")
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/ItemSprites/Item1"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("3_3mp6s")
-expand_mode = 1
-
-[node name="Cooldown" parent="PanelContainer/ItemSprites/Item1" instance=ExtResource("8_taa18")]
-layout_mode = 2
-
-[node name="Item2" type="PanelContainer" parent="PanelContainer/ItemSprites"]
-clip_contents = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e51o3")
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/ItemSprites/Item2"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("4_77vch")
-expand_mode = 1
-
-[node name="Cooldown" parent="PanelContainer/ItemSprites/Item2" instance=ExtResource("8_taa18")]
-layout_mode = 2
-
-[node name="Item3" type="PanelContainer" parent="PanelContainer/ItemSprites"]
-clip_contents = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e51o3")
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/ItemSprites/Item3"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("5_u0l0g")
-expand_mode = 1
-
-[node name="Cooldown" parent="PanelContainer/ItemSprites/Item3" instance=ExtResource("8_taa18")]
-layout_mode = 2
-
-[node name="Item4" type="PanelContainer" parent="PanelContainer/ItemSprites"]
-clip_contents = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e51o3")
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/ItemSprites/Item4"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("6_wlrxm")
-expand_mode = 1
-
-[node name="Cooldown" parent="PanelContainer/ItemSprites/Item4" instance=ExtResource("8_taa18")]
-layout_mode = 2
-
-[node name="Item5" type="PanelContainer" parent="PanelContainer/ItemSprites"]
-clip_contents = true
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e51o3")
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/ItemSprites/Item5"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("9_4jqwt")
-expand_mode = 1
-
-[node name="Cooldown" parent="PanelContainer/ItemSprites/Item5" instance=ExtResource("8_taa18")]
-layout_mode = 2

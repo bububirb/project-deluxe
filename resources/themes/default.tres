@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://clminxby8hqrf"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://clminxby8hqrf"]
 
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="1_sn1o5"]
 
@@ -72,6 +72,24 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kyium"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d1ky"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 1, 1, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hge1u"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -120,23 +138,21 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bixkq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvfoe"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.5)
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.6)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.8, 0.8, 0.8, 0.5)
-border_blend = true
+border_color = Color(0.8, 0.8, 0.8, 0.4)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sn1o5"]
 content_margin_left = 0.0
@@ -152,9 +168,12 @@ Button/styles/focus = SubResource("StyleBoxFlat_kyium")
 Button/styles/hover = SubResource("StyleBoxFlat_lmgqb")
 Button/styles/normal = SubResource("StyleBoxFlat_dgxsq")
 Button/styles/pressed = SubResource("StyleBoxFlat_nfgd4")
+CooldownBar/base_type = &"ProgressBar"
+CooldownBar/styles/background = SubResource("StyleBoxEmpty_kyium")
+CooldownBar/styles/fill = SubResource("StyleBoxFlat_2d1ky")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_hge1u")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_w1m0q")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_hvbjw")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_bixkq")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_gvfoe")
 RichTextLabel/colors/selection_color = Color(0.2, 0.6, 1, 0.4)
 RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_sn1o5")

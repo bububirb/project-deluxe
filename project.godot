@@ -25,6 +25,10 @@ MultiplayerLobby="*res://scripts/globals/multiplayer_lobby.gd"
 
 run/main_run_args="--headless"
 
+[gui]
+
+theme/custom="uid://clminxby8hqrf"
+
 [input]
 
 ui_left={
