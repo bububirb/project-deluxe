@@ -69,7 +69,7 @@ func get_slope(position: Vector3, delta: float) -> Vector3:
 	var slope_y = (height(position + Vector3(0.0, 0.0, delta)) - height(position + Vector3(0.0, 0.0, -delta))) / (2.0 * delta)
 	return Vector3(slope_x, slope_y, 0)
 
-func get_buoyancy_force(position, delta) -> float:
+func get_buoyancy_force(position, delta: float) -> float:
 	var relative_height: float = height(position) - position.y
 	#if relative_height > 0:
 		#return gravity * delta

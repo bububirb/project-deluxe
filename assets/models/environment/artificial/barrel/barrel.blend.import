@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/barrel.blend-6ff12185dc2353887b0b1d691cb02fd2
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="RigidBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -35,8 +35,6 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:barrel_low": {
-"generate/physics": true,
-"physics/body_type": 1,
 "physics/shape_type": 1
 }
 }

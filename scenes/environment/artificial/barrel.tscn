@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://mw06atm23mvb"]
+
+[ext_resource type="PackedScene" uid="uid://bckpsvqmipgy5" path="res://assets/models/environment/artificial/barrel/barrel.blend" id="1_g8l0r"]
+[ext_resource type="Script" uid="uid://c1p1qw3k7ng2" path="res://scripts/environment/floater.gd" id="2_fbha4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g8l0r"]
+friction = 0.45
+rough = true
+bounce = 42000.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g8l0r"]
+height = 1.1
+
+[node name="barrel" instance=ExtResource("1_g8l0r")]
+collision_mask = 7
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_g8l0r")
+custom_integrator = true
+script = ExtResource("2_fbha4")
+
+[node name="barrel_low" parent="." index="0"]
+gi_mode = 2
+
+[node name="nozzle_low" parent="barrel_low" index="0"]
+gi_mode = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("CylinderShape3D_g8l0r")
