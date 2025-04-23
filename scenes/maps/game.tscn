@@ -36,7 +36,6 @@ background_mode = 2
 sky = SubResource("Sky_ulpni")
 ambient_light_energy = 0.5
 tonemap_mode = 3
-ssil_enabled = true
 ssil_radius = 10.0
 sdfgi_cascades = 2
 sdfgi_min_cell_size = 0.5
