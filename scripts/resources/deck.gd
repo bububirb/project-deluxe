@@ -2,6 +2,7 @@ class_name Deck extends Node
 
 @export var items: Array[Item] = []
 @export var target: Node3D
+@export var ship: Ship
 
 const ITEM_SCENES_PATH: String = "res://scenes/items/"
 
@@ -13,6 +14,7 @@ func _ready() -> void:
 		item_instance.stats = item.stats
 		if item_instance.mode == Globals.ItemMode.ACTIONABLE:
 			item_instance.projectile_pool = projectile_pool
+			item_instance.player_ship = ship
 		target.add_child(item_instance)
 
 func _load_item_instance(item_name: String) -> Node:

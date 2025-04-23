@@ -28,8 +28,8 @@ func start_game():
 func add_player(peer_id: int, spawn_position: int) -> void:
 	var player_node: Node3D = player_scene.instantiate()
 	player_node.name = str(peer_id)
+	player_node.spawn = spawn_positions.get_child(spawn_position).transform
 	add_child(player_node)
-	player_node.global_transform = spawn_positions.get_child(spawn_position).global_transform
 
 func _on_ship_item_selected(item: Node) -> void:
 	var item_index = item.get_index()

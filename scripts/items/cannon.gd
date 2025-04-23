@@ -5,6 +5,7 @@ class_name Cannon extends Node3D
 # To be assigned by the deck
 var stats: WeaponStats
 var projectile_pool: Node
+var player_ship: Ship
 
 var mode: Globals.ItemMode = Globals.ItemMode.ACTIONABLE
 var cooldown: float = 0.0
@@ -29,12 +30,12 @@ func execute(ship: Ship) -> void:
 
 @rpc("any_peer","call_local", "reliable")
 func _spawn_projectile(projectile_stats) -> void:
-	if multiplayer.is_server():
-		projectile_stats = Marshalls.base64_to_variant(projectile_stats, true)
-		var projectile_instance: Projectile = projectile.instantiate()
-		projectile_instance.top_level = true
-		projectile_instance.stats = projectile_stats
-		projectile_pool.add_child(projectile_instance)
+	projectile_stats = Marshalls.base64_to_variant(projectile_stats, true)
+	var projectile_instance: Projectile = projectile.instantiate()
+	projectile_instance.top_level = true
+	projectile_instance.stats = projectile_stats
+	projectile_pool.add_child(projectile_instance)
+	projectile_instance.player_hit.connect(player_ship._on_projectile_player_hit)
 
 func _process(delta: float) -> void:
 	cooldown -= delta

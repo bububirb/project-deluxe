@@ -1,5 +1,7 @@
 class_name Projectile extends CharacterBody3D
 
+signal player_hit(player_id: int)
+
 @export var explosion_scene: PackedScene
 
 var time: float = 0.0
@@ -17,28 +19,20 @@ func _enter_tree() -> void:
 	global_rotation = stats.rotation
 
 func _on_collision(collision: KinematicCollision3D):
-	call_deferred("set_process_mode", ProcessMode.PROCESS_MODE_DISABLED)
+	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)
 	mesh.hide()
-	explosion_particles.emitting = true	
+	explosion_particles.emitting = true
 	if explosion_scene:
 		var explosion_node = explosion_scene.instantiate()
 		explosion_node.process_mode = Node.PROCESS_MODE_ALWAYS
 		add_child(explosion_node)
+	
 	if collision:
 		if multiplayer.is_server():
 			var collider = collision.get_collider()
 			if collider is Ship:
-				var impact_id = collider.get_parent().name
-				_hit_test.rpc(int(impact_id))
-
-@rpc("authority","call_local","reliable")
-func _hit_test(impact_id: int):
-	if multiplayer.get_unique_id() == impact_id:
-		print(str(multiplayer.get_unique_id()),": I got hit!")
-	else:
-		print(str(multiplayer.get_unique_id()),":",str(impact_id),"got hit!")
-
-
+				var hit_id: int = int(collider.get_parent().name)
+				player_hit.emit(hit_id)
 
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height
