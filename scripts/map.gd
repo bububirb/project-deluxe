@@ -4,7 +4,6 @@ extends Node3D
 
 @onready var player: Node3D# = $Player
 @onready var spawn_positions: Node3D = $SpawnPositions
-@onready var hud: Control = $HUD
 
 func _ready() -> void:
 	MultiplayerLobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
@@ -30,13 +29,3 @@ func add_player(peer_id: int, spawn_position: int) -> void:
 	player_node.name = str(peer_id)
 	player_node.spawn = spawn_positions.get_child(spawn_position).transform
 	add_child(player_node)
-
-func _on_ship_item_selected(item: Node) -> void:
-	var item_index = item.get_index()
-	for item_sprite in hud.item_sprites.get_children():
-		item_sprite.modulate = Color(0.5, 0.5, 0.5, 0.8)
-	hud.get_item(item_index).modulate = Color.WHITE
-
-func _on_ship_item_executed(item: Node) -> void:
-	var item_index = item.get_index()
-	hud.get_item_cooldown(item_index).value = 0.0

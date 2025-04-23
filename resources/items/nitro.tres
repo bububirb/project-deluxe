@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://uvpl5udcl3lh"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://uvpl5udcl3lh"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_1ps7e"]
 [ext_resource type="Script" uid="uid://dtbsdh37hp3sq" path="res://scripts/resources/stats/speed_stats.gd" id="2_7ieiq"]
+[ext_resource type="Texture2D" uid="uid://bjj24w0cbsnim" path="res://assets/icons/items/nitro.png" id="2_v1618"]
 
 [sub_resource type="Resource" id="Resource_vlq0a"]
 script = ExtResource("2_7ieiq")
@@ -14,4 +15,5 @@ script = ExtResource("1_1ps7e")
 item_name = "nitro"
 description = "Vroom vroom"
 item_class = "speed"
+sprite = ExtResource("2_v1618")
 stats = SubResource("Resource_vlq0a")

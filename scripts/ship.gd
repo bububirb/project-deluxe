@@ -3,6 +3,7 @@ class_name Ship extends CharacterBody3D
 signal item_selected
 @warning_ignore("unused_signal")
 signal item_executed
+signal item_instanced(item: Item)
 
 signal projectile_hit
 
@@ -53,6 +54,7 @@ var active_item: Node:
 @onready var item_instancer: Node3D = $Turret/ShooterTurretBase/ItemInstancer
 @onready var nitro_particles = $NitroParticles
 @onready var aiming_indicator: Decal = $AimingIndicator
+@onready var deck: Deck = $Deck
 
 @onready var bounds: Node3D = $Bounds
 @onready var front: Node3D = $Bounds/Front
@@ -192,6 +194,9 @@ func select_item(index: int) -> void:
 	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:
 		active_item = selected_item
 		item_selected.emit(active_item)
+
+func _on_deck_item_instanced(item: Item):
+	item_instanced.emit(item)
 
 func _on_projectile_player_hit(player_id: int):
 	_hit_test.rpc(player_id)
