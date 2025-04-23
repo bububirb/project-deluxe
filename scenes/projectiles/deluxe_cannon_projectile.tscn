@@ -75,7 +75,7 @@ rings = 4
 [node name="DeluxeCannonProjectile" type="CharacterBody3D"]
 disable_mode = 1
 collision_layer = 8
-collision_mask = 5
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_kkfkm")
 

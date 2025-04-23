@@ -3,6 +3,8 @@ extends Node3D
 const DEFAULT_SENSITIVITY: float = 0.001
 const AIMING_SENSITIVITY: float = 0.0001
 
+var spawn: Transform3D # Set by Game
+
 var orbit_sensitivity: float = DEFAULT_SENSITIVITY
 var is_zooming_out: bool = false
 var min_fov: float = 30.0
@@ -12,12 +14,15 @@ var max_fov: float = 90.0
 @onready var camera_pivot: Node3D = $Ship/CameraPivot
 @onready var camera_pivot_x: Node3D = $Ship/CameraPivot/CameraPivotX
 @onready var camera: Camera3D = $Ship/CameraPivot/CameraPivotX/Camera
+@onready var hud: Control = $HUD
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	ship.transform = spawn
+	ship.projectile_hit.connect(_on_ship_projectile_hit)
 	if not is_multiplayer_authority(): return
 	
 	ship.item_selected.connect(_on_ship_item_selected)
@@ -74,3 +79,6 @@ func _on_ship_item_selected(item: Node):
 		var _tween = create_tween().tween_property(camera, "position:z", -2.5, 0.15)
 	if item is Cannon:
 		var _tween = create_tween().tween_property(camera, "position:z", -1.5, 0.15)
+
+func _on_ship_projectile_hit():
+	hud.trigger_health_effect()

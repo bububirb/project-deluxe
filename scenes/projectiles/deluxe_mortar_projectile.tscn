@@ -88,7 +88,7 @@ rings = 1
 [node name="DeluxeMortarProjectile" type="CharacterBody3D"]
 process_mode = 3
 collision_layer = 8
-collision_mask = 5
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_tnh0h")
 explosion_scene = ExtResource("2_ervno")

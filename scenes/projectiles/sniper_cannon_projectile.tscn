@@ -53,7 +53,7 @@ rings = 2
 
 [node name="SniperCannonProjectile" type="CharacterBody3D"]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_e0mkr")
 

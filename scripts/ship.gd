@@ -4,6 +4,8 @@ signal item_selected
 @warning_ignore("unused_signal")
 signal item_executed
 
+signal projectile_hit
+
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5
 
@@ -24,6 +26,9 @@ const AIMING_SENSITIVITY: float = 0.001
 @export var nitro_force: float = 5.0
 
 @export var projectile_pool: Node
+
+var sync_position: Vector3
+var sync_rotation: Vector3
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -60,7 +65,10 @@ func _ready() -> void:
 	select_item(0)
 
 func _physics_process(delta: float) -> void:
-	if not is_multiplayer_authority(): return
+	if not is_multiplayer_authority():
+		position = lerp(position, sync_position, 0.5)
+		rotation = lerp(rotation, sync_rotation, 0.5)
+		return
 	
 	_update_bounds_transform()
 	_snap_bounds_to_wave()
@@ -139,6 +147,9 @@ func _physics_process(delta: float) -> void:
 		select_item(3)
 	elif Input.is_action_just_pressed("select_item_5"):
 		select_item(4)
+	
+	sync_position = position
+	sync_rotation = rotation
 
 func _input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
@@ -181,3 +192,14 @@ func select_item(index: int) -> void:
 	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:
 		active_item = selected_item
 		item_selected.emit(active_item)
+
+func _on_projectile_player_hit(player_id: int):
+	_hit_test.rpc(player_id)
+
+@rpc("authority","call_local","reliable")
+func _hit_test(hit_id: int):
+	if multiplayer.get_unique_id() == hit_id:
+		print(str(multiplayer.get_unique_id()),": I got hit!")
+		projectile_hit.emit()
+	else:
+		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
