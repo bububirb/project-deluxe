@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://1kbtbdphrp1e"]
+[gd_resource type="Resource" script_class="Item" load_steps=5 format=3 uid="uid://1kbtbdphrp1e"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_ylm5l"]
 [ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="2_kgnph"]
+[ext_resource type="Texture2D" uid="uid://c53j43gvjq7tj" path="res://assets/icons/items/sniper_cannon.png" id="2_pc0i7"]
 
 [sub_resource type="Resource" id="Resource_u4sm5"]
 script = ExtResource("2_kgnph")
@@ -17,4 +18,5 @@ script = ExtResource("1_ylm5l")
 item_name = "sniper_cannon"
 description = "Snipes the cannon out of you"
 item_class = "cannon"
+sprite = ExtResource("2_pc0i7")
 stats = SubResource("Resource_u4sm5")
