@@ -1,5 +1,34 @@
-everything PascalCase
-Add turret position empty
-Merge as much as possible in blender (for collision shapes)
+non-godot filenames in snake_case
+godot-related names in PascalCase
+
+NEED TO LOOK AT PROPORTIONS
+
+GENERAL MODELS:
+	merge all parts that move as one
+	final model named in PascalCase
+	keep all working-files in project-deluxe-models repo
+
+ITEMS:
+	Start with a sphere of fixed diameter (testing at 0.2m, this is what will rotate up and down)
+	Keep origin of item at center of sphere (and at world center)
+	Free to decorate sphere
+	
+SHIP STYLE GUIDE:
+	Every ship given its own turret, rather than every item (look at after some time)
+	Size:
+		Length: ~1.3m
+		Width: ~0.7m (in relation to length of 1.3)
+
+	Turret:
+		Turret base saved as separate model
+		Turret base highest point on model
+		add empty for TurretBasePosition
+			add empty for ItemPosition
+		Turrets responsible for horizontal rotation (note to self - turret would be everything that rotates, including the socket)
+
+TEXTURE:
+	Aplha maps need to be combined with colour into RGBa
+
+		
 
 
