@@ -35,7 +35,7 @@ func _spawn_projectile(projectile_stats) -> void:
 	projectile_instance.top_level = true
 	projectile_instance.stats = projectile_stats
 	projectile_pool.add_child(projectile_instance)
-	projectile_instance.player_hit.connect(player_ship._on_projectile_player_hit)
+	projectile_instance.player_hit.connect(GameplayServer._on_projectile_player_hit)
 
 func _process(delta: float) -> void:
 	cooldown -= delta

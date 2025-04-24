@@ -5,6 +5,7 @@ signal item_selected
 signal item_executed
 signal item_instanced(item: Item)
 
+@warning_ignore("unused_signal")
 signal projectile_hit
 
 const SPEED: float = 2.0
@@ -197,14 +198,3 @@ func select_item(index: int) -> void:
 
 func _on_deck_item_instanced(item: Item):
 	item_instanced.emit(item)
-
-func _on_projectile_player_hit(player_id: int):
-	_hit_test.rpc(player_id)
-
-@rpc("authority","call_local","reliable")
-func _hit_test(hit_id: int):
-	if multiplayer.get_unique_id() == hit_id:
-		print(str(multiplayer.get_unique_id()),": I got hit!")
-		projectile_hit.emit()
-	else:
-		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
