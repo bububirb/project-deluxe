@@ -27,7 +27,15 @@ SHIP STYLE GUIDE:
 		Turrets responsible for horizontal rotation (note to self - turret would be everything that rotates, including the socket)
 
 TEXTURE:
-	Aplha maps need to be combined with colour into RGBa
+	Alpha maps need to be combined with colour into RGBa
+
+	Smart Material:
+		all layers marked in green are modifiable, red are not
+		Use "BASE" to achieve desired roughness and metallic
+		duplicate the MASK layer for each different material
+		
+
+	
 
 		
 
