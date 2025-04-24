@@ -30,9 +30,13 @@ TEXTURE:
 	Alpha maps need to be combined with colour into RGBa
 
 	Smart Material:
-		all layers marked in green are modifiable, red are not
-		Use "BASE" to achieve desired roughness and metallic
 		duplicate the MASK layer for each different material
+		
+		Use BASE to achieve desired roughness and metallic
+		GRADIENT layer should be a more saturated version of base
+		EDGES can bring up roughness, also a good idea to made it complementary colour of base
+		
+		
 		
 
 	
