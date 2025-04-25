@@ -20,6 +20,8 @@ SHIP STYLE GUIDE:
 		Width: ~0.7m (in relation to length of 1.3)
 
 	Turret:
+		20 Side Cylinder, scaled to 0.25
+
 		Turret base saved as separate model
 		Turret base highest point on model
 		add empty for TurretBasePosition
