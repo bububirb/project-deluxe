@@ -7,3 +7,5 @@ class_name ProjectileStats extends Resource
 @export var offset: float
 @export var height: float
 @export var speed: float
+
+@export var attack: int

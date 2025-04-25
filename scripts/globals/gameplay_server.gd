@@ -1,21 +1,35 @@
 extends Node
 
-func _on_projectile_player_hit(player_id: int) -> void:
-	_hit_test.rpc(player_id)
+func _on_projectile_player_hit(player_id: int, attack: int) -> void:
+	_deal_damage.rpc(player_id, attack)
 
-@rpc("authority","call_local","reliable")
+@rpc("authority", "call_local", "reliable")
 func _hit_test(hit_id: int) -> void:
 	if multiplayer.get_unique_id() == hit_id:
 		print(str(multiplayer.get_unique_id()),": I got hit!")
-		get_player(hit_id).ship.projectile_hit.emit()
+		get_player(hit_id).hud.trigger_health_effect()
 	else:
 		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
+
+@rpc("authority", "call_local", "reliable")
+func _deal_damage(player_id: int, attack: int) -> void:
+	var ship = get_player(player_id).ship
+	var hud = get_player(player_id).hud
+	if multiplayer.get_unique_id() == player_id:
+		hud.trigger_health_effect()
+	var damage: int = Math.calculate_damage(attack, ship.defense)
+	ship.hp = ship.hp - damage
+	hud.set_hp(ship.hp)
 
 func get_player(player_id: int) -> Node3D:
 	return get_tree().root.get_node("Game").get_node(str(player_id))
 
 func get_player_item(player_id: int, item_index: int) -> Node3D:
-	return get_player(player_id).ship.get_item(item_index)
+	var player = get_player(player_id)
+	if player:
+		return player.ship.get_item(item_index)
+	else:
+		return null
 
 @rpc("any_peer", "call_local", "reliable")
 func shoot(player_id: int, item_index: int) -> void:
@@ -36,10 +50,11 @@ func shoot(player_id: int, item_index: int) -> void:
 		projectile_stats.height = item.stats.height
 	projectile_stats.speed = item.stats.projectile_speed
 	
+	projectile_stats.attack = item.stats.attack
+	
 	_spawn_projectile.rpc(player_id, item_index, Marshalls.variant_to_base64(projectile_stats, true))
 	
 	reset_cooldown.rpc(player_id, item_index)
-	ship.item_executed.emit(self)
 
 @rpc("authority", "call_local", "reliable")
 func _spawn_projectile(player_id: int, item_index: int, projectile_stats) -> void:
@@ -69,9 +84,12 @@ func _add_speed_boost(player_id, item_index) -> void:
 func reset_cooldown(player_id: int, item_index: int) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var item: Node = ship.get_item(item_index)
+	get_player(player_id).hud.get_item(item_index).reset_cooldown()
 	item.cooldown = item.stats.cooldown
 
 @rpc("any_peer", "call_local", "reliable")
-func set_visible_item(player_id: int, item_index: int) -> void:
-	if player_id == multiplayer.get_remote_sender_id():
-		get_player(player_id).ship.set_visible_item(get_player_item(player_id, item_index))
+func set_visible_item(item_index: int) -> void:
+	var player_id = multiplayer.get_remote_sender_id()
+	var player = get_player(player_id)
+	if player:
+		player.ship.set_visible_item(get_player_item(player_id, item_index))

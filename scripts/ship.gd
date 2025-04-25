@@ -1,12 +1,10 @@
 class_name Ship extends CharacterBody3D
 
 signal item_selected
-@warning_ignore("unused_signal")
-signal item_executed
 signal item_instanced(item: Item)
 
 @warning_ignore("unused_signal")
-signal projectile_hit
+#signal projectile_hit
 
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5
@@ -29,6 +27,13 @@ const AIMING_SENSITIVITY: float = 0.001
 
 @export var projectile_pool: Node
 
+@export_group("Stats")
+@export var max_hp: int = 10000
+@export var attack: int = 1000
+@export var defense: int = 500
+
+var hp: int = max_hp
+
 var sync_position: Vector3
 var sync_rotation: Vector3
 
@@ -48,7 +53,7 @@ var active_item: Node:
 	set(new_item):
 		active_item = new_item
 		set_visible_item(active_item)
-		GameplayServer.set_visible_item.rpc(multiplayer.get_unique_id(), active_item.get_index())
+		GameplayServer.set_visible_item.rpc(active_item.get_index())
 
 @onready var turret: Node3D = $Turret
 @onready var item_instancer: Node3D = $Turret/ShooterTurretBase/ItemInstancer
@@ -137,7 +142,7 @@ func _physics_process(delta: float) -> void:
 		if active_item.mode == Globals.ItemMode.ACTIONABLE:
 			aiming_offset = Vector2.ZERO
 			aiming_indicator.hide()
-			active_item.execute(self)
+			active_item.execute()
 	
 	if Input.is_action_just_pressed("select_item_1"):
 		select_item(0)
@@ -195,7 +200,7 @@ func select_item(index: int) -> void:
 	
 	var selected_item: Node = get_item(index)
 	if selected_item.mode == Globals.ItemMode.USABLE:
-		selected_item.execute(self)
+		selected_item.execute()
 	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:
 		active_item = selected_item
 		item_selected.emit(active_item)

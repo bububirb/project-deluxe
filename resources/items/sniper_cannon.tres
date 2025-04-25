@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_u4sm5"]
 script = ExtResource("2_kgnph")
-damage = 750.0
-cooldown = 3.75
+attack = 750.0
+cooldown = 7.5
 height = 0.5
 max_range = 45.0
 projectile_speed = 7.5

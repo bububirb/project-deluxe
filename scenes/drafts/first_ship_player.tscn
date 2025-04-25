@@ -29,6 +29,5 @@ size = Vector3(25, 12, 25)
 
 [node name="HUD" parent="." instance=ExtResource("4_lqwkt")]
 
-[connection signal="item_executed" from="Ship" to="HUD" method="_on_ship_item_executed"]
 [connection signal="item_instanced" from="Ship" to="HUD" method="_on_ship_item_instanced"]
 [connection signal="item_selected" from="Ship" to="HUD" method="_on_ship_item_selected"]

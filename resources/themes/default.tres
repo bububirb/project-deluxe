@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://clminxby8hqrf"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://clminxby8hqrf"]
 
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="1_sn1o5"]
 
@@ -90,6 +90,31 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 6
 
+[sub_resource type="FontVariation" id="FontVariation_sn1o5"]
+base_font = ExtResource("1_sn1o5")
+variation_opentype = {
+1869640570: 14,
+2003265652: 600
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lmgqb"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iga00"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.2, 1, 0.2, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hge1u"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -168,9 +193,12 @@ Button/styles/focus = SubResource("StyleBoxFlat_kyium")
 Button/styles/hover = SubResource("StyleBoxFlat_lmgqb")
 Button/styles/normal = SubResource("StyleBoxFlat_dgxsq")
 Button/styles/pressed = SubResource("StyleBoxFlat_nfgd4")
-CooldownBar/base_type = &"ProgressBar"
 CooldownBar/styles/background = SubResource("StyleBoxEmpty_kyium")
 CooldownBar/styles/fill = SubResource("StyleBoxFlat_2d1ky")
+HPBar/base_type = &"ProgressBar"
+HPBar/fonts/font = SubResource("FontVariation_sn1o5")
+HPBar/styles/background = SubResource("StyleBoxEmpty_lmgqb")
+HPBar/styles/fill = SubResource("StyleBoxFlat_iga00")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_hge1u")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_w1m0q")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_hvbjw")

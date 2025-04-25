@@ -22,8 +22,10 @@ func _enter_tree() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ship.transform = spawn
-	ship.projectile_hit.connect(_on_ship_projectile_hit)
 	if not is_multiplayer_authority(): return
+	
+	hud.hp_bar.max_value = ship.max_hp
+	hud.hp_bar.value = ship.hp
 	
 	ship.item_selected.connect(_on_ship_item_selected)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -79,6 +81,3 @@ func _on_ship_item_selected(item: Node):
 		var _tween = create_tween().tween_property(camera, "position:z", -2.5, 0.15)
 	if item is Cannon:
 		var _tween = create_tween().tween_property(camera, "position:z", -1.5, 0.15)
-
-func _on_ship_projectile_hit():
-	hud.trigger_health_effect()

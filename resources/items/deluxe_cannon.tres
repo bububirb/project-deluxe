@@ -6,8 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_fhwsd"]
 script = ExtResource("2_ud63r")
-damage = 1000.0
-cooldown = 5.0
+attack = 1000.0
+cooldown = 10.0
 height = 2.0
 max_range = 30.0
 projectile_speed = 2.0
