@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_8u5c1"]
 script = ExtResource("2_ur7us")
-damage = 500.0
+attack = 500.0
 cooldown = 10.0
 height = 10.0
 max_range = 30.0

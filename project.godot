@@ -21,6 +21,7 @@ BuoyancySolver="*res://scripts/globals/buoyancy_solver.gd"
 Globals="*res://scripts/globals/globals.gd"
 MultiplayerLobby="*res://scripts/globals/multiplayer_lobby.gd"
 GameplayServer="*res://scripts/globals/gameplay_server.gd"
+Math="*res://scripts/globals/math.gd"
 
 [editor]
 

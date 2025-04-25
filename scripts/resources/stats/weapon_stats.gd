@@ -1,6 +1,6 @@
 class_name WeaponStats extends Stats
 
-@export var damage: float
+@export var attack: float
 @export var cooldown: float
 @export var height: float
 @export var max_range: float

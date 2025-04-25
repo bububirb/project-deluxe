@@ -2,6 +2,7 @@ extends Control
 
 @export var item_display: VBoxContainer
 @export var vitals_overlay: TextureRect
+@export var hp_bar: ProgressBar
 
 const ITEM_CONTAINER_SCENE = preload("res://scenes/ui/item_container.tscn")
 
@@ -9,7 +10,9 @@ func get_item(index: int) -> PanelContainer:
 	return item_display.get_child(index)
 
 func _ready() -> void:
-	if not is_multiplayer_authority():
+	var authority = get_multiplayer_authority()
+	var player_name = multiplayer.get_unique_id()
+	if not authority == player_name:
 		hide()
 		return
 
@@ -32,3 +35,6 @@ func _on_ship_item_instanced(item: Item) -> void:
 	var item_container = ITEM_CONTAINER_SCENE.instantiate()
 	item_display.add_child(item_container)
 	item_container.item = item
+
+func set_hp(value: int) -> void:
+	hp_bar.value = value
