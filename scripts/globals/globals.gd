@@ -1,6 +1,7 @@
 extends Node
 
 enum ItemMode {ACTIONABLE, USABLE, PASSIVE}
+enum ItemClass {CANNON, MORTAR, SPEED_BOOST}
 
 func projectile_arc(time: float, distance: float, height: float, offset: float):
 	# (x(4hr - 4hx + rv))/r^2

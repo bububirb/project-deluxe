@@ -47,9 +47,8 @@ var speed_modifiers: Array[Array] = []
 var active_item: Node:
 	set(new_item):
 		active_item = new_item
-		for item in item_instancer.get_children():
-			item.hide()
-		active_item.show()
+		set_visible_item(active_item)
+		GameplayServer.set_visible_item.rpc(multiplayer.get_unique_id(), active_item.get_index())
 
 @onready var turret: Node3D = $Turret
 @onready var item_instancer: Node3D = $Turret/ShooterTurretBase/ItemInstancer
@@ -186,15 +185,23 @@ func _align_to_wave(delta: float) -> void:
 func _clamp_submersion() -> void:
 	global_position.y = max(global_position.y, BuoyancySolver.height(global_position) - MAX_SUBMERSION)
 
+func set_visible_item(item: Node) -> void:
+	for item_instance in item_instancer.get_children():
+		item_instance.hide()
+	item.show()
+
 func select_item(index: int) -> void:
 	if index >= item_instancer.get_child_count(): return
 	
-	var selected_item: Node = item_instancer.get_child(index)
+	var selected_item: Node = get_item(index)
 	if selected_item.mode == Globals.ItemMode.USABLE:
 		selected_item.execute(self)
 	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:
 		active_item = selected_item
 		item_selected.emit(active_item)
+
+func get_item(index: int) -> Node3D:
+	return item_instancer.get_child(index)
 
 func _on_deck_item_instanced(item: Item):
 	item_instanced.emit(item)
