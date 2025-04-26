@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dmbyiaw8cdbp7" path="res://assets/models/ships/tuggy/tuggy.blend" id="2_r2gry"]
 [ext_resource type="PackedScene" uid="uid://d3ajgltxp4nxl" path="res://assets/models/ships/shooter_turret_1.blend" id="3_hx33e"]
 [ext_resource type="Texture2D" uid="uid://s8ij70eplfx7" path="res://assets/textures/decals/aiming_indicator.png" id="4_0f7lv"]
-[ext_resource type="Texture2D" uid="uid://2hhg1887511j" path="res://assets/icons/ui/new_big.svg" id="5_s6wxw"]
+[ext_resource type="Texture2D" uid="uid://cvoqstkeo8dmb" path="res://assets/textures/overlays/crosshair.png" id="5_r2gry"]
 [ext_resource type="Script" uid="uid://c4d7jljnvg3wl" path="res://scripts/resources/deck.gd" id="6_nlgi6"]
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="7_gtxt4"]
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="8_xlvjg"]
@@ -248,12 +248,12 @@ cull_mask = 1047554
 
 [node name="Crosshair" type="Sprite3D" parent="."]
 visible = false
-pixel_size = 0.0025
+pixel_size = 0.0004
 billboard = 1
 no_depth_test = true
 fixed_size = true
 render_priority = 5
-texture = ExtResource("5_s6wxw")
+texture = ExtResource("5_r2gry")
 
 [node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target", "ship")]
 script = ExtResource("6_nlgi6")
