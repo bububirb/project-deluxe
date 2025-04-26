@@ -130,14 +130,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# TODO: Implement auto-aim
-	var closest_target: Ship
-	for ship: Ship in GameplayServer.get_ships():
-		if not closest_target:
-			closest_target = ship
-		elif position.distance_squared_to(ship.position) < position.distance_squared_to(closest_target.position):
-			closest_target = ship
-	aiming_distance = position.distance_to(closest_target.position)
-	aiming_height_offset = closest_target.position.y - position.y
+	if not Input.is_action_pressed("shoot"):
+		var closest_target: Ship
+		for ship: Ship in GameplayServer.get_ships():
+			if not closest_target:
+				closest_target = ship
+			elif position.distance_squared_to(ship.position) < position.distance_squared_to(closest_target.position):
+				closest_target = ship
+		aiming_distance = position.distance_to(closest_target.position)
+		aiming_height_offset = closest_target.position.y - position.y
 	crosshair.global_position = global_position + Vector3(0.0, 0.0, aiming_distance).rotated(Vector3.UP, turret.global_rotation.y)
 	
 	if Input.is_action_just_pressed("shoot"):
@@ -145,7 +146,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("shoot"):
 		# aiming_distance = active_item.stats.max_range * (0.5 - aiming_offset.y) / 2.0
-		var aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance).rotated(Vector3.UP, turret.global_rotation.y)
+		var aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
 		aiming_height_offset = BuoyancySolver.height(aiming_position)
 		aiming_position.y += aiming_height_offset
 		var size = active_item.stats.radius * 2.0
