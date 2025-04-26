@@ -88,7 +88,6 @@ func boost(player_id, item_index) -> void:
 	if item.cooldown > 0.0: return
 	
 	_add_speed_boost.rpc(player_id, item_index)
-	ship.nitro_particles.emitting = true
 	reset_cooldown.rpc(player_id, item_index)
 
 @rpc("authority", "call_local", "reliable")
@@ -96,6 +95,7 @@ func _add_speed_boost(player_id, item_index) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var item: Node = get_player_item(player_id, item_index)
 	ship.speed_modifiers.append([item.stats.speed_boost, item.stats.duration])
+	ship.nitro_particles.emitting = true
 
 @rpc("authority", "call_local", "reliable")
 func reset_cooldown(player_id: int, item_index: int) -> void:
