@@ -139,7 +139,7 @@ func _physics_process(delta: float) -> void:
 		var target_position = closest_target.global_position
 		target_position.y = 0.0
 		aiming_distance = current_position.distance_to(target_position)
-		aiming_height_offset = closest_target.global_position.y - item_instancer.global_position.y - BuoyancySolver.height(current_position) + BuoyancySolver.height(target_position)
+		aiming_height_offset = closest_target.global_position.y - item_instancer.global_position.y - global_position.y
 		turret.look_at(closest_target.position, Vector3(0.0, 1.0, 0.0), true)
 	
 	if active_item:
