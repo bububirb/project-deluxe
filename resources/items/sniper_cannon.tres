@@ -10,7 +10,7 @@ attack = 750.0
 cooldown = 7.5
 height = 0.5
 max_range = 45.0
-projectile_speed = 7.5
+projectile_speed = 60.0
 radius = 0.4
 
 [resource]

@@ -5,6 +5,7 @@ signal player_hit(player_id: int)
 @export var explosion_scene: PackedScene
 
 var time: float = 0.0
+var displacement: float = 0.0
 
 # To be set by the item
 var stats: ProjectileStats
@@ -37,12 +38,13 @@ func _on_collision(collision: KinematicCollision3D):
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height
 	var offset = delta * stats.speed
-	time += offset
-	var displacement = time * stats.distance
+	displacement += offset
 	var next_height = Globals.projectile_arc(displacement, stats.distance, stats.height, stats.offset)
 	var height_offset = next_height - prev_height
 	current_height = next_height
-	var collision = move_and_collide(Vector3(0.0, 0.0, offset * stats.distance) * global_basis.inverse() + Vector3(0.0, height_offset, 0.0))
+	velocity = Vector3(0.0, 0.0, offset) * global_basis.inverse()
+	velocity += Vector3(0.0, height_offset, 0.0)
+	var collision = move_and_collide(velocity)
 	var is_underwater = global_position.y < BuoyancySolver.height(global_position)
 	if collision or is_underwater:
 		_on_collision(collision)

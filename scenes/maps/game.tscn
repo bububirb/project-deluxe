@@ -106,7 +106,7 @@ spawn_path = NodePath("..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.463)
 
 [node name="2" type="Node3D" parent="SpawnPositions" index="1"]
-transform = Transform3D(0.959176, 0, -0.28281, 0, 1, 0, 0.28281, 0, 0.959176, 2.98635, 0, -11.463)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98635, 0, -11.463)
 
 [node name="3" type="Node3D" parent="SpawnPositions" index="2"]
 transform = Transform3D(0.89034, 0, -0.455296, 0, 1, 0, 0.455296, 0, 0.89034, 6.88382, 0, -10.5245)

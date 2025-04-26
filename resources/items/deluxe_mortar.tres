@@ -10,7 +10,7 @@ attack = 500.0
 cooldown = 10.0
 height = 10.0
 max_range = 30.0
-projectile_speed = 0.5
+projectile_speed = 10.0
 radius = 5.0
 metadata/_custom_type_script = "uid://2c30v8yoqbxm"
 

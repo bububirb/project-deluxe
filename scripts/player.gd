@@ -34,7 +34,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
-	ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
+	# ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
 	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot_x.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)
 	
 	if Input.is_action_just_pressed("aim"):

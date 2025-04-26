@@ -3,9 +3,6 @@ class_name Ship extends CharacterBody3D
 signal item_selected
 signal item_instanced(item: Item)
 
-@warning_ignore("unused_signal")
-#signal projectile_hit
-
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5
 
@@ -46,6 +43,8 @@ var rotation_speed: float = 0.1
 var aiming_distance: float = 30.0
 var aiming_height_offset: float = 0.0
 var aiming_offset: Vector2 = Vector2.ZERO
+var aiming_position: Vector3
+var closest_target: Ship
 
 var speed_modifiers: Array[Array] = []
 
@@ -129,26 +128,30 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	# TODO: Implement auto-aim
-	if not Input.is_action_pressed("shoot"):
-		var closest_target: Ship
-		for ship: Ship in GameplayServer.get_ships():
-			if not closest_target:
-				closest_target = ship
-			elif position.distance_squared_to(ship.position) < position.distance_squared_to(closest_target.position):
-				closest_target = ship
-		aiming_distance = position.distance_to(closest_target.position)
-		aiming_height_offset = closest_target.position.y - position.y
-	crosshair.global_position = global_position + Vector3(0.0, 0.0, aiming_distance).rotated(Vector3.UP, turret.global_rotation.y)
+	for ship: Ship in GameplayServer.get_ships():
+		if not closest_target:
+			closest_target = ship
+		elif position.distance_squared_to(ship.position) < position.distance_squared_to(closest_target.position):
+			closest_target = ship
+	if closest_target:
+		var current_position = global_position
+		current_position.y = 0.0
+		var target_position = closest_target.global_position
+		target_position.y = 0.0
+		aiming_distance = current_position.distance_to(target_position)
+		aiming_height_offset = closest_target.global_position.y - item_instancer.global_position.y - BuoyancySolver.height(current_position) + BuoyancySolver.height(target_position)
+		turret.look_at(closest_target.position, Vector3(0.0, 1.0, 0.0), true)
+	
+	if active_item:
+		# crosshair.global_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
+		crosshair.global_position = closest_target.global_position
+		aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
+		aiming_position.y = aiming_height_offset
 	
 	if Input.is_action_just_pressed("shoot"):
 		aiming_indicator.show()
 	
 	if Input.is_action_pressed("shoot"):
-		# aiming_distance = active_item.stats.max_range * (0.5 - aiming_offset.y) / 2.0
-		var aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
-		aiming_height_offset = BuoyancySolver.height(aiming_position)
-		aiming_position.y += aiming_height_offset
 		var size = active_item.stats.radius * 2.0
 		aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
 		aiming_indicator.global_position = aiming_position
@@ -190,6 +193,7 @@ func _update_bounds_transform():
 	bounds.global_rotation.y = rotation.y
 
 func _snap_bounds_to_wave():
+	pass
 	for node in bounds.get_children():
 		node.global_position.y = BuoyancySolver.height(node.global_position)
 

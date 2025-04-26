@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dcchujjwo2k32"]
+[gd_scene load_steps=34 format=4 uid="uid://dcchujjwo2k32"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_r2gry"]
 [ext_resource type="PackedScene" uid="uid://dmbyiaw8cdbp7" path="res://assets/models/ships/tuggy/tuggy.blend" id="2_r2gry"]
@@ -153,9 +153,6 @@ radius = 0.02
 radial_steps = 4
 curve = SubResource("Curve_ye74i")
 
-[sub_resource type="BoxMesh" id="BoxMesh_r2gry"]
-size = Vector3(0.1, 0.1, 0.1)
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ldamy"]
 properties/0/path = NodePath("Turret:rotation")
 properties/0/spawn = true
@@ -227,7 +224,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.619104, -0.267552)
 mesh = SubResource("ArrayMesh_pm0rn")
 
 [node name="ItemInstancer" parent="Turret/ShooterTurretBase" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="NitroParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399345, -0.875021)
@@ -248,9 +245,6 @@ layers = 16
 texture_albedo = ExtResource("4_0f7lv")
 modulate = Color(0, 0.8, 0, 0.4)
 cull_mask = 1047554
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="AimingIndicator"]
-mesh = SubResource("BoxMesh_r2gry")
 
 [node name="Crosshair" type="Sprite3D" parent="."]
 visible = false

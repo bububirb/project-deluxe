@@ -8,9 +8,9 @@
 script = ExtResource("2_ud63r")
 attack = 1000.0
 cooldown = 10.0
-height = 2.0
+height = 1.0
 max_range = 30.0
-projectile_speed = 2.0
+projectile_speed = 20.0
 radius = 0.5
 
 [resource]

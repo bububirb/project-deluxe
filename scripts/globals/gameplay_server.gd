@@ -83,7 +83,6 @@ func _spawn_projectile(player_id: int, item_index: int, projectile_stats) -> voi
 
 @rpc("any_peer", "call_local", "reliable")
 func boost(player_id, item_index) -> void:
-	var ship: Ship = get_player(player_id).ship
 	var item: Node = get_player_item(player_id, item_index)
 	if item.cooldown > 0.0: return
 	
