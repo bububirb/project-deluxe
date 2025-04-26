@@ -59,6 +59,7 @@ var active_item: Node:
 @onready var item_instancer: Node3D = $Turret/ShooterTurretBase/ItemInstancer
 @onready var nitro_particles = $NitroParticles
 @onready var aiming_indicator: Decal = $AimingIndicator
+@onready var crosshair: Sprite3D = $Crosshair
 @onready var deck: Deck = $Deck
 
 @onready var bounds: Node3D = $Bounds
@@ -70,6 +71,8 @@ var active_item: Node:
 func _ready() -> void:
 	await get_tree().process_frame
 	select_item(0)
+	if not is_multiplayer_authority(): return
+	crosshair.show()
 
 func _physics_process(delta: float) -> void:
 	if not is_multiplayer_authority():
@@ -126,11 +129,22 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	# TODO: Implement auto-aim
+	var closest_target: Ship
+	for ship: Ship in GameplayServer.get_ships():
+		if not closest_target:
+			closest_target = ship
+		elif position.distance_squared_to(ship.position) < position.distance_squared_to(closest_target.position):
+			closest_target = ship
+	aiming_distance = position.distance_to(closest_target.position)
+	aiming_height_offset = closest_target.position.y - position.y
+	crosshair.global_position = global_position + Vector3(0.0, 0.0, aiming_distance).rotated(Vector3.UP, turret.global_rotation.y)
+	
 	if Input.is_action_just_pressed("shoot"):
 		aiming_indicator.show()
 	
 	if Input.is_action_pressed("shoot"):
-		aiming_distance = active_item.stats.max_range * (0.5 - aiming_offset.y) / 2.0
+		# aiming_distance = active_item.stats.max_range * (0.5 - aiming_offset.y) / 2.0
 		var aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance).rotated(Vector3.UP, turret.global_rotation.y)
 		aiming_height_offset = BuoyancySolver.height(aiming_position)
 		aiming_position.y += aiming_height_offset

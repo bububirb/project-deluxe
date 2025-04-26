@@ -1,10 +1,11 @@
-[gd_scene load_steps=35 format=4 uid="uid://drurvgkbiyn84"]
+[gd_scene load_steps=36 format=4 uid="uid://drurvgkbiyn84"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_12mey"]
 [ext_resource type="PackedScene" uid="uid://bsxys4fx6tucf" path="res://assets/models/ships/punky_mk2/punky_mk2.blend" id="2_12mey"]
 [ext_resource type="PackedScene" uid="uid://d3ajgltxp4nxl" path="res://assets/models/ships/shooter_turret_1.blend" id="3_w3aqp"]
 [ext_resource type="Texture2D" uid="uid://s8ij70eplfx7" path="res://assets/textures/decals/aiming_indicator.png" id="4_car6o"]
 [ext_resource type="Script" uid="uid://c4d7jljnvg3wl" path="res://scripts/resources/deck.gd" id="5_gyrmv"]
+[ext_resource type="Texture2D" uid="uid://2hhg1887511j" path="res://assets/icons/ui/new_big.svg" id="5_qitqb"]
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="6_pk3f7"]
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="7_3x0ah"]
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="8_j25bp"]
@@ -261,6 +262,15 @@ layers = 16
 texture_albedo = ExtResource("4_car6o")
 modulate = Color(0, 0.8, 0, 0.4)
 cull_mask = 1047554
+
+[node name="Crosshair" type="Sprite3D" parent="."]
+visible = false
+pixel_size = 0.0025
+billboard = 1
+no_depth_test = true
+fixed_size = true
+render_priority = 5
+texture = ExtResource("5_qitqb")
 
 [node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target", "ship")]
 script = ExtResource("5_gyrmv")

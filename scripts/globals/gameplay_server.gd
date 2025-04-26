@@ -21,8 +21,25 @@ func _deal_damage(player_id: int, attack: int) -> void:
 	ship.hp = ship.hp - damage
 	hud.set_hp(ship.hp)
 
+func get_game() -> Node3D:
+	return get_tree().root.get_node("Game")
+
 func get_player(player_id: int) -> Node3D:
-	return get_tree().root.get_node("Game").get_node(str(player_id))
+	return get_game().get_node(str(player_id))
+
+func get_players() -> Array[Node3D]:
+	var players: Array[Node3D]
+	for player_id: int in multiplayer.get_peers():
+		var player: Node3D = get_player(player_id)
+		if player:
+			players.append(player)
+	return players
+
+func get_ships() -> Array[Ship]:
+	var ships: Array[Ship]
+	for player in get_players():
+		ships.append(player.ship)
+	return ships
 
 func get_player_item(player_id: int, item_index: int) -> Node3D:
 	var player = get_player(player_id)

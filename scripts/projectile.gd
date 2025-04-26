@@ -36,12 +36,13 @@ func _on_collision(collision: KinematicCollision3D):
 
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height
-	time += delta * stats.speed
+	var offset = delta * stats.speed
+	time += offset
 	var displacement = time * stats.distance
 	var next_height = Globals.projectile_arc(displacement, stats.distance, stats.height, stats.offset)
 	var height_offset = next_height - prev_height
 	current_height = next_height
-	var collision = move_and_collide(Vector3(0.0, 0.0, delta * stats.distance * stats.speed) * global_basis.inverse() + Vector3(0.0, height_offset, 0.0))
+	var collision = move_and_collide(Vector3(0.0, 0.0, offset * stats.distance) * global_basis.inverse() + Vector3(0.0, height_offset, 0.0))
 	var is_underwater = global_position.y < BuoyancySolver.height(global_position)
 	if collision or is_underwater:
 		_on_collision(collision)
