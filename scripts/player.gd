@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 		if ship.active_item is Cannon:
 			camera.fov = lerp(camera.fov, min_fov, 0.2)
 		if ship.active_item is Mortar:
-			var tween = create_tween().tween_property(camera, "position:z", -5.0, 0.4)
+			var tween = create_tween().tween_property(camera, "position:z", -3.5, 0.4)
 			await tween.finished
 
 	if Input.is_action_just_released("aim"):
@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 				camera.fov = max_fov
 				is_zooming_out = false
 		if ship.active_item is Mortar:
-			var tween = create_tween().tween_property(camera, "position:z", -2.5, 0.4)
+			var tween = create_tween().tween_property(camera, "position:z", -2.2, 0.4)
 			await tween.finished
 			is_zooming_out = false
 
@@ -78,6 +78,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_ship_item_selected(item: Node):
 	if item is Mortar:
-		var _tween = create_tween().tween_property(camera, "position:z", -2.5, 0.15)
+		var _tween = create_tween().tween_property(camera, "position:z", -2.2, 0.15)
 	if item is Cannon:
-		var _tween = create_tween().tween_property(camera, "position:z", -1.5, 0.15)
+		var _tween = create_tween().tween_property(camera, "position:z", -1.6, 0.15)
