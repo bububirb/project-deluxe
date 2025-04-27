@@ -8,10 +8,12 @@
 script = ExtResource("2_ur7us")
 attack = 500.0
 cooldown = 10.0
-height = 10.0
-max_range = 30.0
-projectile_speed = 10.0
 radius = 5.0
+projectile_speed = 5.0
+max_range = 30.0
+min_angle = 1.0472
+max_angle = 1.48353
+height = 10.0
 metadata/_custom_type_script = "uid://2c30v8yoqbxm"
 
 [resource]

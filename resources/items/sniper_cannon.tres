@@ -8,10 +8,12 @@
 script = ExtResource("2_kgnph")
 attack = 750.0
 cooldown = 7.5
-height = 0.5
-max_range = 45.0
-projectile_speed = 60.0
 radius = 0.4
+projectile_speed = 60.0
+max_range = 45.0
+min_angle = -0.0872665
+max_angle = 0.0872665
+height = 0.5
 
 [resource]
 script = ExtResource("1_ylm5l")

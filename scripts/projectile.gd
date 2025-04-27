@@ -40,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	var prev_height = current_height
 	var offset = delta * stats.speed
 	displacement += offset
-	var next_height = Globals.projectile_arc(displacement, stats.distance, stats.height, stats.offset)
+	var next_height = Globals.projectile_arc(displacement, stats.distance, stats.offset, stats.max_range, stats.min_angle, stats.max_angle)
 	var height_offset = next_height - prev_height
 	current_height = next_height
 	velocity = Vector3(0.0, 0.0, offset) * global_basis.inverse()

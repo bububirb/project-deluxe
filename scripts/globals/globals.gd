@@ -3,18 +3,12 @@ extends Node
 enum ItemMode {ACTIONABLE, USABLE, PASSIVE}
 enum ItemClass {CANNON, MORTAR, SPEED_BOOST}
 
-func projectile_arc(x: float, distance: float, height: float, offset: float):
-	#hardcoded for now, need to be in definition later
-	var maxrange : float =  45
-	var maxangle : float = deg_to_rad(45)
-	var minangle : float = deg_to_rad(-45)
-
+func projectile_arc(x: float, distance: float, offset: float, max_range: float, min_angle: float, max_angle: float):
+	# Keep maximum range the same with different angles
+	var range: float = max_range / tan(max_angle)
 	
-	#keeps maximum range the same with different angles
-	var rangedivisor : float = maxrange / ( tan(maxangle))
+	# OH GLORIOUS Q - slope coefficient
+	var slope = (offset + (pow(distance, 2.0) / range)) / distance
+	var q: float = max(min(slope, tan(max_angle)), tan(min_angle))
 	
-	#OH GLORIOUS Q (slope coefficient)
-	var requiredslope = ((offset) + (pow(distance,2) / rangedivisor)) / distance
-	var q : float = max( min( requiredslope, tan(maxangle)), tan(minangle) )
-	
-	return ((-1 * x * x) / (rangedivisor)) + (q * x)
+	return (-pow(x, 2.0) / range) + (q * x)

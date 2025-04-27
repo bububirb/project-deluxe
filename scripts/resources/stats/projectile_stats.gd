@@ -4,9 +4,15 @@ class_name ProjectileStats extends Resource
 @export var rotation: Vector3
 @export var player_id: int
 
+@export var attack: int
+
+# Ballistics
 @export var distance: float
 @export var offset: float
-@export var height: float
 @export var speed: float
+@export var max_range: float
+@export var min_angle: float
+@export var max_angle: float
 
-@export var attack: int
+# Deprecated
+@export var height: float

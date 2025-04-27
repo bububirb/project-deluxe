@@ -60,15 +60,20 @@ func shoot(player_id: int, item_index: int) -> void:
 	projectile_stats.rotation.y = ship.item_instancer.global_rotation.y
 	projectile_stats.player_id = player_id
 	
+	projectile_stats.attack = item.stats.attack
+	
 	projectile_stats.distance = ship.aiming_distance
 	projectile_stats.offset = ship.aiming_height_offset
-	if item.item_class == Globals.ItemClass.CANNON:
-		projectile_stats.height = item.stats.height * ship.aiming_distance / item.stats.max_range
-	elif item.item_class == Globals.ItemClass.MORTAR:
-		projectile_stats.height = item.stats.height
 	projectile_stats.speed = item.stats.projectile_speed
+	projectile_stats.max_range = item.stats.max_range
+	projectile_stats.min_angle = item.stats.min_angle
+	projectile_stats.max_angle = item.stats.max_angle
 	
-	projectile_stats.attack = item.stats.attack
+	#if item.item_class == Globals.ItemClass.CANNON:
+		#projectile_stats.height = item.stats.height * ship.aiming_distance / item.stats.max_range
+	#elif item.item_class == Globals.ItemClass.MORTAR:
+		#projectile_stats.height = item.stats.height
+	
 	
 	_spawn_projectile.rpc(player_id, item_index, Marshalls.variant_to_base64(projectile_stats, true))
 	
