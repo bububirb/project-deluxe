@@ -6,8 +6,9 @@ enum ItemClass {CANNON, MORTAR, SPEED_BOOST}
 func projectile_arc(x: float, distance: float, height: float, offset: float):
 	#hardcoded for now, need to be in definition later
 	var maxrange : float =  45
-	var maxangle : float = 35
-	var minangle : float = -89
+	var maxangle : float = deg_to_rad(45)
+	var minangle : float = deg_to_rad(-45)
+
 	
 	#keeps maximum range the same with different angles
 	var rangedivisor : float = maxrange / ( tan(maxangle))
