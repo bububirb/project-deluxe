@@ -18,6 +18,7 @@ var current_height: float = 0.0
 func _enter_tree() -> void:
 	global_position = stats.position
 	global_rotation = stats.rotation
+	add_collision_exception_with(GameplayServer.get_player(stats.player_id).ship)
 
 func _on_collision(collision: KinematicCollision3D):
 	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)
@@ -44,12 +45,7 @@ func _physics_process(delta: float) -> void:
 	current_height = next_height
 	velocity = Vector3(0.0, 0.0, offset) * global_basis.inverse()
 	velocity += Vector3(0.0, height_offset, 0.0)
-	var collision = move_and_collide(velocity)
 	var is_underwater = global_position.y < BuoyancySolver.height(global_position)
-	if collision:
-		var collider = collision.get_collider()
-		if collider is Ship:
-			if str(collider.get_parent().name).to_int() == stats.player_id:
-				return
+	var collision = move_and_collide(velocity)
 	if collision or is_underwater:
 		_on_collision(collision)
