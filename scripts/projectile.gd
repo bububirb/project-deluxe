@@ -46,5 +46,10 @@ func _physics_process(delta: float) -> void:
 	velocity += Vector3(0.0, height_offset, 0.0)
 	var collision = move_and_collide(velocity)
 	var is_underwater = global_position.y < BuoyancySolver.height(global_position)
+	if collision:
+		var collider = collision.get_collider()
+		if collider is Ship:
+			if str(collider.get_parent().name).to_int() == stats.player_id:
+				return
 	if collision or is_underwater:
 		_on_collision(collision)
