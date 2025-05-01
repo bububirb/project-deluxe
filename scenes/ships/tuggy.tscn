@@ -185,7 +185,6 @@ collision_mask = 17
 script = ExtResource("1_r2gry")
 acceleration = 2.0
 max_speed = 3.0
-motion_anisotropy = 8.0
 torque = 1.5
 max_turn_speed = 1.5
 projectile_pool = NodePath("ProjectilePool")

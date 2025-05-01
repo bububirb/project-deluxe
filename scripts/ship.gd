@@ -6,13 +6,13 @@ signal item_instanced(item: Item)
 const SPEED: float = 2.0
 const JUMP_VELOCITY: float = 4.5
 
-const LINEAR_LOSS: float = 0.75
 const ROTATIONAL_LOSS: float = 0.5
-const MAX_SPEED_DRAG: float = 4.0
 const MAX_SUBMERSION: float = 0.15
+const MAX_SPEED_DRAG: float = 4.0
 
 const AIMING_SENSITIVITY: float = 0.001
 
+@export var linear_loss: float = 0.75
 @export var acceleration: float = 1.0
 @export var max_speed: float = 2.0
 @export var motion_anisotropy: float = 5.0
@@ -102,15 +102,20 @@ func _physics_process(delta: float) -> void:
 			velocity = new_velocity
 		else:
 			decelerate(delta * MAX_SPEED_DRAG)
-		
-		var local_velocity := transform.basis.inverse() * velocity
-		local_velocity.x = move_toward(local_velocity.x, 0.0, motion_anisotropy * delta)
-		velocity = transform.basis * local_velocity
 	
 	elif velocity.length() > speed_cap:
 		decelerate(delta * MAX_SPEED_DRAG)
 	else:
 		decelerate(delta)
+	
+	var local_velocity := transform.basis.inverse() * velocity
+	var local_velocity_xz = Vector3(local_velocity.x, 0.0, local_velocity.z) # Discard vertical movement
+	# Tilt velocity based on anisotropy
+	local_velocity_xz = local_velocity_xz.move_toward(local_velocity_xz.project(Vector3.MODEL_FRONT), motion_anisotropy * delta)
+	local_velocity_xz.y = local_velocity.y # Reintroduce vertical movement
+	local_velocity = local_velocity_xz
+	# local_velocity.x = move_toward(local_velocity.x, 0.0, motion_anisotropy * delta)
+	velocity = transform.basis * local_velocity
 	
 	_modifier_tick(delta)
 	
@@ -188,8 +193,8 @@ func _input(event: InputEvent) -> void:
 			aiming_offset.clamp(Vector2(-1.0, -1.0), Vector2(1.0, 1.0))
 
 func decelerate(delta):
-	velocity.x = move_toward(velocity.x, 0, acceleration * delta * LINEAR_LOSS)
-	velocity.z = move_toward(velocity.z, 0, acceleration * delta * LINEAR_LOSS)
+	velocity.x = move_toward(velocity.x, 0, acceleration * delta * linear_loss)
+	velocity.z = move_toward(velocity.z, 0, acceleration * delta * linear_loss)
 
 func _update_bounds_transform():
 	bounds.global_position = global_position
