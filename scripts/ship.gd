@@ -144,7 +144,7 @@ func _physics_process(delta: float) -> void:
 		var target_position = closest_target.global_position
 		target_position.y = 0.0
 		aiming_distance = current_position.distance_to(target_position)
-		aiming_height_offset = closest_target.global_position.y - item_instancer.global_position.y - global_position.y
+		aiming_height_offset = closest_target.global_position.y - item_instancer.global_position.y - global_position.y + MAX_SUBMERSION
 		turret.look_at(closest_target.position, Vector3(0.0, 1.0, 0.0), true)
 		turret.rotation.x = 0.0
 		turret.rotation.z = 0.0
