@@ -11,6 +11,7 @@ script = ExtResource("3_m5ywd")
 speed_multiplier = 2.0
 duration = 8.0
 icon = ExtResource("3_6gm1v")
+type = 0
 metadata/_custom_type_script = "uid://bpjec3i147tkn"
 
 [sub_resource type="Resource" id="Resource_6ytjq"]
