@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4jqwt"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("item_display", "vitals_overlay", "hp_bar")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("item_display", "vitals_overlay", "hp_bar", "modifier_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +17,8 @@ mouse_filter = 1
 script = ExtResource("2_n808k")
 item_display = NodePath("ItemDisplayContainer/ItemDisplay")
 vitals_overlay = NodePath("VitalsOverlay")
-hp_bar = NodePath("HPBarContainer/HPBar")
+hp_bar = NodePath("BottomContainer/HPBarContainer/HPBar")
+modifier_container = NodePath("BottomContainer/ModifierContainer")
 
 [node name="VitalsOverlay" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -71,21 +72,27 @@ layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 1
 
-[node name="HPBarContainer" type="PanelContainer" parent="."]
+[node name="BottomContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -6.0
+offset_left = -100.0
 offset_top = -48.0
-offset_right = 6.0
+offset_right = 100.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HPBar" type="ProgressBar" parent="HPBarContainer"]
+[node name="ModifierContainer" type="HBoxContainer" parent="BottomContainer"]
+layout_mode = 2
+
+[node name="HPBarContainer" type="PanelContainer" parent="BottomContainer"]
+layout_mode = 2
+
+[node name="HPBar" type="ProgressBar" parent="BottomContainer/HPBarContainer"]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
 theme_type_variation = &"HPBar"

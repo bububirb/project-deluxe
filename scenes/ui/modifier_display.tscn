@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj2pjthgqawof"]
+
+[ext_resource type="Script" uid="uid://d2jkfi1salxp6" path="res://scripts/ui/hud/modifier_display.gd" id="1_for7g"]
+[ext_resource type="Texture2D" uid="uid://lj70dwf8m2or" path="res://assets/icons/ui/right_arrow.svg" id="1_hoeav"]
+[ext_resource type="Texture2D" uid="uid://bocgna7m202l3" path="res://assets/icons/ui/circular_progress.svg" id="2_qd8rq"]
+
+[node name="ModifierDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(32, 32)
+theme_type_variation = &"IconContainer"
+script = ExtResource("1_for7g")
+
+[node name="IconTexture" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_hoeav")
+
+[node name="ModifierDuration" type="TextureProgressBar" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+max_value = 10.0
+step = 0.001
+value = 10.0
+fill_mode = 5
+texture_progress = ExtResource("2_qd8rq")

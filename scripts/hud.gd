@@ -3,8 +3,10 @@ extends Control
 @export var item_display: VBoxContainer
 @export var vitals_overlay: TextureRect
 @export var hp_bar: ProgressBar
+@export var modifier_container: HBoxContainer
 
 const ITEM_CONTAINER_SCENE = preload("res://scenes/ui/item_container.tscn")
+const MODIFIER_DISPLAY_SCENE = preload("res://scenes/ui/modifier_display.tscn")
 
 func get_item(index: int) -> PanelContainer:
 	return item_display.get_child(index)
@@ -38,3 +40,8 @@ func _on_ship_item_instanced(item: Item) -> void:
 
 func set_hp(value: int) -> void:
 	hp_bar.value = value
+
+func add_modifier(modifier: Modifier) -> void:
+	var modifier_display = MODIFIER_DISPLAY_SCENE.instantiate()
+	modifier_container.add_child(modifier_display)
+	modifier_display.modifier = modifier

@@ -13,8 +13,8 @@ func _hit_test(hit_id: int) -> void:
 
 @rpc("authority", "call_local", "reliable")
 func _deal_damage(player_id: int, attack: int) -> void:
-	var ship = get_player(player_id).ship
-	var hud = get_player(player_id).hud
+	var ship: Ship = get_player(player_id).ship
+	var hud: Node = get_player(player_id).hud
 	if multiplayer.get_unique_id() == player_id:
 		hud.trigger_health_effect()
 	var damage: int = Math.calculate_damage(attack, ship.defense)
@@ -42,7 +42,7 @@ func get_ships() -> Array[Ship]:
 	return ships
 
 func get_player_item(player_id: int, item_index: int) -> Node3D:
-	var player = get_player(player_id)
+	var player: Node = get_player(player_id)
 	if player:
 		return player.ship.get_item(item_index)
 	else:
@@ -100,7 +100,11 @@ func boost(player_id, item_index) -> void:
 func _add_speed_boost(player_id, item_index) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var item: Node = get_player_item(player_id, item_index)
-	ship.speed_modifiers.append(item.stats.modifier.duplicate())
+	var hud: Node = get_player(player_id).hud
+	
+	var new_modifier = item.stats.modifier.duplicate()
+	ship.speed_modifiers.append(new_modifier)
+	hud.add_modifier(new_modifier)
 	ship.nitro_particles.emitting = true
 
 @rpc("authority", "call_local", "reliable")

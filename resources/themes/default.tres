@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://clminxby8hqrf"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://clminxby8hqrf"]
 
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="1_sn1o5"]
 
@@ -115,6 +115,22 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5j5c"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.258824, 0.258824, 0.258824, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hge1u"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -199,6 +215,8 @@ HPBar/base_type = &"ProgressBar"
 HPBar/fonts/font = SubResource("FontVariation_sn1o5")
 HPBar/styles/background = SubResource("StyleBoxEmpty_lmgqb")
 HPBar/styles/fill = SubResource("StyleBoxFlat_iga00")
+IconContainer/base_type = &"PanelContainer"
+IconContainer/styles/panel = SubResource("StyleBoxFlat_m5j5c")
 LineEdit/styles/focus = SubResource("StyleBoxFlat_hge1u")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_w1m0q")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_hvbjw")
