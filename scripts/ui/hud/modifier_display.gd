@@ -6,7 +6,7 @@ const DEBUFF_COLOR: Color = Color(1.0, 0.2, 0.2)
 var modifier: Modifier:
 	set(value):
 		modifier = value
-		icon = modifier.icon
+		icon = load(modifier.icon_path)
 		duration = modifier.duration
 		type = modifier.type
 

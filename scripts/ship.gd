@@ -46,7 +46,7 @@ var aiming_offset: Vector2 = Vector2.ZERO
 var aiming_position: Vector3
 var closest_target: Ship
 
-var speed_modifiers: Array[SpeedModifier]
+var modifiers: Array[Modifier]
 
 var active_item: Node:
 	set(new_item):
@@ -91,12 +91,9 @@ func _physics_process(delta: float) -> void:
 		var new_velocity := velocity
 		
 		var force = acceleration
-		for modifier in speed_modifiers:
+		for modifier: SpeedModifier in get_speed_modifiers():
 			force *= modifier.speed_multiplier
 			speed_cap *= modifier.speed_multiplier
-			modifier.duration -= delta
-			if modifier.duration <= 0.0:
-				speed_modifiers.erase(modifier)
 		
 		new_velocity.x += direction.x * force * delta
 		new_velocity.z += direction.z * force * delta
@@ -114,6 +111,8 @@ func _physics_process(delta: float) -> void:
 		decelerate(delta * MAX_SPEED_DRAG)
 	else:
 		decelerate(delta)
+	
+	_modifier_tick(delta)
 	
 	_clamp_submersion()
 	var turn := float(Input.get_action_strength("ui_left")) - float(Input.get_action_strength("ui_right"))
@@ -233,3 +232,32 @@ func get_item(index: int) -> Node3D:
 
 func _on_deck_item_instanced(item: Item):
 	item_instanced.emit(item)
+
+func get_speed_modifiers() -> Array[SpeedModifier]:
+	var speed_modifiers: Array[SpeedModifier]
+	for modifier: Modifier in modifiers:
+		if modifier is SpeedModifier:
+			speed_modifiers.append(modifier)
+	return speed_modifiers
+
+func get_additive_defense_modifiers() -> Array[AdditiveDefenseModifier]:
+	var additive_defense_modifiers: Array[AdditiveDefenseModifier]
+	for modifier: Modifier in modifiers:
+		if modifier is AdditiveDefenseModifier:
+			additive_defense_modifiers.append(modifier)
+	return additive_defense_modifiers
+
+func get_defense() -> int:
+	var defense_multiplier: float = 1.0
+	for additive_defense_modifier: AdditiveDefenseModifier in get_additive_defense_modifiers():
+		defense_multiplier += additive_defense_modifier.amount
+	return roundi(float(defense) * defense_multiplier)
+
+func add_modifier(modifier: Modifier):
+	modifiers.append(modifier)
+
+func _modifier_tick(delta: float) -> void:
+	for modifier in modifiers:
+		modifier.duration -= delta
+		if modifier.duration <= 0.0:
+			modifiers.erase(modifier)

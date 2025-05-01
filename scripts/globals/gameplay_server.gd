@@ -1,7 +1,10 @@
 extends Node
 
-func _on_projectile_player_hit(player_id: int, attack: int) -> void:
-	_deal_damage.rpc(player_id, attack)
+func _on_projectile_player_hit(player_id: int, attack: int, modifiers: Array[Modifier]) -> void:
+	var encoded_modifiers: Array[Dictionary]
+	for modifier: Modifier in modifiers:
+		encoded_modifiers.append(modifier.export_modifier())
+	_apply_hit.rpc(player_id, attack, encoded_modifiers)
 
 @rpc("authority", "call_local", "reliable")
 func _hit_test(hit_id: int) -> void:
@@ -12,14 +15,18 @@ func _hit_test(hit_id: int) -> void:
 		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
 
 @rpc("authority", "call_local", "reliable")
-func _deal_damage(player_id: int, attack: int) -> void:
+func _apply_hit(player_id: int, attack: int, encoded_modifiers: Array[Dictionary]) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var hud: Node = get_player(player_id).hud
 	if multiplayer.get_unique_id() == player_id:
 		hud.trigger_health_effect()
-	var damage: int = Math.calculate_damage(attack, ship.defense)
+	var damage: int = Math.calculate_damage(attack, ship.get_defense())
 	ship.hp = ship.hp - damage
 	hud.set_hp(ship.hp)
+	for encoded_modifier in encoded_modifiers:
+		var modifier: Modifier = ModifierFactory.import_modifier(encoded_modifier)
+		ship.add_modifier(modifier)
+		hud.add_modifier(modifier)
 
 func get_game() -> Node3D:
 	return get_tree().root.get_node("Game")
@@ -62,6 +69,7 @@ func shoot(player_id: int, item_index: int) -> void:
 	
 	projectile_stats.item_class = item.item_class
 	projectile_stats.attack = item.stats.attack
+	projectile_stats.modifiers = item.stats.modifiers_on_hit.duplicate()
 	
 	projectile_stats.distance = ship.aiming_distance
 	projectile_stats.offset = ship.aiming_height_offset
@@ -103,7 +111,7 @@ func _add_speed_boost(player_id, item_index) -> void:
 	var hud: Node = get_player(player_id).hud
 	
 	var new_modifier = item.stats.modifier.duplicate()
-	ship.speed_modifiers.append(new_modifier)
+	ship.modifiers.append(new_modifier)
 	hud.add_modifier(new_modifier)
 	ship.nitro_particles.emitting = true
 

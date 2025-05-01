@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://uvpl5udcl3lh"]
+[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://uvpl5udcl3lh"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_1ps7e"]
 [ext_resource type="Script" uid="uid://dtbsdh37hp3sq" path="res://scripts/resources/stats/speed_stats.gd" id="2_7ieiq"]
 [ext_resource type="Texture2D" uid="uid://bjj24w0cbsnim" path="res://assets/icons/items/nitro.png" id="2_v1618"]
 [ext_resource type="Script" uid="uid://bpjec3i147tkn" path="res://scripts/resources/modifiers/speed_modifier.gd" id="3_ls8dk"]
-[ext_resource type="Texture2D" uid="uid://b4sasyra7s4uv" path="res://assets/icons/modifiers/speed_up.svg" id="3_wmf1e"]
 
 [sub_resource type="Resource" id="Resource_wmf1e"]
 script = ExtResource("3_ls8dk")
 speed_multiplier = 5.0
-duration = 0.5
-icon = ExtResource("3_wmf1e")
+duration = 10.0
+icon_path = "uid://b4sasyra7s4uv"
 type = 0
 metadata/_custom_type_script = "uid://bpjec3i147tkn"
 

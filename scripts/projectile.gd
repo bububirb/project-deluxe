@@ -40,7 +40,7 @@ func _on_collision(collision: KinematicCollision3D):
 			var collider = collision.get_collider()
 			if collider is Ship:
 				var hit_id: int = int(collider.get_parent().name)
-				player_hit.emit(hit_id, stats.attack)
+				player_hit.emit(hit_id, stats.attack, stats.modifiers)
 
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height

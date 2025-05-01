@@ -6,6 +6,7 @@ class_name ProjectileStats extends Resource
 
 @export var item_class: Globals.ItemClass
 @export var attack: int
+@export var modifiers: Array[Modifier]
 
 # Ballistics
 @export var distance: float
