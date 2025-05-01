@@ -151,19 +151,20 @@ func _physics_process(delta: float) -> void:
 		aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
 		aiming_position.y = aiming_height_offset
 	
-	if Input.is_action_just_pressed("shoot"):
-		aiming_indicator.show()
-	
-	if Input.is_action_pressed("shoot"):
-		var size = active_item.stats.radius * 2.0
-		aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
-		aiming_indicator.global_position = aiming_position
-	
-	if Input.is_action_just_released("shoot"):
-		if active_item.mode == Globals.ItemMode.ACTIONABLE:
-			aiming_offset = Vector2.ZERO
-			aiming_indicator.hide()
-			active_item.execute()
+	if active_item:
+		if Input.is_action_just_pressed("shoot"):
+			aiming_indicator.show()
+		
+		if Input.is_action_pressed("shoot"):
+			var size = active_item.stats.radius * 2.0
+			aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
+			aiming_indicator.global_position = aiming_position
+		
+		if Input.is_action_just_released("shoot"):
+			if active_item.mode == Globals.ItemMode.ACTIONABLE:
+				aiming_offset = Vector2.ZERO
+				aiming_indicator.hide()
+				active_item.execute()
 	
 	if Input.is_action_just_pressed("select_item_1"):
 		select_item(0)
