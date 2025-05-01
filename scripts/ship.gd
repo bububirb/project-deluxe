@@ -46,7 +46,7 @@ var aiming_offset: Vector2 = Vector2.ZERO
 var aiming_position: Vector3
 var closest_target: Ship
 
-var speed_modifiers: Array[Array] = []
+var speed_modifiers: Array[SpeedModifier]
 
 var active_item: Node:
 	set(new_item):
@@ -85,22 +85,23 @@ func _physics_process(delta: float) -> void:
 	_align_to_wave(delta)
 	
 	var input_dir := float(Input.get_action_strength("ui_up")) - float(Input.get_action_strength("ui_down"))
+	var speed_cap = max_speed
 	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
 	if direction:
 		var new_velocity := velocity
 		
-		# TODO: Add a dedicated speed modifier class
 		var force = acceleration
 		for modifier in speed_modifiers:
-			force *= modifier[0]
-			modifier[1] -= delta
-			if modifier[1] <= 0.0:
+			force *= modifier.speed_multiplier
+			speed_cap *= modifier.speed_multiplier
+			modifier.duration -= delta
+			if modifier.duration <= 0.0:
 				speed_modifiers.erase(modifier)
 		
 		new_velocity.x += direction.x * force * delta
 		new_velocity.z += direction.z * force * delta
 		
-		if velocity.length() < max_speed or new_velocity.length_squared() < velocity.length_squared() or speed_modifiers:
+		if velocity.length() < speed_cap or new_velocity.length_squared() < velocity.length_squared():
 			velocity = new_velocity
 		else:
 			decelerate(delta * MAX_SPEED_DRAG)
@@ -109,7 +110,7 @@ func _physics_process(delta: float) -> void:
 		local_velocity.x = move_toward(local_velocity.x, 0.0, motion_anisotropy * delta)
 		velocity = transform.basis * local_velocity
 	
-	elif velocity.length() > max_speed:
+	elif velocity.length() > speed_cap:
 		decelerate(delta * MAX_SPEED_DRAG)
 	else:
 		decelerate(delta)

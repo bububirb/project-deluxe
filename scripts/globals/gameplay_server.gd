@@ -100,7 +100,7 @@ func boost(player_id, item_index) -> void:
 func _add_speed_boost(player_id, item_index) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var item: Node = get_player_item(player_id, item_index)
-	ship.speed_modifiers.append([item.stats.speed_boost, item.stats.duration])
+	ship.speed_modifiers.append(item.stats.modifier.duplicate())
 	ship.nitro_particles.emitting = true
 
 @rpc("authority", "call_local", "reliable")
