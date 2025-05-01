@@ -21,7 +21,7 @@ func _ready() -> void:
 func trigger_health_effect(_health: int = 0):
 	var tween_1: PropertyTweener = create_tween().tween_property(vitals_overlay, "modulate", Color.RED, 0.05)
 	await tween_1.finished
-	var _tween_2: PropertyTweener = create_tween().tween_property(vitals_overlay, "modulate", Color.TRANSPARENT, 0.8)
+	var _tween_2: PropertyTweener = create_tween().tween_property(vitals_overlay, "modulate", Color.TRANSPARENT, 1.5)
 
 func _on_ship_item_selected(item: Node) -> void:
 	var item_index = item.get_index()
