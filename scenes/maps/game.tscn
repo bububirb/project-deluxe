@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="9_6kt43"]
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="10_ad25f"]
 [ext_resource type="PackedScene" uid="uid://bm7ya346n5u2y" path="res://scenes/environment/foliage/fern.tscn" id="11_8ubl8"]
-[ext_resource type="PackedScene" uid="uid://bckpsvqmipgy5" path="res://assets/models/environment/artificial/barrel/barrel.blend" id="12_0d0ps"]
+[ext_resource type="PackedScene" uid="uid://mw06atm23mvb" path="res://scenes/environment/artificial/barrel.tscn" id="11_axujj"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -162,5 +162,5 @@ transform = Transform3D(0.233276, 0, 0.972411, 0, 1, 0, -0.972411, 0, 0.233276, 
 [node name="20" type="Node3D" parent="SpawnPositions" index="19"]
 transform = Transform3D(-0.999959, 0, -0.00911038, 0, 1, 0, 0.00911038, 0, -0.999959, -1.54977, 0, 14.7989)
 
-[node name="barrel" parent="." index="18" instance=ExtResource("12_0d0ps")]
-transform = Transform3D(-0.434587, -0.0826752, -0.896827, 0.90063, -0.0398938, -0.432752, 1.8299e-09, -0.995778, 0.0917971, -0.684523, 0, -4.92541)
+[node name="barrel" parent="." index="18" instance=ExtResource("11_axujj")]
+transform = Transform3D(-2.18557e-08, -0.5, -0.866025, 1, -4.37114e-08, 0, -3.78552e-08, -0.866025, 0.5, -0.654686, 0, -5.11308)
