@@ -4,6 +4,7 @@ class_name ProjectileStats extends Resource
 @export var rotation: Vector3
 @export var player_id: int
 
+@export var item_class: Globals.ItemClass
 @export var attack: int
 
 # Ballistics

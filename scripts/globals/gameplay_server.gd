@@ -60,6 +60,7 @@ func shoot(player_id: int, item_index: int) -> void:
 	projectile_stats.rotation.y = ship.item_instancer.global_rotation.y
 	projectile_stats.player_id = player_id
 	
+	projectile_stats.item_class = item.item_class
 	projectile_stats.attack = item.stats.attack
 	
 	projectile_stats.distance = ship.aiming_distance

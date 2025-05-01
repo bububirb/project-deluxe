@@ -10,6 +10,7 @@ var displacement: float = 0.0
 # To be set by the item
 var stats: ProjectileStats
 
+var projectile_arc: ProjectileArc
 var current_height: float = 0.0
 
 @onready var explosion_particles: GPUParticles3D = $ExplosionParticles
@@ -19,6 +20,11 @@ func _enter_tree() -> void:
 	global_position = stats.position
 	global_rotation = stats.rotation
 	add_collision_exception_with(GameplayServer.get_player(stats.player_id).ship)
+	
+	if stats.item_class == Globals.ItemClass.CANNON:
+		projectile_arc = ArcFactory.create_cannon_arc(stats)
+	elif stats.item_class == Globals.ItemClass.MORTAR:
+		projectile_arc = ArcFactory.create_mortar_arc(stats)
 
 func _on_collision(collision: KinematicCollision3D):
 	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)
@@ -40,7 +46,7 @@ func _physics_process(delta: float) -> void:
 	var prev_height = current_height
 	var offset = delta * stats.speed
 	displacement += offset
-	var next_height = Globals.projectile_arc(displacement, stats.distance, stats.offset, stats.max_range, stats.min_angle, stats.max_angle)
+	var next_height = projectile_arc.arc_height(displacement)
 	var height_offset = next_height - prev_height
 	current_height = next_height
 	velocity = Vector3(0.0, 0.0, offset) * global_basis.inverse()
