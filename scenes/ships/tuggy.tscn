@@ -193,7 +193,7 @@ projectile_pool = NodePath("ProjectilePool")
 [node name="tuggy" parent="." instance=ExtResource("2_r2gry")]
 
 [node name="TugboatFan" parent="tuggy" index="1"]
-transform = Transform3D(-0.0611026, -0.998132, 0, 0.998132, -0.0611026, 0, 0, 0, 1, -0.000222386, 0.160825, -0.821124)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000222386, 0.110825, -0.821124)
 
 [node name="AnimationPlayer" parent="tuggy" index="3"]
 autoplay = "TugboatFanAction"
@@ -227,7 +227,7 @@ mesh = SubResource("ArrayMesh_pm0rn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="NitroParticles" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399345, -0.875021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099345, -0.875021)
 emitting = false
 amount = 1024
 lifetime = 0.5
