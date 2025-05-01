@@ -145,7 +145,7 @@ func _physics_process(delta: float) -> void:
 		turret.rotation.x = 0.0
 		turret.rotation.z = 0.0
 	
-	if active_item:
+	if active_item and closest_target:
 		# crosshair.global_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
 		crosshair.global_position = closest_target.global_position
 		aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
