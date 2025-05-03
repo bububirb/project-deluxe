@@ -1,6 +1,7 @@
 extends Control
 
 const GAME_SCENE = "res://scenes/maps/game.tscn"
+const PLAYER_SCENE = "res://scenes/drafts/tuggy_player.tscn"
 
 @onready var host_button: Button = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer/HostButton
 @onready var join_button: Button = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer/JoinButton
@@ -24,6 +25,9 @@ func _ready() -> void:
 	name_input.text_changed.connect(_on_name_input_text_changed)
 	
 	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
+	
+	if DisplayServer.has_feature(DisplayServer.FEATURE_TOUCHSCREEN):
+		ProjectSettings.set_setting("input_devices/pointing/emulate_mouse_from_touch", true)
 	
 	if OS.has_feature("headless"):
 		join_button.pressed.emit()

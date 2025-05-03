@@ -40,6 +40,9 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var turn_speed: float = 0.0
 var rotation_speed: float = 0.1
 
+var input_dir: float = 0.0
+var turn: float = 0.0
+
 var aiming_distance: float = 30.0
 var aiming_height_offset: float = 0.0
 var aiming_offset: Vector2 = Vector2.ZERO
@@ -84,7 +87,8 @@ func _physics_process(delta: float) -> void:
 	
 	_align_to_wave(delta)
 	
-	var input_dir := float(Input.get_action_strength("ui_up")) - float(Input.get_action_strength("ui_down"))
+	if DisplayServer.has_hardware_keyboard():
+		input_dir = Input.get_action_strength("ui_up") - Input.get_action_strength("ui_down")
 	var speed_cap = max_speed
 	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
 	if direction:
@@ -120,7 +124,8 @@ func _physics_process(delta: float) -> void:
 	_modifier_tick(delta)
 	
 	_clamp_submersion()
-	var turn := float(Input.get_action_strength("ui_left")) - float(Input.get_action_strength("ui_right"))
+	if DisplayServer.has_hardware_keyboard():
+		turn = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
 	if turn:
 		turn_speed = clampf(turn_speed + torque * turn * delta, -max_turn_speed, max_turn_speed)
 	else:
@@ -155,20 +160,6 @@ func _physics_process(delta: float) -> void:
 		aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
 		aiming_position.y = aiming_height_offset
 	
-	if active_item:
-		if Input.is_action_just_pressed("shoot"):
-			aiming_indicator.show()
-		
-		if Input.is_action_pressed("shoot"):
-			var size = active_item.stats.radius * 2.0
-			aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
-			aiming_indicator.global_position = aiming_position
-		
-		if Input.is_action_just_released("shoot"):
-			if active_item.mode == Globals.ItemMode.ACTIONABLE:
-				aiming_offset = Vector2.ZERO
-				aiming_indicator.hide()
-				active_item.execute()
 	
 	if Input.is_action_just_pressed("select_item_1"):
 		select_item(0)
@@ -191,6 +182,22 @@ func _input(event: InputEvent) -> void:
 		if Input.is_action_pressed("shoot"):
 			aiming_offset += event.relative * AIMING_SENSITIVITY
 			aiming_offset.clamp(Vector2(-1.0, -1.0), Vector2(1.0, 1.0))
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if active_item:
+		if Input.is_action_just_pressed("shoot"):
+			aiming_indicator.show()
+		
+		if Input.is_action_pressed("shoot"):
+			var size = active_item.stats.radius * 2.0
+			aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
+			aiming_indicator.global_position = aiming_position
+		
+		if Input.is_action_just_released("shoot"):
+			if active_item.mode == Globals.ItemMode.ACTIONABLE:
+				aiming_offset = Vector2.ZERO
+				aiming_indicator.hide()
+				active_item.execute()
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * linear_loss)
@@ -266,3 +273,25 @@ func _modifier_tick(delta: float) -> void:
 		modifier.duration -= delta
 		if modifier.duration <= 0.0:
 			modifiers.erase(modifier)
+
+func _on_movement_joystick_analogic_change(move: Vector2) -> void:
+	if DisplayServer.has_feature(DisplayServer.FEATURE_TOUCHSCREEN):
+		input_dir = -move.y
+		if input_dir > 0.0:
+			turn = -move.x
+		else:
+			turn = move.x
+
+func _on_movement_joystick_analogic_released() -> void:
+	input_dir = 0.0
+	turn = 0.0
+
+func _on_aiming_joystick_analogic_just_pressed() -> void:
+	Input.action_press("shoot")
+
+func _on_aiming_joystick_analogic_change(move: Vector2) -> void:
+	aiming_offset = move
+
+func _on_aiming_joystick_analogic_released() -> void:
+	Input.action_release("shoot")
+	aiming_offset = Vector2.ZERO

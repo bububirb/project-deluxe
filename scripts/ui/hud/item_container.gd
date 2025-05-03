@@ -19,3 +19,10 @@ func deselect():
 
 func reset_cooldown():
 	cooldown_bar.value = cooldown_bar.max_value
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			Input.action_press("select_item_" + str(get_index() + 1))
+		else:
+			Input.action_release("select_item_" + str(get_index() + 1))

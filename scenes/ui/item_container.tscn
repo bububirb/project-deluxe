@@ -58,3 +58,5 @@ max_value = 10.0
 step = 0.001
 show_percentage = false
 script = ExtResource("3_xtit6")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

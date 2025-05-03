@@ -13,6 +13,7 @@ config_version=5
 config/name="Project Deluxe"
 run/main_scene="uid://b2rhplsaqim43"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,9 +24,20 @@ MultiplayerLobby="*res://scripts/globals/multiplayer_lobby.gd"
 GameplayServer="*res://scripts/globals/gameplay_server.gd"
 Math="*res://scripts/globals/math.gd"
 
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=512
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor]
 
 run/main_run_args="--headless"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/virtual_joystick/plugin.cfg")
 
 [gui]
 
@@ -71,7 +83,7 @@ joystick={
 }
 shoot={
 "deadzone": 0.5,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(411, 6),"global_position":Vector2(420, 52),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+"events": [null, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
 aim={
@@ -116,6 +128,10 @@ pointing/emulate_touch_from_mouse=true
 3d_physics/layer_3="Ships"
 3d_physics/layer_4="Player Projectiles"
 3d_physics/layer_5="Ship Projectiles"
+
+[network]
+
+limits/tcp/connect_timeout_seconds=120
 
 [physics]
 

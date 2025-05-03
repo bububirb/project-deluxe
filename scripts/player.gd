@@ -15,6 +15,7 @@ var max_fov: float = 90.0
 @onready var camera_pivot_x: Node3D = $Ship/CameraPivot/CameraPivotX
 @onready var camera: Camera3D = $Ship/CameraPivot/CameraPivotX/Camera
 @onready var hud: Control = $HUD
+@onready var controls: Control = $Controls
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
@@ -22,13 +23,20 @@ func _enter_tree() -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ship.transform = spawn
-	if not is_multiplayer_authority(): return
+	if DisplayServer.has_hardware_keyboard():
+		controls.hide()
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	
+	if not is_multiplayer_authority():
+		# FIXME: Dynamically instance controls
+		controls.queue_free()
+		return
+	hud.show()
 	hud.hp_bar.max_value = ship.max_hp
 	hud.hp_bar.value = ship.hp
 	
 	ship.item_selected.connect(_on_ship_item_selected)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
 
 func _process(_delta: float) -> void:
