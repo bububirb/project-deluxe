@@ -6,6 +6,7 @@ extends Node
 signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
+signal server_ready
 signal connection_reset
 
 const PORT = 7000
@@ -24,7 +25,8 @@ var player_info = {"name": "Name"}
 
 var players_loaded = 0
 
-
+enum ServerStatus {IN_LOBBY, LOADING, LOADED}
+var status: ServerStatus = ServerStatus.IN_LOBBY
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -72,11 +74,17 @@ func load_game(game_scene_path):
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded():
 	if multiplayer.is_server():
+		if multiplayer.get_remote_sender_id() == 1:
+			server_loaded.rpc()
 		players_loaded += 1
 		if players_loaded == players.size():
 			$/root/Game.start_game()
 			players_loaded = 0
 
+@rpc("authority", "call_remote", "reliable")
+func server_loaded():
+	MultiplayerLobby.status = MultiplayerLobby.ServerStatus.LOADED
+	server_ready.emit()
 
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.

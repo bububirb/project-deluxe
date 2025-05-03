@@ -30,6 +30,17 @@ func _ready() -> void:
 		ProjectSettings.set_setting("input_devices/pointing/emulate_mouse_from_touch", true)
 	
 	if OS.has_feature("headless"):
+		var arguments = {}
+		for argument in OS.get_cmdline_args():
+			if argument.contains("="):
+				var key_value = argument.split("=")
+				arguments[key_value[0].trim_prefix("--")] = key_value[1]
+			else:
+				# Options without an argument will be present in the dictionary,
+				# with the value set to an empty string.
+				arguments[argument.trim_prefix("--")] = ""
+		if arguments["ip"]:
+			address_input.text = arguments["ip"]
 		join_button.pressed.emit()
 
 func _on_host_button_pressed() -> void:
@@ -60,6 +71,7 @@ func _on_exit_button_pressed() -> void:
 	lobby_container.show()
 
 func _on_start_button_pressed() -> void:
+	MultiplayerLobby.status = MultiplayerLobby.ServerStatus.LOADING
 	MultiplayerLobby.load_game.rpc(GAME_SCENE)
 
 func _on_name_input_text_changed(new_text: String) -> void:
