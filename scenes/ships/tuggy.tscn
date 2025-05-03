@@ -185,8 +185,8 @@ collision_mask = 17
 script = ExtResource("1_r2gry")
 acceleration = 2.0
 max_speed = 3.0
-torque = 1.5
-max_turn_speed = 1.5
+torque = 5.0
+max_turn_speed = 1.0
 projectile_pool = NodePath("ProjectilePool")
 
 [node name="tuggy" parent="." instance=ExtResource("2_r2gry")]
