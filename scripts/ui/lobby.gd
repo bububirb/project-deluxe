@@ -1,6 +1,7 @@
 extends Control
 
 const GAME_SCENE = "res://scenes/maps/game.tscn"
+const LOADING_SCENE = "res://scenes/ui/loading_screen.tscn"
 const PLAYER_SCENE = "res://scenes/drafts/tuggy_player.tscn"
 
 @onready var host_button: Button = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer/HostButton
@@ -72,7 +73,7 @@ func _on_exit_button_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	MultiplayerLobby.status = MultiplayerLobby.ServerStatus.LOADING
-	MultiplayerLobby.load_game.rpc(GAME_SCENE)
+	MultiplayerLobby.load_game.rpc(LOADING_SCENE)
 
 func _on_name_input_text_changed(new_text: String) -> void:
 	MultiplayerLobby.player_info.name = new_text

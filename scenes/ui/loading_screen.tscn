@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch5fooohvtfat"]
+
+[ext_resource type="Script" uid="uid://cqtbfh3icqcmp" path="res://scripts/ui/loading_screen.gd" id="1_q4fso"]
+[ext_resource type="Texture2D" uid="uid://bfp7imvdqhr10" path="res://assets/images/background/steampunk-city.png" id="1_rqdcv"]
+
+[node name="LoadingScreen" type="Control" node_paths=PackedStringArray("loading_progress_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q4fso")
+loading_progress_bar = NodePath("LoadingProgressBar")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.6, 0.6, 0.6, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rqdcv")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LoadingProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.9
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0

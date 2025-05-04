@@ -7,6 +7,7 @@ signal player_connected(peer_id, player_info)
 signal player_disconnected(peer_id)
 signal server_disconnected
 signal server_ready
+signal server_status_return(status: ServerStatus)
 signal connection_reset
 
 const PORT = 7000
@@ -69,7 +70,6 @@ func remove_multiplayer_peer():
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
 
-
 # Every peer will call this when they have loaded the game scene.
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded():
@@ -83,7 +83,7 @@ func player_loaded():
 
 @rpc("authority", "call_remote", "reliable")
 func server_loaded():
-	MultiplayerLobby.status = MultiplayerLobby.ServerStatus.LOADED
+	status = MultiplayerLobby.ServerStatus.LOADED
 	server_ready.emit()
 
 # When a peer connects, send them my player info.
@@ -118,3 +118,12 @@ func _on_server_disconnected():
 	multiplayer.multiplayer_peer = null
 	players.clear()
 	server_disconnected.emit()
+
+@rpc("any_peer", "call_remote", "reliable")
+func poll_server_status() -> void:
+	var id = multiplayer.get_remote_sender_id()
+	return_server_status.rpc_id(id)
+
+@rpc("authority", "call_remote", "reliable")
+func return_server_status() -> void:
+	server_status_return.emit(status)

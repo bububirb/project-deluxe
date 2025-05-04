@@ -7,11 +7,9 @@ extends Node3D
 
 func _ready() -> void:
 	# Preconfigure game.
+	$Player.queue_free()
 	if DisplayServer.has_feature(DisplayServer.FEATURE_TOUCHSCREEN):
 		ProjectSettings.set_setting("input_devices/pointing/emulate_mouse_from_touch", false)
-	if not multiplayer.get_unique_id() == 1:
-		if not MultiplayerLobby.status == MultiplayerLobby.ServerStatus.LOADED:
-			await MultiplayerLobby.server_ready
 	MultiplayerLobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 	
 	#player.ship.item_selected.connect(_on_ship_item_selected)
