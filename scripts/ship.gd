@@ -58,7 +58,7 @@ var active_item: Node:
 		GameplayServer.set_visible_item.rpc(active_item.get_index())
 
 @onready var turret: Node3D = $Turret
-@onready var item_instancer: Node3D = $Turret/ShooterTurretBase/ItemInstancer
+@onready var item_instancer: Node3D = $Turret/TurretBase/ItemInstancer
 @onready var nitro_particles = $NitroParticles
 @onready var aiming_indicator: Decal = $AimingIndicator
 @onready var crosshair: Sprite3D = $Crosshair
