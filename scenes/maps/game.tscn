@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://dsevgkhndtd03"]
+[gd_scene load_steps=24 format=3 uid="uid://dsevgkhndtd03"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_axujj"]
 [ext_resource type="Script" uid="uid://i170vdlpd24j" path="res://scripts/map.gd" id="2_0d0ps"]
 [ext_resource type="PackedScene" uid="uid://ced8bvxys3o1" path="res://scenes/drafts/tuggy_player.tscn" id="3_axujj"]
+[ext_resource type="CompressedTexture3D" uid="uid://feierbyipkx0" path="res://assets/textures/vfx/3d_lut.png" id="4_0i0it"]
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="4_3fe60"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="5_sglps"]
 [ext_resource type="Material" uid="uid://byhikx0nfm4j3" path="res://resources/materials/water_v2.tres" id="7_axujj"]
@@ -38,7 +39,7 @@ sky_material = SubResource("PhysicalSkyMaterial_j4tr4")
 background_mode = 2
 sky = SubResource("Sky_ulpni")
 ambient_light_energy = 0.5
-tonemap_mode = 3
+tonemap_mode = 4
 ssil_radius = 10.0
 sdfgi_cascades = 2
 sdfgi_min_cell_size = 0.5
@@ -55,11 +56,14 @@ fog_sun_scatter = 0.15
 fog_density = 0.005
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.024
 volumetric_fog_albedo = Color(0.713328, 0.584454, 0.49564, 1)
-volumetric_fog_anisotropy = 0.9
+volumetric_fog_anisotropy = 0.8
 volumetric_fog_length = 32.0
-volumetric_fog_ambient_inject = 2.0
+volumetric_fog_ambient_inject = 1.0
+adjustment_enabled = true
+adjustment_contrast = 1.2
+adjustment_saturation = 1.25
+adjustment_color_correction = ExtResource("4_0i0it")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0d0ps"]
 resource_local_to_scene = true

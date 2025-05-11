@@ -1,0 +1,26 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://feierbyipkx0"
+path="res://.godot/imported/3d_lut.png-b757c8fb2e9dc8864ce6779d53094392.ctex3d"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/textures/vfx/3d_lut.png"
+dest_files=["res://.godot/imported/3d_lut.png-b757c8fb2e9dc8864ce6779d53094392.ctex3d"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=33
+slices/vertical=1
