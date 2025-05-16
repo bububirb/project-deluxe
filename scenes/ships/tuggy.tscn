@@ -10,8 +10,8 @@
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="8_xlvjg"]
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="9_pvnwd"]
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="10_5m26h"]
+[ext_resource type="Resource" uid="uid://bvwldcsm3u85v" path="res://resources/items/plasma_beam.tres" id="10_r2gry"]
 [ext_resource type="Resource" uid="uid://dqxg1s4rp1abq" path="res://resources/items/overboost.tres" id="11_t3d2h"]
-[ext_resource type="Resource" uid="uid://dl1kd0olljc5g" path="res://resources/items/deluxe_mortar.tres" id="12_vyc1p"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r2gry"]
 points = PackedVector3Array(-0.385667, 0.0784841, -0.637828, 0.439317, 0.249829, 0.0949752, 0.443524, 0.225823, 0.0963384, -0.0426989, 0.274869, 0.743162, -0.0667398, 0.666229, -0.489747, 0.227561, -0.0935019, -0.589027, -0.0174865, -0.179307, 0.49905, -0.430689, 0.249952, 0.145175, 0.370593, 0.276639, -0.749601, 0.0800557, 0.641702, 0.36677, -0.355746, 0.563916, 0.192296, 0.350079, 0.569014, 0.196072, -0.381736, 0.250772, -0.723756, -0.257986, -0.110798, -0.433982, 0.22578, 0.664224, -0.341472, 0.427801, 0.0273511, -0.371174, -0.0412183, -0.0592442, -0.762304, -0.0178148, 0.446099, -0.833084, -0.459543, 0.0433, -0.17891, 0.0852041, 0.406509, 0.729059, -0.235525, 0.661647, -0.315282, 0.00652836, -0.185776, -0.388013, 0.298549, 0.274239, 0.461904, -0.306686, 0.249854, 0.432697, -0.096347, 0.406509, 0.703215, -0.148313, 0.691938, -0.0492, 0.422464, 0.224993, -0.671905, -0.0906356, 0.639047, 0.364036, 0.294313, -0.0860817, -0.265107, 0.0287965, -0.163234, 0.477928, 0.351015, 0.127243, -0.737802, -0.448304, 0.202135, -0.240502)
@@ -113,30 +113,27 @@ radial_steps = 4
 curve = SubResource("Curve_ye74i")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ldamy"]
-properties/0/path = NodePath("Turret:rotation")
+properties/0/path = NodePath("NitroParticles:emitting")
 properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("NitroParticles:emitting")
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:sync_rotation")
 properties/1/spawn = true
-properties/1/replication_mode = 2
-properties/2/path = NodePath(".:sync_rotation")
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:sync_position")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath(".:sync_position")
+properties/3/path = NodePath(".:aiming_distance")
 properties/3/spawn = true
-properties/3/replication_mode = 1
-properties/4/path = NodePath(".:aiming_distance")
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:aiming_height_offset")
 properties/4/spawn = true
 properties/4/replication_mode = 2
-properties/5/path = NodePath(".:aiming_height_offset")
+properties/5/path = NodePath(".:aiming_offset")
 properties/5/spawn = true
 properties/5/replication_mode = 2
-properties/6/path = NodePath(".:aiming_offset")
+properties/6/path = NodePath("Turret:rotation")
 properties/6/spawn = true
-properties/6/replication_mode = 2
-properties/7/path = NodePath("Turret/ShooterTurretBase/ItemInstancer:rotation")
-properties/7/spawn = true
-properties/7/replication_mode = 1
+properties/6/replication_mode = 1
 
 [node name="Tuggy" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
 collision_layer = 2
@@ -209,7 +206,7 @@ texture = ExtResource("5_r2gry")
 
 [node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target", "ship")]
 script = ExtResource("6_nlgi6")
-items = Array[ExtResource("7_gtxt4")]([ExtResource("8_xlvjg"), ExtResource("9_pvnwd"), ExtResource("10_5m26h"), ExtResource("11_t3d2h"), ExtResource("12_vyc1p")])
+items = Array[ExtResource("7_gtxt4")]([ExtResource("8_xlvjg"), ExtResource("9_pvnwd"), ExtResource("10_r2gry"), ExtResource("11_t3d2h"), ExtResource("10_5m26h")])
 target = NodePath("../Turret/TurretBase/ItemInstancer")
 ship = NodePath("..")
 
