@@ -5,3 +5,6 @@ static func create_cannon_arc(stats: ProjectileStats) -> CannonArc:
 
 static func create_mortar_arc(stats: ProjectileStats) -> MortarArc:
 	return MortarArc.new(stats)
+
+static func create_beam_arc(stats: ProjectileStats) -> BeamArc:
+	return BeamArc.new(stats)

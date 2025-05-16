@@ -50,7 +50,7 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("aim"):
 		is_zooming_out = false
-		if ship.active_item is Cannon:
+		if ship.active_item is not Mortar:
 			camera.fov = lerp(camera.fov, min_fov, 0.2)
 		if ship.active_item is Mortar:
 			var tween = create_tween().tween_property(camera, "position:z", -3.5, 0.4)
@@ -61,7 +61,7 @@ func _process(_delta: float) -> void:
 		is_zooming_out = true
 	
 	if is_zooming_out:
-		if ship.active_item is Cannon:
+		if ship.active_item is not Mortar:
 			camera.fov = lerp(camera.fov, max_fov, 0.2)
 			if camera.fov >= max_fov:
 				camera.fov = max_fov

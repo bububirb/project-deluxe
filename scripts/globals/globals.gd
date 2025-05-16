@@ -1,7 +1,7 @@
 extends Node
 
 enum ItemMode {ACTIONABLE, USABLE, PASSIVE}
-enum ItemClass {CANNON, MORTAR, SPEED_BOOST}
+enum ItemClass {CANNON, MORTAR, BEAM, SPEED_BOOST}
 enum ModifierType {BUFF, DEBUFF}
 
 func projectile_arc(x: float, distance: float, offset: float, max_range: float, min_angle: float, max_angle: float):

@@ -25,6 +25,8 @@ func _enter_tree() -> void:
 		projectile_arc = ArcFactory.create_cannon_arc(stats)
 	elif stats.item_class == Globals.ItemClass.MORTAR:
 		projectile_arc = ArcFactory.create_mortar_arc(stats)
+	elif stats.item_class == Globals.ItemClass.BEAM:
+		projectile_arc = ArcFactory.create_beam_arc(stats)
 
 func _on_collision(collision: KinematicCollision3D):
 	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://bvwldcsm3u85v"]
+
+[ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_fta6j"]
+[ext_resource type="Texture2D" uid="uid://dta04dieqyslh" path="res://assets/icons/items/plasma_beam.png" id="2_2pn12"]
+[ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="3_xh4mn"]
+[ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="4_kvq05"]
+
+[sub_resource type="Resource" id="Resource_uwn7a"]
+script = ExtResource("4_kvq05")
+attack = 1000.0
+cooldown = 1.0
+radius = 1.0
+projectile_speed = 40.0
+max_range = 60.0
+min_angle = -0.174533
+max_angle = 0.349066
+modifiers_on_use = Array[ExtResource("3_xh4mn")]([])
+modifiers_on_hit = Array[ExtResource("3_xh4mn")]([])
+height = 0.0
+metadata/_custom_type_script = "uid://2c30v8yoqbxm"
+
+[resource]
+script = ExtResource("1_fta6j")
+item_name = "plasma_beam"
+description = "It's beamingggggg"
+item_class = "beam"
+sprite = ExtResource("2_2pn12")
+stats = SubResource("Resource_uwn7a")
+metadata/_custom_type_script = "uid://cijhu0qp0nqpy"

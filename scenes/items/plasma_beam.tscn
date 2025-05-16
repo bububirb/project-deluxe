@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv8r2xtuwjqiv"]
+
+[ext_resource type="PackedScene" uid="uid://ctipxfibehlam" path="res://assets/models/items/plasma_beam_1.blend" id="1_llxvh"]
+[ext_resource type="Script" uid="uid://dhytrswlo6dn6" path="res://scripts/items/beam.gd" id="2_x3d3m"]
+[ext_resource type="PackedScene" uid="uid://conh7uwqsvp6i" path="res://scenes/projectiles/plasma_beam_projectile.tscn" id="3_frty0"]
+
+[node name="PlasmaBeam" instance=ExtResource("1_llxvh")]
+script = ExtResource("2_x3d3m")
+projectile = ExtResource("3_frty0")

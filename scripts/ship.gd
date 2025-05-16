@@ -72,8 +72,8 @@ var active_item: Node:
 
 func _ready() -> void:
 	await get_tree().process_frame
-	select_item(0)
 	if not is_multiplayer_authority(): return
+	select_item(0)
 	crosshair.show()
 
 func _physics_process(delta: float) -> void:
