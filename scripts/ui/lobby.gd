@@ -40,7 +40,7 @@ func _ready() -> void:
 				# Options without an argument will be present in the dictionary,
 				# with the value set to an empty string.
 				arguments[argument.trim_prefix("--")] = ""
-		if arguments["ip"]:
+		if arguments.has("ip"):
 			address_input.text = arguments["ip"]
 		join_button.pressed.emit()
 
