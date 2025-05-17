@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://2c30v8yoqbxm"
 [resource]
 script = ExtResource("1_sb4d0")
 item_name = "deluxe_mortar"
-description = "Mortars the deluxe out of you"
+description = "Drops the Blame on Ya"
 item_class = "mortar"
 sprite = ExtResource("2_8u5c1")
 stats = SubResource("Resource_8u5c1")
