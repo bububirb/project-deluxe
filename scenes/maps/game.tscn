@@ -45,7 +45,8 @@ glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.2
 glow_blend_mode = 1
-glow_hdr_luminance_cap = 2.0
+glow_hdr_threshold = 2.0
+glow_hdr_luminance_cap = 4.0
 glow_map = SubResource("NoiseTexture2D_hpwb6")
 fog_light_color = Color(0.544776, 0.710731, 0.837316, 1)
 fog_sun_scatter = 0.15
@@ -78,6 +79,7 @@ environment = SubResource("Environment_6g2yo")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
 transform = Transform3D(0.395578, -4.01462e-08, 0.918432, -0.918432, -1.72913e-08, 0.395578, -1.5158e-16, -1, -4.37116e-08, 0, 0, 0)
 light_color = Color(0.98986, 0.842996, 0.727097, 1)
+light_energy = 0.6
 shadow_enabled = true
 
 [node name="WaterPlane" parent="." index="2" instance=ExtResource("5_sglps")]

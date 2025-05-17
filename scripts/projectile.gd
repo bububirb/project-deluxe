@@ -3,6 +3,7 @@ class_name Projectile extends CharacterBody3D
 signal player_hit(player_id: int)
 
 @export var explosion_scene: PackedScene
+@export var trail_particles: GPUParticles3D
 
 var time: float = 0.0
 var displacement: float = 0.0
@@ -28,9 +29,16 @@ func _enter_tree() -> void:
 	elif stats.item_class == Globals.ItemClass.BEAM:
 		projectile_arc = ArcFactory.create_beam_arc(stats)
 
+func _ready() -> void:
+	if trail_particles:
+		trail_particles.process_material.direction = Vector3(0.0, stats.offset, stats.distance)
+
 func _on_collision(collision: KinematicCollision3D):
 	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)
 	mesh.hide()
+	if trail_particles:
+		trail_particles.set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_ALWAYS)
+		trail_particles.emitting = false
 	explosion_particles.emitting = true
 	if explosion_scene:
 		var explosion_node = explosion_scene.instantiate()

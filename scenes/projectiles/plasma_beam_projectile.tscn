@@ -1,33 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://conh7uwqsvp6i"]
+[gd_scene load_steps=21 format=3 uid="uid://conh7uwqsvp6i"]
 
 [ext_resource type="Script" uid="uid://cjwsvciyixvtm" path="res://scripts/projectile.gd" id="1_tlmtr"]
 [ext_resource type="PackedScene" uid="uid://beiwkqscpobal" path="res://assets/models/projectiles/plasma_beam_projectile_1.blend" id="2_tlmtr"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tlmtr"]
-particle_flag_align_y = true
-inherit_velocity_ratio = -2.0
-direction = Vector3(0, 0, -1)
-spread = 1.0
-initial_velocity_min = 4.0
-initial_velocity_max = 8.0
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="Curve" id="Curve_tlmtr"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbg2b"]
-cull_mode = 2
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color(0.217917, 0.735952, 0.542837, 1)
-emission_energy_multiplier = 4.0
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_c2vbe"]
-material = SubResource("StandardMaterial3D_vbg2b")
-size = 0.015
-curve = SubResource("Curve_tlmtr")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vbg2b"]
 radius = 0.045
@@ -35,7 +9,7 @@ height = 0.125
 
 [sub_resource type="Gradient" id="Gradient_c2vbe"]
 offsets = PackedFloat32Array(0, 0.243243, 0.581081, 0.858108, 1)
-colors = PackedColorArray(0, 9.392, 5.525, 1, 0, 4.972, 0.552, 1, 0.552, 2.76, 0, 1, 0.552, 1.104, 0, 0.71, 0.147672, 0.147672, 0.147672, 0)
+colors = PackedColorArray(0, 20, 11, 1, 0, 10, 1, 1, 1, 5, 0, 1, 0.552, 1.104, 0, 0.71, 0.147672, 0.147672, 0.147672, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4513v"]
 gradient = SubResource("Gradient_c2vbe")
@@ -50,7 +24,7 @@ curve = SubResource("Curve_c3wlu")
 
 [sub_resource type="Curve" id="Curve_jroed"]
 _limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, -0.253056, 0, 0, Vector2(1, 0), -4.9352, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.294564, 0, 0, Vector2(1, 2), 4.96087, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_b0vvi"]
@@ -61,8 +35,8 @@ particle_flag_align_y = true
 inherit_velocity_ratio = 1.0
 direction = Vector3(0, 0, -1)
 spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 4.0
+initial_velocity_min = 2.0
+initial_velocity_max = 8.0
 gravity = Vector3(0, 0, 0)
 damping_min = 1.0
 damping_max = 2.0
@@ -72,8 +46,8 @@ scale_curve = SubResource("CurveTexture_do4ox")
 scale_over_velocity_max = 2.0
 scale_over_velocity_curve = SubResource("CurveTexture_b0vvi")
 color_ramp = SubResource("GradientTexture1D_4513v")
-hue_variation_min = -2.23517e-08
-hue_variation_max = 0.1
+hue_variation_min = -0.05
+hue_variation_max = 0.15
 turbulence_enabled = true
 turbulence_noise_strength = 3.0
 turbulence_noise_scale = 10.0
@@ -83,30 +57,72 @@ collision_bounce = 0.0
 collision_use_scale = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va7lm"]
+shading_mode = 0
 vertex_color_use_as_albedo = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pj538"]
 material = SubResource("StandardMaterial3D_va7lm")
-radius = 0.001
-height = 0.015
+radius = 0.002
+height = 0.025
 radial_segments = 8
 rings = 4
 
-[node name="PlasmaBeamProjectile" type="CharacterBody3D"]
+[sub_resource type="Curve" id="Curve_vbg2b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c2vbe"]
+curve = SubResource("Curve_vbg2b")
+
+[sub_resource type="Curve" id="Curve_c2vbe"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.32041, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4513v"]
+curve = SubResource("Curve_c2vbe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tlmtr"]
+particle_flag_align_y = true
+direction = Vector3(0, 0, -1)
+spread = 0.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+damping_min = 10.0
+damping_max = 10.0
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_c2vbe")
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_4513v")
+
+[sub_resource type="Curve" id="Curve_tlmtr"]
+bake_resolution = 10
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.283186, 0.516854), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbg2b"]
+cull_mode = 2
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.0946546, 0.523891, 0.271324, 1)
+emission_energy_multiplier = 20.0
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_c2vbe"]
+material = SubResource("StandardMaterial3D_vbg2b")
+size = 0.1
+section_length = 2.0
+curve = SubResource("Curve_tlmtr")
+
+[node name="PlasmaBeamProjectile" type="CharacterBody3D" node_paths=PackedStringArray("trail_particles")]
 disable_mode = 1
 collision_layer = 8
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_tlmtr")
+trail_particles = NodePath("TrailParticles")
 
 [node name="Mesh" parent="." instance=ExtResource("2_tlmtr")]
-
-[node name="TrailParticles" type="GPUParticles3D" parent="Mesh"]
-lifetime = 0.1
-trail_enabled = true
-trail_lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_tlmtr")
-draw_pass_1 = SubResource("RibbonTrailMesh_c2vbe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_vbg2b")
@@ -121,3 +137,12 @@ preprocess = 0.02
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_r73b1")
 draw_pass_1 = SubResource("CapsuleMesh_pj538")
+
+[node name="TrailParticles" type="GPUParticles3D" parent="."]
+amount = 240
+lifetime = 0.5
+fixed_fps = 60
+trail_enabled = true
+trail_lifetime = 0.02
+process_material = SubResource("ParticleProcessMaterial_tlmtr")
+draw_pass_1 = SubResource("RibbonTrailMesh_c2vbe")
