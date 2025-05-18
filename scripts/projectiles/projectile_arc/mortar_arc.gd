@@ -10,7 +10,7 @@ func _init(projectile_stats: ProjectileStats) -> void:
 	_calculate_arc()
 
 func clamp_slope() -> MortarArc:
-	arc_slope = max(min(arc_slope, tan(stats.max_angle)), tan(stats.min_angle))
+	arc_slope = max(min(arc_slope, tan(stats.ballistics.max_angle)), tan(stats.ballistics.min_angle))
 	return self
 
 func arc_height(x: float):
@@ -23,12 +23,12 @@ func _calculate_arc() -> void:
 	arc_slope = _calculate_arc_slope()
 
 func _calculate_arc_angle() -> float:
-	var angle = (asin(-stats.distance / stats.max_range) + PI) / 2.0
-	angle = max(min(angle, stats.max_angle), stats.min_angle)
+	var angle = (asin(-stats.distance / stats.ballistics.max_range) + PI) / 2.0
+	angle = max(min(angle, stats.ballistics.max_angle), stats.ballistics.min_angle)
 	return angle
 
 func _calculate_arc_range() -> float:
-	return (2.0 * stats.max_range * pow(cos(arc_angle), 2.0))
+	return (2.0 * stats.ballistics.max_range * pow(cos(arc_angle), 2.0))
 
 func _calculate_arc_slope() -> float:
 	return tan(arc_angle)

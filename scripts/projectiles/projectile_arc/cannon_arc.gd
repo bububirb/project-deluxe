@@ -19,11 +19,11 @@ func _calculate_arc() -> void:
 
 func _calculate_arc_range() -> float:
 	# Keep maximum range the same with different angles
-	return stats.max_range / tan(stats.max_angle)
+	return stats.ballistics.max_range / tan(stats.ballistics.max_angle)
 
 func _calculate_arc_slope() -> float:
 	return (stats.offset + (pow(stats.distance, 2.0) / arc_range)) / stats.distance
 
 func _clamp_slope() -> CannonArc:
-	arc_slope = max(min(arc_slope, tan(stats.max_angle)), tan(stats.min_angle))
+	arc_slope = max(min(arc_slope, tan(stats.ballistics.max_angle)), tan(stats.ballistics.min_angle))
 	return self

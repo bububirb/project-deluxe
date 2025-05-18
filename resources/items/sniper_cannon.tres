@@ -1,19 +1,25 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://1kbtbdphrp1e"]
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://1kbtbdphrp1e"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_ylm5l"]
 [ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="2_kgnph"]
 [ext_resource type="Texture2D" uid="uid://c53j43gvjq7tj" path="res://assets/icons/items/sniper_cannon.png" id="2_pc0i7"]
 [ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="3_8p5q7"]
+[ext_resource type="Script" uid="uid://rqh1pl76s4yu" path="res://scripts/resources/ballistics/cannon_ballistics.gd" id="3_a5q0v"]
+
+[sub_resource type="Resource" id="Resource_ipwt6"]
+script = ExtResource("3_a5q0v")
+projectile_speed = 45.0
+max_range = 60.0
+min_angle = -0.0872665
+max_angle = 0.174533
+metadata/_custom_type_script = "uid://rqh1pl76s4yu"
 
 [sub_resource type="Resource" id="Resource_u4sm5"]
 script = ExtResource("2_kgnph")
 attack = 750.0
 cooldown = 7.5
 radius = 0.4
-projectile_speed = 60.0
-max_range = 45.0
-min_angle = -0.0872665
-max_angle = 0.0872665
+ballistics = SubResource("Resource_ipwt6")
 modifiers_on_use = Array[ExtResource("3_8p5q7")]([])
 modifiers_on_hit = Array[ExtResource("3_8p5q7")]([])
 height = 0.5

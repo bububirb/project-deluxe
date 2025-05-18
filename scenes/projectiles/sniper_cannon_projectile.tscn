@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://gf0xn2ejxknt"]
 
-[ext_resource type="Script" uid="uid://cjwsvciyixvtm" path="res://scripts/projectile.gd" id="1_e0mkr"]
+[ext_resource type="Script" uid="uid://cxsemoubxgodv" path="res://scripts/projectiles/cannon_projectile.gd" id="1_th4eq"]
 [ext_resource type="PackedScene" uid="uid://daojy1n834ib1" path="res://assets/models/projectiles/sniper_cannon_projectile_1.blend" id="2_he1g2"]
 [ext_resource type="Material" uid="uid://c78xiw2kyc3mj" path="res://resources/materials/blackbody_particle.tres" id="3_yyv5v"]
 
@@ -55,7 +55,7 @@ rings = 2
 collision_layer = 8
 collision_mask = 7
 motion_mode = 1
-script = ExtResource("1_e0mkr")
+script = ExtResource("1_th4eq")
 
 [node name="Mesh" parent="." instance=ExtResource("2_he1g2")]
 

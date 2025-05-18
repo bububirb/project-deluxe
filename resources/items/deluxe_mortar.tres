@@ -1,19 +1,25 @@
-[gd_resource type="Resource" script_class="Item" load_steps=6 format=3 uid="uid://dl1kd0olljc5g"]
+[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://dl1kd0olljc5g"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_sb4d0"]
 [ext_resource type="Texture2D" uid="uid://do17n7gul50r7" path="res://assets/icons/items/deluxe_mortar.png" id="2_8u5c1"]
 [ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="2_ur7us"]
+[ext_resource type="Script" uid="uid://bcfclipky5qs7" path="res://scripts/resources/ballistics/mortar_ballistics.gd" id="3_nrr8r"]
 [ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="3_qmutr"]
+
+[sub_resource type="Resource" id="Resource_uty5t"]
+script = ExtResource("3_nrr8r")
+projectile_speed = 30.0
+max_range = 45.0
+min_angle = 1.0472
+max_angle = 1.48353
+metadata/_custom_type_script = "uid://bcfclipky5qs7"
 
 [sub_resource type="Resource" id="Resource_8u5c1"]
 script = ExtResource("2_ur7us")
 attack = 500.0
 cooldown = 10.0
 radius = 5.0
-projectile_speed = 5.0
-max_range = 30.0
-min_angle = 1.0472
-max_angle = 1.48353
+ballistics = SubResource("Resource_uty5t")
 modifiers_on_use = Array[ExtResource("3_qmutr")]([])
 modifiers_on_hit = Array[ExtResource("3_qmutr")]([])
 height = 10.0

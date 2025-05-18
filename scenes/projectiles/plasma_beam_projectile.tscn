@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://conh7uwqsvp6i"]
 
-[ext_resource type="Script" uid="uid://cjwsvciyixvtm" path="res://scripts/projectile.gd" id="1_tlmtr"]
+[ext_resource type="Script" uid="uid://ktnfjkxaaeyb" path="res://scripts/projectiles/beam_projectile.gd" id="1_tlmtr"]
 [ext_resource type="PackedScene" uid="uid://beiwkqscpobal" path="res://assets/models/projectiles/plasma_beam_projectile_1.blend" id="2_tlmtr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vbg2b"]

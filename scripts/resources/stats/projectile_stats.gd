@@ -11,10 +11,7 @@ class_name ProjectileStats extends Resource
 # Ballistics
 @export var distance: float
 @export var offset: float
-@export var speed: float
-@export var max_range: float
-@export var min_angle: float
-@export var max_angle: float
+@export var ballistics: Ballistics
 
 # Deprecated
 @export var height: float
