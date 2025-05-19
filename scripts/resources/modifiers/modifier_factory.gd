@@ -11,3 +11,9 @@ static func import_modifier(data: Dictionary) -> Modifier:
 	modifier.icon_path = data.icon_path
 	modifier.type = data.type
 	return modifier
+
+static func encode_modifiers(modifiers: Array[Modifier]) -> Array[Dictionary]:
+	var encoded_modifiers: Array[Dictionary]
+	for modifier: Modifier in modifiers:
+		encoded_modifiers.append(modifier.export_modifier())
+	return encoded_modifiers

@@ -1,10 +1,7 @@
 extends Node
 
 func _on_projectile_player_hit(player_id: int, attack: int, modifiers: Array[Modifier]) -> void:
-	var encoded_modifiers: Array[Dictionary]
-	for modifier: Modifier in modifiers:
-		encoded_modifiers.append(modifier.export_modifier())
-	_apply_hit.rpc(player_id, attack, encoded_modifiers)
+	_apply_hit.rpc(player_id, attack, ModifierFactory.encode_modifiers(modifiers))
 
 @rpc("authority", "call_local", "reliable")
 func _hit_test(hit_id: int) -> void:
@@ -28,6 +25,19 @@ func _apply_hit(player_id: int, attack: int, encoded_modifiers: Array[Dictionary
 		ship.add_modifier(modifier)
 		hud.add_modifier(modifier)
 
+func _on_aoe_projectile_hit(position: Vector3, radius: float, attack: int, modifiers: Array[Modifier]) -> void:
+	var area_strength: Dictionary = _get_area_strength(position, radius)
+	for player_id in area_strength.keys():
+		_apply_hit.rpc(player_id, attack * area_strength[player_id], ModifierFactory.encode_modifiers(modifiers))
+
+func _get_area_strength(position: Vector3, radius: float) -> Dictionary:
+	var area_strength: Dictionary = {}
+	for player_id: int in multiplayer.get_peers():
+		var distance: float = position.distance_to(get_ship(player_id).position)
+		if distance < radius:
+			area_strength[player_id] = 1.0 - min(distance / radius, 1.0)
+	return area_strength
+
 func get_game() -> Node3D:
 	return get_tree().root.get_node("Game")
 
@@ -41,6 +51,9 @@ func get_players() -> Array[Node3D]:
 		if player:
 			players.append(player)
 	return players
+
+func get_ship(player_id: int) -> Ship:
+	return get_player(player_id).ship
 
 func get_ships() -> Array[Ship]:
 	var ships: Array[Ship]
@@ -69,6 +82,7 @@ func shoot(player_id: int, item_index: int) -> void:
 	
 	projectile_stats.item_class = item.item_class
 	projectile_stats.attack = item.stats.attack
+	projectile_stats.radius = item.stats.radius
 	projectile_stats.modifiers = item.stats.modifiers_on_hit.duplicate()
 	
 	projectile_stats.distance = ship.aiming_distance
@@ -92,7 +106,7 @@ func _spawn_projectile(player_id: int, item_index: int, projectile_stats) -> voi
 	var projectile_instance: Projectile = get_player_item(player_id, item_index).projectile.instantiate()
 	projectile_instance.stats = projectile_stats
 	add_child(projectile_instance)
-	projectile_instance.player_hit.connect(_on_projectile_player_hit)
+	#projectile_instance.player_hit.connect(_on_projectile_player_hit)
 
 @rpc("any_peer", "call_local", "reliable")
 func boost(player_id, item_index) -> void:
@@ -115,7 +129,7 @@ func _add_speed_boost(player_id, item_index) -> void:
 
 @rpc("authority", "call_local", "reliable")
 func reset_cooldown(player_id: int, item_index: int) -> void:
-	var ship: Ship = get_player(player_id).ship
+	var ship: Ship = get_ship(player_id)
 	var item: Node = ship.get_item(item_index)
 	get_player(player_id).hud.get_item(item_index).reset_cooldown()
 	item.cooldown = item.stats.cooldown
