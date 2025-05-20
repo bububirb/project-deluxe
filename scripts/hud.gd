@@ -18,8 +18,11 @@ func _ready() -> void:
 		hide()
 		return
 
-func trigger_health_effect(_health: int = 0):
-	var tween_1: PropertyTweener = create_tween().tween_property(vitals_overlay, "modulate", Color.RED, 0.05)
+func trigger_health_effect(health: int = 0):
+	var overlay_color: Color = Color.RED
+	if health >= 0:
+		overlay_color = Color.GREEN
+	var tween_1: PropertyTweener = create_tween().tween_property(vitals_overlay, "modulate", overlay_color, 0.05)
 	await tween_1.finished
 	var _tween_2: PropertyTweener = create_tween().tween_property(vitals_overlay, "modulate", Color.TRANSPARENT, 1.5)
 
