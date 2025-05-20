@@ -26,10 +26,10 @@ func _burn_tick() -> void:
 				burn_damage += modifier.damage
 			_deal_fire_damage.rpc(player_id, int(burn_damage))
 
-func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier]) -> void:
-	_apply_hit.rpc(hit_id, attack, ModifierFactory.encode_modifiers(modifiers))
+func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
+	_apply_hit.rpc(hit_id, attack, ModifierFactory.encode_modifiers(modifiers), TagFactory.encode_tags(tags))
 
-func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier]) -> void:
+func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var area_strength: Dictionary = _get_area_strength(position, radius)
 	area_strength.erase(player_id)
 	for hit_id in area_strength.keys():
@@ -58,7 +58,7 @@ func _hit_test(hit_id: int) -> void:
 		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
 
 @rpc("authority", "call_local", "reliable")
-func _apply_hit(player_id: int, attack: int, encoded_modifiers: Array[Dictionary]) -> void:
+func _apply_hit(player_id: int, attack: int, encoded_modifiers: Array[Dictionary], encoded_tags: Array[Dictionary]) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var hud: Node = get_player(player_id).hud
 	if multiplayer.get_unique_id() == player_id:
@@ -69,6 +69,9 @@ func _apply_hit(player_id: int, attack: int, encoded_modifiers: Array[Dictionary
 		var modifier: Modifier = ModifierFactory.import_modifier(encoded_modifier)
 		ship.add_modifier(modifier)
 		hud.add_modifier(modifier)
+	var tags: Array[Tag]
+	for tag in encoded_tags:
+		tags.append(TagFactory.import_tag(tag))
 
 func _get_area_strength(position: Vector3, radius: float) -> Dictionary:
 	var area_strength: Dictionary = {}
@@ -129,6 +132,7 @@ func shoot(player_id: int, item_index: int) -> void:
 	projectile_stats.attack = item.stats.attack
 	projectile_stats.radius = item.stats.radius
 	projectile_stats.modifiers = item.stats.modifiers_on_hit.duplicate()
+	projectile_stats.tags = item.stats.tags.duplicate()
 	
 	projectile_stats.distance = ship.aiming_distance
 	projectile_stats.offset = ship.aiming_height_offset

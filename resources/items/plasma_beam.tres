@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=8 format=3 uid="uid://bvwldcsm3u85v"]
+[gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://bvwldcsm3u85v"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_fta6j"]
 [ext_resource type="Texture2D" uid="uid://dta04dieqyslh" path="res://assets/icons/items/plasma_beam.png" id="2_2pn12"]
 [ext_resource type="Script" uid="uid://bc68x0bef4bwc" path="res://scripts/resources/ballistics/beam_ballistics.gd" id="3_kvq05"]
 [ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="3_xh4mn"]
 [ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="4_kvq05"]
+[ext_resource type="Script" uid="uid://g88d8y3dajgk" path="res://scripts/resources/tags/tag.gd" id="6_kvq05"]
+[ext_resource type="Script" uid="uid://dcq08bs2gx6tq" path="res://scripts/resources/tags/leech_rate_tag.gd" id="7_uwn7a"]
 
 [sub_resource type="Resource" id="Resource_2v63v"]
 script = ExtResource("3_kvq05")
@@ -13,12 +15,18 @@ min_angle = -0.261799
 max_angle = 0.523599
 metadata/_custom_type_script = "uid://bc68x0bef4bwc"
 
+[sub_resource type="Resource" id="Resource_6sj7j"]
+script = ExtResource("7_uwn7a")
+amount = 0.2
+metadata/_custom_type_script = "uid://dcq08bs2gx6tq"
+
 [sub_resource type="Resource" id="Resource_uwn7a"]
 script = ExtResource("4_kvq05")
 attack = 1000.0
 cooldown = 1.0
 radius = 1.0
 ballistics = SubResource("Resource_2v63v")
+tags = Array[ExtResource("6_kvq05")]([SubResource("Resource_6sj7j")])
 modifiers_on_use = Array[ExtResource("3_xh4mn")]([])
 modifiers_on_hit = Array[ExtResource("3_xh4mn")]([])
 height = 0.0

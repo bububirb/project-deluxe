@@ -8,6 +8,7 @@ class_name ProjectileStats extends Resource
 @export var attack: int
 @export var radius: float
 @export var modifiers: Array[Modifier]
+@export var tags: Array[Tag]
 
 # Ballistics
 @export var distance: float

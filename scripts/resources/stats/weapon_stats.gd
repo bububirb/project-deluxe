@@ -4,6 +4,7 @@ class_name WeaponStats extends Stats
 @export var cooldown: float
 @export var radius: float
 @export var ballistics: Ballistics
+@export var tags: Array[Tag]
 
 @export_group("Modifiers", "modifiers_")
 @export var modifiers_on_use: Array[Modifier] # List of modifiers to apply on self when used
