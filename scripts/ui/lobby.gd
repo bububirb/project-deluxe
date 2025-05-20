@@ -15,6 +15,7 @@ const PLAYER_SCENE = "res://scenes/drafts/tuggy_player.tscn"
 @onready var joining_container: VBoxContainer = $CenterContainer/PanelContainer/MarginContainer/JoiningContainer
 @onready var name_input: LineEdit = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer2/NameInput
 @onready var address_input: LineEdit = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer3/AddressInput
+@onready var port_input: LineEdit = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer4/PortInput
 @onready var ip_label: RichTextLabel = $CenterContainer/PanelContainer/MarginContainer/HostingContainer/IPContainer/IPLabel
 
 func _ready() -> void:
@@ -56,7 +57,7 @@ func _update_ip_label() -> void:
 	ip_label.text = "\n".join(addresses)
 
 func _on_join_button_pressed() -> void:
-	var err = MultiplayerLobby.join_game(address_input.text)
+	var err = MultiplayerLobby.join_game(address_input.text, int(port_input.text))
 	if not err:
 		lobby_container.hide()
 		joining_container.show()

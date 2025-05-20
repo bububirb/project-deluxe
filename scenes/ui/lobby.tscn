@@ -90,7 +90,7 @@ placeholder_text = "Name"
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer"]
 layout_mode = 2
 
-[node name="IPLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer3"]
+[node name="AddressLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join Address:"
@@ -100,6 +100,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 placeholder_text = "127.0.0.1"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer"]
+layout_mode = 2
+
+[node name="PortLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Port:"
+
+[node name="PortInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "7000"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/LobbyContainer"]
 layout_mode = 2
