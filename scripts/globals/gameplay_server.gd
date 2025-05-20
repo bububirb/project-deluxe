@@ -26,17 +26,18 @@ func _burn_tick() -> void:
 				burn_damage += modifier.damage
 			_deal_fire_damage.rpc(player_id, int(burn_damage))
 
-func _on_projectile_player_hit(player_id: int, attack: int, modifiers: Array[Modifier]) -> void:
-	_apply_hit.rpc(player_id, attack, ModifierFactory.encode_modifiers(modifiers))
+func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier]) -> void:
+	_apply_hit.rpc(hit_id, attack, ModifierFactory.encode_modifiers(modifiers))
 
-func _on_aoe_projectile_hit(position: Vector3, radius: float, attack: int, modifiers: Array[Modifier]) -> void:
+func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier]) -> void:
 	var area_strength: Dictionary = _get_area_strength(position, radius)
-	for player_id in area_strength.keys():
+	area_strength.erase(player_id)
+	for hit_id in area_strength.keys():
 		var scaled_modifiers: Array[Modifier] = modifiers.duplicate()
 		for modifier: Modifier in scaled_modifiers:
 			if modifier.scalable_duration:
-				modifier.duration *= area_strength[player_id]
-		_apply_hit.rpc(player_id, attack * area_strength[player_id], ModifierFactory.encode_modifiers(scaled_modifiers))
+				modifier.duration *= area_strength[hit_id]
+		_apply_hit.rpc(hit_id, attack * area_strength[hit_id], ModifierFactory.encode_modifiers(scaled_modifiers))
 
 @rpc("authority", "call_local", "reliable")
 func _deal_fire_damage(player_id: int, damage: int) -> void:
