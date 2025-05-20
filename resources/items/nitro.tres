@@ -9,6 +9,7 @@
 script = ExtResource("3_ls8dk")
 speed_multiplier = 5.0
 duration = 0.5
+scalable_duration = false
 icon_path = "uid://b4sasyra7s4uv"
 type = 0
 metadata/_custom_type_script = "uid://bpjec3i147tkn"
