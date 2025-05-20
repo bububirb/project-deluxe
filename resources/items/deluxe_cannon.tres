@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://rqh1pl76s4yu"
 script = ExtResource("5_v3pbv")
 amount = -0.5
 duration = 7.5
+scalable_duration = true
 icon_path = "uid://dqfnlvbw813ya"
 type = 1
 metadata/_custom_type_script = "uid://bhjywgxowgk3h"

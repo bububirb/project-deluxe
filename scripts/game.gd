@@ -17,6 +17,7 @@ func _ready():
 # Called only on the server.
 func start_game():
 	# All peers are ready to receive RPCs in this scene.
+	GameplayServer.start.rpc()
 	pass
 
 @rpc("authority", "call_remote", "reliable")

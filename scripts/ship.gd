@@ -63,6 +63,7 @@ var active_item: Node:
 @onready var aiming_indicator: Decal = $AimingIndicator
 @onready var crosshair: Sprite3D = $Crosshair
 @onready var deck: Deck = $Deck
+@onready var burn: AnimatedSprite3D = $Burn
 
 @onready var bounds: Node3D = $Bounds
 @onready var front: Node3D = $Bounds/Front
@@ -138,7 +139,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	for ship: Ship in GameplayServer.get_ships():
+	var ships: Array[Ship] = GameplayServer.get_ships()
+	ships.erase(self)
+	for ship: Ship in ships:
 		if not closest_target:
 			closest_target = ship
 		elif position.distance_squared_to(ship.position) < position.distance_squared_to(closest_target.position):
@@ -259,6 +262,13 @@ func get_additive_defense_modifiers() -> Array[AdditiveDefenseModifier]:
 			additive_defense_modifiers.append(modifier)
 	return additive_defense_modifiers
 
+func get_burn_modifiers() -> Array[BurnModifier]:
+	var burn_modifiers: Array[BurnModifier]
+	for modifier: Modifier in modifiers:
+		if modifier is BurnModifier:
+			burn_modifiers.append(modifier)
+	return burn_modifiers
+
 func get_defense() -> int:
 	var defense_multiplier: float = 1.0
 	for additive_defense_modifier: AdditiveDefenseModifier in get_additive_defense_modifiers():
@@ -267,12 +277,17 @@ func get_defense() -> int:
 
 func add_modifier(modifier: Modifier):
 	modifiers.append(modifier)
+	if modifier is BurnModifier:
+		burn.show()
 
 func _modifier_tick(delta: float) -> void:
 	for modifier in modifiers:
 		modifier.duration -= delta
 		if modifier.duration <= 0.0:
 			modifiers.erase(modifier)
+			if modifier is BurnModifier:
+				if not get_burn_modifiers():
+					burn.hide()
 
 func _on_movement_joystick_analogic_change(move: Vector2) -> void:
 	if DisplayServer.has_feature(DisplayServer.FEATURE_TOUCHSCREEN):

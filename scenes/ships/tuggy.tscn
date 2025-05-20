@@ -135,6 +135,9 @@ properties/5/replication_mode = 2
 properties/6/path = NodePath("Turret:rotation")
 properties/6/spawn = true
 properties/6/replication_mode = 1
+properties/7/path = NodePath("Burn:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hx33e"]
 atlas = ExtResource("13_0nk4f")

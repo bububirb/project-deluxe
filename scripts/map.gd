@@ -21,6 +21,7 @@ func _ready() -> void:
 # Called only on the server.
 func start_game():
 	# All peers are ready to receive RPCs in this scene.
+	GameplayServer.start.rpc()
 	BuoyancySolver.reset_wave_time.rpc()
 	for i in MultiplayerLobby.players.keys().size():
 		var peer_id: int = MultiplayerLobby.players.keys()[i]
