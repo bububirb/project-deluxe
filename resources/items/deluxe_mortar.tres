@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=10 format=3 uid="uid://dl1kd0olljc5g"]
+[gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://dl1kd0olljc5g"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_sb4d0"]
 [ext_resource type="Texture2D" uid="uid://do17n7gul50r7" path="res://assets/icons/items/deluxe_mortar.png" id="2_8u5c1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bcfclipky5qs7" path="res://scripts/resources/ballistics/mortar_ballistics.gd" id="3_nrr8r"]
 [ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="3_qmutr"]
 [ext_resource type="Script" uid="uid://cmngjsfctp4ug" path="res://scripts/resources/modifiers/burn_modifier.gd" id="5_uty5t"]
+[ext_resource type="Script" uid="uid://g88d8y3dajgk" path="res://scripts/resources/tags/tag.gd" id="7_gyyg8"]
 
 [sub_resource type="Resource" id="Resource_uty5t"]
 script = ExtResource("3_nrr8r")
@@ -30,6 +31,7 @@ attack = 500.0
 cooldown = 10.0
 radius = 5.0
 ballistics = SubResource("Resource_uty5t")
+tags = Array[ExtResource("7_gyyg8")]([])
 modifiers_on_use = Array[ExtResource("3_qmutr")]([])
 modifiers_on_hit = Array[ExtResource("3_qmutr")]([SubResource("Resource_gyyg8")])
 height = 10.0
