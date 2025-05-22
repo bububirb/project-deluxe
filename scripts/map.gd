@@ -22,10 +22,11 @@ func _ready() -> void:
 func start_game():
 	# All peers are ready to receive RPCs in this scene.
 	GameplayServer.start.rpc()
-	BuoyancySolver.reset_wave_time.rpc()
 	for i in MultiplayerLobby.players.keys().size():
 		var peer_id: int = MultiplayerLobby.players.keys()[i]
 		add_player(peer_id, i)
+	await get_tree().create_timer(0.5)
+	BuoyancySolver.reset_wave_time.rpc()
 	pass
 
 func add_player(peer_id: int, spawn_position: int) -> void:
