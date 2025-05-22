@@ -45,8 +45,10 @@ func _process(_delta: float) -> void:
 	# ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
 	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot_x.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)
 	
-	if Input.is_action_just_pressed("aim"):
-		orbit_sensitivity = AIMING_SENSITIVITY
+	if Input.is_action_pressed("shoot") or Input.is_action_pressed("aim"):
+		orbit_sensitivity = 0.0
+	else:
+		orbit_sensitivity = DEFAULT_SENSITIVITY
 	
 	if Input.is_action_pressed("aim"):
 		is_zooming_out = false

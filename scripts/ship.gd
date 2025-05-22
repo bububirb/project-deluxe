@@ -11,6 +11,7 @@ const MAX_SUBMERSION: float = 0.15
 const MAX_SPEED_DRAG: float = 4.0
 
 const AIMING_SENSITIVITY: float = 0.001
+const AIMING_RANGE: float = 2.0
 
 @export var linear_loss: float = 0.75
 @export var acceleration: float = 1.0
@@ -150,18 +151,15 @@ func _physics_process(delta: float) -> void:
 		var current_position = global_position
 		current_position.y = 0.0
 		var target_position = closest_target.global_position
+		var offset_vector = Vector3(-aiming_offset.x * AIMING_RANGE, -aiming_offset.y * AIMING_RANGE, -aiming_offset.y * AIMING_RANGE).rotated(Vector3.UP, turret.global_rotation.y)
 		target_position.y = 0.0
 		aiming_distance = current_position.distance_to(target_position)
-		aiming_height_offset = closest_target.global_position.y - item_instancer.global_position.y - global_position.y + MAX_SUBMERSION
+		aiming_height_offset = closest_target.turret.global_position.y - item_instancer.global_position.y - aiming_offset.y
 		turret.look_at(closest_target.position, Vector3(0.0, 1.0, 0.0), true)
 		turret.rotation.x = 0.0
 		turret.rotation.z = 0.0
-	
-	if active_item and closest_target:
-		# crosshair.global_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * active_item.stats.max_range * 0.1)).rotated(Vector3.UP, turret.global_rotation.y)
-		crosshair.global_position = closest_target.global_position
-		aiming_position = global_position + Vector3(0.0, 0.0, aiming_distance - (aiming_offset.y * 5.0)).rotated(Vector3.UP, turret.global_rotation.y)
-		aiming_position.y = aiming_height_offset
+		aiming_position = aiming_position.move_toward(closest_target.turret.global_position + offset_vector, delta * 25.0)
+		crosshair.global_position = aiming_position
 	
 	
 	if Input.is_action_just_pressed("select_item_1"):
@@ -198,9 +196,9 @@ func _unhandled_input(_event: InputEvent) -> void:
 		
 		if Input.is_action_just_released("shoot"):
 			if active_item.mode == Globals.ItemMode.ACTIONABLE:
-				aiming_offset = Vector2.ZERO
 				aiming_indicator.hide()
 				active_item.execute()
+				aiming_offset = Vector2.ZERO
 
 func decelerate(delta):
 	velocity.x = move_toward(velocity.x, 0, acceleration * delta * linear_loss)

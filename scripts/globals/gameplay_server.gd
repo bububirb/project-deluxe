@@ -148,8 +148,14 @@ func shoot(player_id: int, item_index: int) -> void:
 	
 	var projectile_stats: ProjectileStats = ProjectileStats.new()
 	
-	projectile_stats.position = ship.item_instancer.global_position
-	projectile_stats.rotation.y = ship.item_instancer.global_rotation.y
+	var start_position: Vector3 = ship.item_instancer.global_position
+	var target_position: Vector3 = ship.aiming_position
+	
+	var start_position_flat: Vector2 = Vector2(start_position.x, start_position.z)
+	var target_position_flat: Vector2 = Vector2(target_position.x, target_position.z)
+	
+	projectile_stats.position = start_position
+	projectile_stats.rotation.y = PI / 2.0 - (target_position_flat - start_position_flat).angle()
 	projectile_stats.player_id = player_id
 	
 	projectile_stats.item_class = item.item_class
