@@ -1,8 +1,12 @@
 extends Control
 
+@export var local: Control
+@export var remote: Control
 @export var item_display: VBoxContainer
 @export var vitals_overlay: TextureRect
 @export var hp_bar: ProgressBar
+@export var remote_hp_bar_container: CenterContainer
+@export var remote_hp_bar: ProgressBar
 @export var modifier_container: HBoxContainer
 
 const ITEM_CONTAINER_SCENE = preload("res://scenes/ui/item_container.tscn")
@@ -11,12 +15,12 @@ const MODIFIER_DISPLAY_SCENE = preload("res://scenes/ui/modifier_display.tscn")
 func get_item(index: int) -> PanelContainer:
 	return item_display.get_child(index)
 
-func _ready() -> void:
-	var authority = get_multiplayer_authority()
-	var player_name = multiplayer.get_unique_id()
-	if not authority == player_name:
-		hide()
-		return
+#func _ready() -> void:
+	#var authority = get_multiplayer_authority()
+	#var player_name = multiplayer.get_unique_id()
+	#if authority != player_name:
+		#remote.hide()
+		#return
 
 func trigger_health_effect(health: int = 0):
 	var overlay_color: Color = Color.RED
@@ -43,6 +47,7 @@ func _on_ship_item_instanced(item: Item) -> void:
 
 func set_hp(value: int) -> void:
 	hp_bar.value = value
+	remote_hp_bar.value = value
 
 func add_modifier(modifier: Modifier) -> void:
 	var modifier_display = MODIFIER_DISPLAY_SCENE.instantiate()

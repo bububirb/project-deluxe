@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4jqwt"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("item_display", "vitals_overlay", "hp_bar", "modifier_container")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,12 +15,25 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("2_n808k")
-item_display = NodePath("ItemDisplayContainer/ItemDisplay")
-vitals_overlay = NodePath("VitalsOverlay")
-hp_bar = NodePath("BottomContainer/HPBarContainer/HPBar")
-modifier_container = NodePath("BottomContainer/ModifierContainer")
+local = NodePath("Local")
+remote = NodePath("Remote")
+item_display = NodePath("Local/ItemDisplayContainer/ItemDisplay")
+vitals_overlay = NodePath("Local/VitalsOverlay")
+hp_bar = NodePath("Local/BottomContainer/HPBarContainer/HPBar")
+remote_hp_bar_container = NodePath("Remote/RemoteHPBarContainer")
+remote_hp_bar = NodePath("Remote/RemoteHPBarContainer/RemoteHPBar")
+modifier_container = NodePath("Local/BottomContainer/ModifierContainer")
 
-[node name="VitalsOverlay" type="TextureRect" parent="."]
+[node name="Local" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VitalsOverlay" type="TextureRect" parent="Local"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_4jqwt")
 layout_mode = 1
@@ -32,28 +45,28 @@ grow_vertical = 2
 texture = ExtResource("3_kicr4")
 expand_mode = 1
 
-[node name="StatusBar" type="PanelContainer" parent="."]
+[node name="StatusBar" type="PanelContainer" parent="Local"]
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -17.5
-offset_right = 17.5
-offset_bottom = 20.0
+offset_left = -36.0
+offset_right = 36.0
+offset_bottom = 28.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Local/StatusBar"]
 layout_mode = 2
 
-[node name="MatchTimer" type="Label" parent="StatusBar/HBoxContainer"]
+[node name="MatchTimer" type="Label" parent="Local/StatusBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "5:00"
 horizontal_alignment = 1
 script = ExtResource("2_2y50y")
 
-[node name="ItemDisplayContainer" type="PanelContainer" parent="."]
+[node name="ItemDisplayContainer" type="PanelContainer" parent="Local"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -67,12 +80,12 @@ offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ItemDisplay" type="VBoxContainer" parent="ItemDisplayContainer"]
+[node name="ItemDisplay" type="VBoxContainer" parent="Local/ItemDisplayContainer"]
 layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 1
 
-[node name="BottomContainer" type="VBoxContainer" parent="."]
+[node name="BottomContainer" type="VBoxContainer" parent="Local"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -80,21 +93,45 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -100.0
-offset_top = -48.0
+offset_top = -36.0
 offset_right = 100.0
-offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ModifierContainer" type="HBoxContainer" parent="BottomContainer"]
+[node name="ModifierContainer" type="HBoxContainer" parent="Local/BottomContainer"]
 layout_mode = 2
 
-[node name="HPBarContainer" type="PanelContainer" parent="BottomContainer"]
+[node name="HPBarContainer" type="PanelContainer" parent="Local/BottomContainer"]
 layout_mode = 2
 
-[node name="HPBar" type="ProgressBar" parent="BottomContainer/HPBarContainer"]
+[node name="HPBar" type="ProgressBar" parent="Local/BottomContainer/HPBarContainer"]
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 2
+theme_type_variation = &"HPBar"
+max_value = 1000.0
+value = 1000.0
+rounded = true
+
+[node name="Remote" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RemoteHPBarContainer" type="CenterContainer" parent="Remote"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 32.0
+use_top_left = true
+
+[node name="RemoteHPBar" type="ProgressBar" parent="Remote/RemoteHPBarContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+mouse_filter = 2
 theme_type_variation = &"HPBar"
 max_value = 1000.0
 value = 1000.0

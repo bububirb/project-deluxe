@@ -27,20 +27,30 @@ func _ready() -> void:
 		controls.hide()
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
 	
+	hud.hp_bar.max_value = ship.max_hp
+	hud.hp_bar.value = ship.hp
+	hud.remote_hp_bar.max_value = ship.max_hp
+	hud.remote_hp_bar.value = ship.hp
+	
 	if not is_multiplayer_authority():
 		# FIXME: Dynamically instance controls
 		controls.queue_free()
+		hud.local.hide()
+		hud.remote.show()
 		return
-	hud.show()
-	hud.hp_bar.max_value = ship.max_hp
-	hud.hp_bar.value = ship.hp
+	
+	hud.remote.hide()
 	
 	ship.item_selected.connect(_on_ship_item_selected)
 	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
 
 func _process(_delta: float) -> void:
-	if not is_multiplayer_authority(): return
+	var authority = get_multiplayer_authority()
+	var player_name = multiplayer.get_unique_id()
+	if authority != player_name:
+		var unprojected_position: Vector2 = get_viewport().get_camera_3d().unproject_position(GameplayServer.get_ship(authority).global_transform.origin)
+		hud.remote_hp_bar_container.position = unprojected_position
 	
 	# ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
 	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot_x.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)

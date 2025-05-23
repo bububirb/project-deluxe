@@ -31,7 +31,6 @@ update_mode = 1
 size = Vector3(25, 12, 25)
 
 [node name="HUD" parent="." instance=ExtResource("4_hm1bh")]
-visible = false
 
 [node name="Controls" type="Control" parent="."]
 layout_mode = 3
