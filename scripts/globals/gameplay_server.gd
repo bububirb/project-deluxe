@@ -19,15 +19,17 @@ func _process(delta: float) -> void:
 
 func _burn_tick() -> void:
 	for player_id: int in get_player_ids():
-		var burn_modifiers: Array[BurnModifier] = get_ship(player_id).get_burn_modifiers()
+		var ship: Ship = get_ship(player_id)
+		var burn_modifiers: Array[BurnModifier] = ship.get_burn_modifiers()
 		if burn_modifiers:
 			var burn_damage: float = 0.0
-			for modifier in get_ship(player_id).get_burn_modifiers():
+			for modifier in burn_modifiers:
 				burn_damage += modifier.damage
+			burn_damage = Math.calculate_damage(burn_damage, ship)
 			_deal_fire_damage.rpc(player_id, int(burn_damage))
 
 func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
-	var damage: int = Math.calculate_damage(attack, get_ship(hit_id).get_defense())
+	var damage: int = Math.calculate_damage(attack, get_ship(hit_id))
 	_apply_hit.rpc(player_id, hit_id, damage, ModifierFactory.encode_modifiers(modifiers), TagFactory.encode_tags(tags))
 
 func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
@@ -38,7 +40,7 @@ func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, at
 		for modifier: Modifier in scaled_modifiers:
 			if modifier.scalable_duration:
 				modifier.duration *= area_strength[hit_id]
-		var damage: int = Math.calculate_damage(attack * area_strength[hit_id], get_ship(hit_id).get_defense())
+		var damage: int = Math.calculate_damage(attack * area_strength[hit_id], get_ship(hit_id))
 		_apply_hit.rpc(player_id, hit_id, damage, ModifierFactory.encode_modifiers(scaled_modifiers), TagFactory.encode_tags(tags))
 
 @rpc("authority", "call_local", "reliable")
@@ -95,7 +97,7 @@ func _apply_healing(player_id: int, healing: int, encoded_modifiers: Array[Dicti
 func _heal(player_id: int, healing: int) -> void:
 	var ship: Ship = get_ship(player_id)
 	var hud: Node = get_player(player_id).hud
-	ship.hp += healing
+	ship.hp += Math.calculate_healing(healing, ship)
 	hud.set_hp(ship.hp)
 
 func _get_area_strength(position: Vector3, radius: float) -> Dictionary:
