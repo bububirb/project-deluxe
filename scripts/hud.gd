@@ -4,9 +4,9 @@ extends Control
 @export var remote: Control
 @export var item_display: VBoxContainer
 @export var vitals_overlay: TextureRect
-@export var hp_bar: ProgressBar
+@export var hp_bar: HPBar
 @export var remote_hp_bar_container: CenterContainer
-@export var remote_hp_bar: ProgressBar
+@export var remote_hp_bar: HPBar
 @export var modifier_container: HBoxContainer
 
 const ITEM_CONTAINER_SCENE = preload("res://scenes/ui/item_container.tscn")

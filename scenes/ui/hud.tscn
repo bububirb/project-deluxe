@@ -1,10 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://budywedhvkcoa"]
+[gd_scene load_steps=11 format=3 uid="uid://budywedhvkcoa"]
 
 [ext_resource type="Script" uid="uid://cor0xtkfi5p1q" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
 [ext_resource type="Script" uid="uid://b1ruyu48x5o0" path="res://scripts/hud.gd" id="2_n808k"]
 [ext_resource type="Texture2D" uid="uid://cy0u28ims5oqa" path="res://assets/textures/vfx/vitals_overlay_mask.png" id="3_kicr4"]
+[ext_resource type="PackedScene" uid="uid://byh0iv2dj4kpu" path="res://scenes/ui/hp_bar.tscn" id="4_8qguk"]
+[ext_resource type="StyleBox" uid="uid://my40b0qvgb78" path="res://resources/style_boxes/local_hp_bar_fill.tres" id="5_136eg"]
+[ext_resource type="StyleBox" uid="uid://dm45b782cyivo" path="res://resources/style_boxes/local_hp_bar_panel.tres" id="5_oj5la"]
+[ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="7_gss2c"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4jqwt"]
+
+[sub_resource type="FontVariation" id="FontVariation_sxha3"]
+base_font = ExtResource("7_gss2c")
+variation_opentype = {
+1869640570: 14,
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_h022r"]
+font = SubResource("FontVariation_sxha3")
+outline_size = 2
+outline_color = Color(0.05, 0.2, 0.05, 1)
 
 [node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container")]
 layout_mode = 3
@@ -19,7 +35,7 @@ local = NodePath("Local")
 remote = NodePath("Remote")
 item_display = NodePath("Local/ItemDisplayContainer/ItemDisplay")
 vitals_overlay = NodePath("Local/VitalsOverlay")
-hp_bar = NodePath("Local/BottomContainer/HPBarContainer/HPBar")
+hp_bar = NodePath("Local/BottomContainer/HPBar")
 remote_hp_bar_container = NodePath("Remote/RemoteHPBarContainer")
 remote_hp_bar = NodePath("Remote/RemoteHPBarContainer/RemoteHPBar")
 modifier_container = NodePath("Local/BottomContainer/ModifierContainer")
@@ -93,27 +109,29 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -100.0
-offset_top = -36.0
+offset_top = -48.0
 offset_right = 100.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="ModifierContainer" type="HBoxContainer" parent="Local/BottomContainer"]
 layout_mode = 2
 
-[node name="HPBarContainer" type="PanelContainer" parent="Local/BottomContainer"]
+[node name="HPBar" parent="Local/BottomContainer" instance=ExtResource("4_8qguk")]
 layout_mode = 2
-
-[node name="HPBar" type="ProgressBar" parent="Local/BottomContainer/HPBarContainer"]
-custom_minimum_size = Vector2(192, 0)
-layout_mode = 2
-theme_type_variation = &"HPBar"
-max_value = 1000.0
+theme_override_styles/panel = ExtResource("5_oj5la")
 value = 1000.0
-rounded = true
+max_value = 1000.0
+
+[node name="Bar" parent="Local/BottomContainer/HPBar" index="0"]
+custom_minimum_size = Vector2(96, 22)
+theme_override_styles/fill = ExtResource("5_136eg")
+
+[node name="Label" parent="Local/BottomContainer/HPBar" index="1"]
+label_settings = SubResource("LabelSettings_h022r")
 
 [node name="Remote" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,11 +146,9 @@ offset_right = 200.0
 offset_bottom = 32.0
 use_top_left = true
 
-[node name="RemoteHPBar" type="ProgressBar" parent="Remote/RemoteHPBarContainer"]
-custom_minimum_size = Vector2(192, 0)
+[node name="RemoteHPBar" parent="Remote/RemoteHPBarContainer" instance=ExtResource("4_8qguk")]
 layout_mode = 2
-mouse_filter = 2
-theme_type_variation = &"HPBar"
-max_value = 1000.0
 value = 1000.0
-rounded = true
+max_value = 1000.0
+
+[editable path="Local/BottomContainer/HPBar"]

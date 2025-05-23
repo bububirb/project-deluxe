@@ -2,6 +2,7 @@ extends Node3D
 
 const DEFAULT_SENSITIVITY: float = 0.001
 const AIMING_SENSITIVITY: float = 0.0001
+const REMOTE_HP_BAR_OFFSET: Vector3 = Vector3(0.0, 1.2, 0.0)
 
 var spawn: Transform3D # Set by Game
 
@@ -49,7 +50,7 @@ func _process(_delta: float) -> void:
 	var authority = get_multiplayer_authority()
 	var player_name = multiplayer.get_unique_id()
 	if authority != player_name:
-		var unprojected_position: Vector2 = get_viewport().get_camera_3d().unproject_position(GameplayServer.get_ship(authority).global_transform.origin)
+		var unprojected_position: Vector2 = get_viewport().get_camera_3d().unproject_position(GameplayServer.get_ship(authority).global_position + REMOTE_HP_BAR_OFFSET)
 		hud.remote_hp_bar_container.position = unprojected_position
 	
 	# ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
