@@ -46,6 +46,10 @@ func _ready() -> void:
 	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
 
+func _exit_tree() -> void:
+	if DisplayServer.has_hardware_keyboard():
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+
 func _process(_delta: float) -> void:
 	var authority = get_multiplayer_authority()
 	var player_name = multiplayer.get_unique_id()

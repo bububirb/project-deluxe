@@ -4,11 +4,14 @@ const BURN_TICK_DURATION: float = 1.0
 var burn_counter: float = 0.0
 
 func _ready() -> void:
-	set_process(false)
+	stop()
 
 @rpc("authority", "call_local", "reliable")
 func start() -> void:
 	set_process(true)
+
+func stop() -> void:
+	set_process(false)
 
 func _process(delta: float) -> void:
 	if multiplayer.is_server():

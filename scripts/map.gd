@@ -1,5 +1,7 @@
 extends Node3D
 
+const LOBBY_SCENE_PATH: String = "res://scenes/ui/lobby.tscn"
+
 @export var player_scene: PackedScene
 
 @onready var player: Node3D# = $Player
@@ -11,6 +13,7 @@ func _ready() -> void:
 		ProjectSettings.set_setting("input_devices/pointing/emulate_mouse_from_touch", false)
 	MultiplayerLobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 	
+	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
 	#player.ship.item_selected.connect(_on_ship_item_selected)
 	#player.ship.item_executed.connect(_on_ship_item_executed)
 	
@@ -33,3 +36,7 @@ func add_player(peer_id: int, spawn_position: int) -> void:
 	player_node.name = str(peer_id)
 	player_node.spawn = spawn_positions.get_child(spawn_position).transform
 	add_child(player_node)
+
+func _on_multiplayer_lobby_server_disconnected() -> void:
+	GameplayServer.stop()
+	get_tree().change_scene_to_file(LOBBY_SCENE_PATH)
