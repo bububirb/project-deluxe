@@ -79,6 +79,7 @@ func _ready() -> void:
 	crosshair.show()
 
 func _physics_process(delta: float) -> void:
+	_modifier_tick(delta)
 	if not is_multiplayer_authority():
 		position = lerp(position, sync_position, 0.5)
 		rotation = lerp(rotation, sync_rotation, 0.5)
@@ -122,8 +123,6 @@ func _physics_process(delta: float) -> void:
 	local_velocity = local_velocity_xz
 	# local_velocity.x = move_toward(local_velocity.x, 0.0, motion_anisotropy * delta)
 	velocity = transform.basis * local_velocity
-	
-	_modifier_tick(delta)
 	
 	_clamp_submersion()
 	if DisplayServer.has_hardware_keyboard():
