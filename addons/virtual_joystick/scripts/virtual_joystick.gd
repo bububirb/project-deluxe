@@ -48,10 +48,10 @@ func _ready() -> void:
 	touch.position = -radius
 	touch.released.connect(analogic_released.emit)
 
-	if ProjectSettings.get_setting("input_devices/pointing/emulate_mouse_from_touch"):
-		printerr("The Project Setting 'emulate_mouse_from_touch' should be set to False")
-	if not ProjectSettings.get_setting("input_devices/pointing/emulate_touch_from_mouse"):
-		printerr("The Project Setting 'emulate_touch_from_mouse' should be set to True")
+	#if ProjectSettings.get_setting("input_devices/pointing/emulate_mouse_from_touch"):
+		#printerr("The Project Setting 'emulate_mouse_from_touch' should be set to False")
+	#if not ProjectSettings.get_setting("input_devices/pointing/emulate_touch_from_mouse"):
+		#printerr("The Project Setting 'emulate_touch_from_mouse' should be set to True")
 	
 	if stick_pressed == null:
 		stick_pressed = preload("res://addons/virtual_joystick/sprites/stick_pressed.png")
