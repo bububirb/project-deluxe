@@ -25,7 +25,6 @@ func start_game():
 	for i in MultiplayerLobby.players.keys().size():
 		var peer_id: int = MultiplayerLobby.players.keys()[i]
 		add_player(peer_id, i)
-	await get_tree().create_timer(0.5)
 	BuoyancySolver.reset_wave_time.rpc()
 	pass
 
