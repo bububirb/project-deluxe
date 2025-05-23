@@ -50,7 +50,10 @@ func _process(_delta: float) -> void:
 	var authority = get_multiplayer_authority()
 	var player_name = multiplayer.get_unique_id()
 	if authority != player_name:
-		var unprojected_position: Vector2 = get_viewport().get_camera_3d().unproject_position(GameplayServer.get_ship(authority).global_position + REMOTE_HP_BAR_OFFSET)
+		var viewport_camera = get_viewport().get_camera_3d()
+		var is_behind = viewport_camera.is_position_behind(GameplayServer.get_ship(authority).global_position + REMOTE_HP_BAR_OFFSET)
+		var unprojected_position: Vector2 = viewport_camera.unproject_position(GameplayServer.get_ship(authority).global_position + REMOTE_HP_BAR_OFFSET)
+		hud.remote_hp_bar_container.visible = !is_behind
 		hud.remote_hp_bar_container.position = unprojected_position
 	
 	# ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
