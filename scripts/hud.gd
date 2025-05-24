@@ -13,6 +13,7 @@ const ACUUMULATION_FADE_TIME: float = 0.5
 @export var modifier_container: HBoxContainer
 @export var damage_display: DamageDisplay
 @export var accumulated_damage_label: DamageLabel
+@export var name_label: Label
 
 var last_hit_time: float = 0.0
 var accumulated_damage: int = 0
@@ -26,6 +27,7 @@ func get_item(index: int) -> PanelContainer:
 
 func _ready() -> void:
 	accumulated_damage_label.modulate.a = 0.0
+	name_label.text = MultiplayerLobby.players[get_multiplayer_authority()].name
 
 func _process(delta: float) -> void:
 	last_hit_time += delta
