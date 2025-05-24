@@ -9,6 +9,11 @@ extends Control
 @export var remote_hp_bar: HPBar
 @export var modifier_container: HBoxContainer
 @export var damage_display: DamageDisplay
+@export var accumulated_damage_label: DamageLabel
+
+var accumulated_damage: int = 0
+var last_hit_time: float = 0.0
+var ACCUMULATION_RESET_TIME: float = 4.0
 
 const ITEM_CONTAINER_SCENE = preload("res://scenes/ui/item_container.tscn")
 const MODIFIER_DISPLAY_SCENE = preload("res://scenes/ui/modifier_display.tscn")
@@ -16,12 +21,14 @@ const MODIFIER_DISPLAY_SCENE = preload("res://scenes/ui/modifier_display.tscn")
 func get_item(index: int) -> PanelContainer:
 	return item_display.get_child(index)
 
-#func _ready() -> void:
-	#var authority = get_multiplayer_authority()
-	#var player_name = multiplayer.get_unique_id()
-	#if authority != player_name:
-		#remote.hide()
-		#return
+func _ready() -> void:
+	update_accumulated_damage_label()
+
+func _process(delta: float) -> void:
+	last_hit_time += delta
+	if last_hit_time > ACCUMULATION_RESET_TIME:
+		accumulated_damage = 0
+		update_accumulated_damage_label()
 
 func trigger_health_effect(health: int = 0):
 	var overlay_color: Color = Color.RED
@@ -47,9 +54,20 @@ func _on_ship_item_instanced(item: Item) -> void:
 	item_container.item = item
 
 func set_hp(value: int) -> void:
-	damage_display.display_damage(value - int(hp_bar.value))
+	var damage: int = value - int(hp_bar.value)
+	damage_display.display_damage(damage)
+	
+	last_hit_time = 0.0
+	accumulated_damage += damage
+	update_accumulated_damage_label()
+	
 	hp_bar.value = value
 	remote_hp_bar.value = value
+
+func update_accumulated_damage_label() -> void:
+	accumulated_damage_label.value = accumulated_damage
+	if accumulated_damage == 0:
+		accumulated_damage_label.modulate = Color.TRANSPARENT
 
 func add_modifier(modifier: Modifier) -> void:
 	var modifier_display = MODIFIER_DISPLAY_SCENE.instantiate()
