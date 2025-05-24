@@ -1,5 +1,8 @@
 extends Control
 
+const ACCUMULATION_RESET_TIME: float = 4.0
+const ACUUMULATION_FADE_TIME: float = 0.5
+
 @export var local: Control
 @export var remote: Control
 @export var item_display: VBoxContainer
@@ -11,9 +14,9 @@ extends Control
 @export var damage_display: DamageDisplay
 @export var accumulated_damage_label: DamageLabel
 
-var accumulated_damage: int = 0
 var last_hit_time: float = 0.0
-var ACCUMULATION_RESET_TIME: float = 4.0
+var accumulated_damage: int = 0
+var accumulated_damage_tween: Tween
 
 const ITEM_CONTAINER_SCENE = preload("res://scenes/ui/item_container.tscn")
 const MODIFIER_DISPLAY_SCENE = preload("res://scenes/ui/modifier_display.tscn")
@@ -22,7 +25,7 @@ func get_item(index: int) -> PanelContainer:
 	return item_display.get_child(index)
 
 func _ready() -> void:
-	update_accumulated_damage_label()
+	accumulated_damage_label.modulate.a = 0.0
 
 func _process(delta: float) -> void:
 	last_hit_time += delta
@@ -65,9 +68,16 @@ func set_hp(value: int) -> void:
 	remote_hp_bar.value = value
 
 func update_accumulated_damage_label() -> void:
-	accumulated_damage_label.value = accumulated_damage
-	if accumulated_damage == 0:
-		accumulated_damage_label.modulate = Color.TRANSPARENT
+	if accumulated_damage_tween:
+		accumulated_damage_tween.kill()
+		accumulated_damage_tween = null
+	
+	if accumulated_damage != 0:
+		accumulated_damage_label.value = accumulated_damage
+		accumulated_damage_label.modulate.a = 1.0
+	else:
+		accumulated_damage_tween = create_tween()
+		accumulated_damage_tween.tween_property(accumulated_damage_label, "modulate:a", 0.0, ACUUMULATION_FADE_TIME)
 
 func add_modifier(modifier: Modifier) -> void:
 	var modifier_display = MODIFIER_DISPLAY_SCENE.instantiate()

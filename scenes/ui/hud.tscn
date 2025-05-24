@@ -154,6 +154,7 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_mj13f")
 horizontal_alignment = 1
+clip_text = true
 script = ExtResource("9_mj13f")
 permanent = true
 value = 0
