@@ -280,11 +280,20 @@ func add_modifier(modifier: Modifier):
 func _modifier_tick(delta: float) -> void:
 	for modifier in modifiers:
 		modifier.duration -= delta
+		if modifier is BurnModifier:
+			modifier.burn_counter += delta
+			if modifier.burn_counter >= modifier.BURN_TICK_DURATION:
+				_fire_tick(modifier)
 		if modifier.duration <= 0.0:
 			modifiers.erase(modifier)
 			if modifier is BurnModifier:
 				if not get_burn_modifiers():
 					burn.hide()
+
+func _fire_tick(burn_modifier: BurnModifier) -> void:
+	burn_modifier.burn_counter = 0.0
+	var burn_damage = Math.calculate_damage(burn_modifier.damage, self)
+	GameplayServer._deal_fire_damage(get_multiplayer_authority(), burn_damage)
 
 func _on_movement_joystick_analogic_change(move: Vector2) -> void:
 	if DisplayServer.has_feature(DisplayServer.FEATURE_TOUCHSCREEN):

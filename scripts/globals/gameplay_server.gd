@@ -13,12 +13,6 @@ func start() -> void:
 func stop() -> void:
 	set_process(false)
 
-func _process(delta: float) -> void:
-	burn_counter += delta
-	if burn_counter >= BURN_TICK_DURATION:
-		burn_counter = 0.0
-		_burn_tick()
-
 func _burn_tick() -> void:
 	for player_id: int in get_player_ids():
 		var ship: Ship = get_ship(player_id)
@@ -32,7 +26,7 @@ func _burn_tick() -> void:
 
 func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var damage: int = Math.calculate_damage(attack, get_ship(hit_id))
-	_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
+	#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
 	_apply_hit.rpc(player_id, hit_id, damage, ModifierFactory.encode_modifiers(modifiers), TagFactory.encode_tags(tags))
 
 func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
@@ -44,7 +38,7 @@ func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, at
 			if modifier.scalable_duration:
 				modifier.duration *= area_strength[hit_id]
 		var damage: int = Math.calculate_damage(attack * area_strength[hit_id], get_ship(hit_id))
-		_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
+		#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
 		_apply_hit.rpc(player_id, hit_id, damage, ModifierFactory.encode_modifiers(scaled_modifiers), TagFactory.encode_tags(tags))
 
 @rpc("authority", "call_remote", "reliable")
