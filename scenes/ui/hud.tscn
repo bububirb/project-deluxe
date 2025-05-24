@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://budywedhvkcoa"]
+[gd_scene load_steps=12 format=3 uid="uid://budywedhvkcoa"]
 
 [ext_resource type="Script" uid="uid://cor0xtkfi5p1q" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
 [ext_resource type="Script" uid="uid://b1ruyu48x5o0" path="res://scripts/hud.gd" id="2_n808k"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://my40b0qvgb78" path="res://resources/style_boxes/local_hp_bar_fill.tres" id="5_136eg"]
 [ext_resource type="StyleBox" uid="uid://dm45b782cyivo" path="res://resources/style_boxes/local_hp_bar_panel.tres" id="5_oj5la"]
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="7_gss2c"]
+[ext_resource type="Script" uid="uid://d0aq0327bb5w8" path="res://scripts/ui/hud/damage_display.gd" id="8_h022r"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4jqwt"]
 
@@ -22,7 +23,7 @@ font = SubResource("FontVariation_sxha3")
 outline_size = 2
 outline_color = Color(0.05, 0.2, 0.05, 1)
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,6 +40,7 @@ hp_bar = NodePath("Local/BottomContainer/HPBar")
 remote_hp_bar_container = NodePath("Remote/RemoteHPBarContainer")
 remote_hp_bar = NodePath("Remote/RemoteHPBarContainer/RemoteHPBar")
 modifier_container = NodePath("Local/BottomContainer/ModifierContainer")
+damage_display = NodePath("Remote/RemoteHPBarContainer/DamageDisplayControl/DamageDisplay")
 
 [node name="Local" type="Control" parent="."]
 layout_mode = 1
@@ -150,5 +152,21 @@ use_top_left = true
 layout_mode = 2
 value = 1000.0
 max_value = 1000.0
+
+[node name="DamageDisplayControl" type="Control" parent="Remote/RemoteHPBarContainer"]
+layout_mode = 2
+
+[node name="DamageDisplay" type="VBoxContainer" parent="Remote/RemoteHPBarContainer/DamageDisplayControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = 8.0
+offset_right = -56.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("8_h022r")
+metadata/_custom_type_script = "uid://d0aq0327bb5w8"
 
 [editable path="Local/BottomContainer/HPBar"]

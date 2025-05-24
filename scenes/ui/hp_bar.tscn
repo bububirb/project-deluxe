@@ -1,18 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://byh0iv2dj4kpu"]
+[gd_scene load_steps=5 format=3 uid="uid://byh0iv2dj4kpu"]
 
 [ext_resource type="Script" uid="uid://dkl0skotibgi2" path="res://scripts/ui/hud/hp_bar.gd" id="1_pw20h"]
 [ext_resource type="StyleBox" uid="uid://dtr0fvb1vr5k0" path="res://resources/style_boxes/remote_hp_bar_panel.tres" id="1_sxha3"]
-[ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="2_wupjp"]
-
-[sub_resource type="FontVariation" id="FontVariation_sxha3"]
-base_font = ExtResource("2_wupjp")
-variation_opentype = {
-1869640570: 14,
-2003265652: 700
-}
+[ext_resource type="FontVariation" uid="uid://cncutiwvtk0ww" path="res://assets/fonts/inter_bold.tres" id="3_sxha3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8pvdg"]
-font = SubResource("FontVariation_sxha3")
+font = ExtResource("3_sxha3")
 font_size = 12
 outline_size = 1
 outline_color = Color(0.05, 0.2, 0.05, 1)

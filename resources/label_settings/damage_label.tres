@@ -1,0 +1,16 @@
+[gd_resource type="LabelSettings" load_steps=3 format=3 uid="uid://ctqvr061fjaxf"]
+
+[ext_resource type="FontVariation" uid="uid://cncutiwvtk0ww" path="res://assets/fonts/inter_bold.tres" id="1_b22ph"]
+
+[sub_resource type="FontVariation" id="FontVariation_oe6gw"]
+base_font = ExtResource("1_b22ph")
+variation_opentype = {
+1869640570: 14,
+2003265652: 700
+}
+
+[resource]
+font = SubResource("FontVariation_oe6gw")
+font_size = 12
+outline_size = 2
+outline_color = Color(0.13, 0.13, 0.13, 1)

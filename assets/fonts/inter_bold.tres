@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cncutiwvtk0ww"]
+
+[ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="1_yyafc"]
+
+[resource]
+base_font = ExtResource("1_yyafc")
+variation_opentype = {
+1869640570: 14,
+2003265652: 700
+}

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cccb8h68ql5cg"]
+
+[ext_resource type="LabelSettings" uid="uid://ctqvr061fjaxf" path="res://resources/label_settings/damage_label.tres" id="1_w1k4x"]
+[ext_resource type="Script" uid="uid://emqpc5u81psx" path="res://scripts/ui/hud/damage_label.gd" id="2_w1k4x"]
+
+[node name="DamageLabel" type="Label"]
+text = "1000"
+label_settings = ExtResource("1_w1k4x")
+script = ExtResource("2_w1k4x")

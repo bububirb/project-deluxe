@@ -8,6 +8,7 @@ extends Control
 @export var remote_hp_bar_container: CenterContainer
 @export var remote_hp_bar: HPBar
 @export var modifier_container: HBoxContainer
+@export var damage_display: DamageDisplay
 
 const ITEM_CONTAINER_SCENE = preload("res://scenes/ui/item_container.tscn")
 const MODIFIER_DISPLAY_SCENE = preload("res://scenes/ui/modifier_display.tscn")
@@ -46,6 +47,7 @@ func _on_ship_item_instanced(item: Item) -> void:
 	item_container.item = item
 
 func set_hp(value: int) -> void:
+	damage_display.display_damage(value - int(hp_bar.value))
 	hp_bar.value = value
 	remote_hp_bar.value = value
 

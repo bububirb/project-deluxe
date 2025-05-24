@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvhg0np41hmsm"]
+
+[ext_resource type="Script" uid="uid://d0aq0327bb5w8" path="res://scripts/ui/hud/damage_display.gd" id="1_dsajh"]
+
+[node name="DamageDisplay" type="VBoxContainer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8
+script = ExtResource("1_dsajh")
