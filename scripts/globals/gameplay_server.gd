@@ -1,6 +1,9 @@
 extends Node
 
 const BURN_TICK_DURATION: float = 1.0
+const SHIPWRECK_TICK_DURATION: float = 1.0
+const SHIPWRECK_DAMAGE: int = 500
+
 var burn_counter: float = 0.0
 
 func _ready() -> void:
@@ -41,6 +44,10 @@ func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, at
 		#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
 		_apply_hit.rpc(player_id, hit_id, damage, ModifierFactory.encode_modifiers(scaled_modifiers), TagFactory.encode_tags(tags))
 
+func _on_shipwreck_tick(player_id: int, attack: int) -> void:
+	var damage = Math.calculate_damage(attack, get_ship(player_id))
+	_deal_shipwreck_damage.rpc(player_id, damage)
+
 @rpc("authority", "call_remote", "reliable")
 func _synchronize_hp(player_id: int, hp: int) -> void:
 	get_ship(player_id).hp = hp
@@ -49,11 +56,18 @@ func _synchronize_hp(player_id: int, hp: int) -> void:
 func _deal_fire_damage(player_id: int, damage: int) -> void:
 	_deal_damage(player_id, damage)
 
+@rpc("authority", "call_local", "reliable")
+func _deal_shipwreck_damage(player_id: int, damage: int) -> void:
+	_deal_damage(player_id, damage)
+
 func _deal_damage(player_id: int, damage: int) -> void:
+	if not get_ship(player_id).alive: return
 	var ship: Ship = get_ship(player_id)
 	var hud: Node = get_player(player_id).hud
 	ship.hp -= damage
 	hud.set_hp(ship.hp)
+	if ship.hp <= 0:
+		ship.kill()
 
 @rpc("authority", "call_local", "reliable")
 func _hit_test(hit_id: int) -> void:
@@ -78,7 +92,7 @@ func _apply_hit(player_id: int, hit_id: int, damage: int, encoded_modifiers: Arr
 	for tag in encoded_tags:
 		tags.append(TagFactory.import_tag(tag))
 	for tag in tags:
-		if tag is LeechRateTag:
+		if tag is LeechRateTag and player_id != 0:
 			_apply_healing(player_id, damage * tag.amount, [], []) # TODO: Separate health effect from _apply_healing()
 
 @rpc("authority", "call_local", "reliable")
