@@ -16,17 +16,6 @@ func start() -> void:
 func stop() -> void:
 	set_process(false)
 
-func _burn_tick() -> void:
-	for player_id: int in get_player_ids():
-		var ship: Ship = get_ship(player_id)
-		var burn_modifiers: Array[BurnModifier] = ship.get_burn_modifiers()
-		if burn_modifiers:
-			var burn_damage: int = 0
-			for modifier in burn_modifiers:
-				burn_damage += modifier.damage
-			burn_damage = Math.calculate_damage(burn_damage, ship)
-			_deal_fire_damage(player_id, burn_damage)
-
 func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var damage: int = Math.calculate_damage(attack, get_ship(hit_id))
 	#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
