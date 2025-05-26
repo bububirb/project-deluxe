@@ -18,7 +18,8 @@ metadata/_custom_type_script = "uid://bcfclipky5qs7"
 
 [sub_resource type="Resource" id="Resource_gyyg8"]
 script = ExtResource("5_uty5t")
-damage = 50
+damage = 150
+tick_duration = 1.0
 duration = 8.0
 scalable_duration = true
 icon_path = "uid://d1dyeva3fni4u"
@@ -27,7 +28,7 @@ metadata/_custom_type_script = "uid://cmngjsfctp4ug"
 
 [sub_resource type="Resource" id="Resource_8u5c1"]
 script = ExtResource("2_ur7us")
-attack = 500.0
+attack = 1000.0
 cooldown = 10.0
 radius = 5.0
 ballistics = SubResource("Resource_uty5t")

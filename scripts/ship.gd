@@ -292,7 +292,7 @@ func _modifier_tick(delta: float) -> void:
 		modifier.duration -= delta
 		if modifier is BurnModifier:
 			modifier.burn_counter += delta
-			if modifier.burn_counter >= modifier.BURN_TICK_DURATION:
+			if modifier.burn_counter >= modifier.tick_duration:
 				_fire_tick(modifier)
 		if modifier.duration <= 0.0:
 			modifiers.erase(modifier)
@@ -301,7 +301,7 @@ func _modifier_tick(delta: float) -> void:
 					burn.hide()
 
 func _fire_tick(burn_modifier: BurnModifier) -> void:
-	burn_modifier.burn_counter = 0.0
+	burn_modifier.burn_counter -= burn_modifier.tick_duration
 	var burn_damage = Math.calculate_damage(burn_modifier.damage, self)
 	GameplayServer._deal_fire_damage(get_multiplayer_authority(), burn_damage)
 
