@@ -49,6 +49,7 @@ var aiming_distance: float = 30.0
 var aiming_height_offset: float = 0.0
 var aiming_offset: Vector2 = Vector2.ZERO
 var aiming_position: Vector3
+var ships: Array[Ship]
 var closest_target: Ship
 
 var colliding_shipwrecks: Array[Ship]
@@ -83,9 +84,13 @@ func _ready() -> void:
 	if not is_multiplayer_authority(): return
 	select_item(0)
 	crosshair.show()
+	ships = GameplayServer.get_ships()
+	ships.erase(self)
 
 func _physics_process(delta: float) -> void:
 	_modifier_tick(delta)
+	if multiplayer.is_server(): _shipwreck_tick(delta)
+	
 	if not is_multiplayer_authority():
 		position = lerp(position, sync_position, 0.5)
 		rotation = lerp(rotation, sync_rotation, 0.5)
@@ -138,10 +143,6 @@ func _physics_process(delta: float) -> void:
 	sync_position = position
 	sync_rotation = rotation
 	
-	if multiplayer.is_server(): _shipwreck_tick(delta)
-	
-	var ships: Array[Ship] = GameplayServer.get_ships()
-	ships.erase(self)
 	for ship: Ship in ships:
 		if not closest_target:
 			closest_target = ship
