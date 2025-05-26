@@ -254,6 +254,8 @@ func kill() -> void:
 	alive = false
 	fire.start()
 	explosion.start()
+	input_dir = 0.0
+	turn = 0.0
 
 func get_speed_modifiers() -> Array[SpeedModifier]:
 	var speed_modifiers: Array[SpeedModifier]
