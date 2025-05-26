@@ -26,14 +26,14 @@ icon_path = "uid://dqfnlvbw813ya"
 type = 1
 metadata/_custom_type_script = "uid://bhjywgxowgk3h"
 
-[sub_resource type="Resource" id="Resource_4qvmr"]
+[sub_resource type="Resource" id="Resource_u8xe4"]
 script = ExtResource("6_u8xe4")
 damage = 50
 tick_duration = 0.25
 duration = 5.0
 scalable_duration = true
-icon_path = ""
-type = 0
+icon_path = "res://assets/icons/modifiers/burn.svg"
+type = 1
 metadata/_custom_type_script = "uid://cmngjsfctp4ug"
 
 [sub_resource type="Resource" id="Resource_fhwsd"]
@@ -44,7 +44,7 @@ radius = 0.5
 ballistics = SubResource("Resource_p0aee")
 tags = Array[ExtResource("7_p0aee")]([])
 modifiers_on_use = Array[ExtResource("3_qtpa6")]([])
-modifiers_on_hit = Array[ExtResource("3_qtpa6")]([SubResource("Resource_v3pbv"), SubResource("Resource_4qvmr")])
+modifiers_on_hit = Array[ExtResource("3_qtpa6")]([SubResource("Resource_v3pbv"), SubResource("Resource_u8xe4")])
 height = 1.0
 
 [resource]
