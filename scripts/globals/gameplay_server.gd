@@ -18,8 +18,16 @@ func stop() -> void:
 
 func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var damage: int = Math.calculate_damage(attack, get_ship(hit_id))
+	var crit: bool = false
+	for tag in tags:
+		if tag is CritTag:
+			if tag.crit_chance > randf():
+				damage *= 1.0 + tag.crit_chance
+				crit = true
+		if tag is LeechRateTag and player_id != 0:
+			_apply_healing.rpc(player_id, damage * tag.amount)
 	#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
-	_apply_hit.rpc(player_id, hit_id, damage, ModifierFactory.encode_modifiers(modifiers), TagFactory.encode_tags(tags))
+	_apply_hit.rpc(player_id, hit_id, damage, crit, ModifierFactory.encode_modifiers(modifiers), TagFactory.encode_tags(tags))
 
 func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var area_strength: Dictionary = _get_area_strength(position, radius)
@@ -68,25 +76,19 @@ func _hit_test(hit_id: int) -> void:
 		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
 
 @rpc("authority", "call_local", "reliable")
-func _apply_hit(player_id: int, hit_id: int, damage: int, encoded_modifiers: Array[Dictionary], encoded_tags: Array[Dictionary]) -> void:
+func _apply_hit(player_id: int, hit_id: int, damage: int, crit: bool = false, encoded_modifiers: Array[Dictionary] = [], encoded_tags: Array[Dictionary] = []) -> void:
 	var ship: Ship = get_player(hit_id).ship
 	var hud: Node = get_player(hit_id).hud
 	if multiplayer.get_unique_id() == hit_id:
 		hud.trigger_health_effect(-damage)
-	_deal_damage(hit_id, damage)
+	_deal_damage(hit_id, damage, crit)
 	for encoded_modifier in encoded_modifiers:
 		var modifier: Modifier = ModifierFactory.import_modifier(encoded_modifier)
 		ship.add_modifier(modifier)
 		hud.add_modifier(modifier)
-	var tags: Array[Tag]
-	for tag in encoded_tags:
-		tags.append(TagFactory.import_tag(tag))
-	for tag in tags:
-		if tag is LeechRateTag and player_id != 0:
-			_apply_healing(player_id, damage * tag.amount, [], []) # TODO: Separate health effect from _apply_healing()
 
 @rpc("authority", "call_local", "reliable")
-func _apply_healing(player_id: int, healing: int, encoded_modifiers: Array[Dictionary], encoded_tags: Array[Dictionary]) -> void:
+func _apply_healing(player_id: int, healing: int, encoded_modifiers: Array[Dictionary] = [], encoded_tags: Array[Dictionary] = []) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var hud: Node = get_player(player_id).hud
 	if multiplayer.get_unique_id() == player_id:
