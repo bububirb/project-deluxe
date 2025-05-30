@@ -51,14 +51,14 @@ func _fade() -> void:
 	fading = true
 	create_tween().tween_property(self, "self_modulate", Color.TRANSPARENT, FADE_TIME)
 
-func _draw_icon(draw_icon: Texture2D, color: Color = Color.WHITE) -> void:
+func _draw_icon(draw_icon: Texture2D) -> void:
 	icon_count += 1
-	draw_texture(draw_icon, icon_offset(draw_icon) * icon_count, color)
+	draw_texture(draw_icon, icon_offset(draw_icon) * icon_count)
 
 func _draw_icons() -> void:
 	icon_count = 0
 	if icon:
-		_draw_icon(icon, modulate)
+		_draw_icon(icon)
 	if crit:
 		_draw_icon(crit_icon)
 
