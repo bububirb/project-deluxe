@@ -42,19 +42,19 @@ func _synchronize_hp(player_id: int, hp: int) -> void:
 	get_ship(player_id).hp = hp
 
 @rpc("authority", "call_local", "reliable")
-func _deal_burn_damage(player_id: int, damage: int) -> void:
-	_deal_damage(player_id, damage)
+func _deal_burn_damage(player_id: int, damage: int, icon_path: String) -> void:
+	_deal_damage(player_id, damage, icon_path)
 
 @rpc("authority", "call_local", "reliable")
 func _deal_shipwreck_damage(player_id: int, damage: int) -> void:
 	_deal_damage(player_id, damage)
 
-func _deal_damage(player_id: int, damage: int) -> void:
+func _deal_damage(player_id: int, damage: int, icon_path: String = "") -> void:
 	if not get_ship(player_id).alive: return
 	var ship: Ship = get_ship(player_id)
 	var hud: Node = get_player(player_id).hud
 	ship.hp -= damage
-	hud.set_hp(ship.hp)
+	hud.set_hp(ship.hp, icon_path)
 	if ship.hp <= 0:
 		ship.kill()
 

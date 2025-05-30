@@ -11,6 +11,6 @@ variation_opentype = {
 
 [resource]
 font = SubResource("FontVariation_oe6gw")
-font_size = 12
+font_size = 14
 outline_size = 2
 outline_color = Color(0.13, 0.13, 0.13, 1)

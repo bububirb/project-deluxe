@@ -7,8 +7,11 @@ const LIFETIME: float = 4.0
 const FADE_TIME: float = 0.1
 
 @export var permanent: bool = false
-var time: float = 0.0
-var fading: bool = false
+
+@export var icon: Texture2D:
+	set(new_icon):
+		icon = new_icon
+		queue_redraw()
 
 @export var value: int = -1000:
 	set(new_value):
@@ -19,6 +22,12 @@ var fading: bool = false
 		else:
 			modulate = DAMAGE_COLOR
 
+var time: float = 0.0
+var fading: bool = false
+
+func _ready() -> void:
+	queue_redraw()
+
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint() and not permanent:
 		time += delta
@@ -27,6 +36,13 @@ func _process(delta: float) -> void:
 		if time >= LIFETIME:
 			queue_free()
 
+func _draw() -> void:
+	_draw_icon()
+
 func _fade() -> void:
 	fading = true
 	create_tween().tween_property(self, "self_modulate", Color.TRANSPARENT, FADE_TIME)
+
+func _draw_icon() -> void:
+	if icon:
+		draw_texture(icon, Vector2(-icon.get_size().x, size.y / 2.0 - icon.get_size().y / 2.0), modulate)
