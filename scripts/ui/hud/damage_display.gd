@@ -2,7 +2,7 @@ class_name DamageDisplay extends VBoxContainer
 
 const DAMAGE_LABEL_SETTINGS = preload("res://resources/label_settings/damage_label.tres")
 
-func display_damage(value: int, icon_path: String = "", id: int = -1) -> void:
+func display_damage(value: int, crit: bool = false, icon_path: String = "", id: int = -1) -> void:
 	var damage_label: DamageLabel
 	var icon: Texture2D
 	if icon_path:
@@ -10,6 +10,7 @@ func display_damage(value: int, icon_path: String = "", id: int = -1) -> void:
 	if has_node(str(id)):
 		damage_label = get_node(str(id))
 		damage_label.value += value
+		damage_label.crit = crit
 	else:
 		damage_label = DamageLabel.new()
 		if id != -1:
@@ -21,4 +22,5 @@ func display_damage(value: int, icon_path: String = "", id: int = -1) -> void:
 			damage_label.icon = icon
 		
 		damage_label.value = value
+		damage_label.crit = crit
 		add_child(damage_label)

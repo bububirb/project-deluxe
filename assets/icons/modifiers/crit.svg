@@ -9,7 +9,7 @@
    viewBox="0 0 24 24"
    style="enable-background:new 0 0 24 24;"
    xml:space="preserve"
-   sodipodi:docname="burn.svg"
+   sodipodi:docname="crit.svg"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -57,7 +57,12 @@
 
 
 <path
-   d="m 11,5 c 0,2 -0.254644,3.254644 -1,4 -1,1 -3,2.285445 -3,5 0,3 2.6429774,5 5,5 2.357023,0 5,-2 5,-5 0,-2 -1,-3 -2,-4 -1,3 -3,2 -3,1 0,-1 3,-3 -1,-6 z"
-   id="path1"
-   style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-   sodipodi:nodetypes="cssasczc" /></svg>
+   style="fill:#ffffff;stroke:#ffffff;stroke-width:2;stroke-linejoin:round"
+   d="m 14,5 -4,1 1,9 h 2 z"
+   id="path2"
+   sodipodi:nodetypes="ccccc" /><circle
+   style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linejoin:round"
+   id="path3"
+   cx="12"
+   cy="19"
+   r="1" /></svg>
