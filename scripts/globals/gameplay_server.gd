@@ -42,7 +42,7 @@ func _synchronize_hp(player_id: int, hp: int) -> void:
 	get_ship(player_id).hp = hp
 
 @rpc("authority", "call_local", "reliable")
-func _deal_fire_damage(player_id: int, damage: int) -> void:
+func _deal_burn_damage(player_id: int, damage: int) -> void:
 	_deal_damage(player_id, damage)
 
 @rpc("authority", "call_local", "reliable")

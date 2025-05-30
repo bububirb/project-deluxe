@@ -296,17 +296,17 @@ func _modifier_tick(delta: float) -> void:
 		if modifier is BurnModifier:
 			modifier.burn_counter += delta
 			if modifier.burn_counter >= modifier.tick_duration:
-				_fire_tick(modifier)
+				_burn_tick(modifier)
 		if modifier.duration <= 0.0:
 			modifiers.erase(modifier)
 			if modifier is BurnModifier:
 				if not get_burn_modifiers():
 					burn.hide()
 
-func _fire_tick(burn_modifier: BurnModifier) -> void:
+func _burn_tick(burn_modifier: BurnModifier) -> void:
 	burn_modifier.burn_counter -= burn_modifier.tick_duration
 	var burn_damage = Math.calculate_damage(burn_modifier.damage, self)
-	GameplayServer._deal_fire_damage(get_multiplayer_authority(), burn_damage)
+	GameplayServer._deal_burn_damage(get_multiplayer_authority(), burn_damage)
 
 func _shipwreck_tick(delta: float) -> void:
 	if colliding_shipwrecks.size() > 0:
