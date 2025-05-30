@@ -58,9 +58,9 @@ func _on_ship_item_instanced(item: Item) -> void:
 	item_display.add_child(item_container)
 	item_container.item = item
 
-func set_hp(value: int, icon_path: String = "") -> void:
+func set_hp(value: int, icon_path: String = "", id: int = -1) -> void:
 	var damage: int = value - int(hp_bar.value)
-	damage_display.display_damage(damage, icon_path)
+	damage_display.display_damage(damage, icon_path, id)
 	
 	last_hit_time = 0.0
 	accumulated_damage += damage

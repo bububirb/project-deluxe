@@ -17,6 +17,7 @@ const FADE_TIME: float = 0.1
 	set(new_value):
 		value = new_value
 		text = str(abs(value))
+		time = 0.0
 		if value > 0:
 			modulate = HEALING_COLOR
 		else:
