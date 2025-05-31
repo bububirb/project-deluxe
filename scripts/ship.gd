@@ -52,7 +52,7 @@ var aiming_position: Vector3
 var ships: Array[Ship]
 var closest_target: Ship
 
-var colliding_shipwrecks: Array[Ship]
+var colliding_ships: Array[Ship]
 var shipwreck_timer: float = 0.0
 
 var modifiers: Array[Modifier]
@@ -308,7 +308,11 @@ func _burn_tick(burn_modifier: BurnModifier) -> void:
 	GameplayServer._deal_burn_damage(get_multiplayer_authority(), burn_modifier)
 
 func _shipwreck_tick(delta: float) -> void:
-	if colliding_shipwrecks.size() > 0:
+	var colliding_with_shipwreck: bool = false
+	for ship in colliding_ships:
+		if not ship.alive:
+			colliding_with_shipwreck = true
+	if colliding_with_shipwreck:
 		shipwreck_timer += delta
 	else:
 		shipwreck_timer = 0.0
@@ -319,13 +323,12 @@ func _shipwreck_tick(delta: float) -> void:
 func _on_collision_detector_body_entered(body: Node3D) -> void:
 	if not multiplayer.is_server(): return
 	if body is Ship:
-		if not body.alive and not colliding_shipwrecks.has(body):
-			colliding_shipwrecks.append(body)
+		colliding_ships.append(body)
 
 func _on_collision_detector_body_exited(body: Node3D) -> void:
 	if body is Ship:
-		if colliding_shipwrecks.has(body):
-			colliding_shipwrecks.erase(body)
+		if colliding_ships.has(body):
+			colliding_ships.erase(body)
 
 func _on_movement_joystick_analogic_change(move: Vector2) -> void:
 	if alive and DisplayServer.has_feature(DisplayServer.FEATURE_TOUCHSCREEN):
