@@ -62,5 +62,5 @@ func _draw_icons() -> void:
 	if crit:
 		_draw_icon(crit_icon)
 
-func icon_offset(icon: Texture2D) -> Vector2:
-	return Vector2(-icon.get_size().x, size.y / 2.0 - icon.get_size().y / 2.0)
+func icon_offset(icon_texture: Texture2D) -> Vector2:
+	return Vector2(-icon_texture.get_size().x, size.y / 2.0 - icon_texture.get_size().y / 2.0)
