@@ -39,7 +39,7 @@ func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, at
 				modifier.duration *= area_strength[hit_id]
 		var damage: int = Math.calculate_damage(attack * area_strength[hit_id], get_ship(hit_id))
 		#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
-		_apply_hit.rpc(player_id, hit_id, damage, ModifierFactory.encode_modifiers(scaled_modifiers), TagFactory.encode_tags(tags))
+		_apply_hit.rpc(player_id, hit_id, damage, false, ModifierFactory.encode_modifiers(scaled_modifiers), TagFactory.encode_tags(tags))
 
 func _on_shipwreck_tick(player_id: int, attack: int) -> void:
 	var damage = Math.calculate_damage(attack, get_ship(player_id))
