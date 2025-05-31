@@ -19,15 +19,19 @@ func stop() -> void:
 func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var damage: int = Math.calculate_damage(attack, get_ship(hit_id))
 	var crit: bool = false
+	
 	for tag in tags:
 		if tag is CritTag:
 			if tag.crit_chance > randf():
 				damage *= 1.0 + tag.crit_chance
 				crit = true
+	
+	for tag in tags:
 		if tag is LeechRateTag and player_id != 0:
 			_apply_healing.rpc(player_id, damage * tag.amount)
+	
 	#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
-	_apply_hit.rpc(player_id, hit_id, damage, crit, ModifierFactory.encode_modifiers(modifiers), TagFactory.encode_tags(tags))
+	_apply_hit.rpc(hit_id, damage, crit, ModifierFactory.encode_modifiers(modifiers))
 
 func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var area_strength: Dictionary = _get_area_strength(position, radius)
@@ -38,8 +42,20 @@ func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, at
 			if modifier.scalable_duration:
 				modifier.duration *= area_strength[hit_id]
 		var damage: int = Math.calculate_damage(attack * area_strength[hit_id], get_ship(hit_id))
+		var crit: bool = false
+		
+		for tag in tags:
+			if tag is CritTag:
+				if tag.crit_chance > randf():
+					damage *= 1.0 + tag.crit_chance
+					crit = true
+		
+		for tag in tags:
+			if tag is LeechRateTag and player_id != 0:
+				_apply_healing.rpc(player_id, damage * tag.amount)
+		
 		#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
-		_apply_hit.rpc(player_id, hit_id, damage, false, ModifierFactory.encode_modifiers(scaled_modifiers), TagFactory.encode_tags(tags))
+		_apply_hit.rpc(hit_id, damage, crit, ModifierFactory.encode_modifiers(scaled_modifiers))
 
 func _on_shipwreck_tick(player_id: int, attack: int) -> void:
 	var damage = Math.calculate_damage(attack, get_ship(player_id))
@@ -76,7 +92,7 @@ func _hit_test(hit_id: int) -> void:
 		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
 
 @rpc("authority", "call_local", "reliable")
-func _apply_hit(player_id: int, hit_id: int, damage: int, crit: bool = false, encoded_modifiers: Array[Dictionary] = [], encoded_tags: Array[Dictionary] = []) -> void:
+func _apply_hit(hit_id: int, damage: int, crit: bool = false, encoded_modifiers: Array[Dictionary] = []) -> void:
 	var ship: Ship = get_player(hit_id).ship
 	var hud: Node = get_player(hit_id).hud
 	if multiplayer.get_unique_id() == hit_id:
@@ -88,7 +104,7 @@ func _apply_hit(player_id: int, hit_id: int, damage: int, crit: bool = false, en
 		hud.add_modifier(modifier)
 
 @rpc("authority", "call_local", "reliable")
-func _apply_healing(player_id: int, healing: int, encoded_modifiers: Array[Dictionary] = [], encoded_tags: Array[Dictionary] = []) -> void:
+func _apply_healing(player_id: int, healing: int, encoded_modifiers: Array[Dictionary] = []) -> void:
 	var ship: Ship = get_player(player_id).ship
 	var hud: Node = get_player(player_id).hud
 	if multiplayer.get_unique_id() == player_id:
@@ -98,9 +114,6 @@ func _apply_healing(player_id: int, healing: int, encoded_modifiers: Array[Dicti
 		var modifier: Modifier = ModifierFactory.import_modifier(encoded_modifier)
 		ship.add_modifier(modifier)
 		hud.add_modifier(modifier)
-	var tags: Array[Tag]
-	for tag in encoded_tags:
-		tags.append(TagFactory.import_tag(tag))
 
 func _heal(player_id: int, healing: int) -> void:
 	var ship: Ship = get_ship(player_id)
