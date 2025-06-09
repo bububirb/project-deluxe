@@ -4,8 +4,6 @@ const BURN_TICK_DURATION: float = 1.0
 const SHIPWRECK_TICK_DURATION: float = 1.0
 const SHIPWRECK_DAMAGE: int = 500
 
-var burn_counter: float = 0.0
-
 func _ready() -> void:
 	stop()
 
