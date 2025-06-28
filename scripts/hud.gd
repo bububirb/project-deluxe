@@ -14,6 +14,7 @@ const ACUUMULATION_FADE_TIME: float = 0.5
 @export var damage_display: DamageDisplay
 @export var accumulated_damage_label: DamageLabel
 @export var name_label: Label
+@export var you_died: TextureRect
 
 var last_hit_time: float = 0.0
 var accumulated_damage: int = 0
@@ -85,3 +86,8 @@ func add_modifier(modifier: Modifier) -> void:
 	var modifier_display = MODIFIER_DISPLAY_SCENE.instantiate()
 	modifier_container.add_child(modifier_display)
 	modifier_display.modifier = modifier
+
+func kill() -> void:
+	you_died.modulate.a = 0
+	you_died.visible = true
+	create_tween().tween_property(you_died, "modulate:a", 1.0, 3.0)

@@ -7,6 +7,11 @@ const SHIPWRECK_DAMAGE: int = 500
 func _ready() -> void:
 	stop()
 
+func _process(delta: float) -> void:
+	if multiplayer.is_server():
+		for ship in get_ships():
+			print(ship.get_multiplayer_authority(), ": ", ship.damage_dealt)
+
 @rpc("authority", "call_local", "reliable")
 func start() -> void:
 	set_process(true)
@@ -88,6 +93,7 @@ func _deal_damage(player_id: int, damage: int, crit: bool = false, icon_path: St
 	hud.set_hp(ship.hp, crit, icon_path, id)
 	if ship.hp <= 0:
 		ship.kill()
+		hud.kill()
 
 @rpc("authority", "call_local", "reliable")
 func _hit_test(hit_id: int) -> void:

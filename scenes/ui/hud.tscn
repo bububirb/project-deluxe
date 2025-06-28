@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://budywedhvkcoa"]
+[gd_scene load_steps=18 format=3 uid="uid://budywedhvkcoa"]
 
 [ext_resource type="Script" uid="uid://cor0xtkfi5p1q" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
 [ext_resource type="Script" uid="uid://b1ruyu48x5o0" path="res://scripts/hud.gd" id="2_n808k"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://d0aq0327bb5w8" path="res://scripts/ui/hud/damage_display.gd" id="8_h022r"]
 [ext_resource type="FontVariation" uid="uid://cncutiwvtk0ww" path="res://assets/fonts/inter_bold.tres" id="8_kicr4"]
 [ext_resource type="Script" uid="uid://emqpc5u81psx" path="res://scripts/ui/hud/damage_label.gd" id="9_mj13f"]
+[ext_resource type="Texture2D" uid="uid://ckmtp8jotkxvl" path="res://assets/images/you-died.png" id="10_mj13f"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4jqwt"]
 
@@ -43,7 +44,7 @@ font_size = 14
 outline_size = 2
 outline_color = Color(0.128121, 0.128121, 0.128121, 1)
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label", "you_died")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,6 +64,7 @@ modifier_container = NodePath("Local/BottomContainer/ModifierContainer")
 damage_display = NodePath("Remote/RemoteHPBarContainer/DamageDisplayControl/DamageDisplay")
 accumulated_damage_label = NodePath("Local/BottomContainer/AccumulatedDamageLabel")
 name_label = NodePath("Remote/RemoteHPBarContainer/NameControl/NameLabel")
+you_died = NodePath("Local/YouDied")
 
 [node name="Local" type="Control" parent="."]
 layout_mode = 1
@@ -166,6 +168,18 @@ script = ExtResource("9_mj13f")
 permanent = true
 value = 0
 metadata/_custom_type_script = "uid://emqpc5u81psx"
+
+[node name="YouDied" type="TextureRect" parent="Local"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_mj13f")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Remote" type="Control" parent="."]
 layout_mode = 1

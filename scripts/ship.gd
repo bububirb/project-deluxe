@@ -80,6 +80,8 @@ var active_item: Node:
 @onready var left: Node3D = $Bounds/Left
 @onready var right: Node3D = $Bounds/Right
 
+@onready var death_sound: AudioStreamPlayer3D = $DeathSound
+
 func _ready() -> void:
 	await get_tree().process_frame
 	if not is_multiplayer_authority(): return
@@ -256,6 +258,7 @@ func kill() -> void:
 	alive = false
 	fire.start()
 	explosion.start()
+	death_sound.play()
 	input_dir = 0.0
 	turn = 0.0
 

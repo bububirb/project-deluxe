@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://dcchujjwo2k32"]
+[gd_scene load_steps=100 format=3 uid="uid://dcchujjwo2k32"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_r2gry"]
 [ext_resource type="PackedScene" uid="uid://dmbyiaw8cdbp7" path="res://assets/models/ships/tuggy/tuggy.blend" id="2_r2gry"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://dl1kd0olljc5g" path="res://resources/items/deluxe_mortar.tres" id="11_r2gry"]
 [ext_resource type="Texture2D" uid="uid://d1qdtkeiju38j" path="res://assets/textures/vfx/burn-debuff_render_all.png" id="13_0nk4f"]
 [ext_resource type="PackedScene" uid="uid://dbsw8xclkahwp" path="res://scenes/vfx/fire.tscn" id="14_hx33e"]
+[ext_resource type="AudioStream" uid="uid://i1swyn25al0e" path="res://assets/audio/you-died.mp3" id="14_s6wxw"]
 [ext_resource type="PackedScene" uid="uid://ck8nbe2jypmjl" path="res://scenes/vfx/explosion.tscn" id="15_0f7lv"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_r2gry"]
@@ -694,6 +695,9 @@ billboard = 1
 sprite_frames = SubResource("SpriteFrames_dk640")
 autoplay = "default"
 frame_progress = 0.652097
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_s6wxw")
 
 [node name="Particles" type="Node3D" parent="."]
 
