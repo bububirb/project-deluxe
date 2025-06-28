@@ -30,6 +30,9 @@ func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifie
 	
 	#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
 	_apply_hit.rpc(hit_id, damage, crit, ModifierFactory.encode_modifiers(modifiers))
+	
+	for id in get_player_ids():
+		count_damage.rpc(id, damage)
 
 func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var area_strength: Dictionary = _get_area_strength(position, radius)
@@ -54,10 +57,15 @@ func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, at
 		
 		#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
 		_apply_hit.rpc(hit_id, damage, crit, ModifierFactory.encode_modifiers(scaled_modifiers))
+		
+		for id in get_player_ids():
+			count_damage.rpc(id, damage)
 
-func _on_shipwreck_tick(player_id: int, attack: int) -> void:
-	var damage = Math.calculate_damage(attack, get_ship(player_id))
-	_deal_shipwreck_damage.rpc(player_id, damage)
+func _on_shipwreck_tick(hit_id: int, player_ids: Array[int], attack: int) -> void:
+	var damage = Math.calculate_damage(attack, get_ship(hit_id))
+	for player_id in player_ids:
+		count_damage.rpc(player_id, damage)
+	_deal_shipwreck_damage.rpc(hit_id, damage)
 
 @rpc("authority", "call_remote", "reliable")
 func _synchronize_hp(player_id: int, hp: int) -> void:
@@ -161,6 +169,10 @@ func get_player_item(player_id: int, item_index: int) -> Node3D:
 		return player.ship.get_item(item_index)
 	else:
 		return null
+
+@rpc("authority", "call_local", "reliable")
+func count_damage(player_id: int, damage: int) -> void:
+	get_ship(player_id).damage_dealt += damage
 
 @rpc("any_peer", "call_local", "reliable")
 func shoot(player_id: int, item_index: int) -> void:
