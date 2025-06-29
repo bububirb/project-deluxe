@@ -32,6 +32,7 @@ const AIMING_RANGE: float = 2.0
 
 var hp: int = max_hp
 var alive: bool = true
+var damage_dealt: int = 0
 
 var sync_position: Vector3
 var sync_rotation: Vector3
@@ -308,17 +309,17 @@ func _burn_tick(burn_modifier: BurnModifier) -> void:
 	GameplayServer._deal_burn_damage(get_multiplayer_authority(), burn_modifier)
 
 func _shipwreck_tick(delta: float) -> void:
-	var colliding_with_shipwreck: bool = false
+	var colliding_shipwrecks: Array[int] = []
 	for ship in colliding_ships:
 		if not ship.alive:
-			colliding_with_shipwreck = true
-	if colliding_with_shipwreck:
+			colliding_shipwrecks.append(ship.get_multiplayer_authority())
+	if colliding_shipwrecks:
 		shipwreck_timer += delta
 	else:
 		shipwreck_timer = 0.0
 	if shipwreck_timer >= GameplayServer.SHIPWRECK_TICK_DURATION:
 		shipwreck_timer = 0.0
-		GameplayServer._on_shipwreck_tick(get_multiplayer_authority(), GameplayServer.SHIPWRECK_DAMAGE)
+		GameplayServer._on_shipwreck_tick(get_multiplayer_authority(), colliding_shipwrecks, GameplayServer.SHIPWRECK_DAMAGE)
 
 func _on_collision_detector_body_entered(body: Node3D) -> void:
 	if not multiplayer.is_server(): return

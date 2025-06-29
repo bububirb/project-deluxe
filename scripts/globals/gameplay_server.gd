@@ -29,7 +29,7 @@ func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifie
 			_apply_healing.rpc(player_id, damage * tag.amount)
 	
 	#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
-	_apply_hit.rpc(hit_id, damage, crit, ModifierFactory.encode_modifiers(modifiers))
+	_apply_hit.rpc(player_id, hit_id, damage, crit, ModifierFactory.encode_modifiers(modifiers))
 
 func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var area_strength: Dictionary = _get_area_strength(position, radius)
@@ -53,33 +53,35 @@ func _on_aoe_projectile_hit(player_id: int, position: Vector3, radius: float, at
 				_apply_healing.rpc(player_id, damage * tag.amount)
 		
 		#_synchronize_hp.rpc(hit_id, get_ship(hit_id).hp)
-		_apply_hit.rpc(hit_id, damage, crit, ModifierFactory.encode_modifiers(scaled_modifiers))
+		_apply_hit.rpc(player_id, hit_id, damage, crit, ModifierFactory.encode_modifiers(scaled_modifiers))
 
-func _on_shipwreck_tick(player_id: int, attack: int) -> void:
-	var damage = Math.calculate_damage(attack, get_ship(player_id))
-	_deal_shipwreck_damage.rpc(player_id, damage)
+func _on_shipwreck_tick(hit_id: int, player_ids: Array[int], attack: int) -> void:
+	var damage = Math.calculate_damage(attack, get_ship(hit_id))
+	for player_id in player_ids:
+		_deal_shipwreck_damage.rpc(player_id, hit_id, damage)
 
 @rpc("authority", "call_remote", "reliable")
 func _synchronize_hp(player_id: int, hp: int) -> void:
 	get_ship(player_id).hp = hp
 
 @rpc("authority", "call_local", "reliable")
-func _deal_burn_damage(player_id: int, modifier: BurnModifier) -> void:
-	var burn_damage = Math.calculate_damage(modifier.damage, get_ship(player_id))
-	_deal_damage(player_id, burn_damage, false, modifier.icon_path, modifier.get_instance_id())
+func _deal_burn_damage(hit_id: int, modifier: BurnModifier) -> void:
+	var burn_damage = Math.calculate_damage(modifier.damage, get_ship(hit_id))
+	_deal_damage(modifier.player_id, hit_id, burn_damage, false, modifier.icon_path, modifier.get_instance_id())
 
 @rpc("authority", "call_local", "reliable")
-func _deal_shipwreck_damage(player_id: int, damage: int) -> void:
-	_deal_damage(player_id, damage)
+func _deal_shipwreck_damage(player_id: int, hit_id: int, damage: int) -> void:
+	_deal_damage(player_id, hit_id, damage)
 
-func _deal_damage(player_id: int, damage: int, crit: bool = false, icon_path: String = "", id: int = -1) -> void:
-	if not get_ship(player_id).alive: return
-	var ship: Ship = get_ship(player_id)
-	var hud: Node = get_player(player_id).hud
+func _deal_damage(player_id: int, hit_id: int, damage: int, crit: bool = false, icon_path: String = "", id: int = -1) -> void:
+	if not get_ship(hit_id).alive: return
+	var ship: Ship = get_ship(hit_id)
+	var hud: Node = get_player(hit_id).hud
 	ship.hp -= damage
 	hud.set_hp(ship.hp, crit, icon_path, id)
 	if ship.hp <= 0:
 		ship.kill()
+	count_damage(player_id, damage)
 
 @rpc("authority", "call_local", "reliable")
 func _hit_test(hit_id: int) -> void:
@@ -90,14 +92,16 @@ func _hit_test(hit_id: int) -> void:
 		print(str(multiplayer.get_unique_id()),": ",str(hit_id)," got hit!")
 
 @rpc("authority", "call_local", "reliable")
-func _apply_hit(hit_id: int, damage: int, crit: bool = false, encoded_modifiers: Array[Dictionary] = []) -> void:
+func _apply_hit(player_id: int, hit_id: int, damage: int, crit: bool = false, encoded_modifiers: Array[Dictionary] = []) -> void:
 	var ship: Ship = get_player(hit_id).ship
 	var hud: Node = get_player(hit_id).hud
 	if multiplayer.get_unique_id() == hit_id:
 		hud.trigger_health_effect(-damage)
-	_deal_damage(hit_id, damage, crit)
+	_deal_damage(player_id, hit_id, damage, crit)
 	for encoded_modifier in encoded_modifiers:
 		var modifier: Modifier = ModifierFactory.import_modifier(encoded_modifier)
+		if modifier.get("player_id"):
+			modifier.player_id = player_id
 		ship.add_modifier(modifier)
 		hud.add_modifier(modifier)
 
@@ -161,6 +165,9 @@ func get_player_item(player_id: int, item_index: int) -> Node3D:
 		return player.ship.get_item(item_index)
 	else:
 		return null
+
+func count_damage(player_id: int, damage: int) -> void:
+	get_ship(player_id).damage_dealt += damage
 
 @rpc("any_peer", "call_local", "reliable")
 func shoot(player_id: int, item_index: int) -> void:
