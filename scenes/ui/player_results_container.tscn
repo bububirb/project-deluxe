@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtp3od3ssqppr"]
+
+[ext_resource type="Script" uid="uid://bwlb120nywvie" path="res://scripts/ui/player_results_container.gd" id="1_mv4s6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vp7x"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.4)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="PlayerResultsContainer" type="PanelContainer" node_paths=PackedStringArray("name_label", "damage_label")]
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6vp7x")
+script = ExtResource("1_mv4s6")
+name_label = NodePath("StatsContainer/NameLabel")
+damage_label = NodePath("StatsContainer/DamageLabel")
+
+[node name="StatsContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+horizontal_alignment = 1
+
+[node name="DamageLabel" type="Label" parent="StatsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1

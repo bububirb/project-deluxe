@@ -81,6 +81,9 @@ func _deal_damage(player_id: int, hit_id: int, damage: int, crit: bool = false, 
 	hud.set_hp(ship.hp, crit, icon_path, id)
 	if ship.hp <= 0:
 		ship.kill()
+		if multiplayer.is_server():
+			if get_alive_players().size() <= 1:
+				game_over.rpc()
 	count_damage(player_id, damage)
 
 @rpc("authority", "call_local", "reliable")
@@ -158,6 +161,13 @@ func get_ships() -> Array[Ship]:
 	for player in get_players():
 		ships.append(player.ship)
 	return ships
+
+func get_alive_players() -> Array[int]:
+	var alive_players: Array[int] = []
+	for player_id in get_player_ids():
+		if get_ship(player_id).alive:
+			alive_players.append(player_id)
+	return alive_players
 
 func get_player_item(player_id: int, item_index: int) -> Node3D:
 	var player: Node = get_player(player_id)
@@ -248,3 +258,8 @@ func set_visible_item(item_index: int) -> void:
 	var player = get_player(player_id)
 	if player:
 		player.ship.set_visible_item(get_player_item(player_id, item_index))
+
+@rpc("authority", "call_local", "reliable")
+func game_over() -> void:
+	var hud: Node = get_player(multiplayer.get_unique_id()).hud
+	hud.game_over()
