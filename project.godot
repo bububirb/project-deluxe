@@ -14,7 +14,8 @@ config/name="Project Deluxe"
 run/main_scene="uid://b2rhplsaqim43"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="uid://diex3gfsqv8v1"
+config/windows_native_icon="res://assets/icons/platform/project-deluxe-icon.ico"
 
 [autoload]
 
