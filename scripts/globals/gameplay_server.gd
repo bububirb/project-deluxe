@@ -4,6 +4,8 @@ const BURN_TICK_DURATION: float = 1.0
 const SHIPWRECK_TICK_DURATION: float = 1.0
 const SHIPWRECK_DAMAGE: int = 500
 
+var damage_dealt: Dictionary[int, int] = {}
+
 func _ready() -> void:
 	stop()
 
@@ -79,12 +81,12 @@ func _deal_damage(player_id: int, hit_id: int, damage: int, crit: bool = false, 
 	var hud: Node = get_player(hit_id).hud
 	ship.hp -= damage
 	hud.set_hp(ship.hp, crit, icon_path, id)
+	count_damage(player_id, damage)
 	if ship.hp <= 0:
 		ship.kill()
 		if multiplayer.is_server():
 			if get_alive_players().size() <= 1:
 				game_over.rpc()
-	count_damage(player_id, damage)
 
 @rpc("authority", "call_local", "reliable")
 func _hit_test(hit_id: int) -> void:
@@ -263,3 +265,5 @@ func set_visible_item(item_index: int) -> void:
 func game_over() -> void:
 	var hud: Node = get_player(multiplayer.get_unique_id()).hud
 	hud.game_over()
+	for player_id in get_player_ids():
+		damage_dealt[player_id] = get_ship(player_id).damage_dealt

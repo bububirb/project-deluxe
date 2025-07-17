@@ -95,5 +95,4 @@ func add_modifier(modifier: Modifier) -> void:
 	modifier_display.modifier = modifier
 
 func _on_results_button_pressed() -> void:
-	var results: Node = RESULTS_SCENE.instantiate()
-	local.add_child(results)
+	get_tree().change_scene_to_packed(RESULTS_SCENE)
