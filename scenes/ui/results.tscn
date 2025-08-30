@@ -54,7 +54,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 text = "Exit"
 

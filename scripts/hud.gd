@@ -17,6 +17,7 @@ const RESULTS_SCENE = preload("res://scenes/ui/results.tscn")
 @export var accumulated_damage_label: DamageLabel
 @export var name_label: Label
 @export var game_over_panel: PanelContainer
+@export var results_button: Button
 
 var last_hit_time: float = 0.0
 var accumulated_damage: int = 0
@@ -31,6 +32,7 @@ func get_item(index: int) -> PanelContainer:
 func _ready() -> void:
 	accumulated_damage_label.modulate.a = 0.0
 	name_label.text = MultiplayerLobby.players[get_multiplayer_authority()].name
+	results_button.visible = multiplayer.is_server()
 
 func _process(delta: float) -> void:
 	last_hit_time += delta
@@ -95,4 +97,9 @@ func add_modifier(modifier: Modifier) -> void:
 	modifier_display.modifier = modifier
 
 func _on_results_button_pressed() -> void:
+	if multiplayer.is_server():
+		show_results.rpc()
+
+@rpc("authority", "call_local", "reliable")
+func show_results() -> void:
 	get_tree().change_scene_to_packed(RESULTS_SCENE)

@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvr2th0gbsb53"]
+
+[ext_resource type="Script" uid="uid://chjufpelfglie" path="res://scripts/ui/game_room.gd" id="1_s1c07"]
+[ext_resource type="Texture2D" uid="uid://cvx83h60n7g8p" path="res://assets/images/background/the-chambers.png" id="2_lgv5y"]
+[ext_resource type="Texture2D" uid="uid://cpsu6spg3m6q1" path="res://assets/icons/ui/left_arrow.svg" id="3_73dc7"]
+[ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="4_r30p1"]
+[ext_resource type="Texture2D" uid="uid://ddwqixi88etfq" path="res://assets/icons/ui/online.svg" id="5_ukc1o"]
+[ext_resource type="PackedScene" uid="uid://b0b1rht2r8mrb" path="res://scenes/ui/players_container.tscn" id="6_c61pp"]
+
+[sub_resource type="FontVariation" id="FontVariation_2rbxb"]
+base_font = ExtResource("4_r30p1")
+variation_opentype = {
+1869640570: 14,
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_teacs"]
+font = SubResource("FontVariation_2rbxb")
+
+[node name="GameRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s1c07")
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+modulate = Color(0.601223, 0.601223, 0.601223, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lgv5y")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Controls" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Server" type="VBoxContainer" parent="Controls"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleBar" type="HBoxContainer" parent="Controls/Server"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Controls/Server/TitleBar"]
+layout_mode = 2
+icon = ExtResource("3_73dc7")
+
+[node name="HostingLabel" type="Label" parent="Controls/Server/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hosting"
+label_settings = SubResource("LabelSettings_teacs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Controls/Server/TitleBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("5_ukc1o")
+stretch_mode = 3
+
+[node name="PlayersContainer" parent="Controls/Server" instance=ExtResource("6_c61pp")]
+layout_mode = 2
+
+[node name="IPContainer" type="HBoxContainer" parent="Controls/Server"]
+visible = false
+layout_mode = 2
+
+[node name="AddressLabel" type="Label" parent="Controls/Server/IPContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Address: "
+
+[node name="IPLabel" type="RichTextLabel" parent="Controls/Server/IPContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+fit_content = true
+scroll_active = false
+selection_enabled = true
+
+[node name="StartButton" type="Button" parent="Controls/Server"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="Client" type="VBoxContainer" parent="Controls"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TitleBar" type="HBoxContainer" parent="Controls/Client"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Controls/Client/TitleBar"]
+layout_mode = 2
+icon = ExtResource("3_73dc7")
+
+[node name="JoiningLabel" type="Label" parent="Controls/Client/TitleBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Joining"
+label_settings = SubResource("LabelSettings_teacs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Controls/Client/TitleBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("5_ukc1o")
+stretch_mode = 3
+
+[node name="PlayersContainer" parent="Controls/Client" instance=ExtResource("6_c61pp")]
+layout_mode = 2
+
+[node name="ReadyButton" type="Button" parent="Controls/Client"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ready"
+
+[connection signal="pressed" from="Controls/Server/TitleBar/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Controls/Server/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Controls/Client/TitleBar/BackButton" to="." method="_on_back_button_pressed"]

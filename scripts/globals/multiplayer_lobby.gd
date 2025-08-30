@@ -57,7 +57,6 @@ func create_game():
 	players[1] = player_info
 	player_connected.emit(1, player_info)
 
-
 func remove_multiplayer_peer():
 	multiplayer.multiplayer_peer = null
 	players.clear()

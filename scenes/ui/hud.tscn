@@ -58,7 +58,7 @@ font_size = 14
 outline_size = 2
 outline_color = Color(0.128121, 0.128121, 0.128121, 1)
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label", "game_over_panel")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label", "game_over_panel", "results_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,6 +79,7 @@ damage_display = NodePath("Remote/RemoteHPBarContainer/DamageDisplayControl/Dama
 accumulated_damage_label = NodePath("Local/BottomContainer/AccumulatedDamageLabel")
 name_label = NodePath("Remote/RemoteHPBarContainer/NameControl/NameLabel")
 game_over_panel = NodePath("Local/GameOverPanel")
+results_button = NodePath("Local/GameOverPanel/GameOverContainer/ResultsButton")
 
 [node name="Local" type="Control" parent="."]
 layout_mode = 1
@@ -210,6 +211,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResultsButton" type="Button" parent="Local/GameOverPanel/GameOverContainer"]
+visible = false
 layout_mode = 2
 text = "Next"
 
