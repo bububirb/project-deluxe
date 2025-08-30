@@ -323,11 +323,12 @@ func _shipwreck_tick(delta: float) -> void:
 
 func _on_collision_detector_body_entered(body: Node3D) -> void:
 	if not multiplayer.is_server(): return
-	if body is Ship:
+	if body is Ship and body != self:
 		colliding_ships.append(body)
 
 func _on_collision_detector_body_exited(body: Node3D) -> void:
-	if body is Ship:
+	if not multiplayer.is_server(): return
+	if body is Ship and body != self:
 		if colliding_ships.has(body):
 			colliding_ships.erase(body)
 

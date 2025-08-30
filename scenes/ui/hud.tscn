@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cy0u28ims5oqa" path="res://assets/textures/vfx/vitals_overlay_mask.png" id="3_kicr4"]
 [ext_resource type="PackedScene" uid="uid://byh0iv2dj4kpu" path="res://scenes/ui/hp_bar.tscn" id="4_8qguk"]
 [ext_resource type="StyleBox" uid="uid://my40b0qvgb78" path="res://resources/style_boxes/local_hp_bar_fill.tres" id="5_136eg"]
-[ext_resource type="StyleBox" uid="uid://dm45b782cyivo" path="res://resources/style_boxes/local_hp_bar_panel.tres" id="5_oj5la"]
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="7_gss2c"]
 [ext_resource type="Script" uid="uid://d0aq0327bb5w8" path="res://scripts/ui/hud/damage_display.gd" id="8_h022r"]
 [ext_resource type="FontVariation" uid="uid://cncutiwvtk0ww" path="res://assets/fonts/inter_bold.tres" id="8_kicr4"]
@@ -37,20 +36,36 @@ font = SubResource("FontVariation_oe6gw")
 outline_size = 2
 outline_color = Color(0.13, 0.13, 0.13, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4jqwt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.164706, 0.164706, 0.164706, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.4)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [sub_resource type="LabelSettings" id="LabelSettings_kicr4"]
 font = ExtResource("8_kicr4")
 font_size = 14
 outline_size = 2
 outline_color = Color(0.128121, 0.128121, 0.128121, 1)
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label")]
+[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label", "game_over_panel", "results_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("2_n808k")
 local = NodePath("Local")
 remote = NodePath("Remote")
@@ -63,6 +78,8 @@ modifier_container = NodePath("Local/BottomContainer/ModifierContainer")
 damage_display = NodePath("Remote/RemoteHPBarContainer/DamageDisplayControl/DamageDisplay")
 accumulated_damage_label = NodePath("Local/BottomContainer/AccumulatedDamageLabel")
 name_label = NodePath("Remote/RemoteHPBarContainer/NameControl/NameLabel")
+game_over_panel = NodePath("Local/GameOverPanel")
+results_button = NodePath("Local/GameOverPanel/GameOverContainer/ResultsButton")
 
 [node name="Local" type="Control" parent="."]
 layout_mode = 1
@@ -144,7 +161,6 @@ layout_mode = 2
 
 [node name="HPBar" parent="Local/BottomContainer" instance=ExtResource("4_8qguk")]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("5_oj5la")
 value = 1000.0
 max_value = 1000.0
 
@@ -166,6 +182,38 @@ script = ExtResource("9_mj13f")
 permanent = true
 value = 0
 metadata/_custom_type_script = "uid://emqpc5u81psx"
+
+[node name="GameOverPanel" type="PanelContainer" parent="Local"]
+visible = false
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4jqwt")
+
+[node name="GameOverContainer" type="VBoxContainer" parent="Local/GameOverPanel"]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="Local/GameOverPanel/GameOverContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultsButton" type="Button" parent="Local/GameOverPanel/GameOverContainer"]
+visible = false
+layout_mode = 2
+text = "Next"
 
 [node name="Remote" type="Control" parent="."]
 layout_mode = 1
@@ -222,5 +270,7 @@ grow_vertical = 0
 text = "Name"
 label_settings = SubResource("LabelSettings_kicr4")
 horizontal_alignment = 1
+
+[connection signal="pressed" from="Local/GameOverPanel/GameOverContainer/ResultsButton" to="." method="_on_results_button_pressed"]
 
 [editable path="Local/BottomContainer/HPBar"]

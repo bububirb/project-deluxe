@@ -3,6 +3,8 @@ extends Control
 const ACCUMULATION_RESET_TIME: float = 4.0
 const ACUUMULATION_FADE_TIME: float = 0.5
 
+const RESULTS_SCENE = preload("res://scenes/ui/results.tscn")
+
 @export var local: Control
 @export var remote: Control
 @export var item_display: VBoxContainer
@@ -14,6 +16,8 @@ const ACUUMULATION_FADE_TIME: float = 0.5
 @export var damage_display: DamageDisplay
 @export var accumulated_damage_label: DamageLabel
 @export var name_label: Label
+@export var game_over_panel: PanelContainer
+@export var results_button: Button
 
 var last_hit_time: float = 0.0
 var accumulated_damage: int = 0
@@ -28,6 +32,7 @@ func get_item(index: int) -> PanelContainer:
 func _ready() -> void:
 	accumulated_damage_label.modulate.a = 0.0
 	name_label.text = MultiplayerLobby.players[get_multiplayer_authority()].name
+	results_button.visible = multiplayer.is_server()
 
 func _process(delta: float) -> void:
 	last_hit_time += delta
@@ -69,6 +74,11 @@ func set_hp(value: int, crit: bool = false, icon_path: String = "", id: int = -1
 	hp_bar.value = value
 	remote_hp_bar.value = value
 
+func game_over() -> void:
+	if is_multiplayer_authority():
+		game_over_panel.show()
+		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
+
 func update_accumulated_damage_label() -> void:
 	if accumulated_damage_tween:
 		accumulated_damage_tween.kill()
@@ -85,3 +95,11 @@ func add_modifier(modifier: Modifier) -> void:
 	var modifier_display = MODIFIER_DISPLAY_SCENE.instantiate()
 	modifier_container.add_child(modifier_display)
 	modifier_display.modifier = modifier
+
+func _on_results_button_pressed() -> void:
+	if multiplayer.is_server():
+		show_results.rpc()
+
+@rpc("authority", "call_local", "reliable")
+func show_results() -> void:
+	get_tree().change_scene_to_packed(RESULTS_SCENE)

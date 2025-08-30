@@ -3,6 +3,7 @@ extends Control
 const GAME_SCENE = "res://scenes/maps/game.tscn"
 const LOADING_SCENE = "res://scenes/ui/loading_screen.tscn"
 const PLAYER_SCENE = "res://scenes/drafts/tuggy_player.tscn"
+const GAME_ROOM_SCENE = "res://scenes/ui/game_room.tscn"
 
 @onready var host_button: Button = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer/HostButton
 @onready var join_button: Button = $CenterContainer/PanelContainer/MarginContainer/LobbyContainer/HBoxContainer/JoinButton
@@ -46,10 +47,10 @@ func _ready() -> void:
 		join_button.pressed.emit()
 
 func _on_host_button_pressed() -> void:
-	MultiplayerLobby.create_game()
+	multiplayer.multiplayer_peer = null
 	lobby_container.hide()
-	hosting_container.show()
 	_update_ip_label()
+	get_tree().change_scene_to_file(GAME_ROOM_SCENE)
 
 func _update_ip_label() -> void:
 	var addresses = IP.get_local_addresses()
@@ -59,8 +60,7 @@ func _update_ip_label() -> void:
 func _on_join_button_pressed() -> void:
 	var err = MultiplayerLobby.join_game(address_input.text, int(port_input.text))
 	if not err:
-		lobby_container.hide()
-		joining_container.show()
+		get_tree().change_scene_to_file(GAME_ROOM_SCENE)
 
 func _on_back_button_pressed() -> void:
 	MultiplayerLobby.remove_multiplayer_peer()

@@ -7,12 +7,13 @@ func _ready() -> void:
 	MultiplayerLobby.player_disconnected.connect(_on_multiplayer_lobby_player_disconnected)
 	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
 	MultiplayerLobby.connection_reset.connect(_on_multiplayer_lobby_connection_reset)
+	
+	if multiplayer:
+		for peer_id in MultiplayerLobby.players.keys():
+			_add_player(peer_id, MultiplayerLobby.players[peer_id])
 
 func _on_multiplayer_lobby_player_connected(peer_id: int, player_info: Dictionary) -> void:
-	var label: Label = Label.new()
-	label.name = str(peer_id)
-	label.text = "%s (%s)" % [player_info.name, peer_id]
-	players_list_container.add_child(label)
+	_add_player(peer_id, player_info)
 
 func _on_multiplayer_lobby_player_disconnected(peer_id) -> void:
 	players_list_container.get_node(str(peer_id)).queue_free()
@@ -22,6 +23,12 @@ func _on_multiplayer_lobby_server_disconnected() -> void:
 
 func _on_multiplayer_lobby_connection_reset() -> void:
 	_clear_players()
+
+func _add_player(peer_id: int, player_info: Dictionary) -> void:
+	var label: Label = Label.new()
+	label.name = str(peer_id)
+	label.text = "%s (%s)" % [player_info.name, peer_id]
+	players_list_container.add_child(label)
 
 func _clear_players() -> void:
 	for node in players_list_container.get_children():

@@ -1,6 +1,6 @@
 extends Node3D
 
-const LOBBY_SCENE_PATH: String = "res://scenes/ui/lobby.tscn"
+const GAME_ROOM_SCENE: String = "res://scenes/ui/game_room.tscn"
 
 @export var player_scene: PackedScene
 
@@ -39,4 +39,4 @@ func add_player(peer_id: int, spawn_position: int) -> void:
 
 func _on_multiplayer_lobby_server_disconnected() -> void:
 	GameplayServer.stop()
-	get_tree().change_scene_to_file(LOBBY_SCENE_PATH)
+	get_tree().change_scene_to_file(GAME_ROOM_SCENE)
