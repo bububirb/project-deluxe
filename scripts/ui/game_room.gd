@@ -7,6 +7,9 @@ const LOBBY_SCENE = "res://scenes/ui/lobby.tscn"
 @onready var client: VBoxContainer = $Controls/Client
 
 func _ready() -> void:
+
+	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
+
 	if not multiplayer.multiplayer_peer:
 		MultiplayerLobby.create_game()
 	
@@ -24,4 +27,11 @@ func _on_start_button_pressed() -> void:
 #TODO: Implement client ready functionality
 
 func _on_back_button_pressed() -> void:
+	return_to_lobby()
+
+func _on_multiplayer_lobby_server_disconnected() -> void:
+	return_to_lobby()
+
+func return_to_lobby() -> void:
+	MultiplayerLobby.remove_multiplayer_peer()
 	get_tree().change_scene_to_file(LOBBY_SCENE)
