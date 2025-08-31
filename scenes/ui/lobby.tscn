@@ -1,11 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2rhplsaqim43"]
+[gd_scene load_steps=11 format=3 uid="uid://b2rhplsaqim43"]
 
 [ext_resource type="Script" uid="uid://rnudojt1suce" path="res://scripts/ui/lobby.gd" id="1_6oakf"]
 [ext_resource type="Theme" uid="uid://clminxby8hqrf" path="res://resources/themes/default.tres" id="1_efll3"]
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="3_5t5el"]
-[ext_resource type="Texture2D" uid="uid://cpsu6spg3m6q1" path="res://assets/icons/ui/left_arrow.svg" id="4_bthuv"]
-[ext_resource type="PackedScene" uid="uid://b0b1rht2r8mrb" path="res://scenes/ui/players_container.tscn" id="4_rqagm"]
-[ext_resource type="Texture2D" uid="uid://ddwqixi88etfq" path="res://assets/icons/ui/online.svg" id="5_bthuv"]
 [ext_resource type="FontVariation" uid="uid://cncutiwvtk0ww" path="res://assets/fonts/inter_bold.tres" id="5_kghoh"]
 [ext_resource type="Texture2D" uid="uid://dgchpexpcmnjo" path="res://assets/icons/ui/menu.svg" id="5_vfpwc"]
 [ext_resource type="Texture2D" uid="uid://bfp7imvdqhr10" path="res://assets/images/background/steampunk-city.png" id="7_bnidf"]
@@ -28,7 +25,7 @@ font_size = 20
 font = ExtResource("5_kghoh")
 font_size = 20
 
-[node name="Lobby" type="Control" node_paths=PackedStringArray("host_button", "join_button", "start_button", "back_button", "exit_button", "settings_button", "settings_container", "hosting_container", "joining_container", "name_input", "address_input", "port_input", "ip_label")]
+[node name="Lobby" type="Control" node_paths=PackedStringArray("host_button", "join_button", "settings_button", "settings_container", "name_input", "address_input", "port_input")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,17 +36,11 @@ theme = ExtResource("1_efll3")
 script = ExtResource("1_6oakf")
 host_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsContainer/HostButton")
 join_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsContainer/JoinButton")
-start_button = NodePath("CenterContainer/PanelContainer/MarginContainer/HostingContainer/StartButton")
-back_button = NodePath("CenterContainer/PanelContainer/MarginContainer/HostingContainer/TitleBar/BackButton")
-exit_button = NodePath("CenterContainer/PanelContainer/MarginContainer/JoiningContainer/ExitButton")
 settings_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TitleBar/SettingsButton")
 settings_container = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsContainer")
-hosting_container = NodePath("CenterContainer/PanelContainer/MarginContainer/HostingContainer")
-joining_container = NodePath("CenterContainer/PanelContainer/MarginContainer/JoiningContainer")
 name_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsContainer/NameContainer/NameInput")
 address_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsContainer/JoinAddressContainer/AddressInput")
 port_input = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsContainer/PortContainer/PortInput")
-ip_label = NodePath("CenterContainer/PanelContainer/MarginContainer/HostingContainer/IPContainer/IPLabel")
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 modulate = Color(0.601223, 0.601223, 0.601223, 1)
@@ -224,79 +215,6 @@ layout_mode = 2
 text = "Join an existing game"
 horizontal_alignment = 1
 autowrap_mode = 3
-
-[node name="HostingContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TitleBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer"]
-custom_minimum_size = Vector2(0, 28)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/TitleBar"]
-layout_mode = 2
-icon = ExtResource("4_bthuv")
-
-[node name="HostingLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/TitleBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Hosting"
-label_settings = SubResource("LabelSettings_rqagm")
-horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/TitleBar"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-texture = ExtResource("5_bthuv")
-stretch_mode = 3
-
-[node name="PlayersContainer" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer" instance=ExtResource("4_rqagm")]
-layout_mode = 2
-
-[node name="IPContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer"]
-visible = false
-layout_mode = 2
-
-[node name="AddressLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/IPContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Address: "
-
-[node name="IPLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer/IPContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 2
-fit_content = true
-scroll_active = false
-selection_enabled = true
-
-[node name="StartButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/HostingContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Start"
-
-[node name="JoiningContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
-visible = false
-layout_mode = 2
-
-[node name="TitleBar" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer"]
-custom_minimum_size = Vector2(0, 28)
-layout_mode = 2
-
-[node name="JoiningLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer/TitleBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Joining"
-label_settings = SubResource("LabelSettings_rqagm")
-horizontal_alignment = 1
-
-[node name="PlayersContainer" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer" instance=ExtResource("4_rqagm")]
-layout_mode = 2
-
-[node name="ExitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/JoiningContainer"]
-layout_mode = 2
-text = "Exit"
 
 [node name="Popup" type="Popup" parent="CenterContainer"]
 position = Vector2i(184, 88)
