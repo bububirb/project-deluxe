@@ -1,5 +1,7 @@
 extends Node
 
+const VERSION: String = "0.1.0"
+
 enum ItemMode {ACTIONABLE, USABLE, PASSIVE}
 enum ItemClass {CANNON, MORTAR, BEAM, SPEED_BOOST}
 enum ModifierType {BUFF, DEBUFF}

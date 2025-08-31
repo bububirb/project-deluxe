@@ -36,7 +36,6 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
-
 func join_game(address = "", port = 7000):
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP

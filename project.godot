@@ -24,6 +24,7 @@ Globals="*res://scripts/globals/globals.gd"
 MultiplayerLobby="*res://scripts/globals/multiplayer_lobby.gd"
 GameplayServer="*res://scripts/globals/gameplay_server.gd"
 Math="*res://scripts/globals/math.gd"
+IO="*res://scripts/globals/io.gd"
 
 [display]
 
