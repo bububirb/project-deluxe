@@ -6,12 +6,12 @@
    id="Layer_2_00000052789812727677281470000001206288968114730117_"
    x="0px"
    y="0px"
-   viewBox="0 0 16 16"
+   viewBox="0 0 24 24"
    xml:space="preserve"
    sodipodi:docname="menu.svg"
-   inkscape:version="1.3 (0e150ed, 2023-07-21)"
-   width="16"
-   height="16"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   width="24"
+   height="24"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -58,11 +58,11 @@
    inkscape:pagecheckerboard="0"
    inkscape:deskcolor="#505050"
    showgrid="true"
-   inkscape:zoom="26.51387"
-   inkscape:cx="11.333691"
-   inkscape:cy="9.1461563"
-   inkscape:window-width="1600"
-   inkscape:window-height="831"
+   inkscape:zoom="18.748137"
+   inkscape:cx="4.9071542"
+   inkscape:cy="7.7341017"
+   inkscape:window-width="1908"
+   inkscape:window-height="1032"
    inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
@@ -81,15 +81,21 @@
      dotted="false"
      gridanglex="30"
      gridanglez="30"
-     visible="true" /></sodipodi:namedview>&#10;<style
+     visible="true" /></sodipodi:namedview>
+<style
    type="text/css"
-   id="style1">&#10;	.st0{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}&#10;</style>&#10;&#10;&#10;<path
+   id="style1">
+	.st0{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+
+
+<path
    style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:16;stroke-opacity:1"
-   d="M 2,8 H 14"
+   d="M 6,12 H 18"
    id="path3" /><path
    style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:16;stroke-opacity:1"
-   d="M 2,3 H 14"
+   d="M 6,7 H 18"
    id="path4" /><path
    style="fill:none;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:16;stroke-opacity:1"
-   d="M 2,13 H 14"
+   d="M 6,17 H 18"
    id="path5" /></svg>
