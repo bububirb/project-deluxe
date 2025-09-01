@@ -11,7 +11,7 @@ radius = 0.075
 offsets = PackedFloat32Array(0, 0.294118, 0.673203, 1)
 colors = PackedColorArray(0.339857, 0.620773, 0.970768, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_n3nua"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jm5q4"]
 gradient = SubResource("Gradient_hx7hk")
 use_hdr = true
 
@@ -20,7 +20,7 @@ _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, -3.73515, 0, 0, Vector2(1, -1), -0.754214, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_jm5q4"]
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ervno"]
 curve_y = SubResource("Curve_tnh0h")
 
 [sub_resource type="Curve" id="Curve_bvjgr"]
@@ -28,7 +28,7 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 8.58127, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_1vhnx"]
+[sub_resource type="CurveTexture" id="CurveTexture_1838w"]
 curve = SubResource("Curve_bvjgr")
 
 [sub_resource type="Curve" id="Curve_ygv8w"]
@@ -36,7 +36,7 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 2), 0.0, -0.253056, 0, 0, Vector2(1, 1.14607), -2.81573, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_8l722"]
+[sub_resource type="CurveTexture" id="CurveTexture_kg4pg"]
 curve = SubResource("Curve_ygv8w")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lx08x"]
@@ -48,17 +48,17 @@ initial_velocity_min = 5.0
 initial_velocity_max = 10.0
 directional_velocity_min = 15.0
 directional_velocity_max = 25.0
-directional_velocity_curve = SubResource("CurveXYZTexture_jm5q4")
+directional_velocity_curve = SubResource("CurveXYZTexture_ervno")
 gravity = Vector3(0, -8, 0)
 damping_min = 1.0
 damping_max = 2.0
 scale_min = 0.25
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_1vhnx")
+scale_curve = SubResource("CurveTexture_1838w")
 scale_over_velocity_min = 1.0
 scale_over_velocity_max = 2.0
-scale_over_velocity_curve = SubResource("CurveTexture_8l722")
-color_ramp = SubResource("GradientTexture1D_n3nua")
+scale_over_velocity_curve = SubResource("CurveTexture_kg4pg")
+color_ramp = SubResource("GradientTexture1D_jm5q4")
 hue_variation_min = -2.23517e-08
 hue_variation_max = 0.1
 turbulence_enabled = true
@@ -68,7 +68,7 @@ turbulence_influence_min = 0.02
 turbulence_influence_max = 0.02
 collision_use_scale = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b13w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0foc"]
 transparency = 4
 diffuse_mode = 2
 specular_mode = 2
@@ -78,7 +78,7 @@ emission = Color(0.729412, 0.870588, 1, 1)
 emission_energy_multiplier = 10.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jm5q4"]
-material = SubResource("StandardMaterial3D_5b13w")
+material = SubResource("StandardMaterial3D_o0foc")
 top_radius = 0.01
 bottom_radius = 0.01
 height = 0.2
