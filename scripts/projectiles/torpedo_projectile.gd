@@ -19,7 +19,7 @@ var current_height: float = 0.0
 
 func _enter_tree() -> void:
 	global_position = stats.position
-	global_position.y = BuoyancySolver.height(global_position)
+	global_position.y = 0.0
 	global_rotation = stats.rotation
 	add_collision_exception_with(GameplayServer.get_player(stats.player_id).ship)
 	
