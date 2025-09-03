@@ -1,0 +1,179 @@
+[gd_scene load_steps=25 format=3 uid="uid://m5nq2dpts5dw"]
+
+[ext_resource type="Script" uid="uid://dlqou4rpy4ub7" path="res://scripts/projectiles/torpedo_projectile.gd" id="1_gpsjl"]
+[ext_resource type="PackedScene" uid="uid://w2x61xxk5io7" path="res://scenes/vfx/mortar_splash.tscn" id="2_p2c1b"]
+[ext_resource type="PackedScene" uid="uid://cm4ejh675t3x" path="res://assets/models/projectiles/bigger_torpedo_projectile_1.blend" id="3_gpsjl"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f0ux4"]
+margin = 0.05
+radius = 0.05
+
+[sub_resource type="Gradient" id="Gradient_7ofs4"]
+offsets = PackedFloat32Array(0, 0.294118, 0.673203, 1)
+colors = PackedColorArray(0.339857, 0.620773, 0.970768, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n3nua"]
+gradient = SubResource("Gradient_7ofs4")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_qma8b"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, -3.73515, 0, 0, Vector2(1, -1), -0.754214, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_jm5q4"]
+curve_y = SubResource("Curve_qma8b")
+
+[sub_resource type="Curve" id="Curve_j8rxc"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 8.58127, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1vhnx"]
+curve = SubResource("Curve_j8rxc")
+
+[sub_resource type="Curve" id="Curve_gwy7g"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, -0.253056, 0, 0, Vector2(1, 1.14607), -2.81573, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8l722"]
+curve = SubResource("Curve_gwy7g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_caqyr"]
+particle_flag_align_y = true
+inherit_velocity_ratio = 0.5
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+directional_velocity_min = 15.0
+directional_velocity_max = 25.0
+directional_velocity_curve = SubResource("CurveXYZTexture_jm5q4")
+gravity = Vector3(0, -8, 0)
+damping_min = 1.0
+damping_max = 2.0
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_1vhnx")
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
+scale_over_velocity_curve = SubResource("CurveTexture_8l722")
+color_ramp = SubResource("GradientTexture1D_n3nua")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.1
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 6.0
+turbulence_influence_min = 0.02
+turbulence_influence_max = 0.02
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qma8b"]
+transparency = 4
+diffuse_mode = 2
+specular_mode = 2
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.729412, 0.870588, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x2we1"]
+material = SubResource("StandardMaterial3D_qma8b")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.2
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Gradient" id="Gradient_gpsjl"]
+offsets = PackedFloat32Array(0, 0.294118, 0.673203, 1)
+colors = PackedColorArray(0.339857, 0.620773, 0.970768, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p2c1b"]
+gradient = SubResource("Gradient_gpsjl")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_b13w6"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, -3.73515, 0, 0, Vector2(1, -1), -0.754214, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_68v62"]
+curve_y = SubResource("Curve_b13w6")
+
+[sub_resource type="Curve" id="Curve_xi0rw"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 8.58127, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rkegk"]
+curve = SubResource("Curve_xi0rw")
+
+[sub_resource type="Curve" id="Curve_wx7tl"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, -0.253056, 0, 0, Vector2(1, 1.14607), -2.81573, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_sj0wu"]
+curve = SubResource("Curve_wx7tl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_73g7a"]
+particle_flag_align_y = true
+inherit_velocity_ratio = 0.5
+direction = Vector3(0, 0.25, -1)
+spread = 30.0
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+directional_velocity_min = 2.99998
+directional_velocity_max = 4.99998
+directional_velocity_curve = SubResource("CurveXYZTexture_68v62")
+gravity = Vector3(0, -8, 0)
+damping_min = 3.0
+damping_max = 6.0
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_rkegk")
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 2.0
+scale_over_velocity_curve = SubResource("CurveTexture_sj0wu")
+color_ramp = SubResource("GradientTexture1D_p2c1b")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.1
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 6.0
+turbulence_influence_min = 0.02
+turbulence_influence_max = 0.02
+collision_use_scale = true
+
+[node name="DeluxeTorpedoProjectile" type="CharacterBody3D" node_paths=PackedStringArray("trail_particles")]
+disable_mode = 1
+collision_layer = 8
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_gpsjl")
+trail_particles = NodePath("TrailParticles")
+explosion_scene = ExtResource("2_p2c1b")
+
+[node name="Mesh" parent="." instance=ExtResource("3_gpsjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_f0ux4")
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+process_mode = 3
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_caqyr")
+draw_pass_1 = SubResource("CylinderMesh_x2we1")
+
+[node name="TrailParticles" type="GPUParticles3D" parent="."]
+process_mode = 3
+amount = 200
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_73g7a")
+draw_pass_1 = SubResource("CylinderMesh_x2we1")
