@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dlqou4rpy4ub7" path="res://scripts/projectiles/torpedo_projectile.gd" id="1_7ofs4"]
 [ext_resource type="PackedScene" uid="uid://w2x61xxk5io7" path="res://scenes/vfx/mortar_splash.tscn" id="2_j8rxc"]
-[ext_resource type="PackedScene" uid="uid://byh6bg82ldnit" path="res://assets/models/projectiles/deluxe_cannon_projectile_1.blend" id="2_qma8b"]
+[ext_resource type="PackedScene" uid="uid://ciqae7yeww340" path="res://assets/models/projectiles/deluxe_torpedo_projectile_1.blend" id="3_qma8b"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f0ux4"]
 margin = 0.05
@@ -69,19 +69,19 @@ turbulence_influence_min = 0.02
 turbulence_influence_max = 0.02
 collision_use_scale = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b13w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qma8b"]
 transparency = 4
 diffuse_mode = 2
 specular_mode = 2
 vertex_color_use_as_albedo = true
 emission_enabled = true
 emission = Color(0.729412, 0.870588, 1, 1)
-emission_energy_multiplier = 10.0
+emission_energy_multiplier = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_x2we1"]
-material = SubResource("StandardMaterial3D_5b13w")
-top_radius = 0.01
-bottom_radius = 0.01
+material = SubResource("StandardMaterial3D_qma8b")
+top_radius = 0.02
+bottom_radius = 0.02
 height = 0.2
 radial_segments = 4
 rings = 1
@@ -121,12 +121,12 @@ curve = SubResource("Curve_0t7an")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7toei"]
 particle_flag_align_y = true
 inherit_velocity_ratio = 0.5
-direction = Vector3(0, 0, -1)
-spread = 22.648
-initial_velocity_min = 5.0
-initial_velocity_max = 10.0
-directional_velocity_min = 0.999984
-directional_velocity_max = 3.99998
+direction = Vector3(0, 0.25, -1)
+spread = 15.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+directional_velocity_min = 2.99998
+directional_velocity_max = 4.99998
 directional_velocity_curve = SubResource("CurveXYZTexture_x2we1")
 gravity = Vector3(0, -8, 0)
 damping_min = 1.0
@@ -156,8 +156,8 @@ script = ExtResource("1_7ofs4")
 trail_particles = NodePath("TrailParticles")
 explosion_scene = ExtResource("2_j8rxc")
 
-[node name="Mesh" parent="." instance=ExtResource("2_qma8b")]
-visible = false
+[node name="Mesh" parent="." instance=ExtResource("3_qma8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_f0ux4")
@@ -173,7 +173,7 @@ draw_pass_1 = SubResource("CylinderMesh_x2we1")
 
 [node name="TrailParticles" type="GPUParticles3D" parent="."]
 process_mode = 3
-amount = 100
-lifetime = 0.25
+amount = 150
+lifetime = 0.35
 process_material = SubResource("ParticleProcessMaterial_7toei")
 draw_pass_1 = SubResource("CylinderMesh_x2we1")

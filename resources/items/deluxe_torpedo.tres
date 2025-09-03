@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://bhjywgxowgk3h"
 [sub_resource type="Resource" id="Resource_gcd7l"]
 script = ExtResource("6_1oj6r")
 attack = 1000.0
-cooldown = 10.0
+cooldown = 0.1
 radius = 3.0
 ballistics = SubResource("Resource_sqmfb")
 tags = Array[ExtResource("7_gpjko")]([])
