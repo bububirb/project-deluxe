@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://7mfev3spq2rd"]
+
+[ext_resource type="Script" uid="uid://ble2kjaovp7ln" path="res://scripts/items/torpedo.gd" id="1_lnjgy"]
+[ext_resource type="PackedScene" uid="uid://ytlio5fgd4q1" path="res://assets/models/items/deluxe_torpedo_1.blend" id="1_smv8j"]
+[ext_resource type="PackedScene" uid="uid://bq87xoyd6wudv" path="res://scenes/projectiles/deluxe_torpedo_projectile.tscn" id="2_ytluf"]
+
+[node name="DeluxeTorpedo" instance=ExtResource("1_smv8j")]
+script = ExtResource("1_lnjgy")
+projectile = ExtResource("2_ytluf")

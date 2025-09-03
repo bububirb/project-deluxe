@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://bsvevtyr7avrk"]
+
+[ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_rb6i1"]
+[ext_resource type="Texture2D" uid="uid://dta04dieqyslh" path="res://assets/icons/items/plasma_beam.png" id="2_pksaw"]
+[ext_resource type="Script" uid="uid://djqsi8li1d6wr" path="res://scripts/resources/ballistics/torpedo_ballistics.gd" id="3_pksaw"]
+[ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="4_4vy8b"]
+[ext_resource type="Script" uid="uid://bhjywgxowgk3h" path="res://scripts/resources/modifiers/additive_defense_modifier.gd" id="5_latvn"]
+[ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="6_1oj6r"]
+[ext_resource type="Script" uid="uid://g88d8y3dajgk" path="res://scripts/resources/tags/tag.gd" id="7_gpjko"]
+
+[sub_resource type="Resource" id="Resource_sqmfb"]
+script = ExtResource("3_pksaw")
+projectile_speed = 7.5
+min_distance = 2.0
+metadata/_custom_type_script = "uid://djqsi8li1d6wr"
+
+[sub_resource type="Resource" id="Resource_fwml2"]
+script = ExtResource("5_latvn")
+amount = -0.25
+duration = 5.0
+scalable_duration = true
+icon_path = "res://assets/icons/modifiers/defense-down.svg"
+type = 1
+metadata/_custom_type_script = "uid://bhjywgxowgk3h"
+
+[sub_resource type="Resource" id="Resource_gcd7l"]
+script = ExtResource("6_1oj6r")
+attack = 1000.0
+cooldown = 0.1
+radius = 3.0
+ballistics = SubResource("Resource_sqmfb")
+tags = Array[ExtResource("7_gpjko")]([])
+modifiers_on_use = Array[ExtResource("4_4vy8b")]([])
+modifiers_on_hit = Array[ExtResource("4_4vy8b")]([SubResource("Resource_fwml2")])
+height = 0.0
+metadata/_custom_type_script = "uid://2c30v8yoqbxm"
+
+[resource]
+script = ExtResource("1_rb6i1")
+item_name = "deluxe_torpedo"
+description = "Incoming!"
+item_class = "torpedo"
+sprite = ExtResource("2_pksaw")
+stats = SubResource("Resource_gcd7l")
+metadata/_custom_type_script = "uid://cijhu0qp0nqpy"
