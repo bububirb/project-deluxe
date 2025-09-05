@@ -10,8 +10,8 @@
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="8_xlvjg"]
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="9_pvnwd"]
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="10_5m26h"]
-[ext_resource type="Resource" uid="uid://bvwldcsm3u85v" path="res://resources/items/plasma_beam.tres" id="10_r2gry"]
 [ext_resource type="Resource" uid="uid://bsvevtyr7avrk" path="res://resources/items/deluxe_torpedo.tres" id="11_0f7lv"]
+[ext_resource type="Resource" uid="uid://bic2k0f4avt2t" path="res://resources/items/bigger_torpedo.tres" id="11_s6wxw"]
 [ext_resource type="Texture2D" uid="uid://d1qdtkeiju38j" path="res://assets/textures/vfx/burn-debuff_render_all.png" id="13_0nk4f"]
 [ext_resource type="PackedScene" uid="uid://dbsw8xclkahwp" path="res://scenes/vfx/fire.tscn" id="14_hx33e"]
 [ext_resource type="PackedScene" uid="uid://ck8nbe2jypmjl" path="res://scenes/vfx/explosion.tscn" id="15_0f7lv"]
@@ -676,7 +676,7 @@ texture = ExtResource("5_r2gry")
 
 [node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target", "ship")]
 script = ExtResource("6_nlgi6")
-items = Array[ExtResource("7_gtxt4")]([ExtResource("8_xlvjg"), ExtResource("9_pvnwd"), ExtResource("10_r2gry"), ExtResource("11_0f7lv"), ExtResource("10_5m26h")])
+items = Array[ExtResource("7_gtxt4")]([ExtResource("8_xlvjg"), ExtResource("9_pvnwd"), ExtResource("11_0f7lv"), ExtResource("11_s6wxw"), ExtResource("10_5m26h")])
 target = NodePath("../Turret/TurretBase/ItemInstancer")
 ship = NodePath("..")
 
