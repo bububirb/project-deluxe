@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwio8k027rtoe"
-path.s3tc="res://.godot/imported/bigger-torpedo-projectile-base-color.png-5d357aff949ffb4951bf3f3e381661c3.s3tc.ctex"
-path.etc2="res://.godot/imported/bigger-torpedo-projectile-base-color.png-5d357aff949ffb4951bf3f3e381661c3.etc2.ctex"
+path.s3tc="res://.godot/imported/bigger-torpedo-projectile-base-color.png-94d7a6c1b222b3e67489fa6ad1fd3111.s3tc.ctex"
+path.etc2="res://.godot/imported/bigger-torpedo-projectile-base-color.png-94d7a6c1b222b3e67489fa6ad1fd3111.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/items/projectiles/bigger-torpedo-projectile-base-color.png"
-dest_files=["res://.godot/imported/bigger-torpedo-projectile-base-color.png-5d357aff949ffb4951bf3f3e381661c3.s3tc.ctex", "res://.godot/imported/bigger-torpedo-projectile-base-color.png-5d357aff949ffb4951bf3f3e381661c3.etc2.ctex"]
+source_file="res://assets/textures/models/projectiles/bigger-torpedo-projectile-base-color.png"
+dest_files=["res://.godot/imported/bigger-torpedo-projectile-base-color.png-94d7a6c1b222b3e67489fa6ad1fd3111.s3tc.ctex", "res://.godot/imported/bigger-torpedo-projectile-base-color.png-94d7a6c1b222b3e67489fa6ad1fd3111.etc2.ctex"]
 
 [params]
 
