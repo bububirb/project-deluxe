@@ -52,7 +52,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Server" type="VBoxContainer" parent="Controls"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -77,8 +76,18 @@ layout_mode = 2
 texture = ExtResource("5_ukc1o")
 stretch_mode = 3
 
-[node name="PlayersContainer" parent="Controls/Server" instance=ExtResource("6_c61pp")]
+[node name="Content" type="HBoxContainer" parent="Controls/Server"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayersContainer" parent="Controls/Server/Content" instance=ExtResource("6_c61pp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Workshop" parent="Controls/Server/Content" instance=ExtResource("7_lgv5y")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="IPContainer" type="HBoxContainer" parent="Controls/Server"]
 visible = false
@@ -103,6 +112,7 @@ size_flags_horizontal = 3
 text = "Start"
 
 [node name="Client" type="VBoxContainer" parent="Controls"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -127,17 +137,18 @@ layout_mode = 2
 texture = ExtResource("5_ukc1o")
 stretch_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Controls/Client"]
+[node name="Content" type="HBoxContainer" parent="Controls/Client"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayersContainer" parent="Controls/Client/HBoxContainer" instance=ExtResource("6_c61pp")]
+[node name="PlayersContainer" parent="Controls/Client/Content" instance=ExtResource("6_c61pp")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Workshop" parent="Controls/Client/HBoxContainer" instance=ExtResource("7_lgv5y")]
+[node name="Workshop" parent="Controls/Client/Content" instance=ExtResource("7_lgv5y")]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ReadyButton" type="Button" parent="Controls/Client"]
 visible = false

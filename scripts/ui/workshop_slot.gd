@@ -1,11 +1,13 @@
 @tool
 class_name WorkshopSlot extends PanelContainer
 
-@export var workshop_item_scene: PackedScene
+signal item_set(index: int, item: Item)
 
+@export var workshop_item_scene: PackedScene
 @export var item: Item:
 	set(new_item):
 		item = new_item
+		item_set.emit(get_index(), item)
 		for child in get_children():
 			child.queue_free()
 		if new_item:

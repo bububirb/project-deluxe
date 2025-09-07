@@ -10,6 +10,8 @@ signal server_ready
 signal server_status_return(status: ServerStatus)
 signal connection_reset
 
+signal player_info_updated(peer_id, player_info)
+
 const PORT = 7000
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
 const MAX_CONNECTIONS = 20
@@ -22,7 +24,10 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name"}
+var player_info = {"name": "Name", "deck": {}}:
+	set(new_player_info):
+		player_info = new_player_info
+		set_player_deck.rpc_id(1, player_info.deck)
 
 var players_loaded = 0
 
@@ -125,3 +130,9 @@ func poll_server_status() -> void:
 @rpc("authority", "call_remote", "reliable")
 func return_server_status() -> void:
 	server_status_return.emit(status)
+
+@rpc("any_peer", "call_local", "reliable")
+func set_player_deck(deck: Dictionary):
+	var peer_id: int = multiplayer.get_remote_sender_id()
+	players[peer_id].deck = deck
+	player_info_updated.emit(peer_id, players[peer_id])
