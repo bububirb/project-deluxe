@@ -27,7 +27,7 @@ var players = {}
 var player_info = {"name": "Name", "deck": {}}:
 	set(new_player_info):
 		player_info = new_player_info
-		set_player_deck.rpc_id(1, player_info.deck)
+		set_player_deck.rpc(player_info.deck)
 
 var players_loaded = 0
 
