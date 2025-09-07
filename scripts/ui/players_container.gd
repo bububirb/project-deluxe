@@ -28,7 +28,8 @@ func _on_multiplayer_lobby_connection_reset() -> void:
 	_clear_players()
 
 func _on_multiplayer_lobby_player_info_updated(peer_id, player_info) -> void:
-	update_player_deck.rpc(peer_id, player_info)
+	if multiplayer.is_server():
+		update_player_deck.rpc(peer_id, player_info)
 
 func _add_player(peer_id: int, player_info: Dictionary) -> void:
 	var player: HBoxContainer = HBoxContainer.new()
