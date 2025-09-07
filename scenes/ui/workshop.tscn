@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://ccd21xxy5imtf"]
+
+[ext_resource type="Script" uid="uid://b4qkwpm00us43" path="res://scripts/ui/inventory.gd" id="1_0occ3"]
+[ext_resource type="Script" uid="uid://bola2rqxd3dnj" path="res://scripts/ui/workshop.gd" id="1_b280y"]
+[ext_resource type="PackedScene" uid="uid://de0r3ldrpsrk8" path="res://scenes/ui/workshop_item.tscn" id="1_w2xo4"]
+[ext_resource type="PackedScene" uid="uid://ca5nybsqmstis" path="res://scenes/ui/workshop_slot.tscn" id="2_l4nn5"]
+[ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="3_l4nn5"]
+[ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="4_b280y"]
+[ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="5_segb8"]
+[ext_resource type="Resource" uid="uid://dl1kd0olljc5g" path="res://resources/items/deluxe_mortar.tres" id="6_h1e0x"]
+[ext_resource type="Resource" uid="uid://bsvevtyr7avrk" path="res://resources/items/deluxe_torpedo.tres" id="7_5jig3"]
+[ext_resource type="Resource" uid="uid://cd8q6w83buasr" path="res://resources/items/bigger_torpedo.tres" id="8_b1ygd"]
+[ext_resource type="Resource" uid="uid://bvwldcsm3u85v" path="res://resources/items/plasma_beam.tres" id="9_56awd"]
+[ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="10_k4e8n"]
+[ext_resource type="Resource" uid="uid://dqxg1s4rp1abq" path="res://resources/items/overboost.tres" id="11_hhph8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0occ3"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 0.8)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4nn5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.129412, 0.129412, 0.129412, 0.8)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Workshop" type="PanelContainer" node_paths=PackedStringArray("deck")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b280y")
+deck = NodePath("HBoxContainer/DeckContainer/ScrollContainer/Deck")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="InventoryContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0occ3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/InventoryContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Inventory" type="HFlowContainer" parent="HBoxContainer/InventoryContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_0occ3")
+slot_scene = ExtResource("2_l4nn5")
+item_container_scene = ExtResource("1_w2xo4")
+items = Array[ExtResource("3_l4nn5")]([ExtResource("4_b280y"), ExtResource("5_segb8"), ExtResource("6_h1e0x"), ExtResource("7_5jig3"), ExtResource("8_b1ygd"), ExtResource("9_56awd"), ExtResource("10_k4e8n"), ExtResource("11_hhph8"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+
+[node name="DeckContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4nn5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/DeckContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Deck" type="VBoxContainer" parent="HBoxContainer/DeckContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="WorkshopSlot" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot2" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot3" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot4" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot5" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2

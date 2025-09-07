@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvr2th0gbsb53"]
+[gd_scene load_steps=10 format=3 uid="uid://bvr2th0gbsb53"]
 
 [ext_resource type="Script" uid="uid://chjufpelfglie" path="res://scripts/ui/game_room.gd" id="1_s1c07"]
 [ext_resource type="Texture2D" uid="uid://cvx83h60n7g8p" path="res://assets/images/background/the-chambers.png" id="2_lgv5y"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://cu4dxsm2lbdgf" path="res://assets/fonts/inter_variable.ttf" id="4_r30p1"]
 [ext_resource type="Texture2D" uid="uid://ddwqixi88etfq" path="res://assets/icons/ui/online.svg" id="5_ukc1o"]
 [ext_resource type="PackedScene" uid="uid://b0b1rht2r8mrb" path="res://scenes/ui/players_container.tscn" id="6_c61pp"]
+[ext_resource type="PackedScene" uid="uid://ccd21xxy5imtf" path="res://scenes/ui/workshop.tscn" id="7_lgv5y"]
 
 [sub_resource type="FontVariation" id="FontVariation_2rbxb"]
 base_font = ExtResource("4_r30p1")
@@ -51,7 +52,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Server" type="VBoxContainer" parent="Controls"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -76,8 +76,18 @@ layout_mode = 2
 texture = ExtResource("5_ukc1o")
 stretch_mode = 3
 
-[node name="PlayersContainer" parent="Controls/Server" instance=ExtResource("6_c61pp")]
+[node name="Content" type="HBoxContainer" parent="Controls/Server"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayersContainer" parent="Controls/Server/Content" instance=ExtResource("6_c61pp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Workshop" parent="Controls/Server/Content" instance=ExtResource("7_lgv5y")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="IPContainer" type="HBoxContainer" parent="Controls/Server"]
 visible = false
@@ -102,6 +112,7 @@ size_flags_horizontal = 3
 text = "Start"
 
 [node name="Client" type="VBoxContainer" parent="Controls"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -126,8 +137,18 @@ layout_mode = 2
 texture = ExtResource("5_ukc1o")
 stretch_mode = 3
 
-[node name="PlayersContainer" parent="Controls/Client" instance=ExtResource("6_c61pp")]
+[node name="Content" type="HBoxContainer" parent="Controls/Client"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayersContainer" parent="Controls/Client/Content" instance=ExtResource("6_c61pp")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Workshop" parent="Controls/Client/Content" instance=ExtResource("7_lgv5y")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ReadyButton" type="Button" parent="Controls/Client"]
 visible = false
