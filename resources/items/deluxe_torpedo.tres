@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://bsvevtyr7avrk"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_rb6i1"]
-[ext_resource type="Texture2D" uid="uid://dta04dieqyslh" path="res://assets/icons/items/plasma_beam.png" id="2_pksaw"]
+[ext_resource type="Texture2D" uid="uid://c1f8vwusn3ge0" path="res://assets/icons/items/deluxe_torpedo.png" id="2_pksaw"]
 [ext_resource type="Script" uid="uid://djqsi8li1d6wr" path="res://scripts/resources/ballistics/torpedo_ballistics.gd" id="3_pksaw"]
 [ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="4_4vy8b"]
 [ext_resource type="Script" uid="uid://bhjywgxowgk3h" path="res://scripts/resources/modifiers/additive_defense_modifier.gd" id="5_latvn"]

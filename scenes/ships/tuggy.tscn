@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="9_pvnwd"]
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="10_5m26h"]
 [ext_resource type="Resource" uid="uid://bsvevtyr7avrk" path="res://resources/items/deluxe_torpedo.tres" id="11_0f7lv"]
-[ext_resource type="Resource" uid="uid://bic2k0f4avt2t" path="res://resources/items/bigger_torpedo.tres" id="11_s6wxw"]
+[ext_resource type="Resource" uid="uid://cd8q6w83buasr" path="res://resources/items/bigger_torpedo.tres" id="11_s6wxw"]
 [ext_resource type="Texture2D" uid="uid://d1qdtkeiju38j" path="res://assets/textures/vfx/burn-debuff_render_all.png" id="13_0nk4f"]
 [ext_resource type="PackedScene" uid="uid://dbsw8xclkahwp" path="res://scenes/vfx/fire.tscn" id="14_hx33e"]
 [ext_resource type="PackedScene" uid="uid://ck8nbe2jypmjl" path="res://scenes/vfx/explosion.tscn" id="15_0f7lv"]
