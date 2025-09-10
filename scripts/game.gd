@@ -34,8 +34,9 @@ func start_game():
 func add_player(peer_id: int, spawn_position: int) -> void:
 	var player_node: Node3D = player_scene.instantiate()
 	player_node.name = str(peer_id)
-	player_node.spawn = spawn_positions.get_child(spawn_position).transform
 	add_child(player_node)
+	if multiplayer.is_server():
+		player_node.set_spawn.rpc(spawn_positions.get_child(spawn_position).transform)
 
 func _on_multiplayer_lobby_server_disconnected() -> void:
 	GameplayServer.stop()

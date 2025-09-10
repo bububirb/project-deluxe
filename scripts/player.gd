@@ -18,12 +18,14 @@ var max_fov: float = 90.0
 @onready var hud: Control = $HUD
 @onready var controls: Control = $Controls
 
+func _init() -> void:
+	visible = false # Wait for set_spawn
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(str(name).to_int())
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ship.transform = spawn
 	if DisplayServer.has_hardware_keyboard():
 		controls.hide()
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
@@ -109,3 +111,10 @@ func _on_ship_item_selected(item: Node):
 		var _tween = create_tween().tween_property(camera, "position:z", -2.2, 0.15)
 	if item is Cannon:
 		var _tween = create_tween().tween_property(camera, "position:z", -1.6, 0.15)
+
+@rpc("any_peer", "call_local", "reliable")
+func set_spawn(new_spawn: Transform3D):
+	if multiplayer.get_remote_sender_id() == 1:
+		spawn = new_spawn
+		ship.transform = spawn
+		visible = true

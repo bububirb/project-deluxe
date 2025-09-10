@@ -16,16 +16,16 @@ player_scene = ExtResource("3_axujj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.463)
 
 [node name="2" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.98635, 0, -11.463)
+transform = Transform3D(-0.972378, 0, -0.233412, 0, 1, 0, 0.233412, 0, -0.972378, 1.79574, 0, 0.950178)
 
 [node name="3" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.89034, 0, -0.455296, 0, 1, 0, 0.455296, 0, 0.89034, 6.88382, 0, -10.5245)
+transform = Transform3D(0.653513, 0, -0.756915, 0, 1, 0, 0.756915, 0, 0.653513, 7.80722, 0, -5.75959)
 
 [node name="4" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.760882, 0, -0.64889, 0, 1, 0, 0.64889, 0, 0.760882, 9.60228, 0, -8.38367)
+transform = Transform3D(0.0323183, 0, -0.999478, 0, 1, 0, 0.999478, 0, 0.0323183, 9.88235, 0, 0.277632)
 
 [node name="5" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.445354, 0, 0.895354, 0, 1, 0, -0.895354, 0, 0.445354, -4.92503, 0, -10.0343)
+transform = Transform3D(0.194132, 0, 0.980975, 0, 1, 0, -0.980975, 0, 0.194132, -5.67241, 0, -0.435022)
 
 [node name="6" type="Node3D" parent="SpawnPositions"]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -8.75016, 0, 10.5363)
