@@ -124,6 +124,7 @@ process_material = SubResource("ParticleProcessMaterial_lx08x")
 draw_pass_1 = SubResource("CylinderMesh_jm5q4")
 
 [node name="DebugParticles" type="GPUParticles3D" parent="."]
+process_mode = 3
 amount = 4800
 lifetime = 6.0
 fixed_fps = 240
