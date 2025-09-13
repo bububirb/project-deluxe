@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf1468muu0d1e"]
+[gd_scene load_steps=19 format=3 uid="uid://bf1468muu0d1e"]
 
 [ext_resource type="Script" uid="uid://dr454nntc5qm0" path="res://scripts/projectiles/mortar_projectile.gd" id="1_jm5q4"]
 [ext_resource type="PackedScene" uid="uid://w2x61xxk5io7" path="res://scenes/vfx/mortar_splash.tscn" id="2_ervno"]
@@ -85,6 +85,15 @@ height = 0.2
 radial_segments = 4
 rings = 1
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jm5q4"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm5q4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ervno"]
+material = SubResource("StandardMaterial3D_jm5q4")
+size = Vector3(0.2, 0.2, 0.2)
+
 [node name="DeluxeMortarProjectile" type="CharacterBody3D"]
 process_mode = 3
 collision_layer = 8
@@ -106,3 +115,8 @@ one_shot = true
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_lx08x")
 draw_pass_1 = SubResource("CylinderMesh_jm5q4")
+
+[node name="DebugParticles" type="GPUParticles3D" parent="."]
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_jm5q4")
+draw_pass_1 = SubResource("BoxMesh_ervno")
