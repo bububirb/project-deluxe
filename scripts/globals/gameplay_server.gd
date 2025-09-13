@@ -131,7 +131,7 @@ func _heal(player_id: int, healing: int) -> void:
 func _get_area_strength(position: Vector3, radius: float) -> Dictionary:
 	var area_strength: Dictionary = {}
 	for player_id: int in get_player_ids():
-		var distance: float = position.distance_to(get_ship(player_id).position)
+		var distance: float = position.distance_to(get_ship(player_id).global_position)
 		if distance < radius:
 			area_strength[player_id] = 1.0 - min(distance / radius, 1.0)
 	return area_strength
