@@ -25,7 +25,7 @@ func _enter_tree() -> void:
 	
 	projectile_arc = ArcFactory.create_torpedo_arc(stats)
 
-func _on_collision(collision: KinematicCollision3D):
+func _on_collision(_collision: KinematicCollision3D):
 	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)
 	mesh.hide()
 	if trail_particles:
@@ -37,13 +37,10 @@ func _on_collision(collision: KinematicCollision3D):
 		explosion_node.process_mode = Node.PROCESS_MODE_ALWAYS
 		add_child(explosion_node)
 
-	if collision:
-		if multiplayer.is_server():
-			var collider = collision.get_collider()
-			if collider is Ship:
-				var hit_id: int = int(collider.get_parent().name)
-				player_hit.emit(hit_id, stats.attack, stats.modifiers)
-				GameplayServer._on_projectile_player_hit(stats.player_id, hit_id, stats.attack, stats.modifiers, stats.tags)
+	if multiplayer.is_server():
+		# var hit_id: int = int(collider.get_parent().name)
+		# player_hit.emit(hit_id, stats.attack, stats.modifiers)
+		GameplayServer._on_aoe_projectile_hit(stats.player_id, global_position, stats.radius, stats.attack, stats.modifiers, stats.tags)
 
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height
