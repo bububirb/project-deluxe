@@ -10,7 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_uty5t"]
 script = ExtResource("3_nrr8r")
-projectile_speed = 30.0
+projectile_speed = 5.0
 max_range = 45.0
 min_angle = 1.0472
 max_angle = 1.48353
