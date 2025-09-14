@@ -75,7 +75,7 @@ func _process(_delta: float) -> void:
 		if ship.active_item is not Mortar:
 			camera.fov = lerp(camera.fov, min_fov, 0.2)
 		if ship.active_item is Mortar:
-			var tween = create_tween().tween_property(camera, "position:z", -6.0, 0.4)
+			var tween = create_tween().tween_property(camera, "position:z", -3.5, 0.4)
 			await tween.finished
 
 	if Input.is_action_just_released("aim"):
