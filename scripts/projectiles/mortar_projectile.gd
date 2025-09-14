@@ -37,7 +37,7 @@ func _on_collision(_collision: KinematicCollision3D):
 
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height
-	var offset = delta * stats.distance / stats.ballistics.travel_time
+	var offset = delta * projectile_arc.distance / stats.ballistics.travel_time
 	displacement += offset
 	var next_height = projectile_arc.arc_height(displacement)
 	var height_offset = next_height - prev_height
