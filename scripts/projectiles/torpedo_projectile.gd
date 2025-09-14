@@ -1,12 +1,13 @@
 class_name TorpedoProjectile extends Projectile
 
-signal player_hit(player_id: int)
+# signal player_hit(player_id: int)
 
 @export var trail_particles: GPUParticles3D
 @export var explosion_scene: PackedScene
 
 var time: float = 0.0
 var displacement: float = 0.0
+var activated: bool = false
 
 # To be set by the item
 var stats: ProjectileStats
@@ -31,21 +32,24 @@ func _on_collision(_collision: KinematicCollision3D):
 	if trail_particles:
 		trail_particles.set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_ALWAYS)
 		trail_particles.emitting = false
-	explosion_particles.emitting = true
-	if explosion_scene:
-		var explosion_node = explosion_scene.instantiate()
-		explosion_node.process_mode = Node.PROCESS_MODE_ALWAYS
-		add_child(explosion_node)
+	if activated:
+		explosion_particles.emitting = true
+		if explosion_scene:
+			var explosion_node = explosion_scene.instantiate()
+			explosion_node.process_mode = Node.PROCESS_MODE_ALWAYS
+			add_child(explosion_node)
 
-	if multiplayer.is_server():
-		# var hit_id: int = int(collider.get_parent().name)
-		# player_hit.emit(hit_id, stats.attack, stats.modifiers)
-		GameplayServer._on_aoe_projectile_hit(stats.player_id, global_position, stats.radius, stats.attack, stats.modifiers, stats.tags)
+		if multiplayer.is_server():
+			GameplayServer._on_aoe_projectile_hit(stats.player_id, global_position, stats.radius, stats.attack, stats.modifiers, stats.tags)
 
 func _physics_process(delta: float) -> void:
 	var prev_height = current_height
 	var offset = delta * stats.ballistics.projectile_speed
 	displacement += offset
+
+	if not activated and displacement >= stats.ballistics.min_distance:
+		activated = true
+
 	var next_height = projectile_arc.arc_height(global_position)
 	var height_offset = next_height - prev_height
 	current_height = next_height

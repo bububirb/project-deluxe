@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_sqmfb"]
 script = ExtResource("3_pksaw")
 projectile_speed = 7.5
-min_distance = 2.0
+min_distance = 4.0
 metadata/_custom_type_script = "uid://djqsi8li1d6wr"
 
 [sub_resource type="Resource" id="Resource_fwml2"]
