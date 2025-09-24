@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsevgkhndtd03"]
+[gd_scene load_steps=19 format=3 uid="uid://dsevgkhndtd03"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_axujj"]
 [ext_resource type="CompressedTexture3D" uid="uid://feierbyipkx0" path="res://assets/textures/vfx/3d_lut.png" id="4_0i0it"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="10_ad25f"]
 [ext_resource type="PackedScene" uid="uid://bm7ya346n5u2y" path="res://scenes/environment/foliage/fern.tscn" id="11_8ubl8"]
 [ext_resource type="PackedScene" uid="uid://mw06atm23mvb" path="res://scenes/environment/artificial/barrel.tscn" id="11_axujj"]
+[ext_resource type="PackedScene" uid="uid://clp5h8fhxhwty" path="res://assets/models/environment/rocks/rock_02.blend" id="11_pcy5s"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -83,20 +84,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 gi_mode = 0
 mesh = SubResource("PlaneMesh_0d0ps")
 
-[node name="VoxelGI" type="VoxelGI" parent="." index="13"]
+[node name="VoxelGI" type="VoxelGI" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 2)
 subdiv = 2
 size = Vector3(52, 18, 54)
 data = ExtResource("8_rmskt")
 
-[node name="first_rock" parent="." index="14" instance=ExtResource("9_6kt43")]
+[node name="first_rock" parent="." index="13" instance=ExtResource("9_6kt43")]
 transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, -0.552643, -2.45251)
 
-[node name="rock_1" parent="." index="15" instance=ExtResource("10_ad25f")]
+[node name="rock_1" parent="." index="14" instance=ExtResource("10_ad25f")]
 transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.345, -1.061, -4.437)
 
 [node name="Fern" parent="rock_1" index="1" instance=ExtResource("11_8ubl8")]
 transform = Transform3D(0.648669, 0.374903, 0.0278686, -0.375317, 0.649008, 0.00509999, -0.0215743, -0.0183636, 0.749198, 0.600213, 1.2162, -0.0422261)
 
-[node name="barrel" parent="." index="16" instance=ExtResource("11_axujj")]
+[node name="barrel" parent="." index="15" instance=ExtResource("11_axujj")]
 transform = Transform3D(-2.18557e-08, -0.5, -0.866025, 1, -4.37114e-08, 0, -3.78552e-08, -0.866025, 0.5, -0.654686, 0, -5.11308)
+
+[node name="rock_02" parent="." index="16" instance=ExtResource("11_pcy5s")]
+transform = Transform3D(1.87723, 0, 1.21118, 0, 2.23405, 0, -1.21118, 0, 1.87723, 2.0652, -0.68603, 7.55396)
