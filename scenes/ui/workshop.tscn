@@ -14,7 +14,7 @@
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="10_k4e8n"]
 [ext_resource type="Resource" uid="uid://dqxg1s4rp1abq" path="res://resources/items/overboost.tres" id="11_hhph8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0occ3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4nn5"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -26,7 +26,7 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4nn5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0occ3"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -45,51 +45,51 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b280y")
-deck = NodePath("HBoxContainer/DeckContainer/ScrollContainer/Deck")
+deck = NodePath("WorkshopContainer/DeckContainer/ScrollContainer/Deck")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="WorkshopContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="InventoryContainer" type="PanelContainer" parent="HBoxContainer"]
+[node name="DeckContainer" type="PanelContainer" parent="WorkshopContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4nn5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/DeckContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="Deck" type="HBoxContainer" parent="WorkshopContainer/DeckContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="WorkshopSlot" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot2" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot3" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot4" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="WorkshopSlot5" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+layout_mode = 2
+
+[node name="InventoryContainer" type="PanelContainer" parent="WorkshopContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_0occ3")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/InventoryContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/InventoryContainer"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="Inventory" type="HFlowContainer" parent="HBoxContainer/InventoryContainer/ScrollContainer"]
+[node name="Inventory" type="HFlowContainer" parent="WorkshopContainer/InventoryContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_0occ3")
 slot_scene = ExtResource("2_l4nn5")
 item_container_scene = ExtResource("1_w2xo4")
 items = Array[ExtResource("3_l4nn5")]([ExtResource("4_b280y"), ExtResource("5_segb8"), ExtResource("6_h1e0x"), ExtResource("7_5jig3"), ExtResource("8_b1ygd"), ExtResource("9_56awd"), ExtResource("10_k4e8n"), ExtResource("11_hhph8"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
-
-[node name="DeckContainer" type="PanelContainer" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_l4nn5")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/DeckContainer"]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="Deck" type="VBoxContainer" parent="HBoxContainer/DeckContainer/ScrollContainer"]
-layout_mode = 2
-
-[node name="WorkshopSlot" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
-layout_mode = 2
-
-[node name="WorkshopSlot2" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
-layout_mode = 2
-
-[node name="WorkshopSlot3" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
-layout_mode = 2
-
-[node name="WorkshopSlot4" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
-layout_mode = 2
-
-[node name="WorkshopSlot5" parent="HBoxContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
-layout_mode = 2
