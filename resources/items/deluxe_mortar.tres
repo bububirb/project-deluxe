@@ -10,18 +10,12 @@
 
 [sub_resource type="Resource" id="Resource_uty5t"]
 script = ExtResource("3_nrr8r")
-travel_time = 3.0
-min_range = 5.0
-max_range = 45.0
-height = 30.0
 metadata/_custom_type_script = "uid://bcfclipky5qs7"
 
 [sub_resource type="Resource" id="Resource_gyyg8"]
 script = ExtResource("5_uty5t")
 damage = 150
-tick_duration = 1.0
 duration = 8.0
-scalable_duration = true
 icon_path = "uid://d1dyeva3fni4u"
 type = 1
 metadata/_custom_type_script = "uid://cmngjsfctp4ug"
@@ -32,8 +26,6 @@ attack = 1000.0
 cooldown = 1.0
 radius = 5.0
 ballistics = SubResource("Resource_uty5t")
-tags = Array[ExtResource("7_gyyg8")]([])
-modifiers_on_use = Array[ExtResource("3_qmutr")]([])
 modifiers_on_hit = Array[ExtResource("3_qmutr")]([SubResource("Resource_gyyg8")])
 height = 10.0
 metadata/_custom_type_script = "uid://2c30v8yoqbxm"

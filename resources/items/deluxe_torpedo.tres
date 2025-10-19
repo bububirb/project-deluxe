@@ -10,15 +10,10 @@
 
 [sub_resource type="Resource" id="Resource_sqmfb"]
 script = ExtResource("3_pksaw")
-projectile_speed = 7.5
-min_distance = 4.0
 metadata/_custom_type_script = "uid://djqsi8li1d6wr"
 
 [sub_resource type="Resource" id="Resource_fwml2"]
 script = ExtResource("5_latvn")
-amount = -0.25
-duration = 5.0
-scalable_duration = true
 icon_path = "res://assets/icons/modifiers/defense-down.svg"
 type = 1
 metadata/_custom_type_script = "uid://bhjywgxowgk3h"
@@ -29,10 +24,7 @@ attack = 1000.0
 cooldown = 0.1
 radius = 3.0
 ballistics = SubResource("Resource_sqmfb")
-tags = Array[ExtResource("7_gpjko")]([])
-modifiers_on_use = Array[ExtResource("4_4vy8b")]([])
 modifiers_on_hit = Array[ExtResource("4_4vy8b")]([SubResource("Resource_fwml2")])
-height = 0.0
 metadata/_custom_type_script = "uid://2c30v8yoqbxm"
 
 [resource]

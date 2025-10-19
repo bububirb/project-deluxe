@@ -21,7 +21,7 @@ texture = ExtResource("2_6ixo3")
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_toon, specular_disabled, depth_prepass_alpha;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_toon, specular_disabled, depth_prepass_alpha;
 
 uniform sampler2D tex_frg_2;
 uniform float Mask;

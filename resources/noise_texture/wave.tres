@@ -7,5 +7,5 @@ fractal_gain = 0.34
 fractal_weighted_strength = 0.6
 
 [resource]
-seamless = true
 noise = SubResource("FastNoiseLite_aaxb1")
+seamless = true

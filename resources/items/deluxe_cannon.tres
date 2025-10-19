@@ -11,8 +11,6 @@
 
 [sub_resource type="Resource" id="Resource_p0aee"]
 script = ExtResource("3_v3pbv")
-projectile_speed = 30.0
-max_range = 45.0
 min_angle = -0.261799
 max_angle = 0.523599
 metadata/_custom_type_script = "uid://rqh1pl76s4yu"
@@ -21,17 +19,13 @@ metadata/_custom_type_script = "uid://rqh1pl76s4yu"
 script = ExtResource("5_v3pbv")
 amount = -0.5
 duration = 7.5
-scalable_duration = true
 icon_path = "uid://dqfnlvbw813ya"
 type = 1
 metadata/_custom_type_script = "uid://bhjywgxowgk3h"
 
 [sub_resource type="Resource" id="Resource_u8xe4"]
 script = ExtResource("6_u8xe4")
-damage = 50
 tick_duration = 0.25
-duration = 5.0
-scalable_duration = true
 icon_path = "res://assets/icons/modifiers/burn.svg"
 type = 1
 metadata/_custom_type_script = "uid://cmngjsfctp4ug"
@@ -42,8 +36,6 @@ attack = 1000.0
 cooldown = 10.0
 radius = 0.5
 ballistics = SubResource("Resource_p0aee")
-tags = Array[ExtResource("7_p0aee")]([])
-modifiers_on_use = Array[ExtResource("3_qtpa6")]([])
 modifiers_on_hit = Array[ExtResource("3_qtpa6")]([SubResource("Resource_v3pbv"), SubResource("Resource_u8xe4")])
 height = 1.0
 

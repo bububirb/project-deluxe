@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://ccd21xxy5imtf"]
 
-[ext_resource type="Script" uid="uid://b4qkwpm00us43" path="res://scripts/ui/inventory.gd" id="1_0occ3"]
+[ext_resource type="Script" path="res://scripts/ui/inventory.gd" id="1_0occ3"]
 [ext_resource type="Script" uid="uid://bola2rqxd3dnj" path="res://scripts/ui/workshop.gd" id="1_b280y"]
 [ext_resource type="PackedScene" uid="uid://de0r3ldrpsrk8" path="res://scenes/ui/workshop_item.tscn" id="1_w2xo4"]
 [ext_resource type="PackedScene" uid="uid://ca5nybsqmstis" path="res://scenes/ui/workshop_slot.tscn" id="2_l4nn5"]

@@ -10,14 +10,12 @@
 
 [sub_resource type="Resource" id="Resource_2v63v"]
 script = ExtResource("3_kvq05")
-projectile_speed = 30.0
 min_angle = -0.261799
 max_angle = 0.523599
 metadata/_custom_type_script = "uid://bc68x0bef4bwc"
 
 [sub_resource type="Resource" id="Resource_6sj7j"]
 script = ExtResource("7_uwn7a")
-amount = 0.2
 metadata/_custom_type_script = "uid://dcq08bs2gx6tq"
 
 [sub_resource type="Resource" id="Resource_uwn7a"]
@@ -27,9 +25,6 @@ cooldown = 1.0
 radius = 1.0
 ballistics = SubResource("Resource_2v63v")
 tags = Array[ExtResource("6_kvq05")]([SubResource("Resource_6sj7j")])
-modifiers_on_use = Array[ExtResource("3_xh4mn")]([])
-modifiers_on_hit = Array[ExtResource("3_xh4mn")]([])
-height = 0.0
 metadata/_custom_type_script = "uid://2c30v8yoqbxm"
 
 [resource]

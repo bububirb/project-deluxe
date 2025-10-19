@@ -19,7 +19,6 @@ metadata/_custom_type_script = "uid://rqh1pl76s4yu"
 [sub_resource type="Resource" id="Resource_wukqx"]
 script = ExtResource("7_0srnl")
 crit_chance = 0.5
-crit_damage = 0.5
 metadata/_custom_type_script = "uid://tlqwn6u103an"
 
 [sub_resource type="Resource" id="Resource_u4sm5"]
@@ -29,8 +28,6 @@ cooldown = 7.5
 radius = 0.4
 ballistics = SubResource("Resource_ipwt6")
 tags = Array[ExtResource("6_ipwt6")]([SubResource("Resource_wukqx")])
-modifiers_on_use = Array[ExtResource("3_8p5q7")]([])
-modifiers_on_hit = Array[ExtResource("3_8p5q7")]([])
 height = 0.5
 
 [resource]
