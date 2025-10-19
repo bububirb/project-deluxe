@@ -11,6 +11,8 @@ signal server_status_return(status: ServerStatus)
 signal connection_reset
 
 signal player_info_updated(peer_id, player_info)
+signal player_deck_changed(peer_id, deck)
+signal player_ship_changed(peer_id, ship)
 
 const PORT = 7000
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
@@ -24,7 +26,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name", "deck": {}}:
+var player_info = {"name": "Name", "ship": "", "deck": {}}:
 	set(new_player_info):
 		player_info = new_player_info
 		set_player_deck.rpc(player_info.deck)
@@ -122,6 +124,18 @@ func _on_server_disconnected():
 	players.clear()
 	server_disconnected.emit()
 
+@rpc("any_peer", "call_local", "reliable")
+func set_player_deck_item(index: int, item_name: String) -> void:
+	var player_id = multiplayer.get_remote_sender_id()
+	players[player_id].deck[index] = item_name
+	player_deck_changed.emit(player_id, players[player_id].deck)
+
+@rpc("any_peer", "call_local", "reliable")
+func set_player_ship(ship: String) -> void:
+	var player_id = multiplayer.get_remote_sender_id()
+	players[player_id].ship = ship
+	player_ship_changed.emit(player_id, players[player_id].ship)
+
 @rpc("any_peer", "call_remote", "reliable")
 func poll_server_status() -> void:
 	var id = multiplayer.get_remote_sender_id()
@@ -133,6 +147,6 @@ func return_server_status() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func set_player_deck(deck: Dictionary):
-	var peer_id: int = multiplayer.get_remote_sender_id()
-	players[peer_id].deck = deck
-	player_info_updated.emit(peer_id, players[peer_id])
+	var player_id: int = multiplayer.get_remote_sender_id()
+	players[player_id].deck = deck
+	player_deck_changed.emit(player_id, players[player_id].deck)
