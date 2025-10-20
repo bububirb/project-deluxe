@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://055g614mkylc"]
+
+[ext_resource type="Script" uid="uid://cse00p7nkftb5" path="res://scripts/ui/ship_selection.gd" id="1_l74ma"]
+[ext_resource type="PackedScene" uid="uid://c23j8saxjb51x" path="res://scenes/ui/ship_button.tscn" id="2_co4g7"]
+
+[node name="ShipSelection" type="HBoxContainer"]
+script = ExtResource("1_l74ma")
+button_scene = ExtResource("2_co4g7")
+ships = Array[String](["punky", "tuggy"])

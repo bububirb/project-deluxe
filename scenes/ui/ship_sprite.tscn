@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnrilwn0w7w8f"]
+
+[ext_resource type="StyleBox" uid="uid://baroambfbepd7" path="res://resources/style_boxes/item_container_clipper.tres" id="1_40auk"]
+[ext_resource type="Script" uid="uid://va222rvf418t" path="res://scripts/ui/ship_sprite.gd" id="2_40auk"]
+
+[node name="ShipSprite" type="PanelContainer"]
+clip_children = 2
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_40auk")
+script = ExtResource("2_40auk")

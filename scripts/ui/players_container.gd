@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 @export var item_sprite: PackedScene
+@export var ship_sprite: PackedScene
 
 @onready var players_list_container: VBoxContainer = $PlayersListContainer
 
@@ -11,6 +12,7 @@ func _ready() -> void:
 	MultiplayerLobby.connection_reset.connect(_on_multiplayer_lobby_connection_reset)
 	MultiplayerLobby.player_info_updated.connect(_on_multiplayer_lobby_player_info_updated)
 	MultiplayerLobby.player_deck_changed.connect(_on_multiplayer_lobby_player_deck_changed)
+	MultiplayerLobby.player_ship_changed.connect(_on_multiplayer_lobby_player_ship_changed)
 	
 	if multiplayer:
 		for peer_id in MultiplayerLobby.players.keys():
@@ -36,6 +38,10 @@ func _on_multiplayer_lobby_player_deck_changed(peer_id, deck) -> void:
 	if multiplayer.is_server():
 		update_player_deck.rpc(peer_id, deck)
 
+func _on_multiplayer_lobby_player_ship_changed(peer_id, ship) -> void:
+	if multiplayer.is_server():
+		update_player_ship.rpc(peer_id, ship)
+
 func _add_player(peer_id: int, player_info: Dictionary) -> void:
 	var player: HBoxContainer = HBoxContainer.new()
 	player.name = str(peer_id)
@@ -43,6 +49,7 @@ func _add_player(peer_id: int, player_info: Dictionary) -> void:
 	label.text = "%s (ID: %s)" % [player_info.name, peer_id]
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	player.add_child(label)
+	player.add_child(_make_player_ship_sprite(player_info.ship))
 	for sprite: ItemSprite in _make_player_deck(player_info.deck):
 		player.add_child(sprite)
 	players_list_container.add_child(player)
@@ -54,6 +61,18 @@ func _make_player_deck(deck: Dictionary) -> Array[ItemSprite]:
 		sprite.item_name = item
 		sprites.append(sprite)
 	return sprites
+
+func _make_player_ship_sprite(ship: String) -> ShipSprite:
+	var sprite: ShipSprite = ship_sprite.instantiate()
+	sprite.ship_name = ship
+	return sprite
+
+@rpc("authority", "call_local", "reliable")
+func update_player_ship(peer_id: int, ship: String) -> void:
+	var player: Control = _get_player(peer_id)
+	for child in player.get_children():
+		if child is ShipSprite:
+			child.ship_name = ship
 
 @rpc("authority", "call_local", "reliable")
 func update_player_deck(peer_id: int, deck: Dictionary) -> void:

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c23j8saxjb51x"]
+
+[ext_resource type="Script" uid="uid://bspyj7o8w83qs" path="res://scripts/ui/ship_button.gd" id="1_falsx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_falsx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[node name="ShipButton" type="Button"]
+custom_minimum_size = Vector2(72, 72)
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_falsx")
+expand_icon = true
+script = ExtResource("1_falsx")

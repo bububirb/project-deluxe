@@ -1,7 +1,8 @@
-[gd_scene load_steps=99 format=3 uid="uid://dcchujjwo2k32"]
+[gd_scene load_steps=100 format=3 uid="uid://dcchujjwo2k32"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_r2gry"]
 [ext_resource type="PackedScene" uid="uid://dmbyiaw8cdbp7" path="res://assets/models/ships/tuggy/tuggy.blend" id="2_r2gry"]
+[ext_resource type="PackedScene" uid="uid://bry36jjeqdba8" path="res://scenes/drafts/player_camera.tscn" id="2_s6wxw"]
 [ext_resource type="PackedScene" uid="uid://bbvv8oj854udi" path="res://assets/models/ships/gear_turret_1.blend" id="3_r2gry"]
 [ext_resource type="Texture2D" uid="uid://s8ij70eplfx7" path="res://assets/textures/decals/aiming_indicator.png" id="4_0f7lv"]
 [ext_resource type="Texture2D" uid="uid://cvoqstkeo8dmb" path="res://assets/textures/overlays/crosshair.png" id="5_r2gry"]
@@ -597,7 +598,7 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="Tuggy" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
+[node name="Ship" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_r2gry")
@@ -606,6 +607,7 @@ max_speed = 3.0
 torque = 5.0
 max_turn_speed = 1.0
 projectile_pool = NodePath("ProjectilePool")
+camera_scene = ExtResource("2_s6wxw")
 
 [node name="tuggy" parent="." instance=ExtResource("2_r2gry")]
 

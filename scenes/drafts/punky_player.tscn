@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://v0my1ogjgsg5"]
+
+[ext_resource type="Script" uid="uid://co5366jb4vtt4" path="res://scripts/player.gd" id="1_6veqv"]
+[ext_resource type="PackedScene" uid="uid://dl4cgbrtvt0tq" path="res://scenes/ships/punky.tscn" id="2_fbgxk"]
+[ext_resource type="PackedScene" uid="uid://bry36jjeqdba8" path="res://scenes/drafts/player_camera.tscn" id="3_6veqv"]
+[ext_resource type="PackedScene" uid="uid://budywedhvkcoa" path="res://scenes/ui/hud.tscn" id="4_spja7"]
+[ext_resource type="Script" uid="uid://d30ylwrx1odxo" path="res://addons/virtual_joystick/scripts/virtual_joystick.gd" id="5_wqf4c"]
+[ext_resource type="Texture2D" uid="uid://cmxpfr45ufqvt" path="res://assets/textures/ui/joystick.svg" id="6_x1gxd"]
+[ext_resource type="Texture2D" uid="uid://dt7per888rm7e" path="res://assets/textures/ui/joystick-inner.svg" id="7_yb3jt"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_6veqv")
+
+[node name="Ship" parent="." instance=ExtResource("2_fbgxk")]
+
+[node name="CameraPivot" parent="Ship" instance=ExtResource("3_6veqv")]
+
+[node name="HUD" parent="." instance=ExtResource("4_spja7")]
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftControl" type="Control" parent="Controls"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = -256.0
+offset_right = 320.0
+offset_bottom = -64.0
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="MovementJoystick" type="Node2D" parent="Controls/LeftControl"]
+position = Vector2(96, 96)
+script = ExtResource("5_wqf4c")
+border = ExtResource("6_x1gxd")
+stick = ExtResource("7_yb3jt")
+stick_pressed = ExtResource("7_yb3jt")
+metadata/_custom_type_script = "uid://d30ylwrx1odxo"
+
+[node name="RightControl" type="Control" parent="Controls"]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -256.0
+offset_right = -128.0
+offset_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="AimingJoystick" type="Node2D" parent="Controls/RightControl"]
+position = Vector2(96, 96)
+script = ExtResource("5_wqf4c")
+border = ExtResource("6_x1gxd")
+stick = ExtResource("7_yb3jt")
+stick_pressed = ExtResource("7_yb3jt")
+metadata/_custom_type_script = "uid://d30ylwrx1odxo"
+
+[connection signal="item_instanced" from="Ship" to="HUD" method="_on_ship_item_instanced"]
+[connection signal="item_selected" from="Ship" to="HUD" method="_on_ship_item_selected"]
+
+[editable path="Ship/CameraPivot"]

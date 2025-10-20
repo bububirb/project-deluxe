@@ -26,7 +26,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name", "ship": "", "deck": {}}:
+var player_info = {"name": "Name", "ship": "punky", "deck": {}}:
 	set(new_player_info):
 		player_info = new_player_info
 		set_player_deck.rpc(player_info.deck)
@@ -129,6 +129,9 @@ func set_player_deck_item(index: int, item_name: String) -> void:
 	var player_id = multiplayer.get_remote_sender_id()
 	players[player_id].deck[index] = item_name
 	player_deck_changed.emit(player_id, players[player_id].deck)
+
+func _on_player_ship_set(ship: String) -> void:
+	set_player_ship.rpc(ship)
 
 @rpc("any_peer", "call_local", "reliable")
 func set_player_ship(ship: String) -> void:
