@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl4cgbrtvt0tq"]
+
+[ext_resource type="PackedScene" uid="uid://c4x5e4mecarp2" path="res://scenes/ships/ship.tscn" id="1_1fld8"]
+[ext_resource type="PackedScene" uid="uid://bsxys4fx6tucf" path="res://assets/models/ships/punky_mk2/punky_mk2.blend" id="2_jj3ad"]
+[ext_resource type="PackedScene" uid="uid://bbvv8oj854udi" path="res://assets/models/ships/gear_turret_1.blend" id="3_5gbwn"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ifgow"]
+points = PackedVector3Array(0.08370205, 0.5039777, -0.5233722, -0.2861138, 0.31853586, -0.74383336, -0.11525199, 0.57860374, -0.8467151, 0.30761665, 0.3547841, -0.7969644, 0.15827937, 0.30499446, -0.5233722, -0.18989019, 0.47911212, -0.57319593, 0.13344055, 0.5537381, -0.8715905, 0.18317907, 0.30499446, -0.89653885, -0.31432778, 0.30499446, -0.64782196, 0.30761665, 0.40454453, -0.69757265, 0.08370205, 0.6034986, -0.7969644, -0.28942809, 0.42941013, -0.77208906, -0.14015168, 0.5537381, -0.6229466, -0.14015168, 0.42941013, -0.5233722, -0.1649905, 0.3299185, -0.89653885, 0.30761665, 0.30499446, -0.64782196, 0.18317907, 0.45424652, -0.5233722, -0.1246155, 0.32194528, -0.54456276, 0.18317907, 0.5039777, -0.6229466, -0.0654526, 0.5039777, -0.5233722, -0.2645284, 0.40454453, -0.82183975, 0.15827937, 0.5537381, -0.8467151, -0.0654526, 0.6034986, -0.7969644, 0.20807876, 0.42941013, -0.8715905, -0.1649905, 0.5537381, -0.82183975, 0.06858568, 0.5570108, -0.63805455, 0.28271696, 0.42941013, -0.7969644, -0.31432778, 0.3547841, -0.6726973, -0.31432778, 0.3547841, -0.7472137, 0.13344055, 0.57860374, -0.7969644, -0.2645284, 0.3299185, -0.82183975, -0.28942809, 0.30499446, -0.6229466)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nq3iv"]
+points = PackedVector3Array(-0.23898648, -0.102062955, -0.34717152, 0.38150668, 0.1720355, 0.24930155, 0.15833052, 0.25523645, -0.8963831, -0.16504164, 0.28008986, 0.6208449, 0.25421393, -0.16898017, -0.010945215, -0.31427178, 0.30499443, -0.5978303, -0.26364586, -0.08068433, 0.32940128, 0.18316202, 0.28008986, 0.6208449, 0.30756065, 0.30499443, -0.5978303, -0.388927, 0.10596247, 0.29736075, 0.008114193, -0.01380799, 0.5680503, 0.22835831, -0.09963855, -0.36518934, -0.09038638, 0.20547844, -0.8963831, 0.3822159, 0.15572046, -0.44855386, 0.26049098, -0.03644748, 0.40411052, -0.014528006, -0.1920439, 0.12406296, -0.388927, 0.15572046, -0.42377833, 0.009020012, 0.30499443, 0.64562047, -0.23735894, -0.16795112, -0.122648135, -0.35980856, 0.21624327, 0.24441352, -0.11529826, 0.15572046, 0.6705518, -0.16504164, 0.28008986, -0.8963831, 0.051825248, -0.12193989, -0.3876654, 0.40712777, 0.1308159, 0.22287837, -0.31427178, 0.18057388, -0.6724685, 0.15833052, 0.15572046, 0.64562047, -0.4138389, 0.10596247, -0.1998637, 0.30756065, 0.18057388, -0.697244, 0.08367526, 0.18057388, -0.87145174, -0.01443341, -0.19004722, -0.16712199, -0.28874502, -0.12745994, 0.10493784, 0.35730404, 0.28008986, -0.42377833)
+
+[node name="Ship" instance=ExtResource("1_1fld8")]
+
+[node name="PunkyMk2" parent="." index="0" instance=ExtResource("2_jj3ad")]
+
+[node name="Fan" parent="PunkyMk2" index="1"]
+transform = Transform3D(-0.9776143, -5.9604645e-08, 0.21040519, 0.20890565, -0.1191768, 0.97064686, 0.025075316, 0.992873, 0.116508946, 0, 0.3963181, -0.86295044)
+
+[node name="Turret" parent="." index="1" instance=ExtResource("3_5gbwn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.2)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="2"]
+shape = SubResource("ConvexPolygonShape3D_ifgow")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
+shape = SubResource("ConvexPolygonShape3D_nq3iv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="CollisionDetector" index="0"]
+shape = SubResource("ConvexPolygonShape3D_ifgow")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="CollisionDetector" index="1"]
+shape = SubResource("ConvexPolygonShape3D_nq3iv")
+
+[node name="Back" parent="Bounds" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.65)
+
+[node name="Left" parent="Bounds" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0)
+
+[node name="Right" parent="Bounds" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
+
+[node name="NitroParticles" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399345, -0.875021)
+
+[node name="Deck" parent="." index="9" node_paths=PackedStringArray("target")]
+target = NodePath("../Turret/TurretBase/ItemInstancer")
+
+[editable path="PunkyMk2"]
+[editable path="Turret"]
