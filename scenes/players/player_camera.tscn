@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bry36jjeqdba8"]
+
+[ext_resource type="Script" uid="uid://b3jrhrmk6hphs" path="res://scripts/camera_pivot.gd" id="1_a177g"]
+
+[node name="CameraPivot" type="Node3D"]
+top_level = true
+script = ExtResource("1_a177g")
+
+[node name="CameraPivotX" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="Camera" type="Camera3D" parent="CameraPivotX"]
+transform = Transform3D(-1, -7.6194e-09, -8.77555e-08, -1.52388e-08, 0.996195, 0.0871557, 8.67575e-08, 0.0871557, -0.996195, 0, 0.25, -1.6)
+fov = 90.0
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraPivotX/Camera"]
+visible = false
+update_mode = 1
+size = Vector3(25, 12, 25)

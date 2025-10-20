@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccd21xxy5imtf"]
+[gd_scene load_steps=17 format=3 uid="uid://ccd21xxy5imtf"]
 
 [ext_resource type="Script" path="res://scripts/ui/inventory.gd" id="1_0occ3"]
 [ext_resource type="Script" uid="uid://bola2rqxd3dnj" path="res://scripts/ui/workshop.gd" id="1_b280y"]
 [ext_resource type="PackedScene" uid="uid://de0r3ldrpsrk8" path="res://scenes/ui/workshop_item.tscn" id="1_w2xo4"]
 [ext_resource type="PackedScene" uid="uid://ca5nybsqmstis" path="res://scenes/ui/workshop_slot.tscn" id="2_l4nn5"]
+[ext_resource type="PackedScene" uid="uid://055g614mkylc" path="res://scenes/ui/ship_selection.tscn" id="2_segb8"]
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="3_l4nn5"]
 [ext_resource type="Resource" uid="uid://bg1wsigxvnwpm" path="res://resources/items/deluxe_cannon.tres" id="4_b280y"]
 [ext_resource type="Resource" uid="uid://1kbtbdphrp1e" path="res://resources/items/sniper_cannon.tres" id="5_segb8"]
@@ -50,6 +51,17 @@ deck = NodePath("WorkshopContainer/DeckContainer/ScrollContainer/Deck")
 [node name="WorkshopContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 16
+
+[node name="ShipContainer" type="PanelContainer" parent="WorkshopContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l4nn5")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/ShipContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="ShipSelection" parent="WorkshopContainer/ShipContainer/ScrollContainer" instance=ExtResource("2_segb8")]
+layout_mode = 2
 
 [node name="DeckContainer" type="PanelContainer" parent="WorkshopContainer"]
 layout_mode = 2

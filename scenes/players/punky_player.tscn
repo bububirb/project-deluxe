@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://drh2cj4jfxoql"]
+
+[ext_resource type="PackedScene" uid="uid://cf3mbf7h4522k" path="res://scenes/players/player.tscn" id="1_1u7ca"]
+[ext_resource type="PackedScene" uid="uid://dl4cgbrtvt0tq" path="res://scenes/ships/punky.tscn" id="2_jlqnx"]
+
+[node name="Player" instance=ExtResource("1_1u7ca")]
+
+[node name="Ship" parent="." index="0" instance=ExtResource("2_jlqnx")]
+
+[connection signal="item_instanced" from="Ship" to="HUD" method="_on_ship_item_instanced"]
+[connection signal="item_selected" from="Ship" to="HUD" method="_on_ship_item_selected"]

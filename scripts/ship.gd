@@ -30,6 +30,9 @@ const AIMING_RANGE: float = 2.0
 @export var attack: int = 1000
 @export var defense: int = 500
 
+@export_group("Advanced")
+@export var camera_scene: PackedScene
+
 var hp: int = max_hp
 var alive: bool = true
 var damage_dealt: int = 0
@@ -81,6 +84,7 @@ var active_item: Node:
 @onready var right: Node3D = $Bounds/Right
 
 func _ready() -> void:
+	add_child(camera_scene.instantiate())
 	await get_tree().process_frame
 	if not is_multiplayer_authority(): return
 	select_item(0)

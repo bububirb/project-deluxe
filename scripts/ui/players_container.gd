@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 @export var item_sprite: PackedScene
+@export var ship_sprite: PackedScene
 
 @onready var players_list_container: VBoxContainer = $PlayersListContainer
 
@@ -10,6 +11,8 @@ func _ready() -> void:
 	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
 	MultiplayerLobby.connection_reset.connect(_on_multiplayer_lobby_connection_reset)
 	MultiplayerLobby.player_info_updated.connect(_on_multiplayer_lobby_player_info_updated)
+	MultiplayerLobby.player_deck_changed.connect(_on_multiplayer_lobby_player_deck_changed)
+	MultiplayerLobby.player_ship_changed.connect(_on_multiplayer_lobby_player_ship_changed)
 	
 	if multiplayer:
 		for peer_id in MultiplayerLobby.players.keys():
@@ -29,7 +32,15 @@ func _on_multiplayer_lobby_connection_reset() -> void:
 
 func _on_multiplayer_lobby_player_info_updated(peer_id, player_info) -> void:
 	if multiplayer.is_server():
-		update_player_deck.rpc(peer_id, player_info)
+		update_player_deck.rpc(peer_id, player_info.deck)
+
+func _on_multiplayer_lobby_player_deck_changed(peer_id, deck) -> void:
+	if multiplayer.is_server():
+		update_player_deck.rpc(peer_id, deck)
+
+func _on_multiplayer_lobby_player_ship_changed(peer_id, ship) -> void:
+	if multiplayer.is_server():
+		update_player_ship.rpc(peer_id, ship)
 
 func _add_player(peer_id: int, player_info: Dictionary) -> void:
 	var player: HBoxContainer = HBoxContainer.new()
@@ -38,25 +49,38 @@ func _add_player(peer_id: int, player_info: Dictionary) -> void:
 	label.text = "%s (ID: %s)" % [player_info.name, peer_id]
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	player.add_child(label)
-	for sprite: ItemSprite in _make_player_deck(player_info):
+	player.add_child(_make_player_ship_sprite(player_info.ship))
+	for sprite: ItemSprite in _make_player_deck(player_info.deck):
 		player.add_child(sprite)
 	players_list_container.add_child(player)
 
-func _make_player_deck(player_info: Dictionary) -> Array[ItemSprite]:
+func _make_player_deck(deck: Dictionary) -> Array[ItemSprite]:
 	var sprites: Array[ItemSprite]
-	for item in player_info.deck.values():
+	for item in deck.values():
 		var sprite: ItemSprite = item_sprite.instantiate()
 		sprite.item_name = item
 		sprites.append(sprite)
 	return sprites
 
+func _make_player_ship_sprite(ship: String) -> ShipSprite:
+	var sprite: ShipSprite = ship_sprite.instantiate()
+	sprite.ship_name = ship
+	return sprite
+
 @rpc("authority", "call_local", "reliable")
-func update_player_deck(peer_id: int, player_info: Dictionary) -> void:
+func update_player_ship(peer_id: int, ship: String) -> void:
+	var player: Control = _get_player(peer_id)
+	for child in player.get_children():
+		if child is ShipSprite:
+			child.ship_name = ship
+
+@rpc("authority", "call_local", "reliable")
+func update_player_deck(peer_id: int, deck: Dictionary) -> void:
 	var player: Control = _get_player(peer_id)
 	for child in player.get_children():
 		if child is ItemSprite:
 			child.queue_free()
-	for sprite: ItemSprite in _make_player_deck(player_info):
+	for sprite: ItemSprite in _make_player_deck(deck):
 		player.add_child(sprite)
 
 func _get_player(peer_id: int) -> Control:

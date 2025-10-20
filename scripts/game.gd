@@ -2,7 +2,7 @@ extends Node3D
 
 const GAME_ROOM_SCENE: String = "res://scenes/ui/game_room.tscn"
 
-@export var player_scene: PackedScene
+@export_dir var player_scene_path: String
 
 @onready var player: Node3D# = $Player
 @onready var spawn_positions: Node3D = $SpawnPositions
@@ -32,6 +32,8 @@ func start_game():
 	pass
 
 func add_player(peer_id: int, spawn_position: int) -> void:
+	var ship_name: String = MultiplayerLobby.players[peer_id].ship
+	var player_scene: PackedScene = load(player_scene_path + "/" + ship_name + "_player.tscn")
 	var player_node: Node3D = player_scene.instantiate()
 	player_node.name = str(peer_id)
 	add_child(player_node)
