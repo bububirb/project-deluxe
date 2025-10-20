@@ -36,7 +36,10 @@ func _ready() -> void:
 				arguments[argument.trim_prefix("--")] = ""
 		if arguments.has("ip"):
 			address_input.text = arguments["ip"]
-		join_button.pressed.emit()
+		if OS.has_feature("client"):
+			join_button.pressed.emit.call_deferred()
+		else:
+			host_button.pressed.emit.call_deferred()
 
 	# Load config
 	name_input.text = IO.config.name
