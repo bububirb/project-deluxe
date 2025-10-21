@@ -33,7 +33,7 @@ const AIMING_RANGE: float = 2.0
 @export_group("Advanced")
 @export var camera_scene: PackedScene
 
-var hp: int = max_hp
+@onready var hp: int = max_hp
 var alive: bool = true
 var damage_dealt: int = 0
 
