@@ -151,7 +151,7 @@ func _physics_process(delta: float) -> void:
 	for ship: Ship in ships:
 		if not closest_target:
 			closest_target = ship
-		elif position.distance_squared_to(ship.position) < position.distance_squared_to(closest_target.position):
+		elif aiming_weight(ship) > aiming_weight(closest_target):
 			closest_target = ship
 	if closest_target:
 		var current_position = global_position
@@ -161,11 +161,21 @@ func _physics_process(delta: float) -> void:
 		target_position.y = 0.0
 		aiming_distance = current_position.distance_to(target_position)
 		aiming_height_offset = closest_target.turret.global_position.y - item_instancer.global_position.y - aiming_offset.y
-		turret.look_at(closest_target.position, Vector3(0.0, 1.0, 0.0), true)
+		turret.look_at(aiming_position, Vector3(0.0, 1.0, 0.0), true)
 		turret.rotation.x = 0.0
 		turret.rotation.z = 0.0
 		aiming_position = aiming_position.move_toward(closest_target.turret.global_position + offset_vector, delta * 25.0)
 		crosshair.global_position = aiming_position
+
+func aiming_weight(ship: Ship) -> float:
+	var angle: float = get_viewport().get_camera_3d().global_rotation.y
+	var camera_vector: Vector3 = Vector3.FORWARD.rotated(Vector3.UP, angle)
+	var target_vector: Vector3 = ship.global_position - global_position
+	target_vector.y = 0.0
+	var angle_weight: float = 1.0 - (camera_vector.angle_to(target_vector.normalized()) / PI)
+	var distance: float = target_vector.length()
+	var distance_weight: float = 1.0 - (distance / 100.0)
+	return angle_weight + (distance_weight * 0.2)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
