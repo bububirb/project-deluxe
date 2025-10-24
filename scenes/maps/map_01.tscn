@@ -19,9 +19,9 @@ colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hpwb6"]
 height = 256
-seamless = true
-color_ramp = SubResource("Gradient_f7cux")
 noise = SubResource("FastNoiseLite_g3dtm")
+color_ramp = SubResource("Gradient_f7cux")
+seamless = true
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_j4tr4"]
 rayleigh_color = Color(0.551943, 0.3535, 0.204849, 1)
@@ -38,8 +38,6 @@ tonemap_mode = 4
 ssil_radius = 10.0
 sdfgi_cascades = 2
 sdfgi_min_cell_size = 0.5
-sdfgi_cascade0_distance = 32.0
-sdfgi_max_distance = 128.0
 glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.2
@@ -49,7 +47,6 @@ glow_hdr_luminance_cap = 4.0
 glow_map = SubResource("NoiseTexture2D_hpwb6")
 fog_light_color = Color(0.544776, 0.710731, 0.837316, 1)
 fog_sun_scatter = 0.15
-fog_density = 0.005
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.713328, 0.584454, 0.49564, 1)

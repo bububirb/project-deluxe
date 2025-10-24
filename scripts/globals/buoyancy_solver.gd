@@ -18,6 +18,8 @@ var wave_texture: Image
 var wave_time: float = 0.0
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var player_position: Vector3
+
 func _ready() -> void:
 	RenderingServer.global_shader_parameter_set("wave_scale", WAVE_SCALE)
 	RenderingServer.global_shader_parameter_set("wave_amplitude", WAVE_AMPLITUDE)

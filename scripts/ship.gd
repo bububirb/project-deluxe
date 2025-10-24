@@ -149,6 +149,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	sync_position = position
 	sync_rotation = rotation
+
+	BuoyancySolver.player_position = global_position
 	
 	for ship: Ship in targets:
 		if not closest_target:

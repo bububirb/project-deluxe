@@ -11,6 +11,7 @@ colors = PackedColorArray(0.107644, 0.214035, 0.22935, 0, 0.492727, 0.690121, 0.
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4ry2s"]
 noise_type = 2
+frequency = 0.0274
 cellular_distance_function = 3
 cellular_return_type = 0
 domain_warp_enabled = true
@@ -55,7 +56,7 @@ shader_parameter/beers_law = 0.5
 shader_parameter/depth_offset = -1.2
 shader_parameter/near = 7.0
 shader_parameter/far = 10000.0
-shader_parameter/edge_texture_scale = 2.335
+shader_parameter/edge_texture_scale = 1.0
 shader_parameter/edge_texture_offset = 1.0
 shader_parameter/edge_texture_speed = 0.1
 shader_parameter/edge_foam_intensity = 2.0

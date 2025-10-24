@@ -165,7 +165,7 @@ void vertex() {
     // Calculate wave displacement and normals
     // Apply wave displacement to the vertex position
     //VERTEX += waveResult.displacement;
-	world_pos = VERTEX;
+	world_pos = VERTEX + ocean_pos;
 
 	float height_mix = waveheight(vec2(0.0,0.0), 2);
 
