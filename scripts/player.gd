@@ -120,4 +120,5 @@ func set_spawn(new_spawn: Transform3D):
 	if multiplayer.get_remote_sender_id() == 1:
 		spawn = new_spawn
 		ship.transform = spawn
+		camera_pivot.rotate_y(ship.rotation.y)
 		visible = true
