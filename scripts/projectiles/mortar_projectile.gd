@@ -1,5 +1,6 @@
 class_name MortarProjectile extends Projectile
 
+@warning_ignore("unused_signal")
 signal player_hit(player_id: int)
 
 @export var explosion_scene: PackedScene
