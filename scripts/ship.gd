@@ -98,7 +98,9 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_multiplayer_authority():
 		position = lerp(position, sync_position, 0.5)
-		rotation = lerp(rotation, sync_rotation, 0.5)
+		rotation.x = lerp_angle(rotation.x, sync_rotation.x, 0.5)
+		rotation.y = lerp_angle(rotation.y, sync_rotation.y, 0.5)
+		rotation.z = lerp_angle(rotation.z, sync_rotation.z, 0.5)
 		return
 	
 	_update_bounds_transform()
