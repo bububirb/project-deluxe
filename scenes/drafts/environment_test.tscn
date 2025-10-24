@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5687kk52u618"]
+[gd_scene load_steps=17 format=3 uid="uid://c5687kk52u618"]
 
 [ext_resource type="Shader" uid="uid://tuqeffq0m8yj" path="res://resources/shaders/water.gdshader" id="1_ecuao"]
 [ext_resource type="Texture2D" uid="uid://kde16imek58l" path="res://assets/textures/hdri/stylized_clouds_flat.png" id="1_is8l1"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_8gpnr"]
+[ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="5_hf765"]
 [ext_resource type="Texture2D" uid="uid://c28xyd1kxxrig" path="res://resources/noise_texture/wave.tres" id="5_q4uuc"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6j2ea"]
@@ -28,11 +29,11 @@ noise_type = 3
 frequency = 0.016
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dj2cu"]
-seamless = true
-seamless_blend_skirt = 0.4
-as_normal_map = true
-bump_strength = 1.6
 noise = SubResource("FastNoiseLite_avos1")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.4
+bump_strength = 1.6
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_77aww"]
 noise_type = 0
@@ -43,10 +44,10 @@ fractal_gain = 0.47
 fractal_weighted_strength = 0.53
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p8tlc"]
-seamless = true
-seamless_blend_skirt = 0.532
-as_normal_map = true
 noise = SubResource("FastNoiseLite_77aww")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.532
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yilox"]
 noise_type = 4
@@ -54,18 +55,24 @@ fractal_gain = 0.34
 fractal_weighted_strength = 0.6
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8irs0"]
+noise = SubResource("FastNoiseLite_yilox")
 seamless = true
 as_normal_map = true
 bump_strength = 5.0
-noise = SubResource("FastNoiseLite_yilox")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u8bbe"]
 render_priority = 0
 shader = ExtResource("1_ecuao")
-shader_parameter/albedo = Color(0.199965, 0.21184, 0.245225, 1)
-shader_parameter/albedo2 = Color(0.191162, 0.27809, 0.37251, 1)
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.02
+shader_parameter/color_deep = Color(0.0004465571, 0.26537555, 0.48475045, 1)
+shader_parameter/color_shallow = Color(0, 0.5303179, 0.42408997, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = 1.5
+shader_parameter/edge_scale = -0.01
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(1, 1, 1, 1)
 shader_parameter/wave = ExtResource("5_q4uuc")
 shader_parameter/wave_bump = SubResource("NoiseTexture2D_8irs0")
 shader_parameter/texture_normal = SubResource("NoiseTexture2D_dj2cu")
@@ -75,14 +82,6 @@ shader_parameter/wave_direction2 = Vector2(-0.5, 0.5)
 shader_parameter/time_scale = 0.0
 shader_parameter/noise_scale = 50.0
 shader_parameter/height_scale = 2.0
-shader_parameter/color_deep = Color(0.11, 0.29, 0.33, 1)
-shader_parameter/color_shallow = Color(0, 0.47, 0.76, 1)
-shader_parameter/beers_law = 2.0
-shader_parameter/depth_offset = 1.5
-shader_parameter/edge_scale = -0.01
-shader_parameter/near = 1.0
-shader_parameter/far = 100.0
-shader_parameter/edge_color = Color(0.603922, 0.764706, 0.980392, 1)
 
 [node name="EnvironmentTest" type="Node3D"]
 
@@ -93,3 +92,6 @@ environment = SubResource("Environment_dxbt2")
 gi_mode = 2
 mesh = SubResource("PlaneMesh_tdfvv")
 surface_material_override/0 = SubResource("ShaderMaterial_u8bbe")
+
+[node name="first_rock" parent="." instance=ExtResource("5_hf765")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30352926, 0, 7.625248)
