@@ -1,19 +1,192 @@
-[gd_scene load_steps=2 format=3 uid="uid://bry36jjeqdba8"]
+[gd_scene load_steps=22 format=3 uid="uid://bry36jjeqdba8"]
 
 [ext_resource type="Script" uid="uid://b3jrhrmk6hphs" path="res://scripts/camera_pivot.gd" id="1_a177g"]
 
-[node name="CameraPivot" type="Node3D"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jf706"]
+animation = &"cannon_scope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nt28o"]
+animation = &"default_view"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5cb8s"]
+animation = &"mortar_scope"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ohs1d"]
+animation = &"mortar_view"
+
+[sub_resource type="Curve" id="Curve_nt28o"]
+_data = [Vector2(0, 0), 0.0, 3.2376466, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jf706"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_nt28o")
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_ohs1d"]
+_data = [Vector2(0, 0), 0.0, 2.9033241, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5cb8s"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_ohs1d")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_itqyl"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_ohs1d")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nt28o"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_ohs1d")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ohs1d"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_ohs1d")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uxd38"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_ohs1d")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ravcx"]
+xfade_time = 0.2
+xfade_curve = SubResource("Curve_ohs1d")
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jf706"]
+states/Start/position = Vector2(77, 100)
+states/cannon_scope/node = SubResource("AnimationNodeAnimation_jf706")
+states/cannon_scope/position = Vector2(199, 203)
+states/default_view/node = SubResource("AnimationNodeAnimation_nt28o")
+states/default_view/position = Vector2(199, 100)
+states/mortar_scope/node = SubResource("AnimationNodeAnimation_5cb8s")
+states/mortar_scope/position = Vector2(352, 203)
+states/mortar_view/node = SubResource("AnimationNodeAnimation_ohs1d")
+states/mortar_view/position = Vector2(352, 100)
+transitions = ["Start", "default_view", SubResource("AnimationNodeStateMachineTransition_jf706"), "default_view", "mortar_view", SubResource("AnimationNodeStateMachineTransition_5cb8s"), "default_view", "cannon_scope", SubResource("AnimationNodeStateMachineTransition_itqyl"), "cannon_scope", "default_view", SubResource("AnimationNodeStateMachineTransition_nt28o"), "mortar_view", "default_view", SubResource("AnimationNodeStateMachineTransition_ohs1d"), "mortar_view", "mortar_scope", SubResource("AnimationNodeStateMachineTransition_uxd38"), "mortar_scope", "mortar_view", SubResource("AnimationNodeStateMachineTransition_ravcx")]
+graph_offset = Vector2(-105, 34)
+
+[sub_resource type="Animation" id="Animation_5cb8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivotX/Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5500001, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CameraPivotX/Camera:fov")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [90.0]
+}
+
+[sub_resource type="Animation" id="Animation_ohs1d"]
+resource_name = "cannon_scope"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivotX/Camera:fov")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [60.0]
+}
+
+[sub_resource type="Animation" id="Animation_nt28o"]
+resource_name = "default_view"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivotX/Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5500001, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_itqyl"]
+resource_name = "mortar_scope"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivotX/Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.1499999, -3.3)]
+}
+
+[sub_resource type="Animation" id="Animation_jf706"]
+resource_name = "mortar_view"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraPivotX/Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.95000005, -2.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_itqyl"]
+_data = {
+&"RESET": SubResource("Animation_5cb8s"),
+&"cannon_scope": SubResource("Animation_ohs1d"),
+&"default_view": SubResource("Animation_nt28o"),
+&"mortar_scope": SubResource("Animation_itqyl"),
+&"mortar_view": SubResource("Animation_jf706")
+}
+
+[node name="CameraPivot" type="Node3D" node_paths=PackedStringArray("animation_tree")]
 top_level = true
 script = ExtResource("1_a177g")
+animation_tree = NodePath("AnimationTree")
 
 [node name="CameraPivotX" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
 [node name="Camera" type="Camera3D" parent="CameraPivotX"]
-transform = Transform3D(-1, -7.6194e-09, -8.77555e-08, -1.52388e-08, 0.996195, 0.0871557, 8.67575e-08, 0.0871557, -0.996195, 0, 0.25, -1.6)
+transform = Transform3D(-1, -7.619404e-09, -8.775552e-08, -1.52388e-08, 0.9961948, 0.08715568, 8.67575e-08, 0.08715568, -0.9961948, 0, 0.5500001, -2)
 fov = 90.0
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="CameraPivotX/Camera"]
 visible = false
 update_mode = 1
 size = Vector3(25, 12, 25)
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_jf706")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_itqyl")
+}

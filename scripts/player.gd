@@ -1,7 +1,7 @@
 extends Node3D
 
 const DEFAULT_SENSITIVITY: float = 0.001
-const AIMING_SENSITIVITY: float = 0.0001
+const AIMING_SENSITIVITY: float = 0.0005
 const REMOTE_HP_BAR_OFFSET: Vector3 = Vector3(0.0, 1.2, 0.0)
 
 var spawn: Transform3D # Set by Game
@@ -12,11 +12,12 @@ var min_fov: float = 30.0
 var max_fov: float = 90.0
 
 @onready var ship: Node3D = $Ship
-@onready var camera_pivot: Node3D = $Ship/CameraPivot
+@onready var camera_pivot: PlayerCamera = $Ship/CameraPivot
 @onready var camera_pivot_x: Node3D = $Ship/CameraPivot/CameraPivotX
 @onready var camera: Camera3D = $Ship/CameraPivot/CameraPivotX/Camera
 @onready var hud: Control = $HUD
 @onready var controls: Control = $Controls
+@onready var camera_state_machine: AnimationNodeStateMachinePlayback = camera_pivot.animation_tree.get("parameters/playback")
 
 func _init() -> void:
 	visible = false # Wait for set_spawn
@@ -73,10 +74,11 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("aim"):
 		is_zooming_out = false
 		if ship.active_item is not Mortar:
-			camera.fov = lerp(camera.fov, min_fov, 0.2)
+			camera_state_machine.travel("cannon_scope")
+			camera_state_machine.next()
 		if ship.active_item is Mortar:
-			var tween = create_tween().tween_property(camera, "position:z", -3.5, 0.4)
-			await tween.finished
+			camera_state_machine.travel("mortar_scope")
+			camera_state_machine.next()
 
 	if Input.is_action_just_released("aim"):
 		orbit_sensitivity = DEFAULT_SENSITIVITY
@@ -84,13 +86,12 @@ func _process(_delta: float) -> void:
 	
 	if is_zooming_out:
 		if ship.active_item is not Mortar:
-			camera.fov = lerp(camera.fov, max_fov, 0.2)
-			if camera.fov >= max_fov:
-				camera.fov = max_fov
-				is_zooming_out = false
+			camera_state_machine.travel("default_view")
+			camera_state_machine.next()
+			is_zooming_out = false
 		if ship.active_item is Mortar:
-			var tween = create_tween().tween_property(camera, "position:z", -2.2, 0.4)
-			await tween.finished
+			camera_state_machine.travel("mortar_view")
+			camera_state_machine.next()
 			is_zooming_out = false
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -108,9 +109,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_ship_item_selected(item: Node):
 	if item is Mortar:
-		var _tween = create_tween().tween_property(camera, "position:z", -2.2, 0.15)
+		camera_state_machine.travel("mortar_view")
+		camera_state_machine.next()
 	if item is Cannon:
-		var _tween = create_tween().tween_property(camera, "position:z", -1.6, 0.15)
+		camera_state_machine.travel("default_view")
+		camera_state_machine.next()
 
 @rpc("any_peer", "call_local", "reliable")
 func set_spawn(new_spawn: Transform3D):
