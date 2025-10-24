@@ -12,28 +12,28 @@ player_scene_path = "res://scenes/players"
 [node name="SpawnPositions" type="Node3D" parent="."]
 
 [node name="1" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.463)
+transform = Transform3D(-0.9557828, 0, 0.29407364, 0, 1, 0, -0.29407364, 0, -0.9557828, -8.914147, 0, 7.848826)
 
 [node name="2" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(-0.972378, 0, -0.233412, 0, 1, 0, 0.233412, 0, -0.972378, 1.79574, 0, 0.950178)
+transform = Transform3D(0.9999993, 0, -0.001291059, 0, 1, 0, 0.001291059, 0, 0.9999993, -4.424532, -3.8146973e-06, -47.309338)
 
 [node name="3" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.653513, 0, -0.756915, 0, 1, 0, 0.756915, 0, 0.653513, 7.80722, 0, -5.75959)
+transform = Transform3D(-0.321588, 0, -0.9468795, 0, 1, 0, 0.9468795, 0, -0.321588, 10.037908, 0, -17.653725)
 
 [node name="4" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.0323183, 0, -0.999478, 0, 1, 0, 0.999478, 0, 0.0323183, 9.88235, 0, 0.277632)
+transform = Transform3D(-0.01802865, 0, 0.9998378, 0, 1, 0, -0.9998378, 0, -0.01802865, -17.017365, 0, -11.124619)
 
 [node name="5" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.194132, 0, 0.980975, 0, 1, 0, -0.980975, 0, 0.194132, -5.67241, 0, -0.435022)
+transform = Transform3D(-0.3097633, 0, 0.95081323, 0, 1, 0, -0.95081323, 0, -0.3097633, -23.868744, -1.9073486e-06, -42.603428)
 
 [node name="6" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -8.75016, 0, 10.5363)
+transform = Transform3D(-0.9584125, 0, -0.28538725, 0, 1, 0, 0.28538725, 0, -0.9584125, 10.864154, 0, 9.423084)
 
 [node name="7" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.0249207, 0, 0.999689, 0, 1, 0, -0.999689, 0, 0.0249207, -9.52309, 0, 7.65166)
+transform = Transform3D(-0.66166496, 0, 0.749799, 0, 1, 0, -0.749799, 0, -0.66166496, -6.3425903, 0, -25.743908)
 
 [node name="8" type="Node3D" parent="SpawnPositions"]
-transform = Transform3D(0.209346, 0, 0.977842, 0, 1, 0, -0.977842, 0, 0.209346, -9.62529, 0, 3.64409)
+transform = Transform3D(0.28172153, 0, -0.95949656, 0, 1, 0, 0.95949656, 0, 0.28172153, 4.264669, 0, -34.87583)
 
 [node name="9" type="Node3D" parent="SpawnPositions"]
 transform = Transform3D(0.429849, 0, 0.902901, 0, 1, 0, -0.902901, 0, 0.429849, -8.261, 0, 0.46417)

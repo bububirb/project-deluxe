@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsevgkhndtd03"]
+[gd_scene load_steps=25 format=3 uid="uid://dsevgkhndtd03"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_axujj"]
 [ext_resource type="CompressedTexture3D" uid="uid://feierbyipkx0" path="res://assets/textures/vfx/3d_lut.png" id="4_0i0it"]
@@ -8,8 +8,15 @@
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="8_rmskt"]
 [ext_resource type="PackedScene" uid="uid://cfmu8gf7q4pkj" path="res://assets/models/environment/rocks/first_rock/first_rock.blend" id="9_6kt43"]
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="10_ad25f"]
+[ext_resource type="PackedScene" uid="uid://bkqtx7plc5l58" path="res://assets/models/environment/tunnels/tunnel_01.blend" id="11_5dti3"]
 [ext_resource type="PackedScene" uid="uid://bm7ya346n5u2y" path="res://scenes/environment/foliage/fern.tscn" id="11_8ubl8"]
 [ext_resource type="PackedScene" uid="uid://clp5h8fhxhwty" path="res://assets/models/environment/rocks/rock_02.blend" id="11_pcy5s"]
+[ext_resource type="PackedScene" uid="uid://bgfx17at0rpcs" path="res://assets/models/environment/beams/beam_01.blend" id="12_5dti3"]
+[ext_resource type="PackedScene" uid="uid://nsdtna52qgco" path="res://assets/models/environment/artificial/steampunk_barrel/steampunk_barrel.blend" id="13_8rg8i"]
+[ext_resource type="PackedScene" uid="uid://djd5tq1f6au4l" path="res://assets/models/environment/pipes/pipe_01.blend" id="14_pgpfx"]
+[ext_resource type="PackedScene" uid="uid://d4cun5g5hm5q4" path="res://assets/models/environment/artificial/crunchy_oil/CrunchyOil.blend" id="15_4228d"]
+[ext_resource type="PackedScene" uid="uid://bckpsvqmipgy5" path="res://assets/models/environment/artificial/barrel/barrel.blend" id="16_ru6md"]
+[ext_resource type="PackedScene" uid="uid://c6tiqo714v7ko" path="res://assets/models/environment/trusses/truss_01.blend" id="17_lwxhp"]
 
 [sub_resource type="Gradient" id="Gradient_f7cux"]
 colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
@@ -23,7 +30,8 @@ color_ramp = SubResource("Gradient_f7cux")
 seamless = true
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_j4tr4"]
-rayleigh_color = Color(0.551943, 0.3535, 0.204849, 1)
+rayleigh_color = Color(0.56635076, 0.43353808, 0.46692085, 1)
+ground_color = Color(0.36733928, 0.4249452, 0.7102414, 1)
 night_sky = ExtResource("4_3fe60")
 
 [sub_resource type="Sky" id="Sky_ulpni"]
@@ -48,10 +56,11 @@ fog_light_color = Color(0.544776, 0.710731, 0.837316, 1)
 fog_sun_scatter = 0.15
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(0.713328, 0.584454, 0.49564, 1)
+volumetric_fog_density = 0.08
+volumetric_fog_albedo = Color(0.8669907, 0.7987253, 0.6471055, 1)
 volumetric_fog_anisotropy = 0.8
-volumetric_fog_length = 32.0
 volumetric_fog_ambient_inject = 1.0
+volumetric_fog_sky_affect = 0.5
 adjustment_enabled = true
 adjustment_contrast = 1.2
 adjustment_saturation = 1.25
@@ -60,7 +69,7 @@ adjustment_color_correction = ExtResource("4_0i0it")
 [sub_resource type="PlaneMesh" id="PlaneMesh_0d0ps"]
 resource_local_to_scene = true
 material = ExtResource("7_axujj")
-size = Vector2(40, 40)
+size = Vector2(50, 50)
 subdivide_width = 63
 subdivide_depth = 63
 
@@ -76,24 +85,66 @@ light_energy = 0.6
 shadow_enabled = true
 
 [node name="WaterPlane" parent="." index="2" instance=ExtResource("5_sglps")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+transform = Transform3D(0.97531545, 0, 0, 0, 0.97531545, 0, 0, 0, 0.97531545, 0, 0, 0)
 gi_mode = 0
 mesh = SubResource("PlaneMesh_0d0ps")
 
-[node name="VoxelGI" type="VoxelGI" parent="." index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 2)
+[node name="VoxelGI" type="VoxelGI" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 8, -21)
 subdiv = 2
-size = Vector3(52, 18, 54)
+size = Vector3(70, 30, 100)
 data = ExtResource("8_rmskt")
 
-[node name="first_rock" parent="." index="13" instance=ExtResource("9_6kt43")]
-transform = Transform3D(1.98901, 0, 0, 0, 1.98901, 0, 0, 0, 1.98901, 4.25198, -0.552643, -2.45251)
+[node name="first_rock" parent="." index="12" instance=ExtResource("9_6kt43")]
+transform = Transform3D(1.9877154, 0.052134663, 0.049299866, -0.048881613, 1.9843134, -0.12756148, -0.052527018, 0.12626687, 1.984303, 5.038043, -0.552643, -12.133135)
 
-[node name="rock_1" parent="." index="14" instance=ExtResource("10_ad25f")]
+[node name="rock_1" parent="." index="13" instance=ExtResource("10_ad25f")]
 transform = Transform3D(2.1572, 0, 0, 0, 2.1572, 0, 0, 0, 2.1572, -4.345, -1.061, -4.437)
 
 [node name="Fern" parent="rock_1" index="1" instance=ExtResource("11_8ubl8")]
 transform = Transform3D(0.648669, 0.374903, 0.0278686, -0.375317, 0.649008, 0.00509999, -0.0215743, -0.0183636, 0.749198, 0.600213, 1.2162, -0.0422261)
 
-[node name="rock_02" parent="." index="15" instance=ExtResource("11_pcy5s")]
+[node name="rock_02" parent="." index="14" instance=ExtResource("11_pcy5s")]
 transform = Transform3D(1.87723, 0, 1.21118, 0, 2.23405, 0, -1.21118, 0, 1.87723, 2.0652, -0.68603, 7.55396)
+
+[node name="tunnel_01" parent="." index="15" instance=ExtResource("11_5dti3")]
+transform = Transform3D(0.8831057, 0.010611375, 0.4690543, 0.051189106, 0.99159694, -0.11880839, -0.4663735, 0.12893082, 0.87514156, -22.698956, -0.09392023, -25.589388)
+
+[node name="rock_03" parent="." index="16" instance=ExtResource("11_pcy5s")]
+transform = Transform3D(0.40126747, -0.013734128, -3.4408474, -0.025205333, 3.4640608, -0.016766187, 3.440782, 0.026977532, 0.4011525, -35.57404, -0.55037546, -38.18912)
+
+[node name="beam_01" parent="." index="17" instance=ExtResource("12_5dti3")]
+transform = Transform3D(0.14238209, 1.7965366, -6.0971828, -6.2935295, -0.8154635, -0.3872437, -0.8914403, 6.0440817, 1.7600733, -17.647257, 0.2924018, -52.82997)
+
+[node name="beam_02" parent="." index="18" instance=ExtResource("12_5dti3")]
+transform = Transform3D(-1.7965364, 0.14238238, -6.0971828, 0.8154638, -6.293529, -0.38724363, -6.0440817, -0.8914405, 1.7600734, -17.45569, 6.0143404, -52.44755)
+
+[node name="steampunk_barrel2" parent="." index="19" instance=ExtResource("13_8rg8i")]
+transform = Transform3D(0.3283823, -3.470699, -0.45499575, 0.19244167, 0.47420263, -3.478319, 3.4951024, 0.29998007, 0.23426667, 10.564781, 0.30012488, -28.12879)
+
+[node name="pipe_01" parent="." index="20" instance=ExtResource("14_pgpfx")]
+transform = Transform3D(-2.1428475, 0, -0.7215229, 0, 2.2610602, 0, 0.7215229, 0, -2.1428475, 8.949184, -0.5239086, -51.182236)
+
+[node name="CrunchyOil" parent="." index="21" instance=ExtResource("15_4228d")]
+transform = Transform3D(-1.5178031, -0.048219815, 1.8353674, -1.8359715, 0.053299427, -1.5169026, -0.010360129, -2.3810635, -0.0711242, 8.972044, 0.16509968, -33.824223)
+
+[node name="barrel" parent="." index="22" instance=ExtResource("16_ru6md")]
+transform = Transform3D(-0.069821484, 2.2549226, 0.1336376, -0.069322854, 0.1314995, -2.2550638, -2.2578154, -0.07376961, 0.06510575, 9.038115, 0.052838087, -31.717772)
+
+[node name="CrunchyOil2" parent="." index="23" instance=ExtResource("15_4228d")]
+transform = Transform3D(-1.7892318, -0.13247487, 0.6250657, 0.6389206, -0.3887236, 1.7465049, 0.0061107427, 1.8549798, 0.41063187, 8.584855, 1.7700205, -31.650427)
+
+[node name="barrel2" parent="." index="24" instance=ExtResource("16_ru6md")]
+transform = Transform3D(-1.5701493, 0.14909412, 1.3884382, -1.3769928, 0.18197556, -1.5767472, -0.23211879, -2.088065, -0.038275424, 9.25122, 2.1268163, -33.83683)
+
+[node name="CrunchyOil3" parent="." index="25" instance=ExtResource("15_4228d")]
+transform = Transform3D(2.8305602, 0, 0, 0, 2.8305602, 0, 0, 0, 2.8305602, 10.797108, -0.17027682, -33.97798)
+
+[node name="barrel3" parent="." index="26" instance=ExtResource("16_ru6md")]
+transform = Transform3D(3.3447921, 0, 1.2911174, 0, 3.5853338, 0, -1.2911174, 0, 3.3447921, 4.486389, 0.34312963, 17.837952)
+
+[node name="truss_01" parent="." index="27" instance=ExtResource("17_lwxhp")]
+transform = Transform3D(0.89742297, 0.08262869, -0.4333642, -0.21574873, 0.9390259, -0.26773658, 0.38481754, 0.33377063, 0.8605303, 1.7235346, 8.995051, -9.270825)
+
+[node name="rock_2" parent="." index="28" instance=ExtResource("10_ad25f")]
+transform = Transform3D(1.5421878, 0.2716837, 3.9588416, 0.023062684, 4.246622, -0.30041742, -3.9680862, 0.13027088, 1.5368489, 30.234152, -2.3531163, 2.6308084)
