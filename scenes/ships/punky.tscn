@@ -21,7 +21,10 @@ max_turn_speed = 0.9
 [node name="PunkyMk2" parent="." index="0" instance=ExtResource("2_jj3ad")]
 
 [node name="Fan" parent="PunkyMk2" index="1"]
-transform = Transform3D(-0.9776143, -5.9604645e-08, 0.21040519, 0.20890565, -0.1191768, 0.97064686, 0.025075316, 0.992873, 0.116508946, 0, 0.3963181, -0.86295044)
+transform = Transform3D(0.99999994, -6.2305355e-10, -1.0418708e-08, -1.0418708e-08, -0.11917613, -0.9928731, -6.2305355e-10, 0.9928731, -0.11917613, 0, 0.3963181, -0.86295044)
+
+[node name="AnimationPlayer" parent="PunkyMk2" index="2"]
+autoplay = "FanAction"
 
 [node name="Turret" parent="." index="1" instance=ExtResource("3_5gbwn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.2)
