@@ -67,7 +67,7 @@ func _process(_delta: float) -> void:
 	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot_x.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)
 	
 	if Input.is_action_pressed("shoot") or Input.is_action_pressed("aim"):
-		orbit_sensitivity = 0.0
+		orbit_sensitivity = AIMING_SENSITIVITY
 	else:
 		orbit_sensitivity = DEFAULT_SENSITIVITY
 	
