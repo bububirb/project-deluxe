@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://xv0ms4vqwxx6"]
+
+[ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_03t02"]
+[ext_resource type="Texture2D" uid="uid://cfwl7shrb80iu" path="res://assets/icons/items/incendiary_cannon.png" id="2_c047e"]
+[ext_resource type="Script" uid="uid://rqh1pl76s4yu" path="res://scripts/resources/ballistics/cannon_ballistics.gd" id="3_q42x7"]
+[ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="4_w0v6n"]
+[ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="5_188ra"]
+[ext_resource type="Script" uid="uid://cmngjsfctp4ug" path="res://scripts/resources/modifiers/burn_modifier.gd" id="5_w0v6n"]
+[ext_resource type="Script" uid="uid://g88d8y3dajgk" path="res://scripts/resources/tags/tag.gd" id="6_q2cj5"]
+
+[sub_resource type="Resource" id="Resource_dkerb"]
+script = ExtResource("3_q42x7")
+projectile_speed = 25.0
+max_range = 30.0
+min_angle = -0.2617993877991494
+max_angle = 0.5235987755982988
+metadata/_custom_type_script = "uid://rqh1pl76s4yu"
+
+[sub_resource type="Resource" id="Resource_188ra"]
+script = ExtResource("5_w0v6n")
+damage = 100
+tick_duration = 0.25
+duration = 8.0
+icon_path = "res://assets/icons/modifiers/burn.svg"
+type = 1
+metadata/_custom_type_script = "uid://cmngjsfctp4ug"
+
+[sub_resource type="Resource" id="Resource_56ylx"]
+script = ExtResource("5_188ra")
+attack = 200.0
+cooldown = 12.0
+radius = 0.5
+ballistics = SubResource("Resource_dkerb")
+modifiers_on_hit = Array[ExtResource("4_w0v6n")]([SubResource("Resource_188ra")])
+metadata/_custom_type_script = "uid://2c30v8yoqbxm"
+
+[resource]
+script = ExtResource("1_03t02")
+item_name = "incendiary_cannon"
+description = "Coming in hot"
+item_class = "cannon"
+sprite = ExtResource("2_c047e")
+stats = SubResource("Resource_56ylx")
+metadata/_custom_type_script = "uid://cijhu0qp0nqpy"

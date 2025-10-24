@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccd21xxy5imtf"]
+[gd_scene load_steps=18 format=3 uid="uid://ccd21xxy5imtf"]
 
 [ext_resource type="Script" uid="uid://b4qkwpm00us43" path="res://scripts/ui/inventory.gd" id="1_0occ3"]
 [ext_resource type="Script" uid="uid://bola2rqxd3dnj" path="res://scripts/ui/workshop.gd" id="1_b280y"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://bvwldcsm3u85v" path="res://resources/items/plasma_beam.tres" id="9_56awd"]
 [ext_resource type="Resource" uid="uid://uvpl5udcl3lh" path="res://resources/items/nitro.tres" id="10_k4e8n"]
 [ext_resource type="Resource" uid="uid://dqxg1s4rp1abq" path="res://resources/items/overboost.tres" id="11_hhph8"]
+[ext_resource type="Resource" uid="uid://xv0ms4vqwxx6" path="res://resources/items/incendiary_cannon.tres" id="13_h1e0x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4nn5"]
 content_margin_left = 4.0
@@ -105,4 +106,4 @@ size_flags_horizontal = 3
 script = ExtResource("1_0occ3")
 slot_scene = ExtResource("2_l4nn5")
 item_container_scene = ExtResource("1_w2xo4")
-items = Array[ExtResource("3_l4nn5")]([ExtResource("4_b280y"), ExtResource("5_segb8"), ExtResource("6_h1e0x"), ExtResource("7_5jig3"), ExtResource("8_b1ygd"), ExtResource("9_56awd"), ExtResource("10_k4e8n"), ExtResource("11_hhph8"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("3_l4nn5")]([ExtResource("4_b280y"), ExtResource("5_segb8"), ExtResource("6_h1e0x"), ExtResource("7_5jig3"), ExtResource("8_b1ygd"), ExtResource("9_56awd"), ExtResource("13_h1e0x"), ExtResource("10_k4e8n"), ExtResource("11_hhph8"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
