@@ -5,28 +5,29 @@
 [ext_resource type="Script" uid="uid://2c30v8yoqbxm" path="res://scripts/resources/stats/weapon_stats.gd" id="2_ur7us"]
 [ext_resource type="Script" uid="uid://bcfclipky5qs7" path="res://scripts/resources/ballistics/mortar_ballistics.gd" id="3_nrr8r"]
 [ext_resource type="Script" uid="uid://dcols2h6k7l6p" path="res://scripts/resources/modifiers/modifier.gd" id="3_qmutr"]
-[ext_resource type="Script" uid="uid://cmngjsfctp4ug" path="res://scripts/resources/modifiers/burn_modifier.gd" id="5_uty5t"]
+[ext_resource type="Script" uid="uid://bhjywgxowgk3h" path="res://scripts/resources/modifiers/additive_defense_modifier.gd" id="5_gyyg8"]
 [ext_resource type="Script" uid="uid://g88d8y3dajgk" path="res://scripts/resources/tags/tag.gd" id="7_gyyg8"]
 
 [sub_resource type="Resource" id="Resource_uty5t"]
 script = ExtResource("3_nrr8r")
+travel_time = 2.0
 metadata/_custom_type_script = "uid://bcfclipky5qs7"
 
-[sub_resource type="Resource" id="Resource_gyyg8"]
-script = ExtResource("5_uty5t")
-damage = 150
-duration = 8.0
-icon_path = "uid://d1dyeva3fni4u"
+[sub_resource type="Resource" id="Resource_j0wba"]
+script = ExtResource("5_gyyg8")
+amount = -0.15000000000000002
+duration = 7.5
+icon_path = "res://assets/icons/modifiers/defense-down.svg"
 type = 1
-metadata/_custom_type_script = "uid://cmngjsfctp4ug"
+metadata/_custom_type_script = "uid://bhjywgxowgk3h"
 
 [sub_resource type="Resource" id="Resource_8u5c1"]
 script = ExtResource("2_ur7us")
-attack = 1000.0
-cooldown = 1.0
-radius = 5.0
+attack = 1200.0
+cooldown = 15.0
+radius = 6.0
 ballistics = SubResource("Resource_uty5t")
-modifiers_on_hit = Array[ExtResource("3_qmutr")]([SubResource("Resource_gyyg8")])
+modifiers_on_hit = Array[ExtResource("3_qmutr")]([SubResource("Resource_j0wba")])
 height = 10.0
 metadata/_custom_type_script = "uid://2c30v8yoqbxm"
 

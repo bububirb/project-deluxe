@@ -9,13 +9,13 @@
 
 [sub_resource type="Resource" id="Resource_hndbo"]
 script = ExtResource("3_vacu5")
-projectile_speed = 4.0
+projectile_speed = 6.0
 metadata/_custom_type_script = "uid://djqsi8li1d6wr"
 
 [sub_resource type="Resource" id="Resource_r5e17"]
 script = ExtResource("5_qdahy")
-attack = 10000.0
-cooldown = 60.0
+attack = 2000.0
+cooldown = 25.0
 radius = 5.0
 ballistics = SubResource("Resource_hndbo")
 metadata/_custom_type_script = "uid://2c30v8yoqbxm"

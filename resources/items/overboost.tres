@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_6gm1v"]
 script = ExtResource("3_m5ywd")
-speed_multiplier = 2.0
+speed_multiplier = 1.75
 duration = 8.0
 scalable_duration = false
 icon_path = "uid://b4sasyra7s4uv"

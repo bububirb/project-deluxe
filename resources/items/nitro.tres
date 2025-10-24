@@ -7,8 +7,8 @@
 
 [sub_resource type="Resource" id="Resource_wmf1e"]
 script = ExtResource("3_ls8dk")
-speed_multiplier = 5.0
-duration = 0.5
+speed_multiplier = 4.0
+duration = 0.75
 scalable_duration = false
 icon_path = "uid://b4sasyra7s4uv"
 metadata/_custom_type_script = "uid://bpjec3i147tkn"
