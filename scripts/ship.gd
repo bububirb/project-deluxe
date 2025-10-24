@@ -21,7 +21,7 @@ const AIMING_RANGE: float = 2.0
 @export var torque: float = 1.0
 @export var max_turn_speed: float = 0.5
 
-@export var nitro_force: float = 5.0
+@export var nitro_force: float = 5.0 # WARN: Deprecated
 
 @export var projectile_pool: Node
 
@@ -193,10 +193,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if DisplayServer.has_hardware_keyboard():
 			input_dir = Input.get_action_strength("ui_up") - Input.get_action_strength("ui_down")
 			turn = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
-		
-		if Input.is_action_just_pressed("ui_accept"):
-			velocity += transform.basis * Vector3(0.0, 0.0, nitro_force)
-			nitro_particles.emitting = true
 		
 		if Input.is_action_just_pressed("select_item_1"):
 			select_item(0)
