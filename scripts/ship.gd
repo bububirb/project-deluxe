@@ -11,7 +11,7 @@ const MAX_SUBMERSION: float = 0.15
 const MAX_SPEED_DRAG: float = 4.0
 
 const AIMING_SENSITIVITY: float = 0.001
-const AIMING_RANGE: float = 2.0
+const AIMING_RANGE: float = 10.0 # WARN: Deprecated
 
 @export var linear_loss: float = 0.75
 @export var acceleration: float = 1.0
@@ -161,14 +161,14 @@ func _physics_process(delta: float) -> void:
 		var current_position = global_position
 		current_position.y = 0.0
 		var target_position = closest_target.global_position
-		var offset_vector = Vector3(-aiming_offset.x * AIMING_RANGE, -aiming_offset.y * AIMING_RANGE, -aiming_offset.y * AIMING_RANGE).rotated(Vector3.UP, turret.global_rotation.y)
+		var offset_vector = Vector3(-aiming_offset.x, -aiming_offset.y, -aiming_offset.y).rotated(Vector3.UP, turret.global_rotation.y)
 		target_position.y = 0.0
 		aiming_distance = current_position.distance_to(target_position)
 		aiming_height_offset = closest_target.turret.global_position.y - item_instancer.global_position.y - aiming_offset.y
 		turret.look_at(aiming_position, Vector3(0.0, 1.0, 0.0), true)
 		turret.rotation.x = 0.0
 		turret.rotation.z = 0.0
-		aiming_position = aiming_position.move_toward(closest_target.turret.global_position + offset_vector, delta * 25.0)
+		aiming_position = aiming_position.move_toward(closest_target.turret.global_position + offset_vector * aiming_distance, delta * 25.0)
 		crosshair.global_position = aiming_position
 
 func aiming_weight(ship: Ship) -> float:

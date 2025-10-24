@@ -1,7 +1,7 @@
 extends Node3D
 
 const DEFAULT_SENSITIVITY: float = 0.001
-const AIMING_SENSITIVITY: float = 0.0005
+const AIMING_SENSITIVITY: float = 0.0001
 const REMOTE_HP_BAR_OFFSET: Vector3 = Vector3(0.0, 1.2, 0.0)
 
 var spawn: Transform3D # Set by Game
