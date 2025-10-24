@@ -28,10 +28,14 @@ func _process(delta: float) -> void:
 	wave_time += delta * WAVE_SPEED
 	RenderingServer.global_shader_parameter_set("wave_time", wave_time)
 
-@rpc("call_local")
+@rpc("authority", "call_local", "reliable")
 func reset_wave_time() -> void:
 	wave_time = 0.0
 	RenderingServer.global_shader_parameter_set("wave_time", 0.0)
+
+@rpc("authority", "call_local", "unreliable")
+func sync_wave_time(time: float) -> void:
+	wave_time = time
 
 func wave(position: Vector2, direction: Vector2, scale: float, time: float):
 	var frequency: float = scale * WAVE_SCALE

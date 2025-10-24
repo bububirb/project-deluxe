@@ -4,6 +4,9 @@ const BURN_TICK_DURATION: float = 1.0
 const SHIPWRECK_TICK_DURATION: float = 1.0
 const SHIPWRECK_DAMAGE: int = 500
 
+const WAVE_SYNC_INTERVAL: float = 0.5
+
+var wave_sync_timer: float = 0.0
 var damage_dealt: Dictionary[int, int] = {}
 
 func _ready() -> void:
@@ -15,6 +18,13 @@ func start() -> void:
 
 func stop() -> void:
 	set_process(false)
+
+func _process(delta: float) -> void:
+	if multiplayer.is_server():
+		wave_sync_timer += delta
+		if wave_sync_timer >= WAVE_SYNC_INTERVAL:
+			wave_sync_timer -= WAVE_SYNC_INTERVAL
+			BuoyancySolver.sync_wave_time.rpc(BuoyancySolver.wave_time)
 
 func _on_projectile_player_hit(player_id: int, hit_id: int, attack: int, modifiers: Array[Modifier], tags: Array[Tag]) -> void:
 	var damage: int = Math.calculate_damage(attack, get_ship(hit_id))
