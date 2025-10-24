@@ -56,5 +56,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399345, -0.875021)
 [node name="Deck" parent="." index="9" node_paths=PackedStringArray("target")]
 target = NodePath("../Turret/TurretBase/ItemInstancer")
 
+[node name="Burn" parent="." index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47639537, -0.7589481)
+visible = true
+frame_progress = 0.0
+
 [editable path="PunkyMk2"]
 [editable path="Turret"]
