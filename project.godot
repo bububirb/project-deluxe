@@ -28,8 +28,8 @@ IO="*res://scripts/globals/io.gd"
 
 [display]
 
-window/size/viewport_width=1024
-window/size/viewport_height=512
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [editor]
 
