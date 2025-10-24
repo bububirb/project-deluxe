@@ -10,6 +10,8 @@ func _process(delta: float) -> void:
 	time_elapsed += delta
 	text = _convert_time(MATCH_TIME - time_elapsed)
 	if time_elapsed > MATCH_TIME:
+		if multiplayer.is_server():
+			GameplayServer.game_over.rpc()
 		process_mode = PROCESS_MODE_DISABLED
 
 func _convert_time(time: float) -> String:
