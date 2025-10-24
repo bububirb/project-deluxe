@@ -53,7 +53,7 @@ var aiming_distance: float = 30.0
 var aiming_height_offset: float = 0.0
 var aiming_offset: Vector2 = Vector2.ZERO
 var aiming_position: Vector3
-var ships: Array[Ship]
+var targets: Array[Ship]
 var closest_target: Ship
 
 var colliding_ships: Array[Ship]
@@ -89,8 +89,8 @@ func _ready() -> void:
 	if not is_multiplayer_authority(): return
 	select_item(0)
 	crosshair.show()
-	ships = GameplayServer.get_ships()
-	ships.erase(self)
+	targets = GameplayServer.get_ships()
+	targets.erase(self)
 
 func _physics_process(delta: float) -> void:
 	_modifier_tick(delta)
@@ -150,7 +150,7 @@ func _physics_process(delta: float) -> void:
 	sync_position = position
 	sync_rotation = rotation
 	
-	for ship: Ship in ships:
+	for ship: Ship in targets:
 		if not closest_target:
 			closest_target = ship
 		elif aiming_weight(ship) > aiming_weight(closest_target):
