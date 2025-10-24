@@ -10,6 +10,7 @@ signal server_ready
 signal server_status_return(status: ServerStatus)
 signal connection_reset
 
+@warning_ignore("unused_signal")
 signal player_info_updated(peer_id, player_info)
 signal player_deck_changed(peer_id, deck)
 signal player_ship_changed(peer_id, ship)
