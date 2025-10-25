@@ -16,6 +16,7 @@ uniform sampler2D wave_texture; // Noise wave texture
 uniform sampler2D texture_normal; // Additional normal noise
 uniform sampler2D texture_normal2; // Additional normal noise
 uniform sampler2D wave_bump; // Normal bump map version of the noise wave texture
+uniform sampler2D foam;
 uniform vec2 wave_direction = vec2(0.5,-0.2); // Direction of wave 1
 uniform vec2 wave_direction2 = vec2(-0.5,0.5); // Direction of wave 2
 
@@ -245,11 +246,21 @@ void fragment() {
     vec3 depth_color_adj = mix(texture(edge_foam_texture, edge_uv).rgb * edge_foam_intensity, color, edge_fade);
 
     vec3 final_color = surface_color;
+	
+	float foam_value = texture(foam,0.05*(world_position.xz+time)).x;
+	float foam_light = foam_value;
+	float foam_sharp = foam_value;
+	if(foam_sharp < 0.8){
+		foam_sharp = 0.0;
+	}
+	
+	final_color += 0.4*foam_light + foam_sharp;
 
     // Set the final color, metallic, roughness, and normal
     ALBEDO = clamp(final_color + depth_color_adj, vec3(0.0), vec3(1.0));
     METALLIC = metallic;
     ROUGHNESS = roughness;
+	SPECULAR = 1.0;
 	//NORMAL = perturbed_normal;
 	NORMAL_MAP = mix(wave_normal_blend, normal_blend, 0.5);
 }

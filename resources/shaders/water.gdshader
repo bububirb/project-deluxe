@@ -1,5 +1,6 @@
 shader_type spatial;
-render_mode depth_prepass_alpha;
+render_mode  depth_draw_never;
+//depth_prepass_alpha,
 
 group_uniforms engine_textures;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
@@ -30,6 +31,8 @@ uniform sampler2D wave; // Noise wave texture
 uniform sampler2D wave_bump; // Normal bump map version of the noise wave texture
 uniform sampler2D texture_normal; // Additional normal noise
 uniform sampler2D texture_normal2; // Additional normal noise
+
+uniform sampler2D foam1;
 
 group_uniforms movement_settings;
 uniform vec2 wave_direction = vec2(0.5,-0.2); // Direction of wave 1
@@ -103,16 +106,6 @@ void fragment() {
 	depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);
 	float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
-	// Retrieving depth color and applying the deep and shallow colors
-	vec3 screen_color = textureLod(SCREEN_TEXTURE, SCREEN_UV, depth_blend_power * 2.5).rgb;
-	vec3 depth_color = mix(color_shallow.rgb, color_deep.rgb, depth_blend_power);
-	vec3 color = mix(screen_color * depth_color, depth_color * 0.25, depth_blend_power * 0.5);
-
-	// Getting edge depth calc
-	float z_depth = edge(texture(DEPTH_TEXTURE, SCREEN_UV).x);
-	float z_pos = edge(FRAGCOORD.z);
-	float z_dif = z_depth - z_pos;
-
 	//Worldspace position of fragment
 	float depth1 = FRAGCOORD.z;
 	vec2 frag_ndc = ((FRAGCOORD.xy / VIEWPORT_SIZE) * 2.0) - 1.0;
@@ -120,15 +113,25 @@ void fragment() {
 	frag_view_space_position /= frag_view_space_position.w;
 	vec4 frag_world_space = INV_VIEW_MATRIX * frag_view_space_position;
 
+	//BASE COLOUR CALCULATION
+	float shallow_influence = (frag_world_space.y+1.0) * 0.4;
+	vec3 base_colour = mix(color_deep, color_shallow,shallow_influence);
+	//water depth from camera is frag_view_space_position.z inverted
+	float water_depth = frag_view_space_position.z * -0.005;
 
-	// Calculate Fresnel
-	float fresnel = clamp(fresnel(10.0, NORMAL, VIEW),0.0,1.0);
-	float shallow_influence = clamp(frag_world_space.y - (fresnel),0.0,1.0);
+	float foam_value = texture(foam,0.05*(frag_world_space.xz+time)).x;
+	float foam_light = foam_value;
+	float foam_sharp = foam_value;
+	if(foam_sharp < 0.8){
+		foam_sharp = 0.0;
+	}
+	
+	ALBEDO = base_colour + 0.4*foam_value + foam_sharp;
 
-	//ALBEDO = mix(color_deep, color_shallow,shallow_influence);
-	ALBEDO = vec3(shallow_influence);
 	METALLIC = 0.0;
-	ROUGHNESS = 1.0;
-	//NORMAL_MAP = mix(wave_normal_blend, normal_blend, 0.5);
+	ROUGHNESS = 0.0;
+	ALPHA = 1.0;
+	SPECULAR = 1.0;
+	NORMAL_MAP = mix(wave_normal_blend, normal_blend, 0.5);
 	//SPECULAR = wave_normal_blend.r;
 }
