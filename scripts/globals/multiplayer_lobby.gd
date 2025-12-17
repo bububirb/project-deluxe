@@ -12,6 +12,8 @@ signal connection_reset
 
 @warning_ignore("unused_signal")
 signal player_info_updated(peer_id, player_info)
+@warning_ignore("unused_signal")
+signal player_is_ready_updated(peer_id, ready)
 signal player_deck_changed(peer_id, deck)
 signal player_ship_changed(peer_id, ship)
 
@@ -27,7 +29,7 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name", "ship": "punky", "deck": {}}:
+var player_info = {"name": "Name", "is_ready": false, "ship": "punky", "deck": {}}:
 	set(new_player_info):
 		player_info = new_player_info
 		set_player_deck.rpc(player_info.deck)
@@ -139,6 +141,12 @@ func set_player_ship(ship: String) -> void:
 	var player_id = multiplayer.get_remote_sender_id()
 	players[player_id].ship = ship
 	player_ship_changed.emit(player_id, players[player_id].ship)
+
+@rpc("any_peer", "call_local", "reliable")
+func set_player_is_ready(is_ready: bool) -> void:
+	var player_id = multiplayer.get_remote_sender_id()
+	players[player_id].ready = is_ready
+	player_is_ready_updated.emit(player_id, is_ready)
 
 @rpc("any_peer", "call_remote", "reliable")
 func poll_server_status() -> void:

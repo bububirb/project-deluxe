@@ -11,6 +11,7 @@ func _ready() -> void:
 	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
 	MultiplayerLobby.connection_reset.connect(_on_multiplayer_lobby_connection_reset)
 	MultiplayerLobby.player_info_updated.connect(_on_multiplayer_lobby_player_info_updated)
+	MultiplayerLobby.player_is_ready_updated.connect(_on_multiplayer_lobby_player_is_ready_updated)
 	MultiplayerLobby.player_deck_changed.connect(_on_multiplayer_lobby_player_deck_changed)
 	MultiplayerLobby.player_ship_changed.connect(_on_multiplayer_lobby_player_ship_changed)
 	
@@ -33,7 +34,9 @@ func _on_multiplayer_lobby_connection_reset() -> void:
 func _on_multiplayer_lobby_player_info_updated(peer_id, player_info) -> void:
 	if multiplayer.is_server():
 		update_player_deck.rpc(peer_id, player_info.deck)
-
+func _on_multiplayer_lobby_player_is_ready_updated(peer_id, is_ready) -> void:
+	if multiplayer.is_server():
+		update_player_is_ready.rpc(peer_id, is_ready)
 func _on_multiplayer_lobby_player_deck_changed(peer_id, deck) -> void:
 	if multiplayer.is_server():
 		update_player_deck.rpc(peer_id, deck)
@@ -53,6 +56,7 @@ func _add_player(peer_id: int, player_info: Dictionary) -> void:
 	for sprite: ItemSprite in _make_player_deck(player_info.deck):
 		player.add_child(sprite)
 	players_list_container.add_child(player)
+	update_player_is_ready(peer_id, player_info.is_ready)
 
 func _make_player_deck(deck: Dictionary) -> Array[ItemSprite]:
 	var sprites: Array[ItemSprite]
@@ -82,6 +86,14 @@ func update_player_deck(peer_id: int, deck: Dictionary) -> void:
 			child.queue_free()
 	for sprite: ItemSprite in _make_player_deck(deck):
 		player.add_child(sprite)
+
+@rpc("authority", "call_local", "reliable")
+func update_player_is_ready(peer_id: int, is_ready: bool) -> void:
+	var player: Control = _get_player(peer_id)
+	if is_ready or peer_id == 1:
+		player.modulate = Color.WHITE
+	else:
+		player.modulate = Color.GRAY
 
 func _get_player(peer_id: int) -> Control:
 	return players_list_container.get_node(str(peer_id))

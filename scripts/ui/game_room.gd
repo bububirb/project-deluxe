@@ -24,7 +24,9 @@ func _on_start_button_pressed() -> void:
 	MultiplayerLobby.status = MultiplayerLobby.ServerStatus.LOADING
 	MultiplayerLobby.load_game.rpc(LOADING_SCENE)
 
-#TODO: Implement client ready functionality
+
+func _on_ready_button_toggled(toggled_on: bool) -> void:
+	MultiplayerLobby.set_player_is_ready.rpc(toggled_on)
 
 func _on_back_button_pressed() -> void:
 	return_to_lobby()

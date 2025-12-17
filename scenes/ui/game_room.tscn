@@ -52,6 +52,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Server" type="VBoxContainer" parent="Controls"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -112,7 +113,6 @@ size_flags_horizontal = 3
 text = "Start"
 
 [node name="Client" type="VBoxContainer" parent="Controls"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -151,11 +151,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ReadyButton" type="Button" parent="Controls/Client"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+toggle_mode = true
 text = "Ready"
 
 [connection signal="pressed" from="Controls/Server/TitleBar/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Controls/Server/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Controls/Client/TitleBar/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="Controls/Client/ReadyButton" to="." method="_on_ready_button_toggled"]
