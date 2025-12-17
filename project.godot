@@ -31,10 +31,6 @@ IO="*res://scripts/globals/io.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
-[editor]
-
-run/main_run_args="--headless"
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/virtual_joystick/plugin.cfg")
