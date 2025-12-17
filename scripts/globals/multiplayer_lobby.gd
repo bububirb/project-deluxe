@@ -144,7 +144,7 @@ func set_player_ship(ship: String) -> void:
 @rpc("any_peer", "call_local", "reliable")
 func set_player_is_ready(is_ready: bool) -> void:
 	var player_id = multiplayer.get_remote_sender_id()
-	players[player_id].ready = is_ready
+	players[player_id].is_ready = is_ready
 	player_is_ready_updated.emit(player_id, is_ready)
 
 @rpc("any_peer", "call_remote", "reliable")
