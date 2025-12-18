@@ -1,7 +1,8 @@
-[gd_scene load_steps=97 format=3 uid="uid://c4x5e4mecarp2"]
+[gd_scene load_steps=98 format=3 uid="uid://c4x5e4mecarp2"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_kr3h6"]
 [ext_resource type="PackedScene" uid="uid://bry36jjeqdba8" path="res://scenes/players/player_camera.tscn" id="2_jm8en"]
+[ext_resource type="Texture2D" uid="uid://c51b4cr48vhra" path="res://assets/textures/decals/directional_decal.png" id="4_kr3h6"]
 [ext_resource type="Texture2D" uid="uid://s8ij70eplfx7" path="res://assets/textures/decals/aiming_indicator.png" id="4_myxd7"]
 [ext_resource type="Texture2D" uid="uid://cvoqstkeo8dmb" path="res://assets/textures/overlays/crosshair.png" id="5_kr0au"]
 [ext_resource type="Script" uid="uid://c4d7jljnvg3wl" path="res://scripts/resources/deck.gd" id="6_3mxys"]
@@ -642,6 +643,15 @@ top_level = true
 visible = false
 layers = 16
 texture_albedo = ExtResource("4_myxd7")
+modulate = Color(0, 0.8, 0, 0.4)
+cull_mask = 1047554
+
+[node name="DirectionIndicator" type="Decal" parent="."]
+top_level = true
+visible = false
+layers = 16
+size = Vector3(4, 4, 4)
+texture_albedo = ExtResource("4_kr3h6")
 modulate = Color(0, 0.8, 0, 0.4)
 cull_mask = 1047554
 

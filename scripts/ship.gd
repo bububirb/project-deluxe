@@ -71,6 +71,7 @@ var active_item: Node:
 @onready var item_instancer: Node3D = $Turret/TurretBase/ItemInstancer
 @onready var nitro_particles = $NitroParticles
 @onready var aiming_indicator: Decal = $AimingIndicator
+@onready var direction_indicator: Decal = $DirectionIndicator
 @onready var crosshair: Sprite3D = $Crosshair
 @onready var deck: Deck = $Deck
 @onready var burn: AnimatedSprite3D = $Burn
@@ -106,6 +107,7 @@ func _physics_process(delta: float) -> void:
 	_update_bounds_transform()
 	_snap_bounds_to_wave()
 	_align_to_wave(delta)
+	_update_indicators()
 	
 	var speed_cap = max_speed
 	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
@@ -181,6 +183,28 @@ func aiming_weight(ship: Ship) -> float:
 	var distance_weight: float = 1.0 - (distance / 100.0)
 	return angle_weight + (distance_weight * 0.2)
 
+func _show_active_indicator() -> void:
+	if active_item.item_class == Globals.ItemClass.TORPEDO:
+		direction_indicator.show()
+		aiming_indicator.hide()
+	else:
+		aiming_indicator.show()
+		direction_indicator.hide()
+
+func _hide_indicators() -> void:
+	direction_indicator.hide()
+	aiming_indicator.hide()
+
+func _update_indicators() -> void:
+	if Input.is_action_pressed("shoot"):
+		var size: float = active_item.stats.radius * 2.0
+		if active_item.item_class == Globals.ItemClass.TORPEDO:
+			direction_indicator.global_position = global_position
+			direction_indicator.global_rotation.y = turret.global_rotation.y + PI
+		else:
+			aiming_indicator.global_position = aiming_position
+			aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
 	
@@ -207,16 +231,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if active_item:
 			if Input.is_action_just_pressed("shoot"):
-				aiming_indicator.show()
-			
-			if Input.is_action_pressed("shoot"):
-				var size = active_item.stats.radius * 2.0
-				aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
-				aiming_indicator.global_position = aiming_position
+				_show_active_indicator()
 			
 			if Input.is_action_just_released("shoot"):
 				if active_item.mode == Globals.ItemMode.ACTIONABLE:
-					aiming_indicator.hide()
+					_hide_indicators()
 					active_item.execute()
 					aiming_offset = Vector2.ZERO
 
@@ -259,6 +278,9 @@ func select_item(index: int) -> void:
 	elif selected_item.mode == Globals.ItemMode.ACTIONABLE:
 		active_item = selected_item
 		item_selected.emit(active_item)
+	
+	if Input.is_action_pressed("shoot"):
+		_show_active_indicator()
 
 func get_item(index: int) -> Node3D:
 	return item_instancer.get_child(index)
