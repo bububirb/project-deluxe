@@ -55,7 +55,7 @@ var aiming_offset: Vector2 = Vector2.ZERO
 var aiming_position: Vector3
 var targets: Array[Ship]
 var closest_target: Ship
-var trajectory: Trajectory
+var trajectory: Trajectory = Trajectory.new()
 
 var colliding_ships: Array[Ship]
 var shipwreck_timer: float = 0.0
@@ -185,12 +185,7 @@ func aiming_weight(ship: Ship) -> float:
 	var distance_weight: float = 1.0 - (distance / 100.0)
 	return angle_weight + (distance_weight * 0.2)
 
-
-func create_trajectory() -> void:
-	trajectory = Trajectory.new()
-	update_trajectory()
-
-func update_trajectory() -> void:
+func _update_trajectory() -> void:
 	var start_position: Vector3 = item_instancer.global_position
 	var target_position: Vector3 = aiming_position
 	var target_position_flat: Vector2 = Vector2(target_position.x, target_position.z)
@@ -216,7 +211,7 @@ func _hide_indicators() -> void:
 
 func _update_indicators() -> void:
 	if Input.is_action_pressed("shoot"):
-		update_trajectory()
+		_update_trajectory()
 		var size: float = active_item.stats.radius * 2.0
 		if active_item.item_class == Globals.ItemClass.TORPEDO:
 			direction_indicator.global_position = global_position
@@ -258,7 +253,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if active_item:
 			if Input.is_action_just_pressed("shoot"):
-				create_trajectory()
+				_update_trajectory()
 				_show_active_indicator()
 			
 			if Input.is_action_just_released("shoot"):
