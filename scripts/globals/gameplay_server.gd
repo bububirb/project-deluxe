@@ -215,8 +215,7 @@ func shoot(player_id: int, item_index: int) -> void:
 	projectile_stats.modifiers = item.stats.modifiers_on_hit.duplicate()
 	projectile_stats.tags = item.stats.tags.duplicate()
 	
-	projectile_stats.distance = ship.aiming_distance
-	projectile_stats.offset = ship.aiming_height_offset
+	projectile_stats.trajectory = ship.trajectory
 	
 	projectile_stats.ballistics = item.stats.ballistics
 	

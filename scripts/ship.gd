@@ -55,6 +55,7 @@ var aiming_offset: Vector2 = Vector2.ZERO
 var aiming_position: Vector3
 var targets: Array[Ship]
 var closest_target: Ship
+var trajectory: Trajectory
 
 var colliding_ships: Array[Ship]
 var shipwreck_timer: float = 0.0
@@ -70,6 +71,7 @@ var active_item: Node:
 @onready var turret: Node3D = $Turret
 @onready var item_instancer: Node3D = $Turret/TurretBase/ItemInstancer
 @onready var nitro_particles = $NitroParticles
+@onready var projectile_path: Line3D = $ProjectilePath
 @onready var aiming_indicator: Decal = $AimingIndicator
 @onready var direction_indicator: Decal = $DirectionIndicator
 @onready var crosshair: Sprite3D = $Crosshair
@@ -183,25 +185,50 @@ func aiming_weight(ship: Ship) -> float:
 	var distance_weight: float = 1.0 - (distance / 100.0)
 	return angle_weight + (distance_weight * 0.2)
 
+
+func create_trajectory() -> void:
+	trajectory = Trajectory.new()
+	update_trajectory()
+
+func update_trajectory() -> void:
+	var start_position: Vector3 = item_instancer.global_position
+	var target_position: Vector3 = aiming_position
+	var target_position_flat: Vector2 = Vector2(target_position.x, target_position.z)
+	var start_position_flat: Vector2 = Vector2(start_position.x, start_position.z)
+
+	trajectory.distance = start_position_flat.distance_to(target_position_flat)
+	trajectory.offset = target_position.y - start_position.y
+
 func _show_active_indicator() -> void:
 	if active_item.item_class == Globals.ItemClass.TORPEDO:
 		direction_indicator.show()
 		aiming_indicator.hide()
 	else:
+		if active_item.item_class == Globals.ItemClass.CANNON:
+			projectile_path.show()
 		aiming_indicator.show()
 		direction_indicator.hide()
 
 func _hide_indicators() -> void:
+	projectile_path.hide()
 	direction_indicator.hide()
 	aiming_indicator.hide()
 
 func _update_indicators() -> void:
 	if Input.is_action_pressed("shoot"):
+		update_trajectory()
 		var size: float = active_item.stats.radius * 2.0
 		if active_item.item_class == Globals.ItemClass.TORPEDO:
 			direction_indicator.global_position = global_position
 			direction_indicator.global_rotation.y = turret.global_rotation.y + PI
 		else:
+			if active_item.item_class == Globals.ItemClass.CANNON:
+				var arc: ProjectileArc = CannonArc.new(trajectory, active_item.stats.ballistics)
+				projectile_path.global_position = item_instancer.global_position
+				projectile_path.global_rotation.y = turret.global_rotation.y # WARN: Verify rotation accuracy
+				for i in range(aiming_distance):
+					projectile_path.add_point(Vector3(0.0, arc.arc_height(i), i))
+				projectile_path.call_redraw()
 			aiming_indicator.global_position = aiming_position
 			aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
 
@@ -231,6 +258,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if active_item:
 			if Input.is_action_just_pressed("shoot"):
+				create_trajectory()
 				_show_active_indicator()
 			
 			if Input.is_action_just_released("shoot"):

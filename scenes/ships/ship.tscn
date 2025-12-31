@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://c4x5e4mecarp2"]
+[gd_scene load_steps=100 format=3 uid="uid://c4x5e4mecarp2"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_kr3h6"]
 [ext_resource type="PackedScene" uid="uid://bry36jjeqdba8" path="res://scenes/players/player_camera.tscn" id="2_jm8en"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://d1qdtkeiju38j" path="res://assets/textures/vfx/burn-debuff_render_all.png" id="13_i6cv5"]
 [ext_resource type="PackedScene" uid="uid://dbsw8xclkahwp" path="res://scenes/vfx/fire.tscn" id="14_xbct7"]
 [ext_resource type="PackedScene" uid="uid://ck8nbe2jypmjl" path="res://scenes/vfx/explosion.tscn" id="15_j7k8f"]
+[ext_resource type="Script" uid="uid://bew4nj6u08pl5" path="res://scripts/drafts/line_3d.gd" id="16_yvo6f"]
 
 [sub_resource type="Curve" id="Curve_hy1a4"]
 _data = [Vector2(0, 1), 0.0, -1.66813, 0, 0, Vector2(0.982955, 0), -0.457521, 0.0, 0, 0]
@@ -111,6 +112,8 @@ material = SubResource("StandardMaterial3D_oanl5")
 radius = 0.02
 radial_steps = 4
 curve = SubResource("Curve_ye74i")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_yvo6f"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ldamy"]
 properties/0/path = NodePath("NitroParticles:emitting")
@@ -637,6 +640,14 @@ trail_enabled = true
 trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_w3aqp")
 draw_pass_1 = SubResource("TubeTrailMesh_vxfmm")
+
+[node name="ProjectilePath" type="MeshInstance3D" parent="."]
+top_level = true
+visible = false
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_yvo6f")
+script = ExtResource("16_yvo6f")
+metadata/_custom_type_script = "uid://bew4nj6u08pl5"
 
 [node name="AimingIndicator" type="Decal" parent="."]
 top_level = true
