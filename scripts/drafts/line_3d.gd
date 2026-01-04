@@ -22,4 +22,6 @@ func _draw_lines() -> void:
 	for point in points:
 		mesh.surface_add_vertex(point)
 	mesh.surface_end()
+
+func clear() -> void:
 	points = []

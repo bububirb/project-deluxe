@@ -199,8 +199,7 @@ func _show_active_indicator() -> void:
 		direction_indicator.show()
 		aiming_indicator.hide()
 	else:
-		if active_item.item_class == Globals.ItemClass.CANNON:
-			projectile_path.show()
+		projectile_path.show()
 		aiming_indicator.show()
 		direction_indicator.hide()
 
@@ -213,19 +212,33 @@ func _update_indicators() -> void:
 	if Input.is_action_pressed("shoot"):
 		_update_trajectory()
 		var size: float = active_item.stats.radius * 2.0
+
 		if active_item.item_class == Globals.ItemClass.TORPEDO:
 			direction_indicator.global_position = global_position
 			direction_indicator.global_rotation.y = turret.global_rotation.y + PI
 		else:
-			if active_item.item_class == Globals.ItemClass.CANNON:
-				var arc: ProjectileArc = CannonArc.new(trajectory, active_item.stats.ballistics)
-				projectile_path.global_position = item_instancer.global_position
-				projectile_path.global_rotation.y = turret.global_rotation.y # WARN: Verify rotation accuracy
-				for i in range(aiming_distance):
-					projectile_path.add_point(Vector3(0.0, arc.arc_height(i), i))
-				projectile_path.call_redraw()
+			_update_projectile_path()
+
 			aiming_indicator.global_position = aiming_position
 			aiming_indicator.size = Vector3(size, BuoyancySolver.WAVE_AMPLITUDE * 2.0, size)
+
+func _update_projectile_path() -> void:
+	var arc: ProjectileArc
+	match active_item.item_class:
+		Globals.ItemClass.CANNON:
+			arc = CannonArc.new(trajectory, active_item.stats.ballistics)
+		Globals.ItemClass.MORTAR:
+			arc = MortarArc.new(trajectory, active_item.stats.ballistics)
+		Globals.ItemClass.BEAM:
+			arc = BeamArc.new(trajectory, active_item.stats.ballistics)
+
+	if arc:
+		projectile_path.global_position = item_instancer.global_position
+		projectile_path.global_rotation.y = turret.global_rotation.y # WARN: Verify rotation accuracy
+		projectile_path.clear()
+		for i in range(ceili(aiming_distance) + 1):
+			projectile_path.add_point(Vector3(0.0, arc.arc_height(i), i))
+		projectile_path.call_redraw()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
