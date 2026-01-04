@@ -1,6 +1,8 @@
 @tool
 class_name Line3D extends MeshInstance3D
 
+@export var material: BaseMaterial3D
+
 var points: PackedVector3Array = []
 
 func _init() -> void:
@@ -22,6 +24,8 @@ func _draw_lines() -> void:
 	for point in points:
 		mesh.surface_add_vertex(point)
 	mesh.surface_end()
+	if material:
+		mesh.surface_set_material(0, material)
 
 func clear() -> void:
 	points = []
