@@ -1,13 +1,13 @@
 class_name ArcFactory extends Object
 
 static func create_cannon_arc(stats: ProjectileStats) -> CannonArc:
-	return CannonArc.new(stats)
+	return CannonArc.new(stats.trajectory, stats.ballistics)
 
 static func create_mortar_arc(stats: ProjectileStats) -> MortarArc:
-	return MortarArc.new(stats)
+	return MortarArc.new(stats.trajectory, stats.ballistics)
 
 static func create_beam_arc(stats: ProjectileStats) -> BeamArc:
-	return BeamArc.new(stats)
+	return BeamArc.new(stats.trajectory, stats.ballistics)
 
 static func create_torpedo_arc(stats: ProjectileStats) -> TorpedoArc:
-	return TorpedoArc.new(stats)
+	return TorpedoArc.new(stats.trajectory, stats.ballistics)

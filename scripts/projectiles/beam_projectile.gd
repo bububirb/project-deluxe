@@ -25,7 +25,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if trail_particles:
-		trail_particles.process_material.direction = Vector3(0.0, stats.offset, stats.distance)
+		trail_particles.process_material.direction = Vector3(0.0, stats.trajectory.offset, stats.trajectory.distance)
 
 func _on_collision(collision: KinematicCollision3D):
 	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)

@@ -11,8 +11,7 @@ class_name ProjectileStats extends Resource
 @export var tags: Array[Tag]
 
 # Ballistics
-@export var distance: float
-@export var offset: float
+@export var trajectory: Trajectory
 @export var ballistics: Ballistics
 
 # Deprecated

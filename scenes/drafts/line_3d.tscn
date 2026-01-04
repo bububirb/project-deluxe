@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgu2864mbdqyt"]
+
+[ext_resource type="Script" uid="uid://bew4nj6u08pl5" path="res://scripts/drafts/line_3d.gd" id="1_m07nt"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_kmdh5"]
+
+[node name="Line3D" type="MeshInstance3D"]
+mesh = SubResource("ImmediateMesh_kmdh5")
+script = ExtResource("1_m07nt")
