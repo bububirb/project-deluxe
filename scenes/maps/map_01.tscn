@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://dsevgkhndtd03"]
+[gd_scene load_steps=18 format=3 uid="uid://dsevgkhndtd03"]
 
 [ext_resource type="PackedScene" uid="uid://bm6e4ei8v6ogo" path="res://assets/models/maps/map_01.blend" id="1_axujj"]
-[ext_resource type="CompressedTexture3D" uid="uid://feierbyipkx0" path="res://assets/textures/vfx/3d_lut.png" id="4_0i0it"]
-[ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="4_3fe60"]
+[ext_resource type="Environment" uid="uid://cbffpe2jqrgoh" path="res://resources/environments/foggy.tres" id="2_ru6md"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="5_sglps"]
 [ext_resource type="Material" uid="uid://byhikx0nfm4j3" path="res://resources/materials/water_v2.tres" id="7_axujj"]
 [ext_resource type="VoxelGIData" uid="uid://bjwgfx2ip7xgd" path="res://resources/voxel_gi/map_01.VoxelGI_data.res" id="8_rmskt"]
@@ -18,54 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://bckpsvqmipgy5" path="res://assets/models/environment/artificial/barrel/barrel.blend" id="16_ru6md"]
 [ext_resource type="PackedScene" uid="uid://c6tiqo714v7ko" path="res://assets/models/environment/trusses/truss_01.blend" id="17_lwxhp"]
 
-[sub_resource type="Gradient" id="Gradient_f7cux"]
-colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_g3dtm"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hpwb6"]
-height = 256
-noise = SubResource("FastNoiseLite_g3dtm")
-color_ramp = SubResource("Gradient_f7cux")
-seamless = true
-
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_j4tr4"]
-rayleigh_color = Color(0.56635076, 0.43353808, 0.46692085, 1)
-ground_color = Color(0.36733928, 0.4249452, 0.7102414, 1)
-night_sky = ExtResource("4_3fe60")
-
-[sub_resource type="Sky" id="Sky_ulpni"]
-sky_material = SubResource("PhysicalSkyMaterial_j4tr4")
-
-[sub_resource type="Environment" id="Environment_6g2yo"]
-background_mode = 2
-sky = SubResource("Sky_ulpni")
-ambient_light_energy = 0.5
-tonemap_mode = 4
-ssil_radius = 10.0
-sdfgi_cascades = 2
-sdfgi_min_cell_size = 0.5
-glow_enabled = true
-glow_normalized = true
-glow_bloom = 0.2
-glow_blend_mode = 1
-glow_hdr_threshold = 2.0
-glow_hdr_luminance_cap = 4.0
-glow_map = SubResource("NoiseTexture2D_hpwb6")
-fog_light_color = Color(0.544776, 0.710731, 0.837316, 1)
-fog_sun_scatter = 0.15
-fog_sky_affect = 0.0
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.08
-volumetric_fog_albedo = Color(0.8669907, 0.7987253, 0.6471055, 1)
-volumetric_fog_anisotropy = 0.8
-volumetric_fog_ambient_inject = 1.0
-volumetric_fog_sky_affect = 0.5
-adjustment_enabled = true
-adjustment_contrast = 1.2
-adjustment_saturation = 1.25
-adjustment_color_correction = ExtResource("4_0i0it")
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_0d0ps"]
 resource_local_to_scene = true
 material = ExtResource("7_axujj")
@@ -76,7 +27,7 @@ subdivide_depth = 63
 [node name="Map01" instance=ExtResource("1_axujj")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
-environment = SubResource("Environment_6g2yo")
+environment = ExtResource("2_ru6md")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
 transform = Transform3D(0.395578, -4.01462e-08, 0.918432, -0.918432, -1.72913e-08, 0.395578, -1.5158e-16, -1, -4.37116e-08, 0, 0, 0)
