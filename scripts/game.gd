@@ -12,12 +12,6 @@ func _ready() -> void:
 	MultiplayerLobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 	
 	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
-	#player.ship.item_selected.connect(_on_ship_item_selected)
-	#player.ship.item_executed.connect(_on_ship_item_executed)
-	
-	#for item: Node in player.ship.item_instancer.get_children():
-	#	var item_index = item.get_index()
-	#	hud.get_item_cooldown(item_index).max_value = item.stats.cooldown + 1.0
 
 # Called only on the server.
 func start_game():
