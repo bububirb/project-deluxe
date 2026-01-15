@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2rhplsaqim43"]
+[gd_scene load_steps=11 format=3 uid="uid://b2rhplsaqim43"]
 
 [ext_resource type="Script" uid="uid://rnudojt1suce" path="res://scripts/ui/lobby.gd" id="1_6oakf"]
 [ext_resource type="Theme" uid="uid://clminxby8hqrf" path="res://resources/themes/default.tres" id="1_efll3"]
@@ -6,12 +6,6 @@
 [ext_resource type="FontVariation" uid="uid://cncutiwvtk0ww" path="res://assets/fonts/inter_bold.tres" id="5_kghoh"]
 [ext_resource type="Texture2D" uid="uid://dgchpexpcmnjo" path="res://assets/icons/ui/menu.svg" id="5_vfpwc"]
 [ext_resource type="Texture2D" uid="uid://bfp7imvdqhr10" path="res://assets/images/background/steampunk-city.png" id="7_bnidf"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bthuv"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
 
 [sub_resource type="FontVariation" id="FontVariation_bnidf"]
 base_font = ExtResource("3_5t5el")
@@ -40,13 +34,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_efll3")
 script = ExtResource("1_6oakf")
-host_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton")
-join_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton")
-settings_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleBar/SettingsButton")
-settings_panel_container = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer")
-name_input = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/NameContainer/NameInput")
-address_input = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/JoinAddressContainer/AddressInput")
-port_input = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/PortContainer/PortInput")
+host_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton")
+join_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton")
+settings_button = NodePath("MarginContainer/VBoxContainer/TitleBar/SettingsButton")
+settings_panel_container = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer")
+name_input = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/NameContainer/NameInput")
+address_input = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/JoinAddressContainer/AddressInput")
+port_input = NodePath("MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/PortContainer/PortInput")
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 visible = false
@@ -74,134 +68,128 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(360, 0)
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_bthuv")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="TitleBar" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
-[node name="SettingsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TitleBar"]
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/TitleBar"]
 layout_mode = 2
 icon = ExtResource("5_vfpwc")
 
-[node name="LobbyLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TitleBar"]
+[node name="LobbyLabel" type="Label" parent="MarginContainer/VBoxContainer/TitleBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Project Deluxe"
 label_settings = SubResource("LabelSettings_rqagm")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/TitleBar"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TitleBar"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 144)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SettingsPanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SettingsPanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(288, 0)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="SettingsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer"]
+[node name="SettingsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NameContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
+[node name="NameContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/NameContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/NameContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Name: "
 
-[node name="NameInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/NameContainer"]
+[node name="NameInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/NameContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 placeholder_text = "Name"
 
-[node name="JoinAddressContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
+[node name="JoinAddressContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
 layout_mode = 2
 
-[node name="AddressLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/JoinAddressContainer"]
+[node name="AddressLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/JoinAddressContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Join Address:"
 
-[node name="AddressInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/JoinAddressContainer"]
+[node name="AddressInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/JoinAddressContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 placeholder_text = "127.0.0.1"
 
-[node name="PortContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
+[node name="PortContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
 layout_mode = 2
 
-[node name="PortLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/PortContainer"]
+[node name="PortLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/PortContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Port:"
 
-[node name="PortInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/PortContainer"]
+[node name="PortInput" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer/PortContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 text = "7000"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/SettingsPanelContainer/MarginContainer/SettingsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="ActionButtonsMarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ActionButtonsMarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_bottom = 32
 
-[node name="ActionButtonsContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer"]
+[node name="ActionButtonsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer"]
 custom_minimum_size = Vector2(480, 144)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HostButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer"]
+[node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 flat = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -212,26 +200,26 @@ offset_bottom = 24.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton/VBoxContainer"]
 layout_mode = 2
 text = "Host"
 label_settings = SubResource("LabelSettings_vfpwc")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/HostButton/VBoxContainer"]
 custom_minimum_size = Vector2(32, 16)
 layout_mode = 2
 text = "Host a game"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="JoinButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer"]
+[node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 flat = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -242,13 +230,13 @@ offset_bottom = 24.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton/VBoxContainer"]
 layout_mode = 2
 text = "Join"
 label_settings = SubResource("LabelSettings_24obi")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ActionButtonsMarginContainer/ActionButtonsContainer/JoinButton/VBoxContainer"]
 custom_minimum_size = Vector2(32, 16)
 layout_mode = 2
 text = "Join an existing game"
