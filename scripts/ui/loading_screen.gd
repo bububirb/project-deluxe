@@ -10,12 +10,12 @@ var polling = false
 
 func _ready() -> void:
 	MultiplayerLobby.server_status_return.connect(_on_server_status_return)
-	ResourceLoader.load_threaded_request(Globals.GAME_SCENE_PATH)
+	ResourceLoader.load_threaded_request(Globals.get_map_path())
 
 func _process(_delta: float) -> void:
 	var err: ResourceLoader.ThreadLoadStatus
 	if not loaded:
-		err = ResourceLoader.load_threaded_get_status(Globals.GAME_SCENE_PATH, progress)
+		err = ResourceLoader.load_threaded_get_status(Globals.get_map_path(), progress)
 		if err == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
 			loading_progress_bar.value = progress[0]
 		if err == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
@@ -28,8 +28,8 @@ func _process(_delta: float) -> void:
 		MultiplayerLobby.poll_server_status.rpc_id(1)
 
 func _load_game() -> void:
-	var loaded_scene = ResourceLoader.load_threaded_get(Globals.GAME_SCENE_PATH)
-	get_tree().change_scene_to_packed(loaded_scene)
+	Globals.map = ResourceLoader.load_threaded_get(Globals.get_map_path())
+	get_tree().change_scene_to_packed(Globals.GAME_SCENE)
 
 func _on_server_status_return(status: MultiplayerLobby.ServerStatus) -> void:
 	polling = false

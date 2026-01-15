@@ -7,6 +7,7 @@ func _ready() -> void:
 	# Preconfigure game.
 	if DisplayServer.has_feature(DisplayServer.FEATURE_TOUCHSCREEN):
 		ProjectSettings.set_setting("input_devices/pointing/emulate_mouse_from_touch", false)
+	instantiate_map()
 	MultiplayerLobby.player_loaded.rpc_id(1) # Tell the server that this peer has loaded.
 	
 	MultiplayerLobby.server_disconnected.connect(_on_multiplayer_lobby_server_disconnected)
@@ -20,6 +21,9 @@ func start_game():
 		add_player(peer_id, i)
 	BuoyancySolver.reset_wave_time.rpc()
 	pass
+
+func instantiate_map() -> void:
+	add_child(Globals.map.instantiate())
 
 func add_player(peer_id: int, spawn_position: int) -> void:
 	var ship_name: String = MultiplayerLobby.players[peer_id].ship
