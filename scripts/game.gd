@@ -1,7 +1,5 @@
 extends Node3D
 
-const GAME_ROOM_SCENE: String = "res://scenes/ui/game_room.tscn"
-
 @export_dir var player_scene_path: String
 
 @onready var player: Node3D# = $Player
@@ -42,4 +40,4 @@ func add_player(peer_id: int, spawn_position: int) -> void:
 
 func _on_multiplayer_lobby_server_disconnected() -> void:
 	GameplayServer.stop()
-	get_tree().change_scene_to_file(GAME_ROOM_SCENE)
+	get_tree().change_scene_to_packed(Globals.GAME_ROOM_SCENE)

@@ -1,8 +1,5 @@
 extends Control
 
-const LOADING_SCENE = "res://scenes/ui/loading_screen.tscn"
-const LOBBY_SCENE = "res://scenes/ui/lobby.tscn"
-
 @onready var server: VBoxContainer = $Controls/Server
 @onready var client: VBoxContainer = $Controls/Client
 
@@ -22,8 +19,7 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	MultiplayerLobby.status = MultiplayerLobby.ServerStatus.LOADING
-	MultiplayerLobby.load_game.rpc(LOADING_SCENE)
-
+	MultiplayerLobby.load_game.rpc(Globals.LOADING_SCENE_PATH)
 
 func _on_ready_button_toggled(toggled_on: bool) -> void:
 	MultiplayerLobby.set_player_is_ready.rpc(toggled_on)
@@ -36,4 +32,4 @@ func _on_multiplayer_lobby_server_disconnected() -> void:
 
 func return_to_lobby() -> void:
 	MultiplayerLobby.remove_multiplayer_peer()
-	get_tree().change_scene_to_file(LOBBY_SCENE)
+	queue_free()

@@ -3,8 +3,6 @@ extends Control
 const ACCUMULATION_RESET_TIME: float = 4.0
 const ACUUMULATION_FADE_TIME: float = 0.5
 
-const RESULTS_SCENE = preload("res://scenes/ui/results.tscn")
-
 @export var local: Control
 @export var remote: Control
 @export var item_display: VBoxContainer
@@ -102,4 +100,4 @@ func _on_results_button_pressed() -> void:
 
 @rpc("authority", "call_local", "reliable")
 func show_results() -> void:
-	get_tree().change_scene_to_packed(RESULTS_SCENE)
+	get_tree().change_scene_to_packed(Globals.RESULTS_SCENE)

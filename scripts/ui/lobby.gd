@@ -1,14 +1,9 @@
 extends Control
 
-const GAME_SCENE = "res://scenes/maps/game.tscn"
-const LOADING_SCENE = "res://scenes/ui/loading_screen.tscn"
-const PLAYER_SCENE = "res://scenes/drafts/tuggy_player.tscn"
-const GAME_ROOM_SCENE = "res://scenes/ui/game_room.tscn"
-
 @export var host_button: Button
 @export var join_button: Button
 @export var settings_button: Button
-@export var settings_container: VBoxContainer
+@export var settings_panel_container: PanelContainer
 @export var name_input: LineEdit
 @export var address_input: LineEdit
 @export var port_input: LineEdit
@@ -48,15 +43,19 @@ func _ready() -> void:
 
 func _on_host_button_pressed() -> void:
 	multiplayer.multiplayer_peer = null
-	get_tree().change_scene_to_file(GAME_ROOM_SCENE)
+	_show_game_room()
 
 func _on_join_button_pressed() -> void:
 	var err = MultiplayerLobby.join_game(address_input.text, int(port_input.text))
 	if not err:
-		get_tree().change_scene_to_file(GAME_ROOM_SCENE)
+		_show_game_room()
+
+func _show_game_room() -> void:
+	var game_room_instance: Control = Globals.GAME_ROOM_SCENE.instantiate()
+	get_parent().add_child(game_room_instance)
 
 func _on_settings_button_pressed() -> void:
-	settings_container.visible = !settings_container.visible
+	settings_panel_container.visible = !settings_panel_container.visible
 
 func _on_name_input_text_changed(new_text: String) -> void:
 	IO.config.name = new_text
@@ -67,4 +66,3 @@ func _on_address_input_text_changed(new_text: String) -> void:
 
 func _on_port_input_text_changed(new_text: String) -> void:
 	IO.config.port = int(new_text)
-

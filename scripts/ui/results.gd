@@ -1,6 +1,5 @@
 extends Control
 
-const GAME_ROOM_SCENE: String = "res://scenes/ui/game_room.tscn"
 const PLAYER_RESULTS_CONTAINER = preload("res://scenes/ui/player_results_container.tscn")
 
 @export var players_container: VBoxContainer
@@ -19,4 +18,4 @@ func _on_exit_button_pressed() -> void:
 
 @rpc("authority", "call_local", "reliable")
 func back_to_game_room() -> void:
-	get_tree().change_scene_to_file(GAME_ROOM_SCENE)
+	get_tree().change_scene_to_packed(Globals.GAME_ROOM_SCENE)

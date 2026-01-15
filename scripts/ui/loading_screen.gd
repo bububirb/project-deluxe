@@ -2,7 +2,6 @@ extends Control
 
 @export var loading_progress_bar: ProgressBar
 
-const GAME_SCENE: String = "res://scenes/maps/game.tscn"
 var progress: Array = []
 var loaded: bool = false
 
@@ -11,12 +10,12 @@ var polling = false
 
 func _ready() -> void:
 	MultiplayerLobby.server_status_return.connect(_on_server_status_return)
-	ResourceLoader.load_threaded_request(GAME_SCENE)
+	ResourceLoader.load_threaded_request(Globals.GAME_SCENE_PATH)
 
 func _process(_delta: float) -> void:
 	var err: ResourceLoader.ThreadLoadStatus
 	if not loaded:
-		err = ResourceLoader.load_threaded_get_status(GAME_SCENE, progress)
+		err = ResourceLoader.load_threaded_get_status(Globals.GAME_SCENE_PATH, progress)
 		if err == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
 			loading_progress_bar.value = progress[0]
 		if err == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
@@ -29,7 +28,7 @@ func _process(_delta: float) -> void:
 		MultiplayerLobby.poll_server_status.rpc_id(1)
 
 func _load_game() -> void:
-	var loaded_scene = ResourceLoader.load_threaded_get(GAME_SCENE)
+	var loaded_scene = ResourceLoader.load_threaded_get(Globals.GAME_SCENE_PATH)
 	get_tree().change_scene_to_packed(loaded_scene)
 
 func _on_server_status_return(status: MultiplayerLobby.ServerStatus) -> void:

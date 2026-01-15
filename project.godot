@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project Deluxe"
-run/main_scene="uid://b2rhplsaqim43"
+run/main_scene="uid://dkvl8mpwv78ds"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/show_image=false
 config/icon="uid://diex3gfsqv8v1"
