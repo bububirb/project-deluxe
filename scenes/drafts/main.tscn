@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkvl8mpwv78ds"]
 
-[ext_resource type="PackedScene" uid="uid://boa7j7fs46aon" path="res://scenes/maps/seashore.tscn" id="1_m6nw8"]
+[ext_resource type="PackedScene" uid="uid://boa7j7fs46aon" path="res://scenes/maps/seashore.tscn" id="2_7uiby"]
 [ext_resource type="PackedScene" uid="uid://b2rhplsaqim43" path="res://scenes/ui/lobby.tscn" id="2_crty7"]
 
 [node name="Main" type="Node"]
 
 [node name="Lobby" parent="." instance=ExtResource("2_crty7")]
 
-[node name="Seashore" parent="." instance=ExtResource("1_m6nw8")]
+[node name="Seashore" parent="." instance=ExtResource("2_7uiby")]

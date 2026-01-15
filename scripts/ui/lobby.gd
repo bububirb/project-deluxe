@@ -43,16 +43,15 @@ func _ready() -> void:
 
 func _on_host_button_pressed() -> void:
 	multiplayer.multiplayer_peer = null
-	_show_game_room()
+	switch_to_game_room()
 
 func _on_join_button_pressed() -> void:
 	var err = MultiplayerLobby.join_game(address_input.text, int(port_input.text))
 	if not err:
-		_show_game_room()
+		switch_to_game_room()
 
-func _show_game_room() -> void:
-	var game_room_instance: Control = Globals.GAME_ROOM_SCENE.instantiate()
-	get_parent().add_child(game_room_instance)
+func switch_to_game_room() -> void:
+	get_parent().get_tree().change_scene_to_packed(Globals.GAME_ROOM_SCENE)
 
 func _on_settings_button_pressed() -> void:
 	settings_panel_container.visible = !settings_panel_container.visible

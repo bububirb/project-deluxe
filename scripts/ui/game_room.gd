@@ -32,4 +32,4 @@ func _on_multiplayer_lobby_server_disconnected() -> void:
 
 func return_to_lobby() -> void:
 	MultiplayerLobby.remove_multiplayer_peer()
-	queue_free()
+	get_tree().change_scene_to_file(Globals.MAIN_SCENE_PATH)
