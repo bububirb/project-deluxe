@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://tyuvmqr8rjaa"]
+[gd_scene load_steps=24 format=3 uid="uid://tyuvmqr8rjaa"]
 
 [ext_resource type="Script" uid="uid://cxsemoubxgodv" path="res://scripts/projectiles/cannon_projectile.gd" id="1_7nwfi"]
 [ext_resource type="PackedScene" uid="uid://byh6bg82ldnit" path="res://assets/models/projectiles/deluxe_cannon_projectile_1.blend" id="2_hk32a"]
-[ext_resource type="Shader" uid="uid://c7cao58d7iwsl" path="res://resources/shaders/fire_quad.tres" id="3_jxteu"]
-[ext_resource type="Texture2D" uid="uid://d1qxcj45snx7c" path="res://assets/textures/vfx/fire_particle.png" id="4_th4uh"]
+[ext_resource type="Material" uid="uid://dp2sp21awti0v" path="res://resources/materials/fire_billboard.tres" id="3_b15bm"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f0ux4"]
 margin = 0.05
@@ -126,28 +125,8 @@ turbulence_noise_strength = 0.02
 turbulence_influence_min = 0.010000001
 turbulence_influence_max = 0.040000003
 
-[sub_resource type="Gradient" id="Gradient_j48lf"]
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_k3lbm"]
-frequency = 0.02
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j48lf"]
-width = 64
-height = 64
-noise = SubResource("FastNoiseLite_k3lbm")
-color_ramp = SubResource("Gradient_j48lf")
-seamless = true
-seamless_blend_skirt = 0.25
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqves"]
-render_priority = 0
-shader = ExtResource("3_jxteu")
-shader_parameter/quad_texture = ExtResource("4_th4uh")
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_j48lf")
-
 [sub_resource type="QuadMesh" id="QuadMesh_fn47g"]
-material = SubResource("ShaderMaterial_iqves")
+material = ExtResource("3_b15bm")
 
 [node name="IncendiaryCannonProjectile" type="CharacterBody3D" node_paths=PackedStringArray("trail_particles")]
 disable_mode = 1

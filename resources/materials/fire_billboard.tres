@@ -18,7 +18,7 @@ seamless = true
 seamless_blend_skirt = 0.25
 
 [resource]
-render_priority = 0
+render_priority = 2
 shader = ExtResource("1_k508a")
 shader_parameter/quad_texture = ExtResource("2_6v6yr")
 shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_j48lf")

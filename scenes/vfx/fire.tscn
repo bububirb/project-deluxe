@@ -1,8 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://dbsw8xclkahwp"]
+[gd_scene load_steps=22 format=3 uid="uid://dbsw8xclkahwp"]
 
-[ext_resource type="Shader" uid="uid://c7cao58d7iwsl" path="res://resources/shaders/fire_quad.tres" id="1_n207h"]
 [ext_resource type="Script" uid="uid://cl31efc25nw6n" path="res://scripts/vfx/fire.gd" id="1_ykm6b"]
-[ext_resource type="Texture2D" uid="uid://d1qxcj45snx7c" path="res://assets/textures/vfx/fire_particle.png" id="2_184s5"]
+[ext_resource type="Material" uid="uid://dp2sp21awti0v" path="res://resources/materials/fire_billboard.tres" id="2_kv17e"]
 [ext_resource type="Shader" uid="uid://25p2nex52wld" path="res://resources/shaders/ember_quad.tres" id="3_3pvtt"]
 [ext_resource type="Texture2D" uid="uid://b0awjh6rqslsr" path="res://assets/textures/vfx/ember.png" id="4_kv17e"]
 
@@ -40,28 +39,8 @@ color = Color(4, 2, 0.6, 1)
 color_ramp = SubResource("GradientTexture1D_xn2cr")
 alpha_curve = SubResource("CurveTexture_ykm6b")
 
-[sub_resource type="Gradient" id="Gradient_j48lf"]
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_k3lbm"]
-frequency = 0.02
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j48lf"]
-width = 64
-height = 64
-seamless = true
-seamless_blend_skirt = 0.25
-color_ramp = SubResource("Gradient_j48lf")
-noise = SubResource("FastNoiseLite_k3lbm")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0ijr"]
-render_priority = 0
-shader = ExtResource("1_n207h")
-shader_parameter/quad_texture = ExtResource("2_184s5")
-shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_j48lf")
-
 [sub_resource type="QuadMesh" id="QuadMesh_kv17e"]
-material = SubResource("ShaderMaterial_j0ijr")
+material = ExtResource("2_kv17e")
 
 [sub_resource type="Curve" id="Curve_ykm6b"]
 _data = [Vector2(0, 0), 0.0, 14.6198, 0, 0, Vector2(0.184834, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.44881, 0.0, 0, 0]
