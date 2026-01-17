@@ -2,75 +2,65 @@
 
 [ext_resource type="Script" uid="uid://cxsemoubxgodv" path="res://scripts/projectiles/cannon_projectile.gd" id="1_1uadp"]
 [ext_resource type="PackedScene" uid="uid://byh6bg82ldnit" path="res://assets/models/projectiles/deluxe_cannon_projectile_1.blend" id="1_6ei38"]
+[ext_resource type="Material" uid="uid://dp2sp21awti0v" path="res://resources/materials/fire_billboard.tres" id="3_c5oyb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_f0ux4"]
 margin = 0.05
 radius = 0.05
 
 [sub_resource type="Gradient" id="Gradient_hk6a6"]
-offsets = PackedFloat32Array(0, 0.243243, 0.581081, 0.858108, 1)
-colors = PackedColorArray(7.337, 3.142, 0, 1, 4.566, 0.159, 0, 1, 0.262932, 0.262932, 0.262932, 1, 0.22947, 0.22947, 0.22947, 0.709677, 0.147672, 0.147672, 0.147672, 0)
+offsets = PackedFloat32Array(0, 0.09090909, 0.21678321, 0.45454547, 0.75524473, 1)
+colors = PackedColorArray(4.768765, 4.1743674, 2.0253913, 1, 1.2700006, 0.51644576, 0, 1, 1.4873816, 0, 0, 1, 0.04, 0.04, 0.04, 1, 0.033853278, 0.033853278, 0.033853274, 0.70980394, 0.147672, 0.147672, 0.147672, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1uadp"]
 gradient = SubResource("Gradient_hk6a6")
 use_hdr = true
 
 [sub_resource type="Curve" id="Curve_pwcsb"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.42998, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0.2352941), 0.0, 2.2476783, 0, 0, Vector2(0.18181819, 0.6117647), 0.9705881, 0.9705881, 0, 0, Vector2(1, 1), 0.0995475, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_c5oyb"]
 curve = SubResource("Curve_pwcsb")
 
 [sub_resource type="Curve" id="Curve_lsufm"]
 _limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, -0.253056, 0, 0, Vector2(1, 0), -4.9352, 0.0, 0, 0]
+_data = [Vector2(0, 2), 0.0, -5.907927, 0, 0, Vector2(1, 2), 3.1764708, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_eptte"]
 curve = SubResource("Curve_lsufm")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_080yd"]
+angle_min = -179.99998
+angle_max = 180.00002
 inherit_velocity_ratio = 0.5
 direction = Vector3(0, 0, 0)
 spread = 180.0
-initial_velocity_min = 1.0
-initial_velocity_max = 4.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
 gravity = Vector3(0, 8, 0)
 damping_min = 3.0
 damping_max = 5.0
-scale_min = 0.0
-scale_max = 3.0
+scale_min = 0.19999999
 scale_curve = SubResource("CurveTexture_c5oyb")
 scale_over_velocity_max = 2.0
 scale_over_velocity_curve = SubResource("CurveTexture_eptte")
+color = Color(2.778646, 2.778646, 2.778646, 1)
 color_ramp = SubResource("GradientTexture1D_1uadp")
 hue_variation_min = -2.23517e-08
 hue_variation_max = 0.1
 turbulence_enabled = true
 turbulence_noise_strength = 3.0
 turbulence_noise_scale = 10.0
+turbulence_influence_min = 0.020000001
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
 collision_use_scale = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udfa7"]
-transparency = 4
-diffuse_mode = 2
-specular_mode = 2
-vertex_color_use_as_albedo = true
-emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 10.0
-emission_operator = 1
-
-[sub_resource type="SphereMesh" id="SphereMesh_gj18m"]
-material = SubResource("StandardMaterial3D_udfa7")
-radius = 0.025
-height = 0.05
-radial_segments = 8
-rings = 4
+[sub_resource type="QuadMesh" id="QuadMesh_eptte"]
+material = ExtResource("3_c5oyb")
 
 [node name="DeluxeCannonProjectile" type="CharacterBody3D"]
 disable_mode = 1
@@ -87,10 +77,9 @@ shape = SubResource("SphereShape3D_f0ux4")
 [node name="ExplosionParticles" type="GPUParticles3D" parent="."]
 process_mode = 3
 emitting = false
-amount = 500
-lifetime = 1.5
+amount = 128
 one_shot = true
 preprocess = 0.02
-explosiveness = 0.7
+explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_080yd")
-draw_pass_1 = SubResource("SphereMesh_gj18m")
+draw_pass_1 = SubResource("QuadMesh_eptte")
