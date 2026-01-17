@@ -2,6 +2,8 @@ class_name CannonProjectile extends Projectile
 
 signal player_hit(player_id: int)
 
+@export var trail_particles: GPUParticles3D
+
 var time: float = 0.0
 var displacement: float = 0.0
 
@@ -24,6 +26,9 @@ func _enter_tree() -> void:
 func _on_collision(collision: KinematicCollision3D):
 	set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_DISABLED)
 	mesh.hide()
+	if trail_particles:
+		trail_particles.set_process_mode.call_deferred(ProcessMode.PROCESS_MODE_ALWAYS)
+		trail_particles.emitting = false
 	explosion_particles.emitting = true
 	
 	if collision:
@@ -47,3 +52,6 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(velocity)
 	if collision or is_underwater:
 		_on_collision(collision)
+	
+	if trail_particles:
+		trail_particles.process_material.direction = Vector3(0.0, stats.trajectory.offset, stats.trajectory.distance)
