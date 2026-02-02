@@ -27,6 +27,7 @@ background_mode = 2
 sky = SubResource("Sky_ulpni")
 ambient_light_energy = 0.5
 tonemap_mode = 4
+tonemap_agx_contrast = 1.45
 ssr_enabled = true
 sdfgi_cascades = 2
 sdfgi_min_cell_size = 0.5
