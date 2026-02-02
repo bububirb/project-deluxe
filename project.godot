@@ -30,6 +30,7 @@ IO="*res://scripts/globals/io.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+display_server/driver.linuxbsd="wayland"
 
 [editor_plugins]
 
