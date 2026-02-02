@@ -1,7 +1,7 @@
 extends Node3D
 
-const DEFAULT_SENSITIVITY: float = 0.001
-const AIMING_SENSITIVITY: float = 0.0001
+const DEFAULT_SENSITIVITY: float = 0.25
+const AIMING_SENSITIVITY: float = 0.025
 const REMOTE_HP_BAR_OFFSET: Vector3 = Vector3(0.0, 1.2, 0.0)
 
 var spawn: Transform3D # Set by Game
@@ -11,10 +11,11 @@ var is_zooming_out: bool = false
 var min_fov: float = 30.0
 var max_fov: float = 90.0
 
+var _camera_input_direction: Vector2 = Vector2.ZERO
+
 @onready var ship: Node3D = $Ship
 @onready var camera_pivot: PlayerCamera = $Ship/CameraPivot
-@onready var camera_pivot_x: Node3D = $Ship/CameraPivot/CameraPivotX
-@onready var camera: Camera3D = $Ship/CameraPivot/CameraPivotX/Camera
+@onready var camera: Camera3D = camera_pivot.camera
 @onready var hud: Control = $HUD
 @onready var controls: Control = $Controls
 @onready var camera_state_machine: AnimationNodeStateMachinePlayback = camera_pivot.animation_tree.get("parameters/playback")
@@ -46,14 +47,13 @@ func _ready() -> void:
 	hud.remote.hide()
 	
 	ship.item_selected.connect(_on_ship_item_selected)
-	# Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
 
 func _exit_tree() -> void:
 	if DisplayServer.has_hardware_keyboard():
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var authority = get_multiplayer_authority()
 	var player_name = multiplayer.get_unique_id()
 	if authority != player_name:
@@ -64,7 +64,12 @@ func _process(_delta: float) -> void:
 		hud.remote_hp_bar_container.position = unprojected_position
 	
 	# ship.turret.rotation.y = lerp_angle(ship.turret.rotation.y, camera_pivot.global_rotation.y - ship.global_rotation.y, 0.05)
-	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot_x.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)
+	ship.item_instancer.rotation.x = lerp_angle(ship.item_instancer.rotation.x, camera_pivot.rotation.x - ship.global_rotation.x - TAU / 24, 0.05)
+
+	camera_pivot.rotation.x += _camera_input_direction.y * delta
+	camera_pivot.rotation.x = clampf(camera_pivot.rotation.x, -PI / 12.0, PI / 4.0)
+	camera_pivot.rotation.y -= _camera_input_direction.x * delta
+	_camera_input_direction = Vector2.ZERO
 	
 	if Input.is_action_pressed("shoot") or Input.is_action_pressed("aim"):
 		orbit_sensitivity = AIMING_SENSITIVITY
@@ -75,10 +80,8 @@ func _process(_delta: float) -> void:
 		is_zooming_out = false
 		if ship.active_item is not Mortar:
 			camera_state_machine.travel("cannon_scope")
-			camera_state_machine.next()
 		if ship.active_item is Mortar:
 			camera_state_machine.travel("mortar_scope")
-			camera_state_machine.next()
 
 	if Input.is_action_just_released("aim"):
 		orbit_sensitivity = DEFAULT_SENSITIVITY
@@ -87,33 +90,22 @@ func _process(_delta: float) -> void:
 	if is_zooming_out:
 		if ship.active_item is not Mortar:
 			camera_state_machine.travel("default_view")
-			camera_state_machine.next()
 			is_zooming_out = false
 		if ship.active_item is Mortar:
 			camera_state_machine.travel("mortar_view")
-			camera_state_machine.next()
 			is_zooming_out = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_multiplayer_authority(): return
 	
-	if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		camera_pivot.rotate_y(-event.relative.x * orbit_sensitivity * TAU)
-		camera_pivot_x.rotate_x(event.relative.y * orbit_sensitivity * TAU)
-	elif event is InputEventScreenDrag:
-		camera_pivot.rotate_y(-event.relative.x * orbit_sensitivity * TAU)
-		camera_pivot_x.rotate_x(event.relative.y * orbit_sensitivity * TAU)
-	camera_pivot_x.rotation.x = clampf(camera_pivot_x.rotation.x, - TAU / 24, TAU / 8)
-	camera_pivot_x.rotation.y = 0.0
-	camera_pivot_x.rotation.z = 0.0
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		_camera_input_direction = event.screen_relative * orbit_sensitivity
 
 func _on_ship_item_selected(item: Node):
 	if item is Mortar:
 		camera_state_machine.travel("mortar_view")
-		camera_state_machine.next()
 	if item is Cannon:
 		camera_state_machine.travel("default_view")
-		camera_state_machine.next()
 
 @rpc("any_peer", "call_local", "reliable")
 func set_spawn(new_spawn: Transform3D):
