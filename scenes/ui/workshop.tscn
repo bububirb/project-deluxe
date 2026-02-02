@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccd21xxy5imtf"]
+[gd_scene format=3 uid="uid://ccd21xxy5imtf"]
 
 [ext_resource type="Script" uid="uid://b4qkwpm00us43" path="res://scripts/ui/inventory.gd" id="1_0occ3"]
 [ext_resource type="Script" uid="uid://bola2rqxd3dnj" path="res://scripts/ui/workshop.gd" id="1_b280y"]
@@ -40,7 +40,7 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="Workshop" type="PanelContainer" node_paths=PackedStringArray("deck", "inventory")]
+[node name="Workshop" type="PanelContainer" unique_id=1474102644 node_paths=PackedStringArray("deck", "inventory")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,57 +50,57 @@ script = ExtResource("1_b280y")
 deck = NodePath("WorkshopContainer/DeckContainer/ScrollContainer/Deck")
 inventory = NodePath("WorkshopContainer/InventoryContainer/ScrollContainer/Inventory")
 
-[node name="WorkshopContainer" type="VBoxContainer" parent="."]
+[node name="WorkshopContainer" type="VBoxContainer" parent="." unique_id=819872177]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="ShipContainer" type="PanelContainer" parent="WorkshopContainer"]
+[node name="ShipContainer" type="PanelContainer" parent="WorkshopContainer" unique_id=69837575]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4nn5")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/ShipContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/ShipContainer" unique_id=1086926088]
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="ShipSelection" parent="WorkshopContainer/ShipContainer/ScrollContainer" instance=ExtResource("2_segb8")]
+[node name="ShipSelection" parent="WorkshopContainer/ShipContainer/ScrollContainer" unique_id=937138870 instance=ExtResource("2_segb8")]
 layout_mode = 2
 
-[node name="DeckContainer" type="PanelContainer" parent="WorkshopContainer"]
+[node name="DeckContainer" type="PanelContainer" parent="WorkshopContainer" unique_id=588814866]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_l4nn5")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/DeckContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/DeckContainer" unique_id=529270731]
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="Deck" type="HBoxContainer" parent="WorkshopContainer/DeckContainer/ScrollContainer"]
+[node name="Deck" type="HBoxContainer" parent="WorkshopContainer/DeckContainer/ScrollContainer" unique_id=858405612]
 layout_mode = 2
 
-[node name="WorkshopSlot" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+[node name="WorkshopSlot" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" unique_id=1853127084 instance=ExtResource("2_l4nn5")]
 layout_mode = 2
 
-[node name="WorkshopSlot2" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+[node name="WorkshopSlot2" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" unique_id=1827116862 instance=ExtResource("2_l4nn5")]
 layout_mode = 2
 
-[node name="WorkshopSlot3" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+[node name="WorkshopSlot3" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" unique_id=58099307 instance=ExtResource("2_l4nn5")]
 layout_mode = 2
 
-[node name="WorkshopSlot4" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+[node name="WorkshopSlot4" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" unique_id=1254175296 instance=ExtResource("2_l4nn5")]
 layout_mode = 2
 
-[node name="WorkshopSlot5" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" instance=ExtResource("2_l4nn5")]
+[node name="WorkshopSlot5" parent="WorkshopContainer/DeckContainer/ScrollContainer/Deck" unique_id=1346855549 instance=ExtResource("2_l4nn5")]
 layout_mode = 2
 
-[node name="InventoryContainer" type="PanelContainer" parent="WorkshopContainer"]
+[node name="InventoryContainer" type="PanelContainer" parent="WorkshopContainer" unique_id=1524089228]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_0occ3")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/InventoryContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WorkshopContainer/InventoryContainer" unique_id=1309844260]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="Inventory" type="HFlowContainer" parent="WorkshopContainer/InventoryContainer/ScrollContainer"]
+[node name="Inventory" type="HFlowContainer" parent="WorkshopContainer/InventoryContainer/ScrollContainer" unique_id=863643439]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_0occ3")

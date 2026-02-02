@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://br6074ewssvql"]
+[gd_scene format=3 uid="uid://br6074ewssvql"]
 
 [ext_resource type="PackedScene" uid="uid://b5yxgk0hde57e" path="res://assets/models/items/bigger_torpedo_1.blend" id="1_nug2i"]
 [ext_resource type="Script" uid="uid://ble2kjaovp7ln" path="res://scripts/items/torpedo.gd" id="2_hcpfs"]
 [ext_resource type="PackedScene" uid="uid://m5nq2dpts5dw" path="res://scenes/projectiles/bigger_torpedo_projectile.tscn" id="3_hpcbe"]
 
-[node name="BiggerTorpedo" instance=ExtResource("1_nug2i")]
+[node name="BiggerTorpedo" unique_id=642163386 instance=ExtResource("1_nug2i")]
 script = ExtResource("2_hcpfs")
 projectile = ExtResource("3_hpcbe")

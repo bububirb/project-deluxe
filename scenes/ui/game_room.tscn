@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvr2th0gbsb53"]
+[gd_scene format=3 uid="uid://bvr2th0gbsb53"]
 
 [ext_resource type="Script" uid="uid://chjufpelfglie" path="res://scripts/ui/game_room.gd" id="1_s1c07"]
 [ext_resource type="Texture2D" uid="uid://cvx83h60n7g8p" path="res://assets/images/background/the-chambers.png" id="2_lgv5y"]
@@ -18,7 +18,7 @@ variation_opentype = {
 [sub_resource type="LabelSettings" id="LabelSettings_teacs"]
 font = SubResource("FontVariation_2rbxb")
 
-[node name="GameRoom" type="Control"]
+[node name="GameRoom" type="Control" unique_id=1445969211]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s1c07")
 
-[node name="BackgroundImage" type="TextureRect" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="." unique_id=889990147]
 modulate = Color(0.601223, 0.601223, 0.601223, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -39,7 +39,7 @@ texture = ExtResource("2_lgv5y")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Controls" type="VBoxContainer" parent="."]
+[node name="Controls" type="VBoxContainer" parent="." unique_id=984267408]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,55 +51,55 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Server" type="VBoxContainer" parent="Controls"]
+[node name="Server" type="VBoxContainer" parent="Controls" unique_id=744436958]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TitleBar" type="HBoxContainer" parent="Controls/Server"]
+[node name="TitleBar" type="HBoxContainer" parent="Controls/Server" unique_id=222842400]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="Controls/Server/TitleBar"]
+[node name="BackButton" type="Button" parent="Controls/Server/TitleBar" unique_id=1360208834]
 layout_mode = 2
 icon = ExtResource("3_73dc7")
 
-[node name="HostingLabel" type="Label" parent="Controls/Server/TitleBar"]
+[node name="HostingLabel" type="Label" parent="Controls/Server/TitleBar" unique_id=316190614]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Hosting"
 label_settings = SubResource("LabelSettings_teacs")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Controls/Server/TitleBar"]
+[node name="TextureRect" type="TextureRect" parent="Controls/Server/TitleBar" unique_id=958342874]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("5_ukc1o")
 stretch_mode = 3
 
-[node name="Content" type="HBoxContainer" parent="Controls/Server"]
+[node name="Content" type="HBoxContainer" parent="Controls/Server" unique_id=206844449]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayersContainer" parent="Controls/Server/Content" instance=ExtResource("6_c61pp")]
+[node name="PlayersContainer" parent="Controls/Server/Content" unique_id=210938508 instance=ExtResource("6_c61pp")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Workshop" parent="Controls/Server/Content" instance=ExtResource("7_lgv5y")]
+[node name="Workshop" parent="Controls/Server/Content" unique_id=187222552 instance=ExtResource("7_lgv5y")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="IPContainer" type="HBoxContainer" parent="Controls/Server"]
+[node name="IPContainer" type="HBoxContainer" parent="Controls/Server" unique_id=2115654547]
 visible = false
 layout_mode = 2
 
-[node name="AddressLabel" type="Label" parent="Controls/Server/IPContainer"]
+[node name="AddressLabel" type="Label" parent="Controls/Server/IPContainer" unique_id=79168850]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Address: "
 
-[node name="IPLabel" type="RichTextLabel" parent="Controls/Server/IPContainer"]
+[node name="IPLabel" type="RichTextLabel" parent="Controls/Server/IPContainer" unique_id=2034704201]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 2
@@ -107,50 +107,50 @@ fit_content = true
 scroll_active = false
 selection_enabled = true
 
-[node name="StartButton" type="Button" parent="Controls/Server"]
+[node name="StartButton" type="Button" parent="Controls/Server" unique_id=1068911166]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Start"
 
-[node name="Client" type="VBoxContainer" parent="Controls"]
+[node name="Client" type="VBoxContainer" parent="Controls" unique_id=1121115173]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TitleBar" type="HBoxContainer" parent="Controls/Client"]
+[node name="TitleBar" type="HBoxContainer" parent="Controls/Client" unique_id=704148353]
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="Controls/Client/TitleBar"]
+[node name="BackButton" type="Button" parent="Controls/Client/TitleBar" unique_id=1108019264]
 layout_mode = 2
 icon = ExtResource("3_73dc7")
 
-[node name="JoiningLabel" type="Label" parent="Controls/Client/TitleBar"]
+[node name="JoiningLabel" type="Label" parent="Controls/Client/TitleBar" unique_id=937002116]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Joining"
 label_settings = SubResource("LabelSettings_teacs")
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Controls/Client/TitleBar"]
+[node name="TextureRect" type="TextureRect" parent="Controls/Client/TitleBar" unique_id=1734680810]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture = ExtResource("5_ukc1o")
 stretch_mode = 3
 
-[node name="Content" type="HBoxContainer" parent="Controls/Client"]
+[node name="Content" type="HBoxContainer" parent="Controls/Client" unique_id=16887399]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayersContainer" parent="Controls/Client/Content" instance=ExtResource("6_c61pp")]
+[node name="PlayersContainer" parent="Controls/Client/Content" unique_id=1660309191 instance=ExtResource("6_c61pp")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Workshop" parent="Controls/Client/Content" instance=ExtResource("7_lgv5y")]
+[node name="Workshop" parent="Controls/Client/Content" unique_id=1355452151 instance=ExtResource("7_lgv5y")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ReadyButton" type="Button" parent="Controls/Client"]
+[node name="ReadyButton" type="Button" parent="Controls/Client" unique_id=701985611]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true

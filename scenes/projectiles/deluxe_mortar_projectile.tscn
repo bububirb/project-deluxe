@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bf1468muu0d1e"]
+[gd_scene format=3 uid="uid://bf1468muu0d1e"]
 
 [ext_resource type="Script" uid="uid://dr454nntc5qm0" path="res://scripts/projectiles/mortar_projectile.gd" id="1_jm5q4"]
 [ext_resource type="PackedScene" uid="uid://w2x61xxk5io7" path="res://scenes/vfx/mortar_splash.tscn" id="2_ervno"]
@@ -15,13 +15,23 @@ colors = PackedColorArray(0.339857, 0.620773, 0.970768, 1, 1, 1, 1, 1, 1, 1, 1, 
 gradient = SubResource("Gradient_hx7hk")
 use_hdr = true
 
+[sub_resource type="Curve" id="Curve_jm5q4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_tnh0h"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, -3.73515, 0, 0, Vector2(1, -1), -0.754214, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_ervno"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ervno"]
+curve_x = SubResource("Curve_jm5q4")
 curve_y = SubResource("Curve_tnh0h")
+curve_z = SubResource("Curve_ervno")
 
 [sub_resource type="Curve" id="Curve_bvjgr"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -85,7 +95,7 @@ height = 0.2
 radial_segments = 4
 rings = 1
 
-[node name="DeluxeMortarProjectile" type="CharacterBody3D"]
+[node name="DeluxeMortarProjectile" type="CharacterBody3D" unique_id=1630475884]
 process_mode = 3
 collision_layer = 8
 collision_mask = 7
@@ -93,12 +103,12 @@ motion_mode = 1
 script = ExtResource("1_jm5q4")
 explosion_scene = ExtResource("2_ervno")
 
-[node name="Mesh" parent="." instance=ExtResource("2_jm5q4")]
+[node name="Mesh" parent="." unique_id=460547411 instance=ExtResource("2_jm5q4")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=605990302]
 shape = SubResource("SphereShape3D_hx7hk")
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=983713319]
 process_mode = 3
 emitting = false
 amount = 100

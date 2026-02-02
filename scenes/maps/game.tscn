@@ -1,72 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://ijgq5wtkct3q"]
+[gd_scene format=3 uid="uid://ijgq5wtkct3q"]
 
 [ext_resource type="Script" uid="uid://i170vdlpd24j" path="res://scripts/game.gd" id="1_uklrx"]
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" unique_id=1592125440]
 script = ExtResource("1_uklrx")
 
-[node name="SpawnPositions" type="Node3D" parent="."]
+[node name="SpawnPositions" type="Node3D" parent="." unique_id=1096893488]
 
-[node name="1" type="Node3D" parent="SpawnPositions"]
+[node name="1" type="Node3D" parent="SpawnPositions" unique_id=999248397]
 transform = Transform3D(-0.9557828, 0, 0.29407364, 0, 1, 0, -0.29407364, 0, -0.9557828, -8.914147, 0, 7.848826)
 
-[node name="2" type="Node3D" parent="SpawnPositions"]
+[node name="2" type="Node3D" parent="SpawnPositions" unique_id=1287189374]
 transform = Transform3D(0.9999993, 0, -0.001291059, 0, 1, 0, 0.001291059, 0, 0.9999993, -4.424532, -3.8146973e-06, -47.309338)
 
-[node name="3" type="Node3D" parent="SpawnPositions"]
+[node name="3" type="Node3D" parent="SpawnPositions" unique_id=1767049706]
 transform = Transform3D(-0.321588, 0, -0.9468795, 0, 1, 0, 0.9468795, 0, -0.321588, 10.037908, 0, -17.653725)
 
-[node name="4" type="Node3D" parent="SpawnPositions"]
+[node name="4" type="Node3D" parent="SpawnPositions" unique_id=399601406]
 transform = Transform3D(-0.01802865, 0, 0.9998378, 0, 1, 0, -0.9998378, 0, -0.01802865, -17.017365, 0, -11.124619)
 
-[node name="5" type="Node3D" parent="SpawnPositions"]
+[node name="5" type="Node3D" parent="SpawnPositions" unique_id=2107703805]
 transform = Transform3D(-0.3097633, 0, 0.95081323, 0, 1, 0, -0.95081323, 0, -0.3097633, -23.868744, -1.9073486e-06, -42.603428)
 
-[node name="6" type="Node3D" parent="SpawnPositions"]
+[node name="6" type="Node3D" parent="SpawnPositions" unique_id=527398292]
 transform = Transform3D(-0.9584125, 0, -0.28538725, 0, 1, 0, 0.28538725, 0, -0.9584125, 10.864154, 0, 9.423084)
 
-[node name="7" type="Node3D" parent="SpawnPositions"]
+[node name="7" type="Node3D" parent="SpawnPositions" unique_id=390495214]
 transform = Transform3D(-0.66166496, 0, 0.749799, 0, 1, 0, -0.749799, 0, -0.66166496, -6.3425903, 0, -25.743908)
 
-[node name="8" type="Node3D" parent="SpawnPositions"]
+[node name="8" type="Node3D" parent="SpawnPositions" unique_id=1365740082]
 transform = Transform3D(0.28172153, 0, -0.95949656, 0, 1, 0, 0.95949656, 0, 0.28172153, 4.264669, 0, -34.87583)
 
-[node name="9" type="Node3D" parent="SpawnPositions"]
+[node name="9" type="Node3D" parent="SpawnPositions" unique_id=1965069562]
 transform = Transform3D(0.429849, 0, 0.902901, 0, 1, 0, -0.902901, 0, 0.429849, -8.261, 0, 0.46417)
 
-[node name="10" type="Node3D" parent="SpawnPositions"]
+[node name="10" type="Node3D" parent="SpawnPositions" unique_id=307681834]
 transform = Transform3D(-0.980112, 0, 0.198444, 0, 1, 0, -0.198444, 0, -0.980112, -6.09544, 0, 14.9237)
 
-[node name="11" type="Node3D" parent="SpawnPositions"]
+[node name="11" type="Node3D" parent="SpawnPositions" unique_id=1414096302]
 transform = Transform3D(0.978264, 0, 0.207365, 0, 1, 0, -0.207365, 0, 0.978264, -1.05851, 0, -12.2782)
 
-[node name="12" type="Node3D" parent="SpawnPositions"]
+[node name="12" type="Node3D" parent="SpawnPositions" unique_id=1544140007]
 transform = Transform3D(0.996972, 0, -0.0777631, 0, 1, 0, 0.0777631, 0, 0.996972, 1.86292, 0, -12.8975)
 
-[node name="13" type="Node3D" parent="SpawnPositions"]
+[node name="13" type="Node3D" parent="SpawnPositions" unique_id=1855780399]
 transform = Transform3D(0.9654, 0, -0.260774, 0, 1, 0, 0.260774, 0, 0.9654, 5.87029, 0, -12.7876)
 
-[node name="14" type="Node3D" parent="SpawnPositions"]
+[node name="14" type="Node3D" parent="SpawnPositions" unique_id=1470461281]
 transform = Transform3D(0.8789, 0, -0.477005, 0, 1, 0, 0.477005, 0, 0.8789, 8.9736, 0, -11.257)
 
-[node name="15" type="Node3D" parent="SpawnPositions"]
+[node name="15" type="Node3D" parent="SpawnPositions" unique_id=2079521148]
 transform = Transform3D(0.250008, 0, 0.968244, 0, 1, 0, -0.968244, 0, 0.250008, -5.58022, 0, -9.85926)
 
-[node name="16" type="Node3D" parent="SpawnPositions"]
+[node name="16" type="Node3D" parent="SpawnPositions" unique_id=1966934865]
 transform = Transform3D(-0.453493, 0, 0.89126, 0, 1, 0, -0.89126, 0, -0.453493, -5.05659, 0, 11.0574)
 
-[node name="17" type="Node3D" parent="SpawnPositions"]
+[node name="17" type="Node3D" parent="SpawnPositions" unique_id=233388763]
 transform = Transform3D(-0.182922, 0, 0.983127, 0, 1, 0, -0.983127, 0, -0.182922, -6.41088, 0, 8.39575)
 
-[node name="18" type="Node3D" parent="SpawnPositions"]
+[node name="18" type="Node3D" parent="SpawnPositions" unique_id=728951217]
 transform = Transform3D(0.00202461, 0, 0.999998, 0, 1, 0, -0.999998, 0, 0.00202461, -7.3419, 0, 4.49648)
 
-[node name="19" type="Node3D" parent="SpawnPositions"]
+[node name="19" type="Node3D" parent="SpawnPositions" unique_id=1465041735]
 transform = Transform3D(0.233276, 0, 0.972411, 0, 1, 0, -0.972411, 0, 0.233276, -6.66667, 0, 1.10277)
 
-[node name="20" type="Node3D" parent="SpawnPositions"]
+[node name="20" type="Node3D" parent="SpawnPositions" unique_id=246288146]
 transform = Transform3D(-0.999959, 0, -0.00911038, 0, 1, 0, 0.00911038, 0, -0.999959, -1.54977, 0, 14.7989)
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=916336358]
 _spawnable_scenes = PackedStringArray("uid://drh2cj4jfxoql", "uid://dd2pjgr0awoav")
 spawn_path = NodePath("..")

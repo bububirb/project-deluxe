@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://er5ckdv0r466"]
+[gd_scene format=4 uid="uid://er5ckdv0r466"]
 
 [ext_resource type="PackedScene" uid="uid://dmypvlg56rby2" path="res://assets/models/maps/segmented_arena.blend" id="1_r232y"]
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="2_mr3er"]
@@ -14,9 +14,9 @@ colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8ds0r"]
 height = 256
-seamless = true
-color_ramp = SubResource("Gradient_sfvug")
 noise = SubResource("FastNoiseLite_tncc5")
+color_ramp = SubResource("Gradient_sfvug")
+seamless = true
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_68ck1"]
 rayleigh_color = Color(0.551943, 0.3535, 0.204849, 1)
@@ -31,13 +31,10 @@ sky = SubResource("Sky_70pn8")
 tonemap_mode = 3
 ssr_enabled = true
 ssil_radius = 10.0
-sdfgi_min_cell_size = 0.195312
-sdfgi_cascade0_distance = 12.5
-sdfgi_max_distance = 200.0
+sdfgi_min_cell_size = 0.1953125
 glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.2
-glow_blend_mode = 1
 glow_hdr_luminance_cap = 2.0
 glow_map = SubResource("NoiseTexture2D_8ds0r")
 fog_light_color = Color(0.544776, 0.710731, 0.837316, 1)
@@ -56,11 +53,11 @@ noise_type = 3
 frequency = 0.016
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fwajh"]
-seamless = true
-seamless_blend_skirt = 0.4
-as_normal_map = true
-bump_strength = 1.6
 noise = SubResource("FastNoiseLite_avos1")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.4
+bump_strength = 1.6
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_77aww"]
 noise_type = 0
@@ -71,10 +68,10 @@ fractal_gain = 0.47
 fractal_weighted_strength = 0.53
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iplb2"]
-seamless = true
-seamless_blend_skirt = 0.532
-as_normal_map = true
 noise = SubResource("FastNoiseLite_77aww")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.532
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yilox"]
 noise_type = 4
@@ -82,10 +79,10 @@ fractal_gain = 0.34
 fractal_weighted_strength = 0.6
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_73tnt"]
+noise = SubResource("FastNoiseLite_yilox")
 seamless = true
 as_normal_map = true
 bump_strength = 5.0
-noise = SubResource("FastNoiseLite_yilox")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4pg6b"]
 render_priority = 0
@@ -112,7 +109,7 @@ shader_parameter/near = 1.0
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(0.603922, 0.764706, 0.980392, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_6lxan"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_pyq3p"]
 resource_local_to_scene = true
 material = SubResource("ShaderMaterial_4pg6b")
 size = Vector2(100.5, 100.5)
@@ -130,24 +127,24 @@ _data = {
 "to_cell_xform": Transform3D(1.37007, 0, 0, 0, 1.37007, 0, 0, 0, 1.37007, 40.1149, 8.22039, 64)
 }
 
-[node name="segmented_arena" instance=ExtResource("1_r232y")]
+[node name="segmented_arena" unique_id=985894657 instance=ExtResource("1_r232y")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="3"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="3" unique_id=859510774]
 environment = SubResource("Environment_unrbp")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4" unique_id=2031654876]
 transform = Transform3D(0.5, -3.78552e-08, 0.866025, -0.866025, -2.18557e-08, 0.5, 0, -1, -4.37114e-08, 0, 0, 0)
 light_color = Color(0.98986, 0.842996, 0.727097, 1)
 light_angular_distance = 2.0
 shadow_enabled = true
 
-[node name="WaterPlane" parent="." index="5" instance=ExtResource("3_77f5g")]
+[node name="WaterPlane" parent="." index="5" unique_id=1054612435 instance=ExtResource("3_77f5g")]
 gi_mode = 0
-mesh = SubResource("PlaneMesh_6lxan")
+mesh = SubResource("PlaneMesh_pyq3p")
 
-[node name="Player" parent="." index="6" instance=ExtResource("6_3dna5")]
+[node name="Player" parent="." index="6" unique_id=1208833655 instance=ExtResource("6_3dna5")]
 
-[node name="VoxelGI" type="VoxelGI" parent="." index="7"]
+[node name="VoxelGI" type="VoxelGI" parent="." index="7" unique_id=1581891922]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.27954, 1, -0.307892)
 size = Vector3(58.5591, 12, 93.4262)
 data = SubResource("VoxelGIData_n1y0k")

@@ -1,4 +1,4 @@
-[gd_resource type="ProceduralSkyMaterial" load_steps=2 format=3 uid="uid://bvlw5bvnfsyvx"]
+[gd_resource type="ProceduralSkyMaterial" format=3 uid="uid://bvlw5bvnfsyvx"]
 
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="1_c677i"]
 

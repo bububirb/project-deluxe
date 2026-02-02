@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd2pjgr0awoav"]
+[gd_scene format=3 uid="uid://dd2pjgr0awoav"]
 
 [ext_resource type="PackedScene" uid="uid://cf3mbf7h4522k" path="res://scenes/players/player.tscn" id="1_4lmlx"]
 [ext_resource type="PackedScene" uid="uid://dcchujjwo2k32" path="res://scenes/ships/tuggy.tscn" id="2_7uglo"]
 
-[node name="Player" instance=ExtResource("1_4lmlx")]
+[node name="Player" unique_id=842560993 instance=ExtResource("1_4lmlx")]
 
-[node name="Ship" parent="." index="0" instance=ExtResource("2_7uglo")]
+[node name="Ship" parent="." index="0" unique_id=872535566 instance=ExtResource("2_7uglo")]
 
 [connection signal="item_instanced" from="Ship" to="HUD" method="_on_ship_item_instanced"]
 [connection signal="item_selected" from="Ship" to="HUD" method="_on_ship_item_selected"]

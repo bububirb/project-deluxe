@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://xq53iqm0548f"]
+[gd_scene format=3 uid="uid://xq53iqm0548f"]
 
 [ext_resource type="Script" uid="uid://dxbr3jqjjvttl" path="res://scripts/items/speed_boost.gd" id="1_0lk07"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=538195161]
 script = ExtResource("1_0lk07")

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bogt3vuuc6i80"]
+[gd_scene format=3 uid="uid://bogt3vuuc6i80"]
 
 [ext_resource type="Script" uid="uid://cfp8t5p5fmd6n" path="res://scripts/ui/hud/cooldown.gd" id="1_e88iq"]
 
-[node name="Cooldown" type="ProgressBar"]
+[node name="Cooldown" type="ProgressBar" unique_id=788297040]
 size_flags_vertical = 8
 show_percentage = false
 script = ExtResource("1_e88iq")

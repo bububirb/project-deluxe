@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://pn7163hw3h35"]
+[gd_scene format=3 uid="uid://pn7163hw3h35"]
 
 [ext_resource type="Script" uid="uid://co5366jb4vtt4" path="res://scripts/player.gd" id="1_8esan"]
-[ext_resource type="PackedScene" uid="uid://drurvgkbiyn84" path="res://scenes/ships/punky_mk2.tscn" id="2_8esan"]
+[ext_resource type="PackedScene" uid="uid://dl4cgbrtvt0tq" path="res://scenes/ships/punky.tscn" id="2_8esan"]
 [ext_resource type="Script" uid="uid://b3jrhrmk6hphs" path="res://scripts/camera_pivot.gd" id="3_gsaw8"]
 [ext_resource type="PackedScene" uid="uid://budywedhvkcoa" path="res://scenes/ui/hud.tscn" id="4_lqwkt"]
 

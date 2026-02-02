@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://byh0iv2dj4kpu"]
+[gd_scene format=3 uid="uid://byh0iv2dj4kpu"]
 
 [ext_resource type="Script" uid="uid://dkl0skotibgi2" path="res://scripts/ui/hud/hp_bar.gd" id="1_pw20h"]
 [ext_resource type="StyleBox" uid="uid://dtr0fvb1vr5k0" path="res://resources/style_boxes/remote_hp_bar_panel.tres" id="1_sxha3"]
@@ -10,11 +10,11 @@ font_size = 12
 outline_size = 1
 outline_color = Color(0.05, 0.2, 0.05, 1)
 
-[node name="HPBar" type="PanelContainer"]
+[node name="HPBar" type="PanelContainer" unique_id=2012158945]
 theme_override_styles/panel = ExtResource("1_sxha3")
 script = ExtResource("1_pw20h")
 
-[node name="Bar" type="ProgressBar" parent="."]
+[node name="Bar" type="ProgressBar" parent="." unique_id=1760003898]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(96, 16)
 layout_mode = 2
@@ -24,7 +24,7 @@ value = 1000.0
 rounded = true
 show_percentage = false
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=2070658960]
 unique_name_in_owner = true
 layout_mode = 2
 text = "1000/1000"

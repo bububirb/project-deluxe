@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1gqe7pblrybr"]
+[gd_scene format=3 uid="uid://b1gqe7pblrybr"]
 
 [ext_resource type="Script" uid="uid://i5ekq3gos86v" path="res://scripts/ui/results.gd" id="1_2s1ex"]
 
@@ -18,7 +18,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="Results" type="Control" node_paths=PackedStringArray("players_container", "exit_button")]
+[node name="Results" type="Control" unique_id=1927031430 node_paths=PackedStringArray("players_container", "exit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +33,7 @@ script = ExtResource("1_2s1ex")
 players_container = NodePath("PanelContainer/VBoxContainer/PlayersContainer")
 exit_button = NodePath("PanelContainer/VBoxContainer/ExitButton")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1636663932]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,14 +46,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2s1ex")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1836593965]
 layout_mode = 2
 
-[node name="PlayersContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+[node name="PlayersContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=366169970]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1299929252]
 layout_mode = 2
 text = "Exit"
 

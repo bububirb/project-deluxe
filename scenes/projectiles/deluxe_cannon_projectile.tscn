@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://pj100ly4ipil"]
+[gd_scene format=3 uid="uid://pj100ly4ipil"]
 
 [ext_resource type="Script" uid="uid://cxsemoubxgodv" path="res://scripts/projectiles/cannon_projectile.gd" id="1_1uadp"]
 [ext_resource type="PackedScene" uid="uid://byh6bg82ldnit" path="res://assets/models/projectiles/deluxe_cannon_projectile_1.blend" id="1_6ei38"]
@@ -62,19 +62,19 @@ collision_use_scale = true
 [sub_resource type="QuadMesh" id="QuadMesh_eptte"]
 material = ExtResource("3_c5oyb")
 
-[node name="DeluxeCannonProjectile" type="CharacterBody3D"]
+[node name="DeluxeCannonProjectile" type="CharacterBody3D" unique_id=846444489]
 disable_mode = 1
 collision_layer = 8
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_1uadp")
 
-[node name="Mesh" parent="." instance=ExtResource("1_6ei38")]
+[node name="Mesh" parent="." unique_id=204331258 instance=ExtResource("1_6ei38")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1008061370]
 shape = SubResource("SphereShape3D_f0ux4")
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=1507579936]
 process_mode = 3
 emitting = false
 amount = 128

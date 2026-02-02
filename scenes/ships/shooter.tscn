@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://2opy76fxy3vp"]
+[gd_scene format=4 uid="uid://2opy76fxy3vp"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_ax73f"]
 [ext_resource type="PackedScene" uid="uid://c2vhaou1f82c8" path="res://assets/models/ships/shooter_1.blend" id="2_qefq2"]
@@ -212,39 +212,39 @@ properties/2/path = NodePath(".:sync_rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 2
 
-[node name="Shooter" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
+[node name="Shooter" type="CharacterBody3D" unique_id=882947337 node_paths=PackedStringArray("projectile_pool")]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ax73f")
 max_speed = 5.0
 projectile_pool = NodePath("ProjectilePool")
 
-[node name="Shooter" parent="." instance=ExtResource("2_qefq2")]
+[node name="Shooter" parent="." unique_id=1207389821 instance=ExtResource("2_qefq2")]
 
-[node name="Shooter" parent="Shooter" index="0"]
+[node name="Shooter" parent="Shooter" index="0" unique_id=704214752]
 gi_mode = 2
 mesh = SubResource("ArrayMesh_tipo5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=652774861]
 shape = SubResource("ConvexPolygonShape3D_s65f6")
 
-[node name="Bounds" type="Node3D" parent="."]
+[node name="Bounds" type="Node3D" parent="." unique_id=269000199]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 top_level = true
 
-[node name="Front" type="Node3D" parent="Bounds"]
+[node name="Front" type="Node3D" parent="Bounds" unique_id=382770713]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 
-[node name="Back" type="Node3D" parent="Bounds"]
+[node name="Back" type="Node3D" parent="Bounds" unique_id=1072287878]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
 
-[node name="Left" type="Node3D" parent="Bounds"]
+[node name="Left" type="Node3D" parent="Bounds" unique_id=891687516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, -5.96046e-08)
 
-[node name="Right" type="Node3D" parent="Bounds"]
+[node name="Right" type="Node3D" parent="Bounds" unique_id=1060259715]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, -5.96046e-08)
 
-[node name="NitroParticles" type="GPUParticles3D" parent="."]
+[node name="NitroParticles" type="GPUParticles3D" parent="." unique_id=1351150826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.5)
 emitting = false
 amount = 1024
@@ -256,16 +256,16 @@ trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_k4b56")
 draw_pass_1 = SubResource("TubeTrailMesh_b0av1")
 
-[node name="Turret" parent="." instance=ExtResource("6_hmiki")]
+[node name="Turret" parent="." unique_id=2134726558 instance=ExtResource("6_hmiki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.285, -0.171)
 
-[node name="ShooterTurretBase" parent="Turret" index="0"]
+[node name="ShooterTurretBase" parent="Turret" index="0" unique_id=1486223109]
 mesh = SubResource("ArrayMesh_86hnh")
 
-[node name="ItemInstancer" parent="Turret/ShooterTurretBase" index="0"]
+[node name="ItemInstancer" parent="Turret/ShooterTurretBase" index="0" unique_id=986498578]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.1, 0)
 
-[node name="AimingIndicator" type="Decal" parent="."]
+[node name="AimingIndicator" type="Decal" parent="." unique_id=2077422763]
 top_level = true
 visible = false
 layers = 16
@@ -273,14 +273,14 @@ texture_albedo = ExtResource("7_flfa1")
 modulate = Color(0, 0.8, 0, 0.4)
 cull_mask = 1047554
 
-[node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="Deck" type="Node" parent="." unique_id=1615551638 node_paths=PackedStringArray("target")]
 script = ExtResource("3_oy072")
 items = Array[ExtResource("8_rnir5")]([ExtResource("9_yfxm0"), ExtResource("10_gsbj1"), ExtResource("11_ymx0x"), ExtResource("12_4hjlh"), ExtResource("13_kxyjr")])
 target = NodePath("../Turret/ShooterTurretBase/ItemInstancer")
 
-[node name="ProjectilePool" type="Node" parent="."]
+[node name="ProjectilePool" type="Node" parent="." unique_id=1185938167]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=95686187]
 replication_config = SubResource("SceneReplicationConfig_flfa1")
 
 [editable path="Shooter"]

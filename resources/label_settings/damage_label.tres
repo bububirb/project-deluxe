@@ -1,4 +1,4 @@
-[gd_resource type="LabelSettings" load_steps=3 format=3 uid="uid://ctqvr061fjaxf"]
+[gd_resource type="LabelSettings" format=3 uid="uid://ctqvr061fjaxf"]
 
 [ext_resource type="FontVariation" uid="uid://cncutiwvtk0ww" path="res://assets/fonts/inter_bold.tres" id="1_b22ph"]
 

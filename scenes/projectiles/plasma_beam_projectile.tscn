@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://conh7uwqsvp6i"]
+[gd_scene format=3 uid="uid://conh7uwqsvp6i"]
 
 [ext_resource type="Script" uid="uid://ktnfjkxaaeyb" path="res://scripts/projectiles/beam_projectile.gd" id="1_tlmtr"]
 [ext_resource type="PackedScene" uid="uid://beiwkqscpobal" path="res://assets/models/projectiles/plasma_beam_projectile_1.blend" id="2_tlmtr"]
@@ -114,7 +114,7 @@ size = 0.1
 section_length = 2.0
 curve = SubResource("Curve_tlmtr")
 
-[node name="PlasmaBeamProjectile" type="CharacterBody3D" node_paths=PackedStringArray("trail_particles")]
+[node name="PlasmaBeamProjectile" type="CharacterBody3D" unique_id=983637374 node_paths=PackedStringArray("trail_particles")]
 disable_mode = 1
 collision_layer = 8
 collision_mask = 7
@@ -122,12 +122,12 @@ motion_mode = 1
 script = ExtResource("1_tlmtr")
 trail_particles = NodePath("TrailParticles")
 
-[node name="Mesh" parent="." instance=ExtResource("2_tlmtr")]
+[node name="Mesh" parent="." unique_id=2100359088 instance=ExtResource("2_tlmtr")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=94773619]
 shape = SubResource("CapsuleShape3D_vbg2b")
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=1500058914]
 process_mode = 3
 emitting = false
 amount = 500
@@ -138,7 +138,7 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_r73b1")
 draw_pass_1 = SubResource("CapsuleMesh_pj538")
 
-[node name="TrailParticles" type="GPUParticles3D" parent="."]
+[node name="TrailParticles" type="GPUParticles3D" parent="." unique_id=1896791788]
 amount = 240
 lifetime = 0.5
 fixed_fps = 60

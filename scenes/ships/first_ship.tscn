@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://ckkrhxqwmgd32"]
+[gd_scene format=4 uid="uid://ckkrhxqwmgd32"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_ada4g"]
 [ext_resource type="PackedScene" uid="uid://be8sprfitqh1u" path="res://assets/models/ships/steampunky/First Ship.blend" id="1_vew6i"]
@@ -169,7 +169,7 @@ properties/2/path = NodePath("Turret:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="FirstShip" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
+[node name="FirstShip" type="CharacterBody3D" unique_id=1912946919 node_paths=PackedStringArray("projectile_pool")]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_ada4g")
@@ -180,38 +180,38 @@ torque = 1.5
 max_turn_speed = 1.5
 projectile_pool = NodePath("ProjectilePool")
 
-[node name="FirstShip" parent="." instance=ExtResource("1_vew6i")]
+[node name="FirstShip" parent="." unique_id=857018437 instance=ExtResource("1_vew6i")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1681833342]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.2, -0.50214)
 shape = SubResource("ConvexPolygonShape3D_ada4g")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1424437097]
 transform = Transform3D(9.55343e-16, -2.18557e-08, 0.5, -0.5, -2.18557e-08, 0, 2.18557e-08, -0.5, -2.18557e-08, 0, 0.2, -0.50214)
 shape = SubResource("ConvexPolygonShape3D_h60q3")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1600679682]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.2, 0)
 shape = SubResource("ConvexPolygonShape3D_e23le")
 
-[node name="Bounds" type="Node3D" parent="."]
+[node name="Bounds" type="Node3D" parent="." unique_id=2013905688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 top_level = true
 
-[node name="Front" type="Node3D" parent="Bounds"]
+[node name="Front" type="Node3D" parent="Bounds" unique_id=980431755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
 
-[node name="Back" type="Node3D" parent="Bounds"]
+[node name="Back" type="Node3D" parent="Bounds" unique_id=565450599]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 
-[node name="Left" type="Node3D" parent="Bounds"]
+[node name="Left" type="Node3D" parent="Bounds" unique_id=911777586]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, -5.96046e-08)
 
-[node name="Right" type="Node3D" parent="Bounds"]
+[node name="Right" type="Node3D" parent="Bounds" unique_id=708917027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, -5.96046e-08)
 
-[node name="NitroParticles" type="GPUParticles3D" parent="."]
+[node name="NitroParticles" type="GPUParticles3D" parent="." unique_id=709339484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.264766, -0.775021)
 emitting = false
 amount = 1024
@@ -223,16 +223,16 @@ trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_hiod4")
 draw_pass_1 = SubResource("TubeTrailMesh_vxfmm")
 
-[node name="Turret" parent="." instance=ExtResource("2_4jlih")]
+[node name="Turret" parent="." unique_id=1642661536 instance=ExtResource("2_4jlih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.249931, 0)
 
-[node name="ShooterTurretBase" parent="Turret" index="0"]
+[node name="ShooterTurretBase" parent="Turret" index="0" unique_id=1486223109]
 mesh = SubResource("ArrayMesh_pm0rn")
 
-[node name="ItemInstancer" parent="Turret/ShooterTurretBase" index="0"]
+[node name="ItemInstancer" parent="Turret/ShooterTurretBase" index="0" unique_id=986498578]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.1, 0)
 
-[node name="AimingIndicator" type="Decal" parent="."]
+[node name="AimingIndicator" type="Decal" parent="." unique_id=1222202039]
 top_level = true
 visible = false
 layers = 16
@@ -240,14 +240,14 @@ texture_albedo = ExtResource("3_ada4g")
 modulate = Color(0, 0.8, 0, 0.4)
 cull_mask = 1047554
 
-[node name="Deck" type="Node" parent="." node_paths=PackedStringArray("target")]
+[node name="Deck" type="Node" parent="." unique_id=1912427302 node_paths=PackedStringArray("target")]
 script = ExtResource("4_h60q3")
 items = Array[ExtResource("5_e23le")]([ExtResource("6_gby4g"), ExtResource("7_nht41"), ExtResource("8_xu71b"), ExtResource("9_12j7w"), ExtResource("10_q6alq")])
 target = NodePath("../Turret/ShooterTurretBase/ItemInstancer")
 
-[node name="ProjectilePool" type="Node" parent="."]
+[node name="ProjectilePool" type="Node" parent="." unique_id=878931448]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1418641637]
 replication_config = SubResource("SceneReplicationConfig_ldamy")
 
 [editable path="FirstShip"]

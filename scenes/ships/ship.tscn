@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://c4x5e4mecarp2"]
+[gd_scene format=3 uid="uid://c4x5e4mecarp2"]
 
 [ext_resource type="Script" uid="uid://b8mv2v88lhoi3" path="res://scripts/ship.gd" id="1_kr3h6"]
 [ext_resource type="PackedScene" uid="uid://bry36jjeqdba8" path="res://scenes/players/player_camera.tscn" id="2_jm8en"]
@@ -114,7 +114,7 @@ radius = 0.02
 radial_steps = 4
 curve = SubResource("Curve_ye74i")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_myxd7"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_fsusj"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ldamy"]
 properties/0/path = NodePath("NitroParticles:emitting")
@@ -598,7 +598,7 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="Ship" type="CharacterBody3D" node_paths=PackedStringArray("projectile_pool")]
+[node name="Ship" type="CharacterBody3D" unique_id=483644232 node_paths=PackedStringArray("projectile_pool")]
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_kr3h6")
@@ -609,28 +609,28 @@ max_turn_speed = 1.0
 projectile_pool = NodePath("ProjectilePool")
 camera_scene = ExtResource("2_jm8en")
 
-[node name="CollisionDetector" type="Area3D" parent="."]
+[node name="CollisionDetector" type="Area3D" parent="." unique_id=1686911524]
 collision_layer = 2
 collision_mask = 2
 monitorable = false
 
-[node name="Bounds" type="Node3D" parent="."]
+[node name="Bounds" type="Node3D" parent="." unique_id=1377181257]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0006)
 top_level = true
 
-[node name="Front" type="Node3D" parent="Bounds"]
+[node name="Front" type="Node3D" parent="Bounds" unique_id=1336665440]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
 
-[node name="Back" type="Node3D" parent="Bounds"]
+[node name="Back" type="Node3D" parent="Bounds" unique_id=2124818754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75)
 
-[node name="Left" type="Node3D" parent="Bounds"]
+[node name="Left" type="Node3D" parent="Bounds" unique_id=648618738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 
-[node name="Right" type="Node3D" parent="Bounds"]
+[node name="Right" type="Node3D" parent="Bounds" unique_id=1170823360]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 
-[node name="NitroParticles" type="GPUParticles3D" parent="."]
+[node name="NitroParticles" type="GPUParticles3D" parent="." unique_id=1819723312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099345, -0.875021)
 emitting = false
 amount = 1024
@@ -642,16 +642,16 @@ trail_lifetime = 0.1
 process_material = SubResource("ParticleProcessMaterial_w3aqp")
 draw_pass_1 = SubResource("TubeTrailMesh_vxfmm")
 
-[node name="ProjectilePath" type="MeshInstance3D" parent="."]
+[node name="ProjectilePath" type="MeshInstance3D" parent="." unique_id=1972784105]
 top_level = true
 visible = false
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_myxd7")
+mesh = SubResource("ImmediateMesh_fsusj")
 script = ExtResource("16_yvo6f")
 material = ExtResource("4_fsusj")
 metadata/_custom_type_script = "uid://bew4nj6u08pl5"
 
-[node name="AimingIndicator" type="Decal" parent="."]
+[node name="AimingIndicator" type="Decal" parent="." unique_id=430923936]
 top_level = true
 visible = false
 layers = 16
@@ -659,7 +659,7 @@ texture_albedo = ExtResource("4_myxd7")
 modulate = Color(0, 0.8, 0, 0.4)
 cull_mask = 1047554
 
-[node name="DirectionIndicator" type="Decal" parent="."]
+[node name="DirectionIndicator" type="Decal" parent="." unique_id=866920614]
 top_level = true
 visible = false
 layers = 16
@@ -668,7 +668,7 @@ texture_albedo = ExtResource("4_kr3h6")
 modulate = Color(0, 0.8, 0, 0.4)
 cull_mask = 1047554
 
-[node name="Crosshair" type="Sprite3D" parent="."]
+[node name="Crosshair" type="Sprite3D" parent="." unique_id=1583565566]
 visible = false
 pixel_size = 0.0004
 billboard = 1
@@ -677,17 +677,17 @@ fixed_size = true
 render_priority = 5
 texture = ExtResource("5_kr0au")
 
-[node name="Deck" type="Node" parent="." node_paths=PackedStringArray("ship")]
+[node name="Deck" type="Node" parent="." unique_id=97869627 node_paths=PackedStringArray("ship")]
 script = ExtResource("6_3mxys")
 items = Array[ExtResource("7_rfsd8")]([ExtResource("8_pu1j1"), ExtResource("9_y2s24"), ExtResource("10_abkeu"), ExtResource("11_pibu8"), ExtResource("12_klkes")])
 ship = NodePath("..")
 
-[node name="ProjectilePool" type="Node" parent="."]
+[node name="ProjectilePool" type="Node" parent="." unique_id=89221051]
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1334393280]
 replication_config = SubResource("SceneReplicationConfig_ldamy")
 
-[node name="Burn" type="AnimatedSprite3D" parent="."]
+[node name="Burn" type="AnimatedSprite3D" parent="." unique_id=242952426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.280075, 0.463655)
 visible = false
 offset = Vector2(0, 40)
@@ -697,11 +697,11 @@ sprite_frames = SubResource("SpriteFrames_dk640")
 autoplay = "default"
 frame_progress = 0.652097
 
-[node name="Particles" type="Node3D" parent="."]
+[node name="Particles" type="Node3D" parent="." unique_id=865200343]
 
-[node name="Fire" parent="Particles" instance=ExtResource("14_xbct7")]
+[node name="Fire" parent="Particles" unique_id=1326897969 instance=ExtResource("14_xbct7")]
 
-[node name="Explosion" parent="Particles" instance=ExtResource("15_j7k8f")]
+[node name="Explosion" parent="Particles" unique_id=1548533679 instance=ExtResource("15_j7k8f")]
 
 [connection signal="body_entered" from="CollisionDetector" to="." method="_on_collision_detector_body_entered"]
 [connection signal="body_exited" from="CollisionDetector" to="." method="_on_collision_detector_body_exited"]

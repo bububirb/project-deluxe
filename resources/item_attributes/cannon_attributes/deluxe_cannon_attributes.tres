@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CannonAttributes" load_steps=3 format=3 uid="uid://c88ddqi2t8h5k"]
+[gd_resource type="Resource" script_class="CannonAttributes" format=3 uid="uid://c88ddqi2t8h5k"]
 
 [ext_resource type="PackedScene" uid="uid://1etca0vcd8vf" path="res://scenes/items/deluxe_cannon.tscn" id="1_nkwuj"]
 [ext_resource type="Script" uid="uid://x7lfjh7ckwby" path="res://scripts/resources/item_attributes/cannon_attributes.gd" id="2_umwl4"]

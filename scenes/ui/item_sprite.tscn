@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://du2l1v6l8lcpe"]
+[gd_scene format=3 uid="uid://du2l1v6l8lcpe"]
 
 [ext_resource type="StyleBox" uid="uid://baroambfbepd7" path="res://resources/style_boxes/item_container_clipper.tres" id="1_i28qy"]
-[ext_resource type="Script" uid="uid://dpvouy4uuaoa3" path="res://scripts/ui/item_sprite.gd" id="1_y6f8f"]
+[ext_resource type="Script" path="res://scripts/ui/item_sprite.gd" id="1_y6f8f"]
 
-[node name="ItemSprite" type="PanelContainer"]
+[node name="ItemSprite" type="PanelContainer" unique_id=2016372910]
 clip_children = 2
 custom_minimum_size = Vector2(40, 40)
 offset_right = 8.0

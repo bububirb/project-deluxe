@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://w2x61xxk5io7"]
+[gd_scene format=3 uid="uid://w2x61xxk5io7"]
 
 [ext_resource type="PackedScene" uid="uid://k18inqkuwav1" path="res://assets/models/vfx/mortar_splash.blend" id="1_e7mw8"]
 [ext_resource type="Shader" uid="uid://sn8urntf2l5o" path="res://resources/shaders/mortar_splash.tres" id="2_156xv"]
@@ -155,24 +155,22 @@ _data = {
 &"mortar_splash": SubResource("Animation_e7mw8")
 }
 
-[node name="MortarSplash" type="Node3D"]
+[node name="MortarSplash" type="Node3D" unique_id=1432258714]
 
-[node name="mortar_splash" parent="." instance=ExtResource("1_e7mw8")]
+[node name="mortar_splash" parent="." unique_id=873010660 instance=ExtResource("1_e7mw8")]
 transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 1, 0, -1, 0)
 
-[node name="Circle" parent="mortar_splash" index="0"]
+[node name="Circle" parent="mortar_splash" index="0" unique_id=449251415]
 surface_material_override/0 = SubResource("ShaderMaterial_mkjvw")
 
-[node name="Circle_001" parent="mortar_splash" index="1"]
+[node name="Circle_001" parent="mortar_splash" index="1" unique_id=115938695]
 surface_material_override/0 = SubResource("ShaderMaterial_mkjvw")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jr04e")
-}
-autoplay = "mortar_splash"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2052224444]
+libraries/ = SubResource("AnimationLibrary_jr04e")
+autoplay = &"mortar_splash"
 
-[node name="Decal" type="Decal" parent="."]
+[node name="Decal" type="Decal" parent="." unique_id=1178401722]
 layers = 2
 size = Vector3(0.1, 4, 0.1)
 texture_albedo = ExtResource("3_jr04e")

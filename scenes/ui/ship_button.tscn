@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c23j8saxjb51x"]
+[gd_scene format=3 uid="uid://c23j8saxjb51x"]
 
 [ext_resource type="Script" uid="uid://bspyj7o8w83qs" path="res://scripts/ui/ship_button.gd" id="1_falsx"]
 
@@ -20,7 +20,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 5
 
-[node name="ShipButton" type="Button"]
+[node name="ShipButton" type="Button" unique_id=33932825]
 custom_minimum_size = Vector2(72, 72)
 offset_right = 8.0
 offset_bottom = 8.0

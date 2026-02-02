@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dp2sp21awti0v"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dp2sp21awti0v"]
 
 [ext_resource type="Shader" uid="uid://c7cao58d7iwsl" path="res://resources/shaders/fire_quad.tres" id="1_k508a"]
 [ext_resource type="Texture2D" uid="uid://d1qxcj45snx7c" path="res://assets/textures/vfx/fire_particle.png" id="2_6v6yr"]

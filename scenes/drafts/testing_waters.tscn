@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://c2njq4h2bo04k"]
+[gd_scene format=4 uid="uid://c2njq4h2bo04k"]
 
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="2_et66n"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="3_haeh6"]
@@ -23,9 +23,9 @@ colors = PackedColorArray(0.7, 0.7, 0.7, 1, 1, 1, 1, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5j3my"]
 height = 256
-seamless = true
-color_ramp = SubResource("Gradient_r4pp2")
 noise = SubResource("FastNoiseLite_ocyt1")
+color_ramp = SubResource("Gradient_r4pp2")
+seamless = true
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_2tsao"]
 rayleigh_color = Color(0.551943, 0.3535, 0.204849, 1)
@@ -56,7 +56,7 @@ volumetric_fog_anisotropy = 0.7
 volumetric_fog_length = 32.0
 volumetric_fog_ambient_inject = 2.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ei31l"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ax6rj"]
 resource_local_to_scene = true
 size = Vector2(100.5, 100.5)
 subdivide_width = 511
@@ -67,11 +67,11 @@ noise_type = 3
 frequency = 0.016
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a5tqk"]
-seamless = true
-seamless_blend_skirt = 0.4
-as_normal_map = true
-bump_strength = 1.6
 noise = SubResource("FastNoiseLite_4a0yq")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.4
+bump_strength = 1.6
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2ot67"]
 noise_type = 0
@@ -82,10 +82,10 @@ fractal_gain = 0.47
 fractal_weighted_strength = 0.53
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nnc11"]
-seamless = true
-seamless_blend_skirt = 0.532
-as_normal_map = true
 noise = SubResource("FastNoiseLite_2ot67")
+seamless = true
+as_normal_map = true
+seamless_blend_skirt = 0.532
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jvwte"]
 noise_type = 4
@@ -93,10 +93,10 @@ fractal_gain = 0.34
 fractal_weighted_strength = 0.6
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xq016"]
+noise = SubResource("FastNoiseLite_jvwte")
 seamless = true
 as_normal_map = true
 bump_strength = 5.0
-noise = SubResource("FastNoiseLite_jvwte")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qox4"]
 render_priority = 0
@@ -255,12 +255,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_dr6w6")
 
-[node name="TestingWaters" type="Node3D"]
+[node name="TestingWaters" type="Node3D" unique_id=1019022210]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=830930749]
 environment = SubResource("Environment_djm8m")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1861654787]
 transform = Transform3D(-0.640092, -0.465507, 0.611217, 0.0169521, 0.786795, 0.616982, -0.768112, 0.405286, -0.49573, 0, 0, 0)
 light_color = Color(0.904705, 0.862806, 0.80267, 1)
 light_volumetric_fog_energy = 0.5
@@ -268,31 +268,31 @@ light_angular_distance = 2.0
 light_bake_mode = 1
 shadow_enabled = true
 
-[node name="WaterPlane" parent="." instance=ExtResource("3_haeh6")]
+[node name="WaterPlane" parent="." unique_id=1577749187 instance=ExtResource("3_haeh6")]
 gi_mode = 2
-mesh = SubResource("PlaneMesh_ei31l")
+mesh = SubResource("PlaneMesh_ax6rj")
 surface_material_override/0 = SubResource("ShaderMaterial_1qox4")
 
-[node name="SegmentedArena" parent="." instance=ExtResource("9_2lqt8")]
+[node name="SegmentedArena" parent="." unique_id=1799108198 instance=ExtResource("9_2lqt8")]
 
-[node name="SegmentedArena" parent="SegmentedArena" index="0"]
+[node name="SegmentedArena" parent="SegmentedArena" index="0" unique_id=1831565055]
 mesh = SubResource("ArrayMesh_iodf4")
 
-[node name="Wireframe Bridge" parent="SegmentedArena" index="1"]
+[node name="Wireframe Bridge" parent="SegmentedArena" index="1" unique_id=1457741095]
 mesh = SubResource("ArrayMesh_gfbkx")
 
-[node name="Pillars" parent="SegmentedArena" index="2"]
+[node name="Pillars" parent="SegmentedArena" index="2" unique_id=12624432]
 mesh = SubResource("ArrayMesh_e6aeu")
 
-[node name="Player" parent="." instance=ExtResource("14_wbogx")]
+[node name="Player" parent="." unique_id=1476355825 instance=ExtResource("14_wbogx")]
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=1827736124]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.5, 2)
 size = Vector3(60, 30, 84)
 box_projection = true
 cull_mask = 1047551
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=104854375]
 transform = Transform3D(0.692748, 0.334142, -0.6391, -1.49012e-08, 0.886187, 0.463327, 0.72118, -0.320969, 0.613904, -11.2344, 4.92004, 11.5513)
 
 [editable path="SegmentedArena"]

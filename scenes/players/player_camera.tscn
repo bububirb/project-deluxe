@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bry36jjeqdba8"]
+[gd_scene format=3 uid="uid://bry36jjeqdba8"]
 
 [ext_resource type="Script" uid="uid://b3jrhrmk6hphs" path="res://scripts/camera_pivot.gd" id="1_a177g"]
 
@@ -164,29 +164,27 @@ _data = {
 &"mortar_view": SubResource("Animation_jf706")
 }
 
-[node name="CameraPivot" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+[node name="CameraPivot" type="Node3D" unique_id=1993112891 node_paths=PackedStringArray("animation_tree")]
 top_level = true
 script = ExtResource("1_a177g")
 animation_tree = NodePath("AnimationTree")
 
-[node name="CameraPivotX" type="Node3D" parent="."]
+[node name="CameraPivotX" type="Node3D" parent="." unique_id=432936607]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
-[node name="Camera" type="Camera3D" parent="CameraPivotX"]
+[node name="Camera" type="Camera3D" parent="CameraPivotX" unique_id=1591522792]
 transform = Transform3D(-1, -7.619404e-09, -8.775552e-08, -1.52388e-08, 0.9961948, 0.08715568, 8.67575e-08, 0.08715568, -0.9961948, 0, 0.5500001, -2)
 fov = 90.0
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraPivotX/Camera"]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraPivotX/Camera" unique_id=402867428]
 visible = false
 update_mode = 1
 size = Vector3(25, 12, 25)
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=743953817]
 tree_root = SubResource("AnimationNodeStateMachine_jf706")
 anim_player = NodePath("AnimationPlayer")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree" unique_id=467183375]
 root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_itqyl")
-}
+libraries/ = SubResource("AnimationLibrary_itqyl")

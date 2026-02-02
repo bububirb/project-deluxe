@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://budywedhvkcoa"]
+[gd_scene format=3 uid="uid://budywedhvkcoa"]
 
 [ext_resource type="Script" uid="uid://cor0xtkfi5p1q" path="res://scripts/ui/hud/match_timer.gd" id="2_2y50y"]
 [ext_resource type="Script" uid="uid://b1ruyu48x5o0" path="res://scripts/hud.gd" id="2_n808k"]
@@ -58,7 +58,7 @@ font_size = 14
 outline_size = 2
 outline_color = Color(0.128121, 0.128121, 0.128121, 1)
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label", "game_over_panel", "results_button")]
+[node name="HUD" type="Control" unique_id=1709102889 node_paths=PackedStringArray("local", "remote", "item_display", "vitals_overlay", "hp_bar", "remote_hp_bar_container", "remote_hp_bar", "modifier_container", "damage_display", "accumulated_damage_label", "name_label", "game_over_panel", "results_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,7 +81,7 @@ name_label = NodePath("Remote/RemoteHPBarContainer/NameControl/NameLabel")
 game_over_panel = NodePath("Local/GameOverPanel")
 results_button = NodePath("Local/GameOverPanel/GameOverContainer/ResultsButton")
 
-[node name="Local" type="Control" parent="."]
+[node name="Local" type="Control" parent="." unique_id=918643965]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VitalsOverlay" type="TextureRect" parent="Local"]
+[node name="VitalsOverlay" type="TextureRect" parent="Local" unique_id=316158197]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("CanvasItemMaterial_4jqwt")
 layout_mode = 1
@@ -102,7 +102,7 @@ grow_vertical = 2
 texture = ExtResource("3_kicr4")
 expand_mode = 1
 
-[node name="StatusBar" type="PanelContainer" parent="Local"]
+[node name="StatusBar" type="PanelContainer" parent="Local" unique_id=272660194]
 custom_minimum_size = Vector2(72, 0)
 layout_mode = 1
 anchors_preset = 5
@@ -113,17 +113,17 @@ offset_right = 36.0
 offset_bottom = 28.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Local/StatusBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Local/StatusBar" unique_id=1068998674]
 layout_mode = 2
 
-[node name="MatchTimer" type="Label" parent="Local/StatusBar/HBoxContainer"]
+[node name="MatchTimer" type="Label" parent="Local/StatusBar/HBoxContainer" unique_id=1823949598]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "5:00"
 horizontal_alignment = 1
 script = ExtResource("2_2y50y")
 
-[node name="ItemDisplayContainer" type="PanelContainer" parent="Local"]
+[node name="ItemDisplayContainer" type="PanelContainer" parent="Local" unique_id=533189882]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -137,12 +137,12 @@ offset_bottom = 4.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ItemDisplay" type="VBoxContainer" parent="Local/ItemDisplayContainer"]
+[node name="ItemDisplay" type="VBoxContainer" parent="Local/ItemDisplayContainer" unique_id=1035889279]
 layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 1
 
-[node name="BottomContainer" type="VBoxContainer" parent="Local"]
+[node name="BottomContainer" type="VBoxContainer" parent="Local" unique_id=907810081]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -156,22 +156,22 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ModifierContainer" type="HBoxContainer" parent="Local/BottomContainer"]
+[node name="ModifierContainer" type="HBoxContainer" parent="Local/BottomContainer" unique_id=1432536988]
 layout_mode = 2
 
-[node name="HPBar" parent="Local/BottomContainer" instance=ExtResource("4_8qguk")]
+[node name="HPBar" parent="Local/BottomContainer" unique_id=1389384446 instance=ExtResource("4_8qguk")]
 layout_mode = 2
 value = 1000.0
 max_value = 1000.0
 
-[node name="Bar" parent="Local/BottomContainer/HPBar" index="0"]
+[node name="Bar" parent="Local/BottomContainer/HPBar" index="0" unique_id=1760003898]
 custom_minimum_size = Vector2(96, 22)
 theme_override_styles/fill = ExtResource("5_136eg")
 
-[node name="Label" parent="Local/BottomContainer/HPBar" index="1"]
+[node name="Label" parent="Local/BottomContainer/HPBar" index="1" unique_id=2070658960]
 label_settings = SubResource("LabelSettings_h022r")
 
-[node name="AccumulatedDamageLabel" type="Label" parent="Local/BottomContainer"]
+[node name="AccumulatedDamageLabel" type="Label" parent="Local/BottomContainer" unique_id=1153468094]
 modulate = Color(1, 0.4, 0.4, 1)
 layout_mode = 2
 text = "0"
@@ -183,7 +183,7 @@ permanent = true
 value = 0
 metadata/_custom_type_script = "uid://emqpc5u81psx"
 
-[node name="GameOverPanel" type="PanelContainer" parent="Local"]
+[node name="GameOverPanel" type="PanelContainer" parent="Local" unique_id=1586856136]
 visible = false
 custom_minimum_size = Vector2(192, 0)
 layout_mode = 1
@@ -200,22 +200,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4jqwt")
 
-[node name="GameOverContainer" type="VBoxContainer" parent="Local/GameOverPanel"]
+[node name="GameOverContainer" type="VBoxContainer" parent="Local/GameOverPanel" unique_id=1244407276]
 layout_mode = 2
 
-[node name="GameOverLabel" type="Label" parent="Local/GameOverPanel/GameOverContainer"]
+[node name="GameOverLabel" type="Label" parent="Local/GameOverPanel/GameOverContainer" unique_id=1757270489]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResultsButton" type="Button" parent="Local/GameOverPanel/GameOverContainer"]
+[node name="ResultsButton" type="Button" parent="Local/GameOverPanel/GameOverContainer" unique_id=993493242]
 visible = false
 layout_mode = 2
 text = "Next"
 
-[node name="Remote" type="Control" parent="."]
+[node name="Remote" type="Control" parent="." unique_id=1069672333]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -224,21 +224,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RemoteHPBarContainer" type="CenterContainer" parent="Remote"]
+[node name="RemoteHPBarContainer" type="CenterContainer" parent="Remote" unique_id=1603161904]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 32.0
 use_top_left = true
 
-[node name="RemoteHPBar" parent="Remote/RemoteHPBarContainer" instance=ExtResource("4_8qguk")]
+[node name="RemoteHPBar" parent="Remote/RemoteHPBarContainer" unique_id=70069762 instance=ExtResource("4_8qguk")]
 layout_mode = 2
 value = 1000.0
 max_value = 1000.0
 
-[node name="DamageDisplayControl" type="Control" parent="Remote/RemoteHPBarContainer"]
+[node name="DamageDisplayControl" type="Control" parent="Remote/RemoteHPBarContainer" unique_id=453853804]
 layout_mode = 2
 
-[node name="DamageDisplay" type="VBoxContainer" parent="Remote/RemoteHPBarContainer/DamageDisplayControl"]
+[node name="DamageDisplay" type="VBoxContainer" parent="Remote/RemoteHPBarContainer/DamageDisplayControl" unique_id=348336158]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -251,10 +251,10 @@ grow_vertical = 0
 script = ExtResource("8_h022r")
 metadata/_custom_type_script = "uid://d0aq0327bb5w8"
 
-[node name="NameControl" type="Control" parent="Remote/RemoteHPBarContainer"]
+[node name="NameControl" type="Control" parent="Remote/RemoteHPBarContainer" unique_id=1989524125]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="Remote/RemoteHPBarContainer/NameControl"]
+[node name="NameLabel" type="Label" parent="Remote/RemoteHPBarContainer/NameControl" unique_id=1314197063]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

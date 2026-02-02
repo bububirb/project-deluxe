@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxfk8knkw3rmj"]
+[gd_scene format=3 uid="uid://bxfk8knkw3rmj"]
 
 [ext_resource type="PackedScene" uid="uid://dppd1u027uvlb" path="res://assets/models/environment/foliage/leaf_2/leaf_2.blend" id="1_8h7xk"]
 [ext_resource type="Texture2D" uid="uid://c2q3wb6ghatm2" path="res://assets/textures/environment/foliage/leaf_2/DefaultMaterial_BaseColorAlpha.png" id="2_q0d3f"]
@@ -26,7 +26,7 @@ subsurf_scatter_enabled = true
 subsurf_scatter_strength = 1.0
 subsurf_scatter_texture = ExtResource("2_q0d3f")
 
-[node name="leaf_2" instance=ExtResource("1_8h7xk")]
+[node name="leaf_2" unique_id=433212050 instance=ExtResource("1_8h7xk")]
 
-[node name="leaf_2_low_003" parent="." index="0"]
+[node name="leaf_2_low_003" parent="." index="0" unique_id=2124683456]
 surface_material_override/0 = SubResource("StandardMaterial3D_5q63x")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://wk2e88o58rv3"]
+[gd_scene format=3 uid="uid://wk2e88o58rv3"]
 
 [ext_resource type="Script" uid="uid://dggg4f1klgqjm" path="res://scripts/ui/hud/item_container.gd" id="1_6hcm7"]
 [ext_resource type="Texture2D" uid="uid://b3r3opnb1p8fa" path="res://assets/icons/items/deluxe_cannon.png" id="1_b73rr"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cfp8t5p5fmd6n" path="res://scripts/ui/hud/cooldown.gd" id="3_xtit6"]
 [ext_resource type="StyleBox" uid="uid://cmlg42qir161t" path="res://resources/style_boxes/item_container_border.tres" id="4_5tew8"]
 
-[node name="ItemContainer" type="PanelContainer" node_paths=PackedStringArray("sprite", "cooldown_bar", "selection_panel")]
+[node name="ItemContainer" type="PanelContainer" unique_id=1881658334 node_paths=PackedStringArray("sprite", "cooldown_bar", "selection_panel")]
 clip_children = 2
 offset_right = 40.0
 offset_bottom = 40.0
@@ -16,23 +16,23 @@ sprite = NodePath("Sprite")
 cooldown_bar = NodePath("MarginContainer/CooldownBar")
 selection_panel = NodePath("SelectionPanel")
 
-[node name="Sprite" type="TextureRect" parent="."]
+[node name="Sprite" type="TextureRect" parent="." unique_id=508832708]
 layout_mode = 2
 texture = ExtResource("1_b73rr")
 expand_mode = 4
 stretch_mode = 5
 
-[node name="SelectionPanel" type="Panel" parent="."]
+[node name="SelectionPanel" type="Panel" parent="." unique_id=422205496]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("4_5tew8")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1132126600]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
 
-[node name="CooldownBar" type="ProgressBar" parent="MarginContainer"]
+[node name="CooldownBar" type="ProgressBar" parent="MarginContainer" unique_id=1716688949]
 layout_mode = 2
 size_flags_vertical = 8
 theme_type_variation = &"CooldownBar"

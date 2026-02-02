@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://m5nq2dpts5dw"]
+[gd_scene format=3 uid="uid://m5nq2dpts5dw"]
 
 [ext_resource type="Script" uid="uid://dlqou4rpy4ub7" path="res://scripts/projectiles/torpedo_projectile.gd" id="1_gpsjl"]
 [ext_resource type="PackedScene" uid="uid://w2x61xxk5io7" path="res://scenes/vfx/mortar_splash.tscn" id="2_p2c1b"]
@@ -16,13 +16,23 @@ colors = PackedColorArray(0.339857, 0.620773, 0.970768, 1, 1, 1, 1, 1, 1, 1, 1, 
 gradient = SubResource("Gradient_7ofs4")
 use_hdr = true
 
+[sub_resource type="Curve" id="Curve_gpsjl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_qma8b"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, -3.73515, 0, 0, Vector2(1, -1), -0.754214, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_p2c1b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_jm5q4"]
+curve_x = SubResource("Curve_gpsjl")
 curve_y = SubResource("Curve_qma8b")
+curve_z = SubResource("Curve_p2c1b")
 
 [sub_resource type="Curve" id="Curve_j8rxc"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -94,13 +104,23 @@ colors = PackedColorArray(0.339857, 0.620773, 0.970768, 1, 1, 1, 1, 1, 1, 1, 1, 
 gradient = SubResource("Gradient_gpsjl")
 use_hdr = true
 
+[sub_resource type="Curve" id="Curve_68v62"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_b13w6"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, -3.73515, 0, 0, Vector2(1, -1), -0.754214, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Curve" id="Curve_rkegk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_68v62"]
+curve_x = SubResource("Curve_68v62")
 curve_y = SubResource("Curve_b13w6")
+curve_z = SubResource("Curve_rkegk")
 
 [sub_resource type="Curve" id="Curve_xi0rw"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -147,7 +167,7 @@ turbulence_influence_min = 0.02
 turbulence_influence_max = 0.02
 collision_use_scale = true
 
-[node name="DeluxeTorpedoProjectile" type="CharacterBody3D" node_paths=PackedStringArray("trail_particles")]
+[node name="DeluxeTorpedoProjectile" type="CharacterBody3D" unique_id=81275885 node_paths=PackedStringArray("trail_particles")]
 disable_mode = 1
 collision_layer = 8
 collision_mask = 7
@@ -156,13 +176,13 @@ script = ExtResource("1_gpsjl")
 trail_particles = NodePath("TrailParticles")
 explosion_scene = ExtResource("2_p2c1b")
 
-[node name="Mesh" parent="." instance=ExtResource("3_gpsjl")]
+[node name="Mesh" parent="." unique_id=185068184 instance=ExtResource("3_gpsjl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=86437987]
 shape = SubResource("SphereShape3D_f0ux4")
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=532177276]
 process_mode = 3
 emitting = false
 amount = 100
@@ -171,7 +191,7 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_caqyr")
 draw_pass_1 = SubResource("CylinderMesh_x2we1")
 
-[node name="TrailParticles" type="GPUParticles3D" parent="."]
+[node name="TrailParticles" type="GPUParticles3D" parent="." unique_id=1512246409]
 process_mode = 3
 amount = 200
 lifetime = 0.5

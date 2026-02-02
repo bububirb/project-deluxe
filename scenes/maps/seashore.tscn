@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="13_akfmx"]
 [ext_resource type="PackedScene" uid="uid://c6tiqo714v7ko" path="res://assets/models/environment/trusses/truss_01.blend" id="14_akfmx"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_44hml"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_yey68"]
 resource_local_to_scene = true
 material = ExtResource("3_14jdv")
 size = Vector2(100.5, 100.5)
@@ -39,7 +39,7 @@ directional_shadow_max_distance = 25.0
 directional_shadow_pancake_size = 2.0
 
 [node name="WaterPlane" parent="." index="1" unique_id=1533455447 instance=ExtResource("2_lfotd")]
-mesh = SubResource("PlaneMesh_44hml")
+mesh = SubResource("PlaneMesh_yey68")
 skeleton = NodePath("../Camera")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="2" unique_id=1555685342]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbsw8xclkahwp"]
+[gd_scene format=3 uid="uid://dbsw8xclkahwp"]
 
 [ext_resource type="Script" uid="uid://cl31efc25nw6n" path="res://scripts/vfx/fire.gd" id="1_ykm6b"]
 [ext_resource type="Material" uid="uid://dp2sp21awti0v" path="res://resources/materials/fire_billboard.tres" id="2_kv17e"]
@@ -87,17 +87,17 @@ shader_parameter/quad_texture = ExtResource("4_kv17e")
 [sub_resource type="QuadMesh" id="QuadMesh_jekcy"]
 material = SubResource("ShaderMaterial_ngoti")
 
-[node name="Fire" type="Node3D"]
+[node name="Fire" type="Node3D" unique_id=217393131]
 script = ExtResource("1_ykm6b")
 
-[node name="FireParticles" type="GPUParticles3D" parent="."]
+[node name="FireParticles" type="GPUParticles3D" parent="." unique_id=684192074]
 emitting = false
 amount = 60
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_184s5")
 draw_pass_1 = SubResource("QuadMesh_kv17e")
 
-[node name="EmberPatricles" type="GPUParticles3D" parent="."]
+[node name="EmberPatricles" type="GPUParticles3D" parent="." unique_id=1079668229]
 emitting = false
 amount = 90
 lifetime = 1.5

@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca5nybsqmstis"]
+[gd_scene format=3 uid="uid://ca5nybsqmstis"]
 
 [ext_resource type="StyleBox" uid="uid://baroambfbepd7" path="res://resources/style_boxes/item_container_clipper.tres" id="1_to46r"]
-[ext_resource type="Script" uid="uid://dd667b7tbdsty" path="res://scripts/ui/workshop_slot.gd" id="1_vjfba"]
+[ext_resource type="Script" path="res://scripts/ui/workshop_slot.gd" id="1_vjfba"]
 [ext_resource type="PackedScene" uid="uid://de0r3ldrpsrk8" path="res://scenes/ui/workshop_item.tscn" id="3_a8ky4"]
 
-[node name="WorkshopSlot" type="PanelContainer"]
+[node name="WorkshopSlot" type="PanelContainer" unique_id=957693589]
 custom_minimum_size = Vector2(72, 72)
 offset_right = 8.0
 offset_bottom = 8.0

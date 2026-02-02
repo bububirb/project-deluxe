@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://tyuvmqr8rjaa"]
+[gd_scene format=3 uid="uid://tyuvmqr8rjaa"]
 
 [ext_resource type="Script" uid="uid://cxsemoubxgodv" path="res://scripts/projectiles/cannon_projectile.gd" id="1_7nwfi"]
 [ext_resource type="PackedScene" uid="uid://byh6bg82ldnit" path="res://assets/models/projectiles/deluxe_cannon_projectile_1.blend" id="2_hk32a"]
@@ -128,7 +128,7 @@ turbulence_influence_max = 0.040000003
 [sub_resource type="QuadMesh" id="QuadMesh_fn47g"]
 material = ExtResource("3_b15bm")
 
-[node name="IncendiaryCannonProjectile" type="CharacterBody3D" node_paths=PackedStringArray("trail_particles")]
+[node name="IncendiaryCannonProjectile" type="CharacterBody3D" unique_id=2047169364 node_paths=PackedStringArray("trail_particles")]
 disable_mode = 1
 collision_layer = 8
 collision_mask = 7
@@ -136,12 +136,12 @@ motion_mode = 1
 script = ExtResource("1_7nwfi")
 trail_particles = NodePath("TrailParticles")
 
-[node name="Mesh" parent="." instance=ExtResource("2_hk32a")]
+[node name="Mesh" parent="." unique_id=919148788 instance=ExtResource("2_hk32a")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=903366381]
 shape = SubResource("SphereShape3D_f0ux4")
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=753981531]
 process_mode = 3
 emitting = false
 amount = 500
@@ -152,7 +152,7 @@ explosiveness = 0.7
 process_material = SubResource("ParticleProcessMaterial_080yd")
 draw_pass_1 = SubResource("SphereMesh_gj18m")
 
-[node name="TrailParticles" type="GPUParticles3D" parent="."]
+[node name="TrailParticles" type="GPUParticles3D" parent="." unique_id=598875622]
 amount = 48
 fixed_fps = 60
 trail_lifetime = 0.02

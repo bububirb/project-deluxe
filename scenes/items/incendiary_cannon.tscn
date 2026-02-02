@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://da0vc4tgjij1r"]
+[gd_scene format=3 uid="uid://da0vc4tgjij1r"]
 
 [ext_resource type="PackedScene" uid="uid://ducq6xykonbm3" path="res://assets/models/items/incendiary_cannon.blend" id="1_pg8dx"]
 [ext_resource type="Script" uid="uid://46u6m42id34h" path="res://scripts/items/cannon.gd" id="2_pykdb"]
 [ext_resource type="PackedScene" uid="uid://tyuvmqr8rjaa" path="res://scenes/projectiles/incendiary_cannon_projectile.tscn" id="3_pykdb"]
 
-[node name="IncendiaryCannon" instance=ExtResource("1_pg8dx")]
+[node name="IncendiaryCannon" unique_id=311235707 instance=ExtResource("1_pg8dx")]
 script = ExtResource("2_pykdb")
 projectile = ExtResource("3_pykdb")

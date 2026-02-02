@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ck8nbe2jypmjl"]
+[gd_scene format=3 uid="uid://ck8nbe2jypmjl"]
 
 [ext_resource type="Script" uid="uid://gtqvbac003yy" path="res://scripts/vfx/explosion.gd" id="1_70bji"]
 [ext_resource type="Material" uid="uid://dp2sp21awti0v" path="res://resources/materials/fire_billboard.tres" id="2_b5hw4"]
@@ -84,10 +84,10 @@ shader_parameter/quad_texture = ExtResource("4_h3a20")
 [sub_resource type="QuadMesh" id="QuadMesh_jcd00"]
 material = SubResource("ShaderMaterial_vb1jh")
 
-[node name="Explosion" type="Node3D"]
+[node name="Explosion" type="Node3D" unique_id=1111791763]
 script = ExtResource("1_70bji")
 
-[node name="FireParticles" type="GPUParticles3D" parent="."]
+[node name="FireParticles" type="GPUParticles3D" parent="." unique_id=2100452089]
 unique_name_in_owner = true
 emitting = false
 amount = 60
@@ -97,7 +97,7 @@ explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_8r6e1")
 draw_pass_1 = SubResource("QuadMesh_qqk2b")
 
-[node name="EmberPatricles" type="GPUParticles3D" parent="."]
+[node name="EmberPatricles" type="GPUParticles3D" parent="." unique_id=458007826]
 unique_name_in_owner = true
 emitting = false
 amount = 90

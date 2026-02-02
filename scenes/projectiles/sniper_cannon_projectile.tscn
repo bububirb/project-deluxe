@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gf0xn2ejxknt"]
+[gd_scene format=3 uid="uid://gf0xn2ejxknt"]
 
 [ext_resource type="Script" uid="uid://cxsemoubxgodv" path="res://scripts/projectiles/cannon_projectile.gd" id="1_th4eq"]
 [ext_resource type="PackedScene" uid="uid://daojy1n834ib1" path="res://assets/models/projectiles/sniper_cannon_projectile_1.blend" id="2_he1g2"]
@@ -51,18 +51,18 @@ height = 0.025
 radial_segments = 6
 rings = 2
 
-[node name="SniperCannonProjectile" type="CharacterBody3D"]
+[node name="SniperCannonProjectile" type="CharacterBody3D" unique_id=1741078555]
 collision_layer = 8
 collision_mask = 7
 motion_mode = 1
 script = ExtResource("1_th4eq")
 
-[node name="Mesh" parent="." instance=ExtResource("2_he1g2")]
+[node name="Mesh" parent="." unique_id=1727618671 instance=ExtResource("2_he1g2")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1846511457]
 shape = SubResource("SphereShape3D_f0ux4")
 
-[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+[node name="ExplosionParticles" type="GPUParticles3D" parent="." unique_id=943327763]
 process_mode = 3
 emitting = false
 amount = 50

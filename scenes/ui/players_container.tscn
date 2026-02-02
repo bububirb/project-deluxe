@@ -1,22 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0b1rht2r8mrb"]
+[gd_scene format=3 uid="uid://b0b1rht2r8mrb"]
 
 [ext_resource type="Script" uid="uid://be8bstb8wgxyf" path="res://scripts/ui/players_container.gd" id="1_cbpqe"]
 [ext_resource type="PackedScene" uid="uid://du2l1v6l8lcpe" path="res://scenes/ui/item_sprite.tscn" id="2_mcqt8"]
 [ext_resource type="PackedScene" uid="uid://c8hutpfshqp1p" path="res://scenes/ui/loading_label.tscn" id="2_pv0cj"]
 [ext_resource type="PackedScene" uid="uid://dnrilwn0w7w8f" path="res://scenes/ui/ship_sprite.tscn" id="3_cmkt4"]
 
-[node name="PlayersContainer" type="VBoxContainer"]
+[node name="PlayersContainer" type="VBoxContainer" unique_id=1097891540]
 size_flags_vertical = 3
 script = ExtResource("1_cbpqe")
 item_sprite = ExtResource("2_mcqt8")
 ship_sprite = ExtResource("3_cmkt4")
 
-[node name="PlayersLabel" type="Label" parent="."]
+[node name="PlayersLabel" type="Label" parent="." unique_id=47869065]
 layout_mode = 2
 text = "Players:"
 
-[node name="PlayersListContainer" type="VBoxContainer" parent="."]
+[node name="PlayersListContainer" type="VBoxContainer" parent="." unique_id=774592000]
 layout_mode = 2
 
-[node name="LoadingLabel" parent="." instance=ExtResource("2_pv0cj")]
+[node name="LoadingLabel" parent="." unique_id=170981757 instance=ExtResource("2_pv0cj")]
 layout_mode = 2

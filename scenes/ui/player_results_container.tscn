@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtp3od3ssqppr"]
+[gd_scene format=3 uid="uid://dtp3od3ssqppr"]
 
 [ext_resource type="Script" uid="uid://bwlb120nywvie" path="res://scripts/ui/player_results_container.gd" id="1_mv4s6"]
 
@@ -18,23 +18,23 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="PlayerResultsContainer" type="PanelContainer" node_paths=PackedStringArray("name_label", "damage_label")]
+[node name="PlayerResultsContainer" type="PanelContainer" unique_id=1053684515 node_paths=PackedStringArray("name_label", "damage_label")]
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_6vp7x")
 script = ExtResource("1_mv4s6")
 name_label = NodePath("StatsContainer/NameLabel")
 damage_label = NodePath("StatsContainer/DamageLabel")
 
-[node name="StatsContainer" type="HBoxContainer" parent="."]
+[node name="StatsContainer" type="HBoxContainer" parent="." unique_id=2102789129]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="StatsContainer"]
+[node name="NameLabel" type="Label" parent="StatsContainer" unique_id=87169116]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Name"
 horizontal_alignment = 1
 
-[node name="DamageLabel" type="Label" parent="StatsContainer"]
+[node name="DamageLabel" type="Label" parent="StatsContainer" unique_id=1189916357]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"

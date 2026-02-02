@@ -1,30 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnnr45r27veyv"]
+[gd_scene format=3 uid="uid://cnnr45r27veyv"]
 
 [ext_resource type="Script" uid="uid://co5366jb4vtt4" path="res://scripts/player.gd" id="1_p85j6"]
 [ext_resource type="PackedScene" uid="uid://2opy76fxy3vp" path="res://scenes/ships/shooter.tscn" id="2_5exrk"]
 [ext_resource type="Script" uid="uid://b3jrhrmk6hphs" path="res://scripts/camera_pivot.gd" id="3_ux15x"]
 
-[node name="Player" type="Node3D"]
+[node name="Player" type="Node3D" unique_id=431769149]
 script = ExtResource("1_p85j6")
 
-[node name="Ship" parent="." instance=ExtResource("2_5exrk")]
+[node name="Ship" parent="." unique_id=363580188 instance=ExtResource("2_5exrk")]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
 torque = 5.0
 max_turn_speed = 1.0
 nitro_force = 10.0
 
-[node name="CameraPivot" type="Node3D" parent="Ship" node_paths=PackedStringArray("target")]
+[node name="CameraPivot" type="Node3D" parent="Ship" unique_id=683130026]
 top_level = true
 script = ExtResource("3_ux15x")
-target = NodePath("..")
 
-[node name="CameraPivotX" type="Node3D" parent="Ship/CameraPivot"]
+[node name="CameraPivotX" type="Node3D" parent="Ship/CameraPivot" unique_id=678713829]
 
-[node name="Camera" type="Camera3D" parent="Ship/CameraPivot/CameraPivotX"]
+[node name="Camera" type="Camera3D" parent="Ship/CameraPivot/CameraPivotX" unique_id=1571166108]
 transform = Transform3D(-1, -7.6194e-09, -8.77555e-08, -1.52388e-08, 0.996195, 0.0871557, 8.67575e-08, 0.0871557, -0.996195, 4.37114e-08, 0.7, -1.5)
 fov = 90.0
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="Ship/CameraPivot/CameraPivotX/Camera"]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="Ship/CameraPivot/CameraPivotX/Camera" unique_id=1959491114]
 visible = false
 update_mode = 1
 size = Vector3(25, 12, 25)

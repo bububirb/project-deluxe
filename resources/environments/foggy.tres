@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=8 format=3 uid="uid://cbffpe2jqrgoh"]
+[gd_resource type="Environment" format=3 uid="uid://cbffpe2jqrgoh"]
 
 [ext_resource type="CompressedTexture3D" uid="uid://feierbyipkx0" path="res://assets/textures/vfx/3d_lut.png" id="1_y8m8j"]
 [ext_resource type="Texture2D" uid="uid://dsqog8iknjww0" path="res://assets/textures/hdri/stylized_clouds.hdr" id="2_5bx3i"]
@@ -33,7 +33,6 @@ sdfgi_min_cell_size = 0.5
 glow_enabled = true
 glow_normalized = true
 glow_bloom = 0.2
-glow_blend_mode = 1
 glow_hdr_threshold = 2.0
 glow_hdr_luminance_cap = 4.0
 glow_map = SubResource("NoiseTexture2D_hpwb6")
