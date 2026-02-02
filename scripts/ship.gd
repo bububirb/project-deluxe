@@ -13,8 +13,6 @@ const MAX_SPEED_DRAG: float = 4.0
 const AIMING_SENSITIVITY: float = 0.001
 const AIMING_RANGE: float = 10.0 # WARN: Deprecated
 
-const CAMERA_HEIGHT: float = 2.0
-
 @export var linear_loss: float = 0.75
 @export var acceleration: float = 1.0
 @export var max_speed: float = 2.0
@@ -89,10 +87,7 @@ var active_item: Node:
 @onready var right: Node3D = $Bounds/Right
 
 func _ready() -> void:
-	var camera_node: Node3D = camera_scene.instantiate()
-	add_child(camera_node)
-	camera_node.position.y = CAMERA_HEIGHT
-
+	add_child(camera_scene.instantiate())
 	await get_tree().process_frame
 	if not is_multiplayer_authority(): return
 	select_item(0)
