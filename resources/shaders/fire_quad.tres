@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=17 format=3 uid="uid://c7cao58d7iwsl"]
+[gd_resource type="VisualShader" format=3 uid="uid://c7cao58d7iwsl"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_6r0k5"]
 default_input_values = [0, Vector2(0, 1), 1, Vector2(0, 0)]
@@ -63,103 +63,6 @@ billboard_type = 3
 keep_scale = true
 
 [resource]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
-
-uniform sampler2D quad_texture : source_color;
-uniform sampler2D dissolve_texture : source_color;
-
-
-
-void vertex() {
-	mat4 n_out2p0;
-// GetBillboardMatrix:2
-	{
-		mat4 __wm = mat4(normalize(INV_VIEW_MATRIX[0]), normalize(INV_VIEW_MATRIX[1]), normalize(INV_VIEW_MATRIX[2]), MODEL_MATRIX[3]);
-		__wm = __wm * mat4(vec4(cos(INSTANCE_CUSTOM.x), -sin(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(sin(INSTANCE_CUSTOM.x), cos(INSTANCE_CUSTOM.x), 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 0.0, 1.0));
-		__wm = __wm * mat4(vec4(length(MODEL_MATRIX[0].xyz), 0.0, 0.0, 0.0), vec4(0.0, length(MODEL_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, length(MODEL_MATRIX[2].xyz), 0.0), vec4(0.0, 0.0, 0.0, 1.0));
-		n_out2p0 = VIEW_MATRIX * __wm;
-	}
-
-
-// Output:0
-	MODELVIEW_MATRIX = n_out2p0;
-
-
-}
-
-void fragment() {
-	vec4 n_out3p0;
-// Texture2D:3
-	n_out3p0 = texture(quad_texture, UV);
-
-
-// Input:11
-	float n_out11p0 = TIME;
-
-
-// VectorOp:10
-	vec2 n_in10p0 = vec2(0.00000, 1.00000);
-	vec2 n_out10p0 = n_in10p0 * vec2(n_out11p0);
-
-
-// UVFunc:9
-	vec2 n_in9p1 = vec2(1.00000, 1.00000);
-	vec2 n_out9p0 = n_out10p0 * n_in9p1 + UV;
-
-
-	vec4 n_out8p0;
-// Texture2D:8
-	n_out8p0 = texture(dissolve_texture, n_out9p0);
-
-
-// Input:14
-	vec4 n_out14p0 = COLOR;
-	float n_out14p4 = n_out14p0.a;
-
-
-// FloatOp:15
-	float n_in15p1 = 1.00000;
-	float n_out15p0 = n_out14p4 - n_in15p1;
-
-
-// Clamp:16
-	float n_in16p1 = 0.00000;
-	float n_in16p2 = 1.00000;
-	float n_out16p0 = clamp(n_out15p0, n_in16p1, n_in16p2);
-
-
-// VectorCompose:13
-	float n_in13p0 = 1.00000;
-	float n_in13p1 = 1.00000;
-	float n_in13p2 = 1.00000;
-	vec4 n_out13p0 = vec4(n_in13p0, n_in13p1, n_in13p2, n_out16p0);
-
-
-// VectorOp:12
-	vec4 n_out12p0 = n_out8p0 + n_out13p0;
-
-
-// VectorOp:7
-	vec4 n_out7p0 = n_out3p0 * n_out12p0;
-
-
-// Input:4
-	vec4 n_out4p0 = COLOR;
-
-
-// VectorOp:5
-	vec4 n_out5p0 = n_out7p0 * n_out4p0;
-	float n_out5p4 = n_out5p0.a;
-
-
-// Output:0
-	ALBEDO = vec3(n_out5p0.xyz);
-	ALPHA = n_out5p4;
-
-
-}
-"
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_6r0k5")
 nodes/vertex/2/position = Vector2(120, 480)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)

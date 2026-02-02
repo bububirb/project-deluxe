@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://sn8urntf2l5o"]
+[gd_resource type="VisualShader" format=3 uid="uid://sn8urntf2l5o"]
 
 [ext_resource type="Texture2D" uid="uid://ccbr2ato45cxm" path="res://assets/textures/vfx/mortar_splash_mask_stylized.png" id="1_64yhr"]
 [ext_resource type="Texture2D" uid="uid://dp183ynead0j5" path="res://assets/textures/vfx/mortar_splash_normal.png" id="2_6ixo3"]
@@ -20,44 +20,6 @@ input_name = "uv"
 texture = ExtResource("2_6ixo3")
 
 [resource]
-code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_toon, specular_disabled, depth_prepass_alpha;
-
-uniform sampler2D tex_frg_2;
-uniform float Mask;
-uniform sampler2D tex_frg_6;
-
-
-
-void fragment() {
-// Input:5
-	vec2 n_out5p0 = UV;
-
-
-// Texture2D:2
-	vec4 n_out2p0 = texture(tex_frg_2, n_out5p0);
-	float n_out2p1 = n_out2p0.r;
-
-
-// FloatParameter:4
-	float n_out4p0 = Mask;
-
-
-// Compare:3
-	bool n_out3p0 = n_out2p1 > n_out4p0;
-
-
-// Texture2D:6
-	vec4 n_out6p0 = texture(tex_frg_6, UV);
-
-
-// Output:0
-	ALPHA = (n_out3p0 ? 1.0 : 0.0);
-	NORMAL = vec3(n_out6p0.xyz);
-
-
-}
-"
 modes/cull = 2
 modes/diffuse = 3
 modes/specular = 2

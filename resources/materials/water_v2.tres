@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://byhikx0nfm4j3"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://byhikx0nfm4j3"]
 
 [ext_resource type="Shader" uid="uid://bb55ix0222hxl" path="res://resources/shaders/water_mobile.gdshader" id="1_ptvag"]
 [ext_resource type="Texture2D" uid="uid://c28xyd1kxxrig" path="res://resources/noise_texture/wave.tres" id="2_olc4e"]

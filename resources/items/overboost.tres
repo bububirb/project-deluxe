@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=7 format=3 uid="uid://dqxg1s4rp1abq"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dqxg1s4rp1abq"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_ynshp"]
 [ext_resource type="Texture2D" uid="uid://xyde4kdv4ija" path="res://assets/icons/items/overboost.png" id="2_02fe2"]

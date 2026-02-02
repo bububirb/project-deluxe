@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://bvwldcsm3u85v"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bvwldcsm3u85v"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_fta6j"]
 [ext_resource type="Texture2D" uid="uid://dta04dieqyslh" path="res://assets/icons/items/plasma_beam.png" id="2_2pn12"]

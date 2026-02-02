@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://bsvevtyr7avrk"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bsvevtyr7avrk"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_rb6i1"]
 [ext_resource type="Texture2D" uid="uid://c1f8vwusn3ge0" path="res://assets/icons/items/deluxe_torpedo.png" id="2_pksaw"]

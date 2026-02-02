@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=11 format=3 uid="uid://dl1kd0olljc5g"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dl1kd0olljc5g"]
 
 [ext_resource type="Script" uid="uid://cijhu0qp0nqpy" path="res://scripts/resources/item.gd" id="1_sb4d0"]
 [ext_resource type="Texture2D" uid="uid://do17n7gul50r7" path="res://assets/icons/items/deluxe_mortar.png" id="2_8u5c1"]
