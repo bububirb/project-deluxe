@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6uch6bolwhby"]
+
+[ext_resource type="Script" uid="uid://dg4hva8431nyt" path="res://scripts/globals/audio_manager.gd" id="1_kic43"]
+[ext_resource type="AudioStream" uid="uid://dqiqga474thyh" path="res://assets/audio/music/seafront_station.mp3" id="2_djfrx"]
+
+[node name="AudioManager" type="Node" node_paths=PackedStringArray("main")]
+script = ExtResource("1_kic43")
+main = NodePath("Main")
+
+[node name="Main" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_djfrx")
