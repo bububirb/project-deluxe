@@ -20,6 +20,7 @@ func start_game():
 		var peer_id: int = MultiplayerLobby.players.keys()[i]
 		add_player(peer_id, i)
 	BuoyancySolver.reset_wave_time.rpc()
+	AudioManager.main.play()
 	pass
 
 func instantiate_map() -> void:

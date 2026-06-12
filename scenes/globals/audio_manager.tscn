@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6uch6bolwhby"]
+[gd_scene format=3 uid="uid://b6uch6bolwhby"]
 
 [ext_resource type="Script" uid="uid://dg4hva8431nyt" path="res://scripts/globals/audio_manager.gd" id="1_kic43"]
 [ext_resource type="AudioStream" uid="uid://dqiqga474thyh" path="res://assets/audio/music/seafront_station.mp3" id="2_djfrx"]
+[ext_resource type="AudioStream" uid="uid://feeq0wixii6e" path="res://assets/audio/music/game_over.wav" id="3_prhr6"]
 
-[node name="AudioManager" type="Node" node_paths=PackedStringArray("main")]
+[node name="AudioManager" type="Node" unique_id=550673057 node_paths=PackedStringArray("main", "game_over")]
 script = ExtResource("1_kic43")
 main = NodePath("Main")
+game_over = NodePath("GameOver")
 
-[node name="Main" type="AudioStreamPlayer" parent="."]
+[node name="Main" type="AudioStreamPlayer" parent="." unique_id=904647277]
 stream = ExtResource("2_djfrx")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="." unique_id=92551556]
+stream = ExtResource("3_prhr6")

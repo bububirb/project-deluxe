@@ -41,10 +41,6 @@ func _ready() -> void:
 	address_input.text = IO.config.join_address
 	port_input.text = str(IO.config.port)
 
-	# Audio
-	if not AudioManager.main.playing:
-		AudioManager.main.play()
-
 func _on_host_button_pressed() -> void:
 	multiplayer.multiplayer_peer = null
 	switch_to_game_room()
