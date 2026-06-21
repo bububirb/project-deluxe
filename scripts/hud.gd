@@ -74,6 +74,8 @@ func set_hp(value: int, crit: bool = false, icon_path: String = "", id: int = -1
 
 func game_over() -> void:
 	if is_multiplayer_authority():
+		AudioManager.main.stop()
+		AudioManager.game_over.play()
 		game_over_panel.show()
 		DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_VISIBLE)
 
