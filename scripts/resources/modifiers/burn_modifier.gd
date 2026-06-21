@@ -6,8 +6,8 @@ const BURN_ICON_PATH: String = "res://assets/icons/modifiers/burn.svg"
 var burn_counter: float = 0.0
 var player_id: int = -1
 
-@export_range(0, 500, 1) var damage: int = 50
-@export_range(0.1, 5.0, 0.05) var tick_duration: float = 1.0
+@export_range(0.0, 5.0, 0.05) var damage: float
+@export_range(0.1, 5.0, 0.05) var tick_duration: float
 
 func _init() -> void:
 	icon_path = BURN_ICON_PATH
