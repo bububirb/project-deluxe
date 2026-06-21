@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://djqsi8li1d6wr"
 
 [sub_resource type="Resource" id="Resource_r5e17"]
 script = ExtResource("5_qdahy")
-attack = 2000.0
+attack = 2.0
 cooldown = 25.0
 radius = 5.0
 ballistics = SubResource("Resource_hndbo")

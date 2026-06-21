@@ -210,7 +210,7 @@ func shoot(player_id: int, item_index: int) -> void:
 	projectile_stats.player_id = player_id
 	
 	projectile_stats.item_class = item.item_class
-	projectile_stats.attack = item.stats.attack
+	projectile_stats.attack = item.stats.attack * ship.attack
 	projectile_stats.radius = item.stats.radius
 	projectile_stats.modifiers = item.stats.modifiers_on_hit.duplicate()
 	projectile_stats.tags = item.stats.tags.duplicate()

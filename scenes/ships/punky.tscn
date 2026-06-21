@@ -19,6 +19,9 @@ max_speed = 2.5
 motion_anisotropy = 6.0
 torque = 3.5
 max_turn_speed = 0.9
+max_hp = 9000
+attack = 900
+defense = 450
 
 [node name="PunkyMk2" parent="." index="0" unique_id=1322722839 instance=ExtResource("2_jj3ad")]
 
@@ -37,31 +40,31 @@ shape = SubResource("ConvexPolygonShape3D_ifgow")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1347495900]
 shape = SubResource("ConvexPolygonShape3D_nq3iv")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="CollisionDetector" index="0" unique_id=198013870]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="CollisionDetector" parent_id_path=PackedInt32Array(1686911524) index="0" unique_id=198013870]
 shape = SubResource("ConvexPolygonShape3D_ifgow")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="CollisionDetector" index="1" unique_id=1199036578]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="CollisionDetector" parent_id_path=PackedInt32Array(1686911524) index="1" unique_id=1199036578]
 shape = SubResource("ConvexPolygonShape3D_nq3iv")
 
-[node name="Back" parent="Bounds" index="1"]
+[node name="Back" parent="Bounds" parent_id_path=PackedInt32Array(1377181257) index="1" unique_id=2124818754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.65)
 
-[node name="Left" parent="Bounds" index="2"]
+[node name="Left" parent="Bounds" parent_id_path=PackedInt32Array(1377181257) index="2" unique_id=648618738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0, 0)
 
-[node name="Right" parent="Bounds" index="3"]
+[node name="Right" parent="Bounds" parent_id_path=PackedInt32Array(1377181257) index="3" unique_id=1170823360]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0, 0)
 
-[node name="NitroParticles" parent="." index="6"]
+[node name="NitroParticles" parent="." index="6" unique_id=1819723312]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.399345, -0.875021)
 
-[node name="ProjectilePath" parent="." index="7"]
+[node name="ProjectilePath" parent="." index="7" unique_id=1972784105]
 mesh = SubResource("ImmediateMesh_1fld8")
 
-[node name="Deck" parent="." index="11" node_paths=PackedStringArray("target")]
+[node name="Deck" parent="." index="11" unique_id=97869627 node_paths=PackedStringArray("target")]
 target = NodePath("../Turret/TurretBase/ItemInstancer")
 
-[node name="Burn" parent="." index="14"]
+[node name="Burn" parent="." index="14" unique_id=242952426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47639537, -0.7589481)
 frame_progress = 0.0
 
