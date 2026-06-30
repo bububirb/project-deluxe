@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dppd1u027uvlb"
-path="res://.godot/imported/leaf_2.blend-68214a9250f10b074b1f7ce40e904649.scn"
+path="res://.godot/imported/leaf_02.blend-4ae0cffa649d9866ddac468c9cd84957.scn"
 
 [deps]
 
-source_file="res://assets/models/environment/foliage/leaf_2/leaf_2.blend"
-dest_files=["res://.godot/imported/leaf_2.blend-68214a9250f10b074b1f7ce40e904649.scn"]
+source_file="res://assets/models/environment/foliage/leaves/leaf_02.blend"
+dest_files=["res://.godot/imported/leaf_02.blend-4ae0cffa649d9866ddac468c9cd84957.scn"]
 
 [params]
 

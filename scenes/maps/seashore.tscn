@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://boa7j7fs46aon"]
 
-[ext_resource type="PackedScene" uid="uid://nbaoq5vtg21y" path="res://assets/models/maps/seashore.blend" id="1_n6530"]
+[ext_resource type="PackedScene" uid="uid://c8ulknttpq2q3" path="res://assets/models/maps/seashore.gltf" id="1_n6530"]
 [ext_resource type="PackedScene" uid="uid://dbt5pfn1trdyj" path="res://scenes/drafts/water_plane.tscn" id="2_lfotd"]
 [ext_resource type="Material" uid="uid://byhikx0nfm4j3" path="res://resources/materials/water_v2.tres" id="3_14jdv"]
 [ext_resource type="Environment" uid="uid://b3lp3p2wcqatv" path="res://resources/environments/clear.tres" id="4_vrk46"]
-[ext_resource type="PackedScene" uid="uid://bii8omwy454pj" path="res://assets/models/environment/beams/beam_02.blend" id="5_cktc0"]
 [ext_resource type="VoxelGIData" uid="uid://ds35s7rwuyan" path="res://resources/voxel_gi/seashore.VoxelGI_data.res" id="5_yey68"]
-[ext_resource type="PackedScene" uid="uid://d4cun5g5hm5q4" path="res://assets/models/environment/artificial/crunchy_oil/CrunchyOil.blend" id="6_44hml"]
-[ext_resource type="PackedScene" uid="uid://bnic2wbf4t5wm" path="res://assets/models/environment/gears/gear_02.blend" id="6_who46"]
-[ext_resource type="PackedScene" uid="uid://dvwvucnquhyyr" path="res://assets/models/environment/gears/axle_01.blend" id="7_akfmx"]
-[ext_resource type="PackedScene" uid="uid://bpayfjnvf51py" path="res://assets/models/environment/gears/gear_01.blend" id="8_kcbq0"]
+[ext_resource type="PackedScene" uid="uid://ck0ghohux51ih" path="res://assets/models/environment/artificial/crunchy_oil/crunchy_oil.gltf" id="7_yey68"]
+[ext_resource type="PackedScene" uid="uid://dyc4hxcy41ic6" path="res://assets/models/environment/beams/beam_02.gltf" id="8_yey68"]
 [ext_resource type="Script" uid="uid://c3bkiogk7v6jo" path="res://scripts/environment/gear.gd" id="9_kcbq0"]
-[ext_resource type="PackedScene" uid="uid://djd5tq1f6au4l" path="res://assets/models/environment/pipes/pipe_01.blend" id="9_lfotd"]
-[ext_resource type="PackedScene" uid="uid://nsdtna52qgco" path="res://assets/models/environment/artificial/steampunk_barrel/steampunk_barrel.blend" id="10_14jdv"]
+[ext_resource type="PackedScene" uid="uid://2qqam75bgf4p" path="res://assets/models/environment/gears/axle_01.gltf" id="9_yey68"]
+[ext_resource type="PackedScene" uid="uid://c1xhdy0d3i81a" path="res://assets/models/environment/gears/gear_02.gltf" id="10_yey68"]
 [ext_resource type="PackedScene" uid="uid://bkqtx7plc5l58" path="res://assets/models/environment/tunnels/tunnel_01.blend" id="11_vrk46"]
+[ext_resource type="PackedScene" uid="uid://llkn2rk4s46i" path="res://assets/models/environment/gears/gear_01.gltf" id="11_yey68"]
 [ext_resource type="PackedScene" uid="uid://bgfx17at0rpcs" path="res://assets/models/environment/beams/beam_01.blend" id="12_who46"]
-[ext_resource type="PackedScene" uid="uid://46rg4xsnpu6b" path="res://assets/models/environment/rocks/rock_1/rock_1.blend" id="13_akfmx"]
-[ext_resource type="PackedScene" uid="uid://c6tiqo714v7ko" path="res://assets/models/environment/trusses/truss_01.blend" id="14_akfmx"]
+[ext_resource type="PackedScene" uid="uid://du1got8bytcht" path="res://assets/models/environment/pipes/pipe_01.gltf" id="12_yey68"]
+[ext_resource type="PackedScene" uid="uid://b88k3x1e1wede" path="res://assets/models/environment/artificial/steampunk_barrel/steampunk_barrel.gltf" id="13_yey68"]
+[ext_resource type="PackedScene" uid="uid://bedix0h2yfh5k" path="res://assets/models/environment/rocks/rock_01/rock_01.gltf" id="16_yey68"]
+[ext_resource type="PackedScene" uid="uid://di44uic8r2eu4" path="res://assets/models/environment/trusses/truss_01.gltf" id="17_yey68"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yey68"]
 resource_local_to_scene = true
@@ -51,58 +51,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -6)
 size = Vector3(30, 15, 28)
 data = ExtResource("5_yey68")
 
-[node name="Camera" parent="." index="4"]
-transform = Transform3D(0.9968966, 0.0070981914, 0.07840143, 3.9526494e-05, 0.99588126, -0.09066613, -0.07872213, 0.09038788, 0.99279, 0.34420243, 1.8054763, 10.379561)
-
-[node name="Gear_003" parent="." index="9"]
+[node name="Gear_003" parent="." index="8" unique_id=1438621280]
 transform = Transform3D(0.65605897, 0, 0.75470966, 0, 1, 0, -0.75470966, 0, 0.65605897, -8.4, 6.5301266, -0.46271348)
 gi_mode = 2
 script = ExtResource("9_kcbq0")
 speed = 0.133
 
-[node name="CrunchyOil" parent="Gear_003" index="0" unique_id=817332052 instance=ExtResource("6_44hml")]
-transform = Transform3D(-1.570267, 0, 4.0318933, 0, 4.326879, 0, -4.0318933, 0, -1.570267, 0, 1.6113262, 0)
+[node name="crunchy_oil" parent="Gear_003" index="0" unique_id=590829314 instance=ExtResource("7_yey68")]
+transform = Transform3D(-1.5702672, 0, 4.0318937, 0, 4.326879, 0, -4.0318937, 0, -1.5702672, 0, 1.6113262, 0)
 
-[node name="Gear_005" parent="." index="12"]
+[node name="Gear_005" parent="." index="11" unique_id=1494221776]
 transform = Transform3D(0.06975663, 0, -0.997564, 0, 1, 0, 0.997564, 0, 0.06975663, 4.964171, 4.057308, -8.708902)
 gi_mode = 2
 script = ExtResource("9_kcbq0")
 speed = 0.133
 
-[node name="beam_02" parent="." index="17" unique_id=652002079 instance=ExtResource("5_cktc0")]
+[node name="beam_02" parent="." index="17" unique_id=194617192 instance=ExtResource("8_yey68")]
 transform = Transform3D(0.8109597, 0, 0.5851021, 0, 1, 0, -0.5851021, 0, 0.8109597, 2.3693733, 9.284319, -4.130764)
 
-[node name="beam_03" parent="." index="18" unique_id=1357611681 instance=ExtResource("5_cktc0")]
+[node name="beam_03" parent="." index="18" unique_id=861455676 instance=ExtResource("8_yey68")]
 transform = Transform3D(0.8109597, 0, 0.5851021, 0, 1, 0, -0.5851021, 0, 0.8109597, 4.765861, 9.284319, -0.28572035)
 
-[node name="axle_02" parent="." index="21" unique_id=521899384 instance=ExtResource("7_akfmx")]
+[node name="axle_01" parent="." index="21" unique_id=816133611 instance=ExtResource("9_yey68")]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -5.4, 4.330127, -0.46271348)
+
+[node name="gear_02" parent="axle_01" index="1" unique_id=191215568 instance=ExtResource("10_yey68")]
+transform = Transform3D(0.7933532, -3.366343e-07, 0.60876137, 2.682209e-07, 0.9999999, 2.0861626e-07, -0.60876137, 0, 0.7933532, 0, 0, 0)
+script = ExtResource("9_kcbq0")
+speed = -0.2
+
+[node name="axle_02" parent="." index="22" unique_id=261990622 instance=ExtResource("9_yey68")]
 transform = Transform3D(5.9604645e-08, -0.70710677, -0.70710677, -0.99999994, 5.9604645e-08, 0, 0, 0.70710677, -0.7071067, 2.8428504, 1.8573083, -6.5875816)
 script = ExtResource("9_kcbq0")
 speed = -0.2
 
-[node name="gear_03" parent="axle_02" index="1" unique_id=641775478 instance=ExtResource("6_who46")]
-transform = Transform3D(0.7933533, -3.3663434e-07, 0.6087615, 2.682209e-07, 1, 2.0343012e-07, -0.6087615, 1.8905837e-09, 0.7933533, 0, 0, 0)
+[node name="gear_02" parent="axle_02" index="1" unique_id=1844694273 instance=ExtResource("10_yey68")]
+transform = Transform3D(0.7933532, -3.366343e-07, 0.60876137, 2.682209e-07, 0.9999999, 2.0861626e-07, -0.60876137, 0, 0.7933532, 0, 0, 0)
 
-[node name="axle_01" parent="." index="22" unique_id=142810710 instance=ExtResource("7_akfmx")]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -5.4, 4.330127, -0.46271348)
+[node name="axle_03" parent="." index="23" unique_id=743116677 instance=ExtResource("9_yey68")]
+transform = Transform3D(-1.2906753e-07, 2.9527202, 0, -2.9527204, -1.2906752e-07, 0, 1.4210855e-14, 0, 2.9527202, -7.2055845, 2.3841858e-07, 2.0369987)
 
-[node name="gear_02" parent="axle_01" index="1" unique_id=1557462961 instance=ExtResource("6_who46")]
-transform = Transform3D(0.7933534, 1.1920929e-07, 0.60876155, -2.3841858e-07, 1.0000001, 8.940697e-08, -0.60876155, -1.4901161e-07, 0.7933533, 0, 0, 0)
-script = ExtResource("9_kcbq0")
-speed = -0.2
+[node name="gear_01" parent="axle_03" index="1" unique_id=1005916857 instance=ExtResource("11_yey68")]
+transform = Transform3D(1.0160121, -3.5527137e-15, 0, 3.5527137e-15, 1.0160122, 0, -4.8898636e-15, -1.7098504e-29, 1.0160122, 5.4015942e-08, 0.6114986, 4.172325e-07)
 
-[node name="axle_03" parent="." index="23" unique_id=949467741 instance=ExtResource("7_akfmx")]
-transform = Transform3D(-1.2906753e-07, 2.9527206, 0, -2.9527206, -1.2906753e-07, 0, 0, 0, 2.9527206, -7.2055855, 6.3948846e-14, 2.037)
-script = ExtResource("9_kcbq0")
-speed = 0.133
-
-[node name="gear_01" parent="axle_03" index="1" unique_id=689723921 instance=ExtResource("8_kcbq0")]
-transform = Transform3D(1.0160121, -3.5527137e-15, 0, 3.5527137e-15, 1.0160121, 0, 0, 0, 1.0160121, -2.6729452e-08, 0.6114991, 0)
-
-[node name="pipe_01" parent="." index="24" unique_id=1849932258 instance=ExtResource("9_lfotd")]
+[node name="pipe_01" parent="." index="24" unique_id=1106407497 instance=ExtResource("12_yey68")]
 transform = Transform3D(-0.24286988, 0, -1.1194396, 0, 1.1454828, 0, 1.1194396, 0, -0.24286988, -11.345253, 0.8798361, -14.429404)
 
-[node name="steampunk_barrel" parent="." index="25" unique_id=1107595011 instance=ExtResource("10_14jdv")]
+[node name="steampunk_barrel" parent="." index="25" unique_id=1893982731 instance=ExtResource("13_yey68")]
 transform = Transform3D(2.1590247, 0, 0, 0, 2.1590247, 0, 0, 0, 2.1590247, 4.7390013, 4.9769993, -15.131275)
 
 [node name="tunnel_01" parent="." index="26" unique_id=131450408 instance=ExtResource("11_vrk46")]
@@ -111,11 +106,8 @@ transform = Transform3D(-0.029367546, 0, -0.3275716, 0, 0.3288854, 0, 0.3275716,
 [node name="beam_01" parent="." index="27" unique_id=1602001107 instance=ExtResource("12_who46")]
 transform = Transform3D(0.0370882, 0.18673708, 1.5175511, -0.0045624003, 1.518004, -0.18668136, -1.5289903, 4.656662e-10, 0.037367772, -12.211812, 4.1373067, -4.51057)
 
-[node name="rock_1" parent="." index="28" unique_id=53655037 instance=ExtResource("13_akfmx")]
+[node name="rock_01" parent="." index="28" unique_id=953815104 instance=ExtResource("16_yey68")]
 transform = Transform3D(1.9987892, 0.003959021, -0.97079736, -0.02958649, 2.221274, -0.0518575, 0.9703545, 0.059572525, 1.9981204, -17.567934, -9.536743e-07, -5.0475736)
 
-[node name="truss_01" parent="." index="31" unique_id=1267303723 instance=ExtResource("14_akfmx")]
+[node name="truss_01" parent="." index="30" unique_id=1526761536 instance=ExtResource("17_yey68")]
 transform = Transform3D(0.91913545, 0, -0.39394194, 0, 1, 0, 0.39394194, 0, 0.91913545, 5.1782265, 11.827834, -10.16411)
-
-[node name="AnimationPlayer" parent="." index="32"]
-autoplay = &"CameraAction"

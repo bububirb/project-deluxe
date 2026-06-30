@@ -9,11 +9,5 @@ height = 1.1
 [node name="barrel" unique_id=876174318 instance=ExtResource("1_g8l0r")]
 script = ExtResource("2_fbha4")
 
-[node name="barrel_low" parent="." index="0" unique_id=1558808590]
-gi_mode = 2
-
-[node name="nozzle_low" parent="barrel_low" index="0" unique_id=1646461503]
-gi_mode = 2
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=856725015]
 shape = SubResource("CylinderShape3D_g8l0r")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://co63ibxk0fpmm"
-path="res://.godot/imported/leaf_1.blend-bfd8286017ce806a9db1f09a2001f469.scn"
+uid="uid://w7hugp8o4xog"
+path="res://.godot/imported/rock_01.blend-ea95a77a350591862a84332324a42c5c.scn"
 
 [deps]
 
-source_file="res://assets/models/environment/foliage/leaf_1/leaf_1.blend"
-dest_files=["res://.godot/imported/leaf_1.blend-bfd8286017ce806a9db1f09a2001f469.scn"]
+source_file="res://assets/models/environment/rocks/rock_01/rock_01.blend"
+dest_files=["res://.godot/imported/rock_01.blend-ea95a77a350591862a84332324a42c5c.scn"]
 
 [params]
 

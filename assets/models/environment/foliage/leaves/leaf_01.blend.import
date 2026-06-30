@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://46rg4xsnpu6b"
-path="res://.godot/imported/rock_1.blend-66526a5eac64b65eba7cc925653d2f2e.scn"
+uid="uid://co63ibxk0fpmm"
+path="res://.godot/imported/leaf_01.blend-f7a505aef854095ab0dfd9a3ed3a606f.scn"
 
 [deps]
 
-source_file="res://assets/models/environment/rocks/rock_1/rock_1.blend"
-dest_files=["res://.godot/imported/rock_1.blend-66526a5eac64b65eba7cc925653d2f2e.scn"]
+source_file="res://assets/models/environment/foliage/leaves/leaf_01.blend"
+dest_files=["res://.godot/imported/leaf_01.blend-f7a505aef854095ab0dfd9a3ed3a606f.scn"]
 
 [params]
 
@@ -37,14 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"nodes": {
-"PATH:rock_1_low": {
-"generate/physics": true,
-"physics/shape_type": 0
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
@@ -64,4 +57,4 @@ blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true
-gltf/naming_version=0
+gltf/naming_version=2
