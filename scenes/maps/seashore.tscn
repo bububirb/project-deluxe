@@ -51,7 +51,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -6)
 size = Vector3(30, 15, 28)
 data = ExtResource("5_yey68")
 
-[node name="Gear_003" parent="." index="8" unique_id=1438621280]
+[node name="Camera" parent="." index="6" unique_id=1189771957]
+transform = Transform3D(0.9968966, 0.007098191, 0.07840145, 3.9526494e-05, 0.9958812, -0.09066615, -0.07872213, 0.09038788, 0.9927902, 0.34420243, 1.8054763, 10.379561)
+
+[node name="Gear_003" parent="." index="16" unique_id=306848185]
 transform = Transform3D(0.65605897, 0, 0.75470966, 0, 1, 0, -0.75470966, 0, 0.65605897, -8.4, 6.5301266, -0.46271348)
 gi_mode = 2
 script = ExtResource("9_kcbq0")
@@ -60,17 +63,17 @@ speed = 0.133
 [node name="crunchy_oil" parent="Gear_003" index="0" unique_id=590829314 instance=ExtResource("7_yey68")]
 transform = Transform3D(-1.5702672, 0, 4.0318937, 0, 4.326879, 0, -4.0318937, 0, -1.5702672, 0, 1.6113262, 0)
 
-[node name="Gear_005" parent="." index="11" unique_id=1494221776]
-transform = Transform3D(0.06975663, 0, -0.997564, 0, 1, 0, 0.997564, 0, 0.06975663, 4.964171, 4.057308, -8.708902)
-gi_mode = 2
-script = ExtResource("9_kcbq0")
-speed = 0.133
-
 [node name="beam_02" parent="." index="17" unique_id=194617192 instance=ExtResource("8_yey68")]
 transform = Transform3D(0.8109597, 0, 0.5851021, 0, 1, 0, -0.5851021, 0, 0.8109597, 2.3693733, 9.284319, -4.130764)
 
 [node name="beam_03" parent="." index="18" unique_id=861455676 instance=ExtResource("8_yey68")]
 transform = Transform3D(0.8109597, 0, 0.5851021, 0, 1, 0, -0.5851021, 0, 0.8109597, 4.765861, 9.284319, -0.28572035)
+
+[node name="Gear_005" parent="." index="19" unique_id=1660347473]
+transform = Transform3D(0.06975663, 0, -0.997564, 0, 1, 0, 0.997564, 0, 0.06975663, 4.964171, 4.057308, -8.708902)
+gi_mode = 2
+script = ExtResource("9_kcbq0")
+speed = 0.133
 
 [node name="axle_01" parent="." index="21" unique_id=816133611 instance=ExtResource("9_yey68")]
 transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -5.4, 4.330127, -0.46271348)
@@ -111,3 +114,6 @@ transform = Transform3D(1.9987892, 0.003959021, -0.97079736, -0.02958649, 2.2212
 
 [node name="truss_01" parent="." index="30" unique_id=1526761536 instance=ExtResource("17_yey68")]
 transform = Transform3D(0.91913545, 0, -0.39394194, 0, 1, 0, 0.39394194, 0, 0.91913545, 5.1782265, 11.827834, -10.16411)
+
+[node name="AnimationPlayer" parent="." index="32" unique_id=1694305753]
+autoplay = &"CameraAction"
