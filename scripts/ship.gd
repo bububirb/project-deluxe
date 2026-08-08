@@ -109,7 +109,8 @@ func _physics_process(delta: float) -> void:
 	_update_bounds_transform()
 	_snap_bounds_to_wave()
 	_align_to_wave(delta)
-	_update_indicators()
+	if active_item:
+		_update_indicators()
 	
 	var speed_cap = max_speed
 	var direction := (transform.basis * Vector3(0, 0, input_dir)).normalized()
