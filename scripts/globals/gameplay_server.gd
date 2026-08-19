@@ -197,6 +197,8 @@ func shoot(player_id: int, item_index: int) -> void:
 	var item: Node = get_player_item(player_id, item_index)
 	if item.cooldown > 0.0: return
 	
+	ship.update_trajectory()
+
 	var projectile_stats: ProjectileStats = ProjectileStats.new()
 	
 	var start_position: Vector3 = ship.item_instancer.global_position

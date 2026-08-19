@@ -186,7 +186,7 @@ func aiming_weight(ship: Ship) -> float:
 	var distance_weight: float = 1.0 - (distance / 100.0)
 	return angle_weight + (distance_weight * 0.2)
 
-func _update_trajectory() -> void:
+func update_trajectory() -> void:
 	var start_position: Vector3 = item_instancer.global_position
 	var target_position: Vector3 = aiming_position
 	var target_position_flat: Vector2 = Vector2(target_position.x, target_position.z)
@@ -211,7 +211,7 @@ func _hide_indicators() -> void:
 
 func _update_indicators() -> void:
 	if Input.is_action_pressed("shoot"):
-		_update_trajectory()
+		update_trajectory()
 		var size: float = active_item.stats.radius * 2.0
 
 		if active_item.item_class == Globals.ItemClass.TORPEDO:
@@ -267,7 +267,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		if active_item:
 			if Input.is_action_just_pressed("shoot"):
-				_update_trajectory()
+				update_trajectory()
 				_show_active_indicator()
 			
 			if Input.is_action_just_released("shoot"):
